@@ -44,7 +44,7 @@ jobs:
                   'sea_water_to_direction','sea_surface_wave_significant_height','sensor_depth_below_surface',
                   'grossrange_flag_sea_water_speed','grossrange_flag_sea_water_to_direction',
                   'grossrange_flag_sea_surface_wave_significant_height','grossrange_flag_sensor_depth_below_surface']
-          url='https://cioosatlantic.ca/erddap/tabledap/7iig-p4yk.csv0?'+','.join(fields)+'&'+urlencode({
+          url='https://cioosatlantic.ca/erddap/tabledap/7iig-p4yk.csv?'+','.join(fields)+'&'+urlencode({
                'time>':'2022-11-17T00:00:00Z','time<':'2022-11-19T01:00:00Z'})
           summary['independent_source_url']=url
           try:
@@ -53,6 +53,8 @@ jobs:
                   if len(payload)>3_000_000:raise ValueError('bounded sample exceeded 3 MB')
               data=payload.decode('utf-8-sig')
               rows=list(csv.DictReader(io.StringIO(data)))
+              if rows and rows[0].get('time','').lower() in ('utc','iso8601',''):
+                  rows=rows[1:]  # ERDDAP .csv second-line units, not measurements
               if not rows: raise ValueError('No measurements returned; preserve access diagnostic')
               if any(k not in rows[0] for k in fields):raise ValueError('Missing requested dataset field')
               sha=hashlib.sha256(payload).hexdigest()
