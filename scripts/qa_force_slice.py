@@ -14,7 +14,7 @@ import io
 import json
 from math import hypot, isfinite
 from pathlib import Path
-from urllib.parse import urlencode
+from urllib.parse import quote
 from urllib.request import Request,urlopen
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -28,7 +28,7 @@ MAX_BYTES=8*1024*1024
 def request_url():
     # Escape ampersands/inequalities correctly, retaining a literal comma in variables.
     # The URL uses server-side time filters, so never request the full campaign.
-    return BASE+'?'+','.join(FIELDS)+'&'+urlencode({'time>=':START,'time<=':END})
+    return BASE+'?'+','.join(FIELDS)+'&time%3E='+quote(START,safe=':-')+'&time%3C='+quote(END,safe=':-')
 
 def download(opener=urlopen,cap=MAX_BYTES):
     req=Request(request_url(),headers={'User-Agent':'TidalTurbine-academic-research/0.3'})

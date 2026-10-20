@@ -3,9 +3,10 @@ from scripts.qa_force_slice import qc,request_url
 class QA(unittest.TestCase):
     def test_bounded_url(self):
         u=request_url()
-        self.assertIn('time%3E%3D',u)
-        self.assertIn('time%3C%3D',u)
-        self.assertTrue(u.endswith('2018-03-30T22%3A02%3A33Z'))
+        self.assertIn('&time%3E=2018-03-30T20:02:33Z',u)
+        self.assertIn('&time%3C=2018-03-30T22:02:33Z',u)
+        self.assertNotIn('time%3E%3D=',u)
+        self.assertNotIn('time%3C%3D=',u)
     def test_qc_detects_invalid_duplicate_and_does_not_call_it_validated(self):
         h='time,latitude,longitude,cell_range,eastward_sea_water_velocity,northward_sea_water_velocity,upward_sea_water_velocity\n'
         units='UTC,degrees_north,degrees_east,m,m/s,m/s,m/s\n'
