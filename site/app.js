@@ -15,7 +15,7 @@ let rm2Tradeoff = null;
 let annotations = true;
 const VALIDATION = [
   ['Analytical checks & screening', 'Analytical limiting cases, deterministic code and the synthetic SCREEN-001 baseline.', 'SOFTWARE CHECKS PASSED', 'complete'],
-  ['Reproduce published benchmark', 'Processed RM2 Cp/CD data reproduced; independent RM1 and cross-flow hydrodynamic predictions not validated.', 'DATA PLOTTED · SOLVERS UNVALIDATED', 'pending'],
+  ['Reproduce published benchmark', 'Published RM1 axial table and RM2 processed Cp/Cd observations reproduced; predictive solvers and structural loads remain unvalidated.', 'DATA PLOTTED · SOLVERS UNVALIDATED', 'pending'],
   ['Validated rotor & control', 'Turbulence, validated thrust/pitch maps, cavitation and measured blade-load distributions.', 'NOT STARTED', 'pending'],
   ['Coupled structure and moorings', 'Fatigue damage, foundation/cable stresses and floating-platform response under real conditions.', 'NOT STARTED', 'pending'],
   ['Serviceability & lifecycle cost', 'Maintenance histories, realistic weather access windows, failure and repair uncertainty.', 'NOT STARTED', 'pending'],
@@ -166,7 +166,7 @@ function miniOverview(){
     const base=report.baseline.energy_kwh,cmp=report.comparison.energy_kwh;
     $('#overview-results').innerHTML=`<div class="result-cell"><span>Baseline / 14 days</span><strong>${numeric(base)} kWh</strong></div><div class="result-cell"><span>80% export cap</span><strong>${numeric(cmp)} kWh</strong></div><div class="result-cell"><span>Energy penalty</span><strong class="accent">${numeric(report.difference_export_energy_percent,2)}%</strong></div>`;
   }else {$('#overview-chart').innerHTML='<p class="empty">Archived experiment unavailable</p>';}
-  const names=[['01','FORCE ADCP currents','Two-hour sample acquired · quality unresolved','≋'],['02','CHS water levels','Gauge observations and predictions, not current speed','◉'],['03','Fundy bathymetry','NONNA / GEBCO terrain records','▦'],['04','DFO ecology','Habitats, marine use and monitoring','♧']];
+  const names=[['01','FORCE ADCP currents','72-hour sample acquired · quality unresolved','≋'],['02','CHS water levels','Gauge observations and predictions, not current speed','◉'],['03','Fundy bathymetry','NONNA / GEBCO terrain records','▦'],['04','DFO ecology','Habitats, marine use and monitoring','♧']];
   $('#mini-data-list').innerHTML=names.map(([id,title,desc,icon])=>`<div class="mini-data-row"><span class="data-icon">${icon}</span><span><strong>${title}</strong><small>${desc}</small></span><span class="arrow">›</span></div>`).join('');
   $('#mini-gates').innerHTML=VALIDATION.map(([title,subtitle,state,kind],i)=>`<div class="gate-row"><span class="gate-num ${kind==='complete'?'complete':''}">${i+1}</span><span class="gate-text"><strong>${safe(title)}</strong><small>${safe(subtitle.slice(0,67))}${subtitle.length>67?'…':''}</small></span><span class="gate-check">${kind==='complete'?'✓':'○'}</span></div>`).join('');
   $('#research-gates').innerHTML=VALIDATION.map(([title,desc,state,kind],i)=>`<div class="research-gate"><span class="research-gate-num ${kind==='complete'?'active':''}">${i+1}</span><div class="research-gate-content"><h3>${safe(title)}</h3><p>${safe(desc)}</p><small>${safe(state)}</small></div></div>`).join('');
