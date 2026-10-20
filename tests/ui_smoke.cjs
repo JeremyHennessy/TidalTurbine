@@ -18,7 +18,10 @@ const document={querySelector:element,querySelectorAll:()=>[],addEventListener()
 const ctx=vm.createContext({document,console,window:{},location:{},history:{},setTimeout,Math,Number,JSON});
 new vm.Script(code,{filename:'site/app.js'}).runInContext(ctx);
 ctx.registry=JSON.parse(fs.readFileSync(path.join(root,'research/mechanisms.json'),'utf8'));
-vm.runInContext('applyMechanisms(registry);renderComparison()',ctx);
+vm.runInContext('applyMechanisms(registry);renderDesign()',ctx);
+assert.match(element('#design-title').textContent,/Seabed horizontal-axis turbine/,'initial selection should render the main studio');
+assert.match(element('#design-viewport').innerHTML,/NOT TO SCALE/,'main studio illustration should initialize');
+vm.runInContext('renderComparison()',ctx);
 assert.match(element('#comparison-grid').innerHTML,/Seabed horizontal-axis turbine/);
 assert.match(element('#comparison-grid').innerHTML,/Cross-flow vertical-axis turbine/);
 assert.match(element('#comparison-grid').innerHTML,/Source record/);
