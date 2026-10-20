@@ -1,0 +1,53 @@
+name: One-shot FORCE full-campaign source acquisition
+on:
+  push:
+    branches:
+      - research/force-campaign-ocean-ingestion-20261020
+    paths:
+      - .github/workflows/force-campaign-once.yml
+permissions:
+  contents: read
+jobs:
+  archive-sources:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download both complete FORCE spring-2018 processed NetCDF sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/force-campaign"
+          curl --fail --location --retry 2 --max-time 120 --max-filesize 5000000 \
+            'https://cioosatlantic.ca/erddap/files/FORCE_Mar2018_ADCP_Currents/Burst.VTC.DSEL.AVER.classic.nc' \
+            --output "$RUNNER_TEMP/force-campaign/currents.nc"
+          curl --fail --location --retry 2 --max-time 120 --max-filesize 5000000 \
+            'https://cioosatlantic.ca/erddap/files/FORCE_Mar2018_ADCP_Waves/Burst.VTC.WAVES.classic.nc' \
+            --output "$RUNNER_TEMP/force-campaign/waves.nc"
+          python - <<'PY'
+          import json, os, hashlib
+          from pathlib import Path
+          from datetime import datetime, timezone
+          root=Path(os.environ['RUNNER_TEMP'])/'force-campaign'
+          sizes={'currents.nc':3348741,'waves.nc':119465}
+          entries=[]
+          for name, expected_size in sizes.items():
+              blob=(root/name).read_bytes()
+              assert len(blob)==expected_size,(name,len(blob),expected_size)
+              assert blob[:4] in (b'CDF\x01', b'CDF\x02', b'CDF\x05'),(name,blob[:4])
+              entries.append({'file':name,'size_bytes':len(blob),'sha256':hashlib.sha256(blob).hexdigest(),
+                  'source_url':('https://cioosatlantic.ca/erddap/files/FORCE_Mar2018_ADCP_'+('Currents' if name=='currents.nc' else 'Waves')+'/'+
+                        ('Burst.VTC.DSEL.AVER.classic.nc' if name=='currents.nc' else 'Burst.VTC.WAVES.classic.nc'))})
+          manifest={'provenance':'FORCE through CIOOS Atlantic','license':'CC BY 4.0','timestamp_utc':datetime.now(timezone.utc).isoformat(),
+              'evidence_status':'SOURCE_FILES_OBTAINED_NOT_QC_APPROVED','processing_notes':'Source NetCDF files are processed data, not original native AD2CP raw beams; original 2018 experiment.',
+              'files':entries,'model_ingestion':'BLOCKED_PENDING_INSTRUMENT_QC'}
+          (root/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
+          print('Acquired files:',json.dumps(entries))
+          PY
+      - name: Archive source bytes and checksum manifest (not in Git)
+        uses: actions/upload-artifact@v4
+        with:
+          name: force-spring2018-complete-processed-netcdf
+          path: ${{ runner.temp }}/force-campaign/
+          retention-days: 7
+          if-no-files-found: error
