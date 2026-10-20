@@ -227,7 +227,7 @@ function renderDesign(){
   $('#design-evidence').textContent=d.evidence;
   renderMechanismEvidence();
   renderComparison();
-  $('.design-choice').forEach(e=>e.classList.toggle('active',e.dataset.design===selected));
+  document.querySelectorAll('.design-choice').forEach(e=>e.classList.toggle('active',e.dataset.design===selected));
 }
 function setupDesign(){
   $('#design-selector').innerHTML=Object.entries(DESIGNS).map(([key,d])=>`<button class="design-choice ${key===selected?'active':''}" data-design="${key}"><small>CONCEPT ${d.index}</small><strong>${d.short}</strong><span>${d.sub}</span></button>`).join('');
