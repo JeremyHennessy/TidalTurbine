@@ -27,7 +27,7 @@ vm.runInContext("selected='crossflow';renderComparison()",ctx);
 assert.equal(element('#compare-select').value,'seabed','same design cannot compare to itself');
 assert.match(element('#comparison-grid').innerHTML,/SEABED/i);
 vm.runInContext("selected='foil';renderComparison()",ctx);
-assert.match(element('#comparison-grid').innerHTML,/Oscillating foil/i);
+assert.match(element('#comparison-grid').innerHTML,/Heaving\/pitching oscillating hydrofoil/i);
 ctx.drag=JSON.parse(fs.readFileSync(path.join(root,'reports/RM2-TRADEOFF-001.json'),'utf8'));
 vm.runInContext('rm2Tradeoff=drag;renderRM2Tradeoff()',ctx);
 assert.match(element('#rm2-tradeoff').innerHTML,/Alternative run 10/);
