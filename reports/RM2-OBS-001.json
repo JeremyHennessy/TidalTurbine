@@ -1,0 +1,247 @@
+{
+  "id": "RM2-OBS-001",
+  "classification": "EXPERIMENTAL_PROCESSED_DATA_REPRODUCTION_NOT_PREDICTIVE_VALIDATION",
+  "question": "Reproduce the observed RM2 Cp-versus-tip-speed-ratio and CD series from UNH processed tow tank data.",
+  "source": "UNH-CORE/RM2-tow-tank/Data/Processed/Perf-1.0.csv",
+  "source_url": "https://github.com/UNH-CORE/RM2-tow-tank/blob/master/Data/Processed/Perf-1.0.csv",
+  "source_git_blob_sha": "1f284211d5c19593cf753e63727ae62a62356439",
+  "upstream_test_family": "RM2 1:6 model, 1.0 m/s nominal tow speed, freshwater laboratory tow tank",
+  "geometry": {
+    "diameter_m": 1.075,
+    "height_m": 0.8067,
+    "frontal_area_m2": 0.8672025
+  },
+  "performance_reference_area": "D*H projected frontal area; coefficients in upstream processing (verify detailed processing for boundary).",
+  "provenance": "Published processed table subset transcribed to seven decimal places from original Git blob; not independently recomputed from ~10 GB raw signals.",
+  "license": "CC BY 4.0 source data / attribution Bachant, Wosnik, Gunawan, Neary (2016), DOI 10.6084/m9.figshare.1373899",
+  "source_fixture_sha256": "29fbd305655f1c96bdf8b0c67db266f8c132d56035e3537cdff06f2b24f7e51d",
+  "n_observations": 23,
+  "peak_observed": {
+    "run": 12,
+    "mean_tsr": 3.0993495,
+    "mean_cp": 0.3546025,
+    "mean_cd": 0.8458717,
+    "mean_tow_speed_m_s": 1.0000308,
+    "exp_unc_cp": 0.0080504,
+    "exp_unc_cd": 0.003673
+  },
+  "data": [
+    {
+      "run": 0,
+      "mean_tsr": 0.9999071,
+      "mean_cp": 0.0020523,
+      "mean_cd": 0.3216795,
+      "mean_tow_speed_m_s": 1.0000229,
+      "exp_unc_cp": 0.0024757,
+      "exp_unc_cd": 0.0045051
+    },
+    {
+      "run": 1,
+      "mean_tsr": 1.2501952,
+      "mean_cp": 0.002505,
+      "mean_cd": 0.3529327,
+      "mean_tow_speed_m_s": 1.0000134,
+      "exp_unc_cp": 0.0031122,
+      "exp_unc_cd": 0.0055246
+    },
+    {
+      "run": 2,
+      "mean_tsr": 1.5002688,
+      "mean_cp": 0.0168376,
+      "mean_cd": 0.3988771,
+      "mean_tow_speed_m_s": 1.0000201,
+      "exp_unc_cp": 0.0037779,
+      "exp_unc_cd": 0.0021777
+    },
+    {
+      "run": 3,
+      "mean_tsr": 1.7501286,
+      "mean_cp": 0.0384002,
+      "mean_cd": 0.4578181,
+      "mean_tow_speed_m_s": 1.0000172,
+      "exp_unc_cp": 0.0048943,
+      "exp_unc_cd": 0.004217
+    },
+    {
+      "run": 4,
+      "mean_tsr": 2.0001802,
+      "mean_cp": 0.0802425,
+      "mean_cd": 0.5252516,
+      "mean_tow_speed_m_s": 1.0000211,
+      "exp_unc_cp": 0.0056061,
+      "exp_unc_cd": 0.0024319
+    },
+    {
+      "run": 5,
+      "mean_tsr": 2.2498783,
+      "mean_cp": 0.1637622,
+      "mean_cd": 0.6086688,
+      "mean_tow_speed_m_s": 1.0000195,
+      "exp_unc_cp": 0.0072078,
+      "exp_unc_cd": 0.0049794
+    },
+    {
+      "run": 6,
+      "mean_tsr": 2.4999816,
+      "mean_cp": 0.2457068,
+      "mean_cd": 0.6746396,
+      "mean_tow_speed_m_s": 1.0000286,
+      "exp_unc_cp": 0.0072184,
+      "exp_unc_cd": 0.0054364
+    },
+    {
+      "run": 7,
+      "mean_tsr": 2.599246,
+      "mean_cp": 0.2781071,
+      "mean_cd": 0.710241,
+      "mean_tow_speed_m_s": 1.0000544,
+      "exp_unc_cp": 0.0066081,
+      "exp_unc_cd": 0.0040797
+    },
+    {
+      "run": 8,
+      "mean_tsr": 2.7001709,
+      "mean_cp": 0.3080665,
+      "mean_cd": 0.7420555,
+      "mean_tow_speed_m_s": 1.0000338,
+      "exp_unc_cp": 0.0068896,
+      "exp_unc_cd": 0.0038695
+    },
+    {
+      "run": 9,
+      "mean_tsr": 2.7995145,
+      "mean_cp": 0.3294381,
+      "mean_cd": 0.7682874,
+      "mean_tow_speed_m_s": 1.0000377,
+      "exp_unc_cp": 0.0071695,
+      "exp_unc_cd": 0.0023893
+    },
+    {
+      "run": 10,
+      "mean_tsr": 2.8999618,
+      "mean_cp": 0.3480504,
+      "mean_cd": 0.7992956,
+      "mean_tow_speed_m_s": 1.0000483,
+      "exp_unc_cp": 0.0072732,
+      "exp_unc_cd": 0.0026097
+    },
+    {
+      "run": 11,
+      "mean_tsr": 2.9996617,
+      "mean_cp": 0.3520155,
+      "mean_cd": 0.8221283,
+      "mean_tow_speed_m_s": 1.0000657,
+      "exp_unc_cp": 0.0076296,
+      "exp_unc_cd": 0.0027426
+    },
+    {
+      "run": 12,
+      "mean_tsr": 3.0993495,
+      "mean_cp": 0.3546025,
+      "mean_cd": 0.8458717,
+      "mean_tow_speed_m_s": 1.0000308,
+      "exp_unc_cp": 0.0080504,
+      "exp_unc_cd": 0.003673
+    },
+    {
+      "run": 13,
+      "mean_tsr": 3.1997535,
+      "mean_cp": 0.3540796,
+      "mean_cd": 0.8633178,
+      "mean_tow_speed_m_s": 1.000034,
+      "exp_unc_cp": 0.0080085,
+      "exp_unc_cd": 0.0028521
+    },
+    {
+      "run": 14,
+      "mean_tsr": 3.2995994,
+      "mean_cp": 0.3468977,
+      "mean_cd": 0.8771006,
+      "mean_tow_speed_m_s": 1.0000723,
+      "exp_unc_cp": 0.008315,
+      "exp_unc_cd": 0.0038158
+    },
+    {
+      "run": 15,
+      "mean_tsr": 3.3996981,
+      "mean_cp": 0.3456962,
+      "mean_cd": 0.8946068,
+      "mean_tow_speed_m_s": 1.0000756,
+      "exp_unc_cp": 0.0087131,
+      "exp_unc_cd": 0.0040532
+    },
+    {
+      "run": 16,
+      "mean_tsr": 3.4992214,
+      "mean_cp": 0.3359303,
+      "mean_cd": 0.9030418,
+      "mean_tow_speed_m_s": 1.0000324,
+      "exp_unc_cp": 0.009773,
+      "exp_unc_cd": 0.0069702
+    },
+    {
+      "run": 17,
+      "mean_tsr": 3.5996866,
+      "mean_cp": 0.3320098,
+      "mean_cd": 0.9144178,
+      "mean_tow_speed_m_s": 1.0000276,
+      "exp_unc_cp": 0.009532,
+      "exp_unc_cd": 0.0048218
+    },
+    {
+      "run": 18,
+      "mean_tsr": 3.69971,
+      "mean_cp": 0.3240222,
+      "mean_cd": 0.9223468,
+      "mean_tow_speed_m_s": 1.0001018,
+      "exp_unc_cp": 0.0100412,
+      "exp_unc_cd": 0.0060517
+    },
+    {
+      "run": 19,
+      "mean_tsr": 3.8000429,
+      "mean_cp": 0.3179281,
+      "mean_cd": 0.9350083,
+      "mean_tow_speed_m_s": 1.0001038,
+      "exp_unc_cp": 0.0118225,
+      "exp_unc_cd": 0.0075438
+    },
+    {
+      "run": 20,
+      "mean_tsr": 3.9003023,
+      "mean_cp": 0.3005241,
+      "mean_cd": 0.9574969,
+      "mean_tow_speed_m_s": 1.0000459,
+      "exp_unc_cp": 0.0104016,
+      "exp_unc_cd": 0.0053028
+    },
+    {
+      "run": 21,
+      "mean_tsr": 3.9996512,
+      "mean_cp": 0.2855696,
+      "mean_cd": 0.9297603,
+      "mean_tow_speed_m_s": 1.0001109,
+      "exp_unc_cp": 0.0109761,
+      "exp_unc_cd": 0.0056331
+    },
+    {
+      "run": 22,
+      "mean_tsr": 4.2508917,
+      "mean_cp": 0.2530654,
+      "mean_cd": 0.9594197,
+      "mean_tow_speed_m_s": 0.9999761,
+      "exp_unc_cp": 0.011487,
+      "exp_unc_cd": 0.0096868
+    }
+  ],
+  "decisions_supported": [
+    "Processed RM2 observed performance is suitable as a benchmark target for a future independent cross-flow model.",
+    "Cross-flow cannot be modelled by changing horizontal-axis Cp only."
+  ],
+  "not_established": [
+    "No predictive model or independent raw-signal recalculation.",
+    "The fields exp_unc_cp and exp_unc_cd retain upstream names; no assumption about confidence or percent interpretation.",
+    "Not a tidal-site resource prediction, net electrical performance, annual yield, ecological safety or fatigue validation.",
+    "Does not generalize to helical, Savonius, oscillating-foil or other converter families."
+  ]
+}

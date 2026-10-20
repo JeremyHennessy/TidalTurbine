@@ -20,3 +20,7 @@ Evidence status: **qualitative candidate characteristics** only, not verified cr
 **Excluded from stream-device comparisons:** tidal barrages and lagoons alter impoundment/head; wave energy converters respond to waves. Keep independent classification, economics, permits, impacts and benchmarks.
 
 First five questions: load reduction vs net lifetime energy [H-001]; direct drive [H-002]; recoverable modules [H-003]; floating [H-004]; passive pitch [H-005]. No architecture is designated a winner.
+
+## Dimensional classification revision — 2026-10-20
+
+This earlier narrative taxonomy is **supplemented**, not superseded or inflated by duplicate device labels, by machine-readable [`mechanisms.json`](mechanisms.json) and evidence table [`MECHANISM_EVIDENCE.md`](MECHANISM_EVIDENCE.md). Separate: energy source (free-stream kinetic vs tidal head); capture (lift, drag, oscillatory lift, pressure coupling, vibration/flexure); motion (axial / cross-flow / transverse oscillation / flutter / cross-current flight); physical shaft orientation independent of blade helicity; PTO (electromagnetic direct/geared, hydraulic, air/pneumatic, piezoelectric); support (seabed, floating, tethered, shore); augmentation (open/duct/diffuser/secondary pressure); control and retrieval. The 14 exemplars are combinations, **not** exhaustive primary inventions. Wave, tidal-head lagoon/barrage, OTEC and salinity remain adjacent and excluded from the free-stream denominator. No ranking by incomparable Cp.

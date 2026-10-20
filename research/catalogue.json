@@ -428,5 +428,180 @@
       "Full 103-page report not downloaded; this does not grant project permission or replace engagement/Indigenous rights considerations."
     ],
     "access_status": "study link public; conflicting reporting dates recorded"
+  },
+  {
+    "id": "RM2-DATA-001",
+    "title": "Bachant et al UNH RM2 1:6 tow-tank processed performance data",
+    "url": "https://github.com/UNH-CORE/RM2-tow-tank",
+    "publication_date": "2016",
+    "access_date": "2026-10-20",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "sections_reviewed",
+    "reviewed_sections": [
+      "README: turbine specifications, test-matrix nomenclature and licence",
+      "Data/Processed/Perf-1.0.csv: all 23 lines and uncertainty fields",
+      "pyrm2tt/processing.py: upstream definitions, D*H area and density"
+    ],
+    "supported_claims": [
+      "Processed 1.0 m/s tow-tank Cp/CD data have 23 runs; measured peak Cp ~0.35460 near TSR 3.099; upstream data derivative reproduces those values."
+    ],
+    "limitations": [
+      "This is a 1:6 model tow-tank experiment, not a Fundy site or a predictive model. Upstream source full file can be independently checked using immutable blob SHA. ~10 GB raw instrument archive was not acquired."
+    ],
+    "access_status": "MIT code; CC BY 4.0 other materials"
+  },
+  {
+    "id": "OEDI-RM2-001",
+    "title": "DOE OEDI RM2 open experimental and numerical dataset index",
+    "url": "https://data.openei.org/submissions/7832",
+    "publication_date": "2015-06-30",
+    "access_date": "2026-10-20",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "sections_reviewed",
+    "reviewed_sections": [
+      "Dataset description and resource/distribution links",
+      "Licence / attribution"
+    ],
+    "supported_claims": [
+      "Lists UNH-CORE tow-tank source and CACTUS model files, raw signals, torque and thrust evidence."
+    ],
+    "limitations": [
+      "Index is metadata; not an independent cross-family physical validation."
+    ],
+    "access_status": "public HTML, CC BY4.0"
+  },
+  {
+    "id": "EMEC-TYPES-001",
+    "title": "EMEC tidal devices mechanism classification",
+    "url": "https://www.emec.org.uk/marine-energy/tidal-devices/",
+    "publication_date": "undated",
+    "access_date": "2026-10-20",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "full_content_review",
+    "reviewed_sections": [
+      "types A-G including axial, transverse, oscillating foil, Venturi, screw, kite"
+    ],
+    "supported_claims": [
+      "Identifies several physically different tidal-stream converter mechanisms including pressure-coupled devices."
+    ],
+    "limitations": [
+      "Educational mechanism categories not measurement or comparative performance evidence."
+    ],
+    "access_status": "public HTML"
+  },
+  {
+    "id": "EMEC-HISTORY-001",
+    "title": "EMEC OpenHydro field history and decommissioning",
+    "url": "https://www.emec.org.uk/about-us/our-tidal-clients/open-hydro/",
+    "publication_date": "page current 2026-10-20",
+    "access_date": "2026-10-20",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "sections_reviewed",
+    "reviewed_sections": [
+      "Historic test platform and 250 kW rating",
+      "Run-hours, liquidation, 2022 removal, 2024 decommissioning"
+    ],
+    "supported_claims": [
+      "EMEC reports OpenHydro 6-m test rig, 250 kW rated unit, over 10,000 run-hours, liquidation 2018 and full facility decommissioning 2024."
+    ],
+    "limitations": [
+      "Test-centre historical claims not audited availability statistics or LCOE; 10k hours is not projected machine lifetime."
+    ],
+    "access_status": "public HTML"
+  },
+  {
+    "id": "SPIRALIS-001",
+    "title": "Cape Horn Engineering 2024 Spiralis Axial Skelter CFD / field comparison",
+    "url": "https://www.cape-horn-eng.com/cfd-analysis-tidal-energy-structure-spiralis-energy/",
+    "publication_date": "2024-08-21",
+    "access_date": "2026-10-20",
+    "evidence_class": "MANUFACTURER_OR_PROJECT_CLAIM",
+    "review_depth": "sections_reviewed",
+    "reviewed_sections": [
+      "Test rig location/scaled geometry",
+      "Peak 2.50 kW measured vs 2.59 kW predicted at 21 RPM",
+      "Recyclability and sea-life sections"
+    ],
+    "supported_claims": [
+      "Engineering firm reports one quarter-scale trial point of 2.50kW and CFD 2.59kW at 21 RPM."
+    ],
+    "limitations": [
+      "Independently published upstream measured series, raw inflow, calibration, net output, uncertainty and ecology not available from this page. Do not transfer a single-point comparison to full-scale lifetime."
+    ],
+    "access_status": "public company case study"
+  },
+  {
+    "id": "MIN-D12-2026",
+    "title": "Minesto 2026 Dragon fleet deployment and recovery update",
+    "url": "https://www.minesto.com/news/project-update-on-minesto-dragons-in-the-faroe-islands-microgrid-scale-powerplant-dragon-4-in-electricity-production/",
+    "publication_date": "2026-03-17",
+    "access_date": "2026-10-20",
+    "evidence_class": "MANUFACTURER_OR_PROJECT_CLAIM",
+    "review_depth": "sections_reviewed",
+    "reviewed_sections": [
+      "Grid generation and device retrieval update",
+      "Device ratings and service claims"
+    ],
+    "supported_claims": [
+      "Company reports 100kW Dragon4 grid production and retrieval of 1.2MW rated Dragon12 after ~10 months in seawater."
+    ],
+    "limitations": [
+      "Self-report. No open independent delivered-energy time series, device availability statistics or comparable cost/impact analysis reviewed."
+    ],
+    "access_status": "public manufacturer release"
+  },
+  {
+    "id": "EEL-ALLEN-2001",
+    "title": "Allen and Smits 2001 Energy harvesting eel",
+    "url": "https://collaborate.princeton.edu/en/publications/energy-harvesting-eel/",
+    "publication_date": "2001",
+    "access_date": "2026-10-20",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "landing_page_review",
+    "reviewed_sections": [],
+    "supported_claims": [
+      "Publication identifies piezoelectric flag energy scavenging from bluff-body vortex street as experimental research."
+    ],
+    "limitations": [
+      "Institutional abstract and DOI inspected, full manuscript not accessed; no measured electrical output or load inferred."
+    ],
+    "access_status": "institutional bibliographic page; full-text access gap"
+  },
+  {
+    "id": "EMEC-FLUMILL-001",
+    "title": "EMEC Flumill field-test history",
+    "url": "https://www.emec.org.uk/about-us/our-tidal-clients/flumill/",
+    "publication_date": "undated",
+    "access_date": "2026-10-20",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "sections_reviewed",
+    "reviewed_sections": [
+      "2011 Shapinsay non-grid-connected deployment",
+      "Free-stream helix description"
+    ],
+    "supported_claims": [
+      "The EMEC test centre describes a helical screw at a non-grid-connected site in 2011."
+    ],
+    "limitations": [
+      "No independently reported electrical power curve, net output, device life or commercial status from this page."
+    ],
+    "access_status": "public HTML"
+  },
+  {
+    "id": "RM1-SANDIA-STATUS",
+    "title": "Sandia RM1 experimental report publication record",
+    "url": "https://www.sandia.gov/research/publications/details/u-s-department-of-energy-reference-model-program-rm1-experimental-results-2017-08-01/",
+    "publication_date": "2014 (Sandia report; secondary site entry may use 2017)",
+    "access_date": "2026-10-20",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "landing_page_review",
+    "reviewed_sections": [],
+    "supported_claims": [
+      "RM1 is a laboratory counter-rotating dual axial rotor design at 1:40 scale, not the RM2 cross-flow device."
+    ],
+    "limitations": [
+      "Sandia has conflicting page indexing typo RM1(RM2) in one entry; rely on report itself. No measured numeric curve ingested by this pass."
+    ],
+    "access_status": "public publication metadata"
   }
 ]
