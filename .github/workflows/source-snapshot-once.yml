@@ -1,0 +1,38 @@
+name: One-shot source snapshot for isolated validation
+on:
+  push:
+    branches: [research/validation-readiness-20261020]
+    paths: [.github/workflows/source-snapshot-once.yml]
+permissions:
+  contents: read
+jobs:
+  checkout-snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - name: Record base tree identity
+        run: |
+          git rev-parse HEAD
+          git ls-files | wc -l
+      - uses: actions/upload-artifact@v4
+        with:
+          name: TidalTurbine-source-snapshot
+          path: |
+            .github/
+            AGENTS.md
+            README.md
+            docs/
+            research/
+            reports/
+            requirements-ocean.txt
+            scripts/
+            tidal_screen/
+            tests/
+            site/
+            configs/
+            index.html
+            .gitignore
+            .nojekyll
+          retention-days: 1
+          if-no-files-found: error
