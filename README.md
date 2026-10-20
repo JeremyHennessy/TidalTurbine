@@ -63,3 +63,13 @@ The original 14-day synthetic SCREEN-001 power model, its report and its assumpt
 ## Measured cross-flow operating-point research
 
 [RM2-TRADEOFF-001](reports/RM2-TRADEOFF-001.md) compares **published laboratory processed means** of Cp and streamwise Cd at different tip-speed ratios on the same 1:6 cross-flow rotor and nominal inflow. It identifies an experimentally observed *mean* power-versus-drag tradeoff; cyclic loads, controller energy, fatigue, lifetime economics and field validity remain untested. Replay with `python scripts/rm2_operating_points.py`.
+
+## Complete spring-2018 FORCE observed-data screening (acquired, **not engineering qualified**)
+
+Both complete FORCE/CIOOS Atlantic **processed** NetCDF sources—currents and companion waves—are acquired, checksum-pinned and reproducibly audited in [FORCE full-campaign QA](docs/FORCE_FULL_CAMPAIGN_QA_20261020.md). The analysis covers 5,265 timestamps × 50 instrument-relative bins; **zero** bins have passed native instrument/source QC for turbine-energy prediction. Review the [compact per-cell/daily QA](reports/FORCE-CAMPAIGN-QA-001.json), [daily source-derived table](research/observations/FORCE_CAMPAIGN_DAILY_QA_2018.csv) and [acquisition run](https://github.com/JeremyHennessy/TidalTurbine/actions/runs/39484948868). Original binaries are in a time-limited GitHub Actions artifact, **not** Git. No visual/UI changes accompany this ingestion.
+
+```sh
+python -m pip install -r requirements-ocean.txt
+python scripts/process_force_campaign.py --archive /path/to/force-spring2018-complete-processed-netcdf.zip --prior-72h-archive /path/to/force-adcp-72h-raw-qa-ccby4.zip
+python scripts/check_force_campaign_report.py
+```
