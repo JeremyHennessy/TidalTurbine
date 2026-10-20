@@ -44,6 +44,7 @@ vm.runInContext('renderRM2Tradeoff()',ctx);
 assert.match(element('#rm2-tradeoff').innerHTML,/Alternative run 11/);
 vm.runInContext('rm2Tradeoff=null;renderRM2Tradeoff()',ctx);
 assert.match(element('#rm2-tradeoff').innerHTML,/unavailable/);
-assert.match(html,/206 of 450 velocity vectors are exact zero/);
+assert.match(html,/5,160 of 14,400 velocity vectors are exact zero/);
+assert.match(html,/FORCE-72H-QA-001\.json/,'current acquired-sample QA report should be linked');
 assert.ok(!html.includes('Data acquisition pending'),'stale FORCE acquisition status');
 console.log('TidalLab UI smoke checks passed: canonical comparison, selected state, observed RM2 alternatives, absence and FORCE status.');
