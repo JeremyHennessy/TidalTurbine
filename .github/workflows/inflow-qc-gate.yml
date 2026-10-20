@@ -1,0 +1,100 @@
+name: Source-pinned inflow QC and independent CMAR source reproduction
+on:
+  push:
+    branches: ['research/force-native-qc-independent-20261020']
+    paths:
+      - 'scripts/export_force_inflow_v0.py'
+      - 'scripts/process_cmar_dg013.py'
+      - 'scripts/check_ingestion_reports.py'
+      - 'tests/test_ingestion_gates.py'
+      - 'research/observations/FORCE_INFLOW_V0_MANIFEST_2018.json'
+      - 'research/observations/CMAR_DIGBY_DG013_2022_QA*'
+      - '.github/workflows/inflow-qc-gate.yml'
+  pull_request:
+    paths:
+      - 'scripts/export_force_inflow_v0.py'
+      - 'scripts/process_cmar_dg013.py'
+      - 'scripts/check_ingestion_reports.py'
+      - 'tests/test_ingestion_gates.py'
+      - 'research/observations/FORCE_INFLOW_V0_MANIFEST_2018.json'
+      - 'research/observations/CMAR_DIGBY_DG013_2022_QA*'
+      - '.github/workflows/inflow-qc-gate.yml'
+permissions:
+  contents: read
+jobs:
+  source-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.11', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install narrowly pinned optional ocean-data dependencies
+        run: python -m pip install -r requirements-ocean.txt
+      - name: Check published QA evidence and model-ineligibility gates offline
+        run: |
+          python scripts/check_ingestion_reports.py
+          python -m unittest discover -s tests -p 'test_ingestion_gates.py' -v
+      - name: Obtain bounded original public sources with SHA-256 fail closed
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from hashlib import sha256
+          from urllib.request import Request, urlopen
+          import os, json, zipfile
+          from scripts.export_force_inflow_v0 import CURRENT_SHA,WAVE_SHA
+          from scripts.process_cmar_dg013 import SHA as CMAR_SHA
+          root=Path(os.environ['RUNNER_TEMP'])/'ocean-source';root.mkdir()
+          sources=[
+             ('currents.nc','https://cioosatlantic.ca/erddap/files/FORCE_Mar2018_ADCP_Currents/Burst.VTC.DSEL.AVER.classic.nc',CURRENT_SHA,3348741),
+             ('waves.nc','https://cioosatlantic.ca/erddap/files/FORCE_Mar2018_ADCP_Waves/Burst.VTC.WAVES.classic.nc',WAVE_SHA,119465)]
+          raws={};meta=[]
+          for name,url,digest,size in sources:
+              with urlopen(Request(url,headers={'User-Agent':'TidalTurbine-research/1.0'}),timeout=50) as r: blob=r.read(size+1)
+              if len(blob)!=size or sha256(blob).hexdigest()!=digest: raise ValueError('Source changed: '+name)
+              raws[name]=blob;meta.append({'file':name,'source_url':url,'size_bytes':size,'sha256':digest})
+          with zipfile.ZipFile(root/'force.zip','w',compression=zipfile.ZIP_DEFLATED) as z:
+              for k,v in raws.items():z.writestr(k,v)
+              z.writestr('manifest.json',json.dumps({'files':meta}))
+          m=json.loads(Path('research/observations/CMAR_DIGBY_DG013_2022_QA.json').read_text())
+          url=m['source_url'];size=60480
+          with urlopen(Request(url,headers={'User-Agent':'TidalTurbine-research/1.0'}),timeout=50) as r: blob=r.read(size+1)
+          if len(blob)!=size or sha256(blob).hexdigest()!=CMAR_SHA:raise ValueError('CMAR source changed')
+          with zipfile.ZipFile(root/'cmar.zip','w',compression=zipfile.ZIP_DEFLATED) as z:
+              z.writestr('cmar_dg013.csv',blob)
+              z.writestr('manifest.json',json.dumps({'sha256':CMAR_SHA,'source_url':url}))
+          print('Original source SHA checks PASS; source bytes kept outside Git')
+          PY
+      - name: Reproduce complete FORCE QA and CMAR compact annotations from source
+        shell: bash
+        run: |
+          python scripts/export_force_inflow_v0.py --archive "$RUNNER_TEMP/ocean-source/force.zip" --out "$RUNNER_TEMP/derived/force"
+          python scripts/process_cmar_dg013.py --archive "$RUNNER_TEMP/ocean-source/cmar.zip" --out "$RUNNER_TEMP/derived/cmar"
+          python - <<'PY'
+          import hashlib,json,os
+          from pathlib import Path
+          t=Path(os.environ['RUNNER_TEMP'])/'derived'
+          a=json.loads((t/'force/FORCE_INFLOW_V0_MANIFEST.json').read_text())
+          b=json.loads(Path('research/observations/FORCE_INFLOW_V0_MANIFEST_2018.json').read_text())
+          for k in ('counts','records','n_cells','n_time','model_eligible_rows','science_approved_cells','csv_logical_sha256','per_cell'):
+              assert a[k]==b[k],k
+          c=json.loads((t/'cmar/CMAR_DIGBY_DG013_2022_QA.json').read_text())
+          d=json.loads(Path('research/observations/CMAR_DIGBY_DG013_2022_QA.json').read_text())
+          assert c==d,'CMAR report reproducibility'
+          assert (t/'cmar/CMAR_DIGBY_DG013_2022_QA.csv').read_bytes()==Path('research/observations/CMAR_DIGBY_DG013_2022_QA.csv').read_bytes()
+          print('PASS: 263250 FORCE flags/0 model-approved; 531 CMAR records/0 model-approved; compact reports match')
+          PY
+      - name: Preserve bounded, quality-flagged derivative (not raw source)
+        if: success() && matrix.python-version == '3.11'
+        uses: actions/upload-artifact@v4
+        with:
+          name: force-inflow-v0-and-cmar-dg013-QA-only
+          path: ${{ runner.temp }}/derived/
+          retention-days: 7
+          if-no-files-found: error
