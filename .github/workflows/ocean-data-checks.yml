@@ -1,0 +1,42 @@
+name: FORCE full-campaign scientific-data regression checks
+on:
+  push:
+    branches: [main, 'research/**']
+    paths:
+      - 'scripts/process_force_campaign.py'
+      - 'scripts/check_force_campaign_report.py'
+      - 'tests/test_force_campaign.py'
+      - 'requirements-ocean.txt'
+      - 'reports/FORCE-CAMPAIGN-QA-001.json'
+      - 'research/observations/FORCE_CAMPAIGN_DAILY_QA_2018.csv'
+      - '.github/workflows/ocean-data-checks.yml'
+  pull_request:
+    paths:
+      - 'scripts/process_force_campaign.py'
+      - 'scripts/check_force_campaign_report.py'
+      - 'tests/test_force_campaign.py'
+      - 'requirements-ocean.txt'
+      - 'reports/FORCE-CAMPAIGN-QA-001.json'
+      - 'research/observations/FORCE_CAMPAIGN_DAILY_QA_2018.csv'
+      - '.github/workflows/ocean-data-checks.yml'
+permissions:
+  contents: read
+jobs:
+  full-campaign-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.11', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install optional fixed scientific-data packages
+        run: python -m pip install -r requirements-ocean.txt
+      - name: Test HDF5 masks, companion matching and archive safeguards
+        run: python -m unittest discover -s tests -p 'test_force_campaign.py' -v
+      - name: Check source-pinned published compact report and daily parity (offline)
+        run: python scripts/check_force_campaign_report.py
