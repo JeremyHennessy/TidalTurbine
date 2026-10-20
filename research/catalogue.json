@@ -635,5 +635,29 @@
       "Automated page images from primary report were access-blocked; reviewed text extraction and source identification, not visually verified figure geometry."
     ],
     "access_status": "Public PDF text and primary metadata accessible; images intermittently 403; reviewed stated sections only."
+  },
+  {
+    "id": "FORCE-VIEHMAN-2022-FAST3-ADCP",
+    "title": "Viehman, Hasselman, Douglas & Boucher (2022): The Ups and Downs of Using Active Acoustic Technologies to Study Fish at Tidal Energy Sites",
+    "url": "https://www.frontiersin.org/journals/marine-science/articles/10.3389/fmars.2022.851400/full",
+    "doi": "10.3389/fmars.2022.851400",
+    "publication_date": "2022-03-31",
+    "access_date": "2026-10-20",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "sections_reviewed",
+    "reviewed_sections": [
+      "2.1 Data Collection, FAST3 installation and Nortek ADCP geometry",
+      "2.2.2 ADCP Data, tilt, declination and upper 10% acoustic sidelobe exclusion"
+    ],
+    "supported_claims": [
+      "March-May 2018 FAST3 Nortek Signature 500 face 0.7 m above seafloor, 1-m blanking distance and 1-m cells; first cell center 2 m from transducer face, 2-Hz burst sampling for 5 min per 15 minutes.",
+      "Study processed native ADCP tilt/declination and excluded top 10% water column from scientific current averages due to sidelobes."
+    ],
+    "limitations": [
+      "The paper reports its own experimental processing; public CIOOS ERDDAP cell_range begins 1.5m, not a confirmed geometric match to first cell centre 2m, so absolute bin heights cannot be asserted.",
+      "No per-vector beam-quality fields or unique zero-fill convention established for the processed ERDDAP product; publication does not certify every public data cell.",
+      "Ecological fish acoustics focus, not certified turbine resource, loading or site viability."
+    ],
+    "access_status": "Public peer-reviewed original full-text HTML sections directly examined."
   }
 ]

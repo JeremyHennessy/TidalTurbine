@@ -1,0 +1,124 @@
+{
+  "id": "FORCE-72H-QA-001",
+  "evidence_class": "MEASURED_SOURCE_ARITHMETIC_QA_NOT_SCIENTIFICALLY_QUALIFIED",
+  "repository_source": "https://cioosatlantic.ca/erddap/info/FORCE_Mar2018_ADCP_Currents/index.html",
+  "source_request": "https://cioosatlantic.ca/erddap/tabledap/FORCE_Mar2018_ADCP_Currents.csv?time,latitude,longitude,cell_range,eastward_sea_water_velocity,northward_sea_water_velocity,upward_sea_water_velocity,sea_water_pressure,cell_size&time%3E=2018-04-01T00:00:00Z&time%3C=2018-04-04T00:00:00Z",
+  "source_sha256": "d05f2a1258d9908b04fc7017cdb818ca318ac47c38e6b40244eac8c378ec4c7a",
+  "source_bytes": 1310499,
+  "archived_git_actions_run": "https://github.com/JeremyHennessy/TidalTurbine/actions/runs/39482098852",
+  "archived_artifact_id": 12292085881,
+  "source_license": "CC BY 4.0 (attribution FORCE/CIOOS Atlantic)",
+  "observed_utc": [
+    "2018-04-01T00:02:30+00:00",
+    "2018-04-03T23:47:30+00:00"
+  ],
+  "numeric_qa": {
+    "total_csv_observation_rows": 14400,
+    "parseable_numeric_rows": 14400,
+    "rejected_rows": 0,
+    "distinct_time_bursts": 288,
+    "range_cells": 50,
+    "exact_all_component_zero_vectors": 5160,
+    "zero_fraction_numeric": 0.358333,
+    "all_zero_cells_m": [
+      39.5,
+      40.5,
+      41.5,
+      42.5,
+      43.5,
+      44.5,
+      45.5,
+      46.5,
+      47.5,
+      48.5,
+      49.5,
+      50.5
+    ],
+    "partially_zero_cells_m": [
+      27.5,
+      28.5,
+      29.5,
+      30.5,
+      31.5,
+      32.5,
+      33.5,
+      34.5,
+      35.5,
+      36.5,
+      37.5,
+      38.5
+    ],
+    "nonzero_throughout_numeric_cells_m": [
+      1.5,
+      2.5,
+      3.5,
+      4.5,
+      5.5,
+      6.5,
+      7.5,
+      8.5,
+      9.5,
+      10.5,
+      11.5,
+      12.5,
+      13.5,
+      14.5,
+      15.5,
+      16.5,
+      17.5,
+      18.5,
+      19.5,
+      20.5,
+      21.5,
+      22.5,
+      23.5,
+      24.5,
+      25.5,
+      26.5
+    ],
+    "nominal_utc_time_step_s": 900.0,
+    "min_max_utc_step_s": [
+      900.0,
+      900.0
+    ],
+    "pressure_dbar_observed_min_max": [
+      31.812828177694854,
+      44.47790877925387
+    ],
+    "reported_cell_size_m_values": [
+      1.0
+    ]
+  },
+  "pressure_vs_highest_nonzero_range": {
+    "n_bursts": 288,
+    "pearson_correlation": 0.996882,
+    "regression_slope_m_per_dbar": 0.888088,
+    "regression_intercept_range_m": -1.230818,
+    "min_max_highest_nonzero_range_m": [
+      26.5,
+      38.5
+    ],
+    "interpretation": "Strong association between pressure and boundary of exact-zero processed vectors; compatible with vertical range clipping, but cannot independently establish source zero/fill convention. Pressure dbar is not an instrument-calibrated sea surface height in metres."
+  },
+  "independent_deployment_primary_source": "https://doi.org/10.3389/fmars.2022.851400",
+  "verified_deployment_geometry": {
+    "device": "upward-looking Nortek Signature 500 on FAST-3",
+    "face_elevation_above_seabed_m_reported": 0.7,
+    "blanking_distance_m_reported": 1.0,
+    "cell_size_m_reported": 1.0,
+    "first_cell_center_distance_from_face_m_reported": 2.0,
+    "public_erddap_first_cell_range_label_m": 1.5,
+    "critical_mapping_discrepancy": "Peer-reviewed description places first cell center 2 m from transducer, but ERDDAP labels begin 1.5 m; unclear if labels encode different reference point/edge, processing shift or discrepancy. Do not automatically compute absolute bin elevations."
+  },
+  "native_qc_missing": [
+    "per-beam correlation/amplitude and percent-good",
+    "tilt and platform motion",
+    "beam sidelobe masks and near-surface signal quality",
+    "source-specific meaning of exactly zero vectors",
+    "evidence of ERDDAP transformations and declination handling"
+  ],
+  "spatial_representativeness": "ONE fixed FORCE location and THREE days in April 2018; not spring-neap cycle, season or annual resource; no spatial transfer to test-site shortlist",
+  "qualified_current_bins": [],
+  "model_ingestion": "BLOCKED_PENDING_NATIVE_BEAM_QC_ZERO_FILL_AND_RANGE_MAPPING",
+  "energy_and_load_model_status": "NOT_RUN_ON_MEASURED_FORCEDATA"
+}
