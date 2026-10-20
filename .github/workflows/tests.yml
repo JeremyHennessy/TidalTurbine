@@ -29,6 +29,13 @@ jobs:
         run: |
           python scripts/rm2_operating_points.py
           git diff --exit-code -- reports/RM2-TRADEOFF-001.json
+      - name: Reproduce published RM1 axial lab table and RM2 variability
+        run: |
+          python scripts/reproduce_rm1.py
+          python scripts/rm2_variability.py
+          git diff --exit-code -- reports/RM1-OBS-001.json reports/RM2-VARIABILITY-001.json
+      - name: Validate unranked experimental prototype comparison
+        run: python scripts/check_prototypes.py
       - name: Validate ocean-source registry
         run: python scripts/check_ocean_catalogue.py
       - name: Build Pages research app

@@ -22,22 +22,30 @@
   {
     "id": "RM1-EXP-001",
     "title": "DOE RM1: Experimental Results — Hill et al.",
-    "url": "https://energy.sandia.gov/download/81674/?tmstv=1738096203",
+    "url": "https://www.sandia.gov/app/uploads/sites/273/dlm_uploads/RM1_Experimental_Results_Report_Final.pdf",
     "publication_date": "2014-12-02",
     "access_date": "2026-10-20",
     "evidence_class": "PUBLISHED_EVIDENCE",
     "review_depth": "sections_reviewed",
     "reviewed_sections": [
       "report cover and contents pp.1-2",
-      "instrumentation uncertainty, report pp.9-10"
+      "instrumentation uncertainty, report pp.9-10",
+      "report printed pp.3-10 experimental setup, processing and uncertainty",
+      "report printed pp.12-13 turbine performance and blockage limits",
+      "report printed p.20 Appendix A 32 tabulated right/left rotor operating points"
     ],
     "supported_claims": [
-      "The report documents RM1 experimental methodology and reported combined power-coefficient measurement uncertainty of approximately 3.9%."
+      "The report documents RM1 experimental methodology and reported combined power-coefficient measurement uncertainty of approximately 3.9%.",
+      "Appendix A permits reproducing 16 Cp-vs-TSR performance points per rotor and checking nominal torque-rotation mechanical power, but no directly measured turbine thrust",
+      "Right-rotor tabulated Cp peak 0.477; left rotor max 0.412 while report text gives approximate left Cp peak 0.43"
     ],
     "limitations": [
-      "Only selected pages reviewed; raw time-series not acquired; no Cp curve reproduced."
+      "Selected experimental sections and Appendix A reviewed; NOT a full-report deep review, no raw torque and velocity series or independently validated model.",
+      "2014 introduction mistakenly labels RM1 as RM2; do not propagate.",
+      "TSR and Cp from printed table have limited precision and source Cp does not equal a simple ratio of printed mean values.",
+      "Thrust and Ct are n/a in Appendix A; RM1 does not demonstrate fatigue-life benefit."
     ],
-    "access_status": "public 22-page PDF"
+    "access_status": "Public Sandia PDF with readable performance table and graphical appendix; PDF p.20 screenshot inspected."
   },
   {
     "id": "RT-001",
@@ -603,5 +611,29 @@
       "Sandia has conflicting page indexing typo RM1(RM2) in one entry; rely on report itself. No measured numeric curve ingested by this pass."
     ],
     "access_status": "public publication metadata"
+  },
+  {
+    "id": "FORCE-OERA-2020-ADCP",
+    "title": "Viehman et al. Integrated Hydroacoustic Approaches to Predict Fish Interactions with In-stream Tidal Turbines (FORCE/OERA final report)",
+    "url": "https://oera.ca/sites/default/files/2020-04/FISH%20FINDER%20Final%20Report%2031-03-2020_0.pdf",
+    "publication_date": "2019-12-31",
+    "access_date": "2026-10-20",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "sections_reviewed",
+    "reviewed_sections": [
+      "PDF pp.5-8 (deployment and instrument methods, including sec.3.2.2)",
+      "PDF pp.15-16 (sec.3.4.1 ADCP currents quality treatment and declination correction)"
+    ],
+    "supported_claims": [
+      "FAST3 platform included an upward-looking Nortek Signature 500 ADCP in March-May 2018; five-minute bursts every 15 minutes, 2-Hz burst rate.",
+      "Reported treatment of ADCP data includes estimating water surface from echo amplitude and excluding top 10% of the column for sidelobes during project analyses.",
+      "North/east component rotation in the published processed ERDDAP product needs separate lineage confirmation before any additional direction adjustment."
+    ],
+    "limitations": [
+      "The report does not provide explicit instrument serial-specific head height above seafloor for public ERDDAP product, beam correlation/percent-good for individual cell records or a direct zero-fill convention.",
+      "Report describes original SDU processing; cannot conclude published ERDDAP ENU has or has not applied declination without transformation code.",
+      "Automated page images from primary report were access-blocked; reviewed text extraction and source identification, not visually verified figure geometry."
+    ],
+    "access_status": "Public PDF text and primary metadata accessible; images intermittently 403; reviewed stated sections only."
   }
 ]

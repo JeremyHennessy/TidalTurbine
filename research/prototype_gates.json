@@ -1,0 +1,34 @@
+{
+  "id": "PROTO-GATE-001",
+  "classification": "COMPARISON_PROTOCOL_NOT_PERFORMANCE_RANKING",
+  "status": "NO_CANDIDATE_HAS_BEEN_VALIDATED_AT_A_COMMON_SITE",
+  "scope": "Small controlled laboratory comparison with source-appropriate mechanics; site engineering deferred pending independently qualified FORCE water-column observations",
+  "shared_lab_test_matrix_assumptions": {
+    "inflow_setpoints_m_s": [0.6, 1.0, 1.4],
+    "inflow_provenance": "ENGINEERING_ASSUMPTION for prospective tank experiments; NOT FORCE measurement or a site availability claim",
+    "directions": ["forward", "reverse"],
+    "turbulence": "Measured not prescribed as equivalent without grid/ADV evidence",
+    "measurement_window": "Repeated stable runs at each point and fatigue-relevant transients; length and randomization preregister before testing",
+    "mandatory_outputs": ["time-stamped incoming velocity and quality metadata", "mean and time-resolved delivered electrical power", "gross shaft/hydraulic/foil work as applicable", "parasitic, auxiliary, actuation and conversion losses", "synchronized load time histories", "measurement uncertainty and calibration logs"],
+    "reference_boundary": "Hold common upstream CONTROL VOLUME and test channel geometry; compare net energy per defined period and full occupancy/spacing, not isolated CP from differing area definitions",
+    "do_not_generalize": "Laboratory freshwater setpoints are not the Minas Passage site current distribution; no annual energy, survivability, or fishing-effect projection",
+    "acceptance_logic": "Each gate independently PASS / FAIL / UNKNOWN with primary evidence; UNKNOWN never equals zero or fail. No weighted numeric winner score.",
+    "environmental": ["species and seasonal presence", "collision, entrapment and entanglement monitoring", "underwater sound", "habitat, erosion and cumulative effects", "Mi'kmaq participation and marine user/rights consultation"],
+    "access_and_maintenance": ["component replacement methods", "safe recovery/weather windows", "underwater connector and mooring/foundation hazards", "fleet spares and corrosion", "vessel access and decommission"],
+    "manufacturing": ["material/composite provenance", "blade or foil fatigue testing", "PTO fabrication and tolerances", "corrosion and seal design", "end-of-life verified recyclability vs claim"]
+  },
+  "candidates": [
+    {
+      "id": "AXIAL-RM1-REFERENCE", "name": "Bottom-fixed conventional axial rotor", "capture": "lift; axial rotation", "scale_context": "Published RM1 1:40 laboratory axial twin-rotor, not validated field prototype", "published_source": "https://www.sandia.gov/app/uploads/sites/273/dlm_uploads/RM1_Experimental_Results_Report_Final.pdf", "observed_benchmark": "RM1-OBS-001: Appendix A 16 points per rotor, not a hydrodynamic simulation", "energy_denominator": "single rotor disk area, specify two rotors separately; PTO electric losses not available", "control": "fixed pitch in tested experiment; no change of pitch asserted", "loads": "torsion is available in appendix means; directly measured thrust and blade fatigue histories not available", "PTO": "lab motor/controller and torque transducer; prototype electrical PTO unknown", "remaining_falsifiers": ["independent Cp trend prediction within measurement limits", "blade-root alternating loads under matched turbulence", "structural loads and retrieval costs within limits"],
+      "gates": {"mechanical_reference_data": "EVIDENCE_AVAILABLE_PARTIAL", "independent_predictive_model": "UNKNOWN", "qualified_site_inflow": "UNKNOWN", "net_electrical_power": "UNKNOWN", "fatigue": "UNKNOWN", "environment": "UNKNOWN", "manufacturing": "UNKNOWN", "maintenance": "UNKNOWN"}
+    },
+    {
+      "id": "CROSSFLOW-RM2-REFERENCE", "name": "Cross-flow H-rotor", "capture": "lift; transverse rotation", "scale_context": "Published RM2 1:6 freshwater tow-tank rotor, not full-scale Nova Scotia device", "published_source": "https://github.com/UNH-CORE/RM2-tow-tank", "observed_benchmark": "RM2-OBS-001 and RM2-VARIABILITY-001 from processed source measurements", "energy_denominator": "projected frontal area D x H, not axial rotor disk or foil swept envelope", "control": "laboratory setpoint TSR; actuator/control energy not validated", "loads": "mean CD, instantaneous CP/CD spread and between-revolution MEAN spread; no local structural stress spectrum", "PTO": "tow tank controls/rotary power; prototype electric PTO unknown", "remaining_falsifiers": ["repeat runs at matched inflow and control load", "blade/strut alternating loads while maintaining delivered power", "demonstrate access and hydrodynamic tolerance"],
+      "gates": {"mechanical_reference_data": "EVIDENCE_AVAILABLE_PARTIAL", "independent_predictive_model": "UNKNOWN", "qualified_site_inflow": "UNKNOWN", "net_electrical_power": "UNKNOWN", "fatigue": "UNKNOWN", "environment": "UNKNOWN", "manufacturing": "UNKNOWN", "maintenance": "UNKNOWN"}
+    },
+    {
+      "id": "FOIL-OSCILLATING-EXPERIMENTAL", "name": "Non-rotating heaving/pitching hydrofoil", "capture": "lift-driven reciprocal heave/pitch work", "scale_context": "A proposed experimental demonstrator; this repository has no independently transcribed net-energy curve", "published_source": "https://www.emec.org.uk/marine-energy/tidal-devices/", "observed_benchmark": "No physical coefficient curve ingested; tidal_screen/foil_balance.py is bookkeeping only", "energy_denominator": "foil envelope span x actual heave stroke and device corridor; must also report incident flux control volume", "control": "measure both required active pitch drive energy and recovery energy; passive case separately", "loads": "measure simultaneous foil force, moment, heave velocity, angular rate; no fatigue cycles recorded", "PTO": "specified linear electromagnetic or hydraulic PTO with explicit net efficiencies, not presumed", "remaining_falsifiers": ["positive repeatable net electrical output after actuator and parasitic power", "manageable peak and cyclic stresses", "acceptable full corridor footprint under reversal"],
+      "gates": {"mechanical_reference_data": "UNKNOWN", "independent_predictive_model": "UNKNOWN", "qualified_site_inflow": "UNKNOWN", "net_electrical_power": "UNKNOWN", "fatigue": "UNKNOWN", "environment": "UNKNOWN", "manufacturing": "UNKNOWN", "maintenance": "UNKNOWN"}
+    }
+  ]
+}
