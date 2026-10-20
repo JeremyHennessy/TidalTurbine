@@ -9,3 +9,11 @@ data/raw/
 data/cache/
 # Generated ad-hoc outputs: tracked SCREEN-001 report is an intentional exception.
 reports/local-*.json
+
+# Field measurements, instrument files and generated distribution
+/data/raw/
+/data/local/
+/dist/
+*.nc
+*.nc4
+*.h5

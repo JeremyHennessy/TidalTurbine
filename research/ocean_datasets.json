@@ -1,0 +1,587 @@
+[
+  {
+    "id": "OCEAN-001",
+    "title": "FORCE ADCP 2018 — current velocity profiles",
+    "provider": "FORCE via CIOOS Atlantic ERDDAP",
+    "category": "current",
+    "region": "Bay of Fundy / Minas Passage",
+    "source_url": "https://cioosatlantic.ca/erddap/info/FORCE_Mar2018_ADCP_Currents/index.html",
+    "download_url": "https://cioosatlantic.ca/erddap/files/FORCE_Mar2018_ADCP_Currents/Burst.VTC.DSEL.AVER.classic.nc",
+    "variables": [
+      "time",
+      "cell_range",
+      "eastward_sea_water_velocity",
+      "northward_sea_water_velocity",
+      "upward_sea_water_velocity",
+      "sea_water_temperature",
+      "sea_water_pressure"
+    ],
+    "units": [
+      "UTC",
+      "m from ADCP transducer (not chart datum)",
+      "m/s",
+      "degree_Celsius",
+      "dbar"
+    ],
+    "temporal_coverage": "2018-03-30T20:02:33Z / 2018-05-24T16:02:30Z",
+    "sampling_interval": "Unverified; inspect source measurement timestamps",
+    "position_wgs84": {
+      "latitude": 45.3631,
+      "longitude": -64.4275
+    },
+    "depth_reference": "cell_range 1.5–50.5 m; instrument head position/orientation and seabed datum NOT established",
+    "quality_flags": "Uninspected for measurements; inspect product-specific QC before use",
+    "license": "CC BY 4.0 per live ERDDAP metadata; credit FORCE and CIOOS",
+    "access_status": "downloadable_not_acquired",
+    "review_depth": "variable_level_metadata",
+    "metadata_checked_utc": "2026-10-20",
+    "next_action": "Download original NetCDF; sha256; inspect instrument deployment, quality masks, vector rotation/coordinate convention, sampled intervals and valid cells; develop range-cell QA.",
+    "limitations": "No measured values currently imported. Min/max variable ranges do not constitute site design speeds; profile cells are distance from transducer, not depth."
+  },
+  {
+    "id": "OCEAN-002",
+    "title": "FORCE ADCP 2018 — wave properties",
+    "provider": "FORCE via CIOOS Atlantic ERDDAP",
+    "category": "waves",
+    "region": "Bay of Fundy / Minas Passage",
+    "source_url": "https://cioosatlantic.ca/erddap/info/FORCE_Mar2018_ADCP_Waves/index.html",
+    "download_url": "https://cioosatlantic.ca/erddap/files/FORCE_Mar2018_ADCP_Waves/",
+    "variables": [
+      "sea_surface_wave_significant_height",
+      "sea_surface_wave_maximum_period",
+      "sea_water_pressure"
+    ],
+    "units": [
+      "m",
+      "s",
+      "dbar"
+    ],
+    "temporal_coverage": "2018-03-30T20:02:33Z / 2018-05-24T16:02:30Z",
+    "sampling_interval": "Unverified; inspect time coordinates",
+    "position_wgs84": {
+      "latitude": 45.3631,
+      "longitude": -64.4275
+    },
+    "depth_reference": "Same bottom-mounted instrument; wave statistics derive from instrument pressure/acoustic analysis",
+    "quality_flags": "Uninspected for measurements; inspect product-specific QC before use",
+    "license": "CC BY 4.0 per live ERDDAP metadata; credit FORCE and CIOOS",
+    "access_status": "downloadable_not_acquired",
+    "review_depth": "variable_level_metadata",
+    "metadata_checked_utc": "2026-10-20",
+    "next_action": "Download data and wave-processing methodology; align UTC windows against velocity record.",
+    "limitations": "Reported ranges are metadata only; short spring campaign cannot define annual/extreme-wave design conditions."
+  },
+  {
+    "id": "OCEAN-003",
+    "title": "FORCE meteorological tower",
+    "provider": "FORCE via CIOOS Atlantic ERDDAP",
+    "category": "weather",
+    "region": "Bay of Fundy / Minas Passage",
+    "source_url": "https://cioosatlantic.ca/erddap/info/force_meteorological_tower/index.html",
+    "download_url": null,
+    "variables": [
+      "meteorological time-series; inspect individual variables"
+    ],
+    "units": [
+      "Variable-specific; inspect ERDDAP attributes"
+    ],
+    "temporal_coverage": "Timespan not yet verified from complete file",
+    "sampling_interval": "Not yet verified",
+    "position_wgs84": {
+      "latitude": 45.3713,
+      "longitude": -64.403
+    },
+    "depth_reference": "Tower elevations rather than rotor-depth measurements",
+    "quality_flags": "Uninspected for measurements; inspect product-specific QC before use",
+    "license": "Inspect per-dataset ERDDAP licence",
+    "access_status": "metadata_only",
+    "review_depth": "metadata_page",
+    "metadata_checked_utc": "2026-10-20",
+    "next_action": "Review all variable metadata/terms and download met/wind time series for potential access-window analysis.",
+    "limitations": "Meteorological station is not a direct measured wave, rotor current or offshore serviceability window."
+  },
+  {
+    "id": "OCEAN-004",
+    "title": "CHS IWLS observed water levels",
+    "provider": "Canadian Hydrographic Service / DFO",
+    "category": "water_level",
+    "region": "Nova Scotia and Maritime Atlantic",
+    "source_url": "https://tides.gc.ca/en/web-services-offered-canadian-hydrographic-service",
+    "download_url": null,
+    "variables": [
+      "water level observations",
+      "station IDs",
+      "vertical datums",
+      "qcFlagCode"
+    ],
+    "units": [
+      "m relative to specified station datum; confirm per timeseries",
+      "UTC"
+    ],
+    "temporal_coverage": "Station-dependent",
+    "sampling_interval": "1, 3 minute or coarser; station-dependent",
+    "position_wgs84": null,
+    "depth_reference": "Tide-gauge vertical datum; not rotor depth",
+    "quality_flags": "Uninspected for measurements; inspect product-specific QC before use",
+    "license": "CHS web-service agreement; acceptance required; verify before automated retrieval",
+    "access_status": "permission_gate",
+    "review_depth": "api_documentation",
+    "metadata_checked_utc": "2026-10-20",
+    "next_action": "Select verified Fundy gauge station IDs, accept service terms, retrieve bounded time series, honor 3req/s and 30req/min and QC flags.",
+    "limitations": "Tide HEIGHT cannot be converted directly to channel CURRENT velocity. API rate/time window restrictions apply."
+  },
+  {
+    "id": "OCEAN-005",
+    "title": "CHS IWLS predicted tides",
+    "provider": "Canadian Hydrographic Service / DFO",
+    "category": "water_level",
+    "region": "Nova Scotia and Maritime Atlantic",
+    "source_url": "https://tides.gc.ca/en/web-services-offered-canadian-hydrographic-service",
+    "download_url": null,
+    "variables": [
+      "predicted water level",
+      "station metadata",
+      "vertical datum"
+    ],
+    "units": [
+      "m relative to station datum; UTC"
+    ],
+    "temporal_coverage": "Station and model dependent",
+    "sampling_interval": "Various per station",
+    "position_wgs84": null,
+    "depth_reference": "Station tide datum",
+    "quality_flags": "Uninspected for measurements; inspect product-specific QC before use",
+    "license": "CHS web-service agreement; acceptance required",
+    "access_status": "permission_gate",
+    "review_depth": "api_documentation",
+    "metadata_checked_utc": "2026-10-20",
+    "next_action": "After licence review, retrieve predictions and compare only against equivalent-gauge observed series.",
+    "limitations": "Prediction != observation; tidal elevation != through-rotor speed; official tide tables supersede API if discrepancy."
+  },
+  {
+    "id": "OCEAN-006",
+    "title": "CHS NONNA-10/100 bathymetry",
+    "provider": "Canadian Hydrographic Service / DFO",
+    "category": "bathymetry",
+    "region": "Nova Scotia and Maritime Atlantic",
+    "source_url": "https://open.canada.ca/data/en/dataset/d3881c4c-650d-4070-bf9b-1e00aabf0a1d",
+    "download_url": null,
+    "variables": [
+      "seafloor elevation / depth grids"
+    ],
+    "units": [
+      "m; vertical datum verify per tile"
+    ],
+    "temporal_coverage": "Compiled surveys, source dates vary",
+    "sampling_interval": "Raster 10m or 100m resolution, NOT temporal sampling",
+    "position_wgs84": null,
+    "depth_reference": "Check vertical datum / source uncertainty metadata for selected tile",
+    "quality_flags": "Uninspected for measurements; inspect product-specific QC before use",
+    "license": "CHS NONNA licence; non-navigational use only",
+    "access_status": "portal_manual_download",
+    "review_depth": "source_description",
+    "metadata_checked_utc": "2026-10-20",
+    "next_action": "Select small Fundy tile and retain provenance, horizontal/vertical datum, tile checksum and depth QC.",
+    "limitations": "Non-navigational. Coverage, age and source accuracy vary; not a standalone engineering foundation survey."
+  },
+  {
+    "id": "OCEAN-007",
+    "title": "CHS NONNA intensity (acoustic backscatter)",
+    "provider": "Canadian Hydrographic Service / DFO",
+    "category": "seabed",
+    "region": "Nova Scotia and Maritime Atlantic",
+    "source_url": "https://open.canada.ca/data/en/dataset/b9b1d7b2-7316-4220-93fb-ccfb60293746",
+    "download_url": null,
+    "variables": [
+      "acoustic backscatter",
+      "seabed reflectance"
+    ],
+    "units": [
+      "dB; inspect tiles"
+    ],
+    "temporal_coverage": "Multiple survey campaigns",
+    "sampling_interval": "Spatial raster; not temporal",
+    "position_wgs84": null,
+    "depth_reference": "NO depth variable; bathymetry separate",
+    "quality_flags": "Uninspected for measurements; inspect product-specific QC before use",
+    "license": "CHS NONNA licence; non-navigational use only",
+    "access_status": "portal_manual_download",
+    "review_depth": "source_description",
+    "metadata_checked_utc": "2026-10-20",
+    "next_action": "Check available Fundy backscatter tiles and compare with benthoscape and sampling",
+    "limitations": "Not ground-truthed sediment classes and NOT elevation data."
+  },
+  {
+    "id": "OCEAN-008",
+    "title": "GEBCO 2026 bathymetric grid and TID grid",
+    "provider": "GEBCO Bathymetric Compilation Group",
+    "category": "bathymetry",
+    "region": "Nova Scotia and Maritime Atlantic",
+    "source_url": "https://www.gebco.net/data-products/gridded-bathymetry-data",
+    "download_url": null,
+    "variables": [
+      "gridded elevation",
+      "Type Identifier grid"
+    ],
+    "units": [
+      "m relative to heterogeneous approximate mean sea level; geographic coordinates"
+    ],
+    "temporal_coverage": "2026 compiled grid",
+    "sampling_interval": "15 arc-second spacing (not 15 metres)",
+    "position_wgs84": null,
+    "depth_reference": "Vertical datums from heterogeneous sources; verify",
+    "quality_flags": "Uninspected for measurements; inspect product-specific QC before use",
+    "license": "GEBCO terms and attribution requirements; consult full terms",
+    "access_status": "downloadable_not_acquired",
+    "review_depth": "source_description",
+    "metadata_checked_utc": "2026-10-20",
+    "next_action": "Download bounded NS grid and TID companion, register source method types and SHA256.",
+    "limitations": "Regional overview only; coarse or interpolated source content may not support foundation/site design."
+  },
+  {
+    "id": "OCEAN-009",
+    "title": "CIOOS Atlantic marine dataset discovery / ERDDAP",
+    "provider": "CIOOS Atlantic",
+    "category": "discovery",
+    "region": "Nova Scotia and Maritime Atlantic",
+    "source_url": "https://cioosatlantic.ca/erddap/index.html",
+    "download_url": null,
+    "variables": [
+      "Search by currents",
+      "waves",
+      "temperature",
+      "salinity",
+      "sea level"
+    ],
+    "units": [
+      "dataset-specific"
+    ],
+    "temporal_coverage": "Dataset-specific",
+    "sampling_interval": "Dataset-specific",
+    "position_wgs84": null,
+    "depth_reference": "Dataset-specific",
+    "quality_flags": "Uninspected for measurements; inspect product-specific QC before use",
+    "license": "Dataset-specific",
+    "access_status": "discovery_portal",
+    "review_depth": "homepage",
+    "metadata_checked_utc": "2026-10-20",
+    "next_action": "Query ERDDAP and catalogue datasets individually with variables, licensing, geospatial/temporal boundaries and QC.",
+    "limitations": "Portal listing a dataset is not proof of suitable usable measurements for Minas Passage."
+  },
+  {
+    "id": "OCEAN-010",
+    "title": "AZMP Prince 5 temperature, salinity, density climatology",
+    "provider": "DFO Atlantic Zone Monitoring Program",
+    "category": "hydrography",
+    "region": "Outer Bay of Fundy / Passamaquoddy Bay",
+    "source_url": "https://open.canada.ca/data/en/dataset/b5e11d7e-7f76-4834-b5a4-292fc3503a94",
+    "download_url": null,
+    "variables": [
+      "temperature",
+      "salinity",
+      "density",
+      "stratification",
+      "mixed layer depth"
+    ],
+    "units": [
+      "varies; review supplied dictionary"
+    ],
+    "temporal_coverage": "Climatology 1991–2020; released October 2026",
+    "sampling_interval": "Daily/monthly summaries, station program ~biweekly",
+    "position_wgs84": null,
+    "depth_reference": "Depth-binned profiles; exact bins in data dictionary",
+    "quality_flags": "Uninspected for measurements; inspect product-specific QC before use",
+    "license": "Open Government Licence — Canada",
+    "access_status": "downloadable_not_acquired",
+    "review_depth": "dataset_description",
+    "metadata_checked_utc": "2026-10-20",
+    "next_action": "Retrieve CSV/NetCDF subsets and data dictionary; examine seasonal thermal/density variability and missing periods.",
+    "limitations": "Outer Fundy climatology not a direct FORCE rotor-swept current profile."
+  },
+  {
+    "id": "OCEAN-011",
+    "title": "AZMP Station 2 hydrographic climatology",
+    "provider": "DFO Atlantic Zone Monitoring Program",
+    "category": "hydrography",
+    "region": "Scotian Shelf, Nova Scotia",
+    "source_url": "https://open.canada.ca/data/en/dataset/7c5adba5-7d28-42c2-ac77-eb30ed905453",
+    "download_url": null,
+    "variables": [
+      "temperature",
+      "salinity",
+      "pressure",
+      "density"
+    ],
+    "units": [
+      "dataset-specific"
+    ],
+    "temporal_coverage": "Climatology 1991–2020; published 2026",
+    "sampling_interval": "Climatological bins",
+    "position_wgs84": null,
+    "depth_reference": "Station profile bins in dictionary",
+    "quality_flags": "Uninspected for measurements; inspect product-specific QC before use",
+    "license": "Open Government Licence — Canada",
+    "access_status": "downloadable_not_acquired",
+    "review_depth": "dataset_description",
+    "metadata_checked_utc": "2026-10-20",
+    "next_action": "Review netCDF/dictionary and confirm station vs FORCE distances before any transfer.",
+    "limitations": "Atlantic Shelf station; not a Bay of Fundy tidal resource proxy."
+  },
+  {
+    "id": "OCEAN-012",
+    "title": "Northwest Fundy Shores CTD baseline 2023",
+    "provider": "DFO Coastal Environmental Baseline Program",
+    "category": "hydrography",
+    "region": "Northwest Bay of Fundy / Passamaquoddy",
+    "source_url": "https://open.canada.ca/data/en/dataset/40619839-51e2-4151-9ea9-2e29d42aa948",
+    "download_url": null,
+    "variables": [
+      "conductivity",
+      "temperature",
+      "depth"
+    ],
+    "units": [
+      "specific dataset dictionary"
+    ],
+    "temporal_coverage": "2023 subset available",
+    "sampling_interval": "Dependent on instrument station",
+    "position_wgs84": null,
+    "depth_reference": "Moorings reportedly within 5–90m water depths; exact instrument levels per record",
+    "quality_flags": "Uninspected for measurements; inspect product-specific QC before use",
+    "license": "Open Government Licence — Canada",
+    "access_status": "downloadable_not_acquired",
+    "review_depth": "dataset_description",
+    "metadata_checked_utc": "2026-10-20",
+    "next_action": "Obtain station metadata, depth records and QA before describing thermohaline variation.",
+    "limitations": "Near-shore seasonal studies are not turbine-hub current measurements."
+  },
+  {
+    "id": "OCEAN-013",
+    "title": "Bay of Fundy benthoscape habitat classification",
+    "provider": "DFO / researchers",
+    "category": "habitat",
+    "region": "Bay of Fundy / Minas Passage",
+    "source_url": "https://open.canada.ca/data/en/dataset/dbabd17a-a2c7-4b3f-9bd8-a77a9c7f9c1c",
+    "download_url": null,
+    "variables": [
+      "habitat class polygons",
+      "multibeam-derived terrain",
+      "backscatter and oceanographic covariates"
+    ],
+    "units": [
+      "spatial polygons/classes"
+    ],
+    "temporal_coverage": "Published historic mapping, version per archive",
+    "sampling_interval": "Spatial classification",
+    "position_wgs84": null,
+    "depth_reference": "Derived bathymetric covariate; actual seabed depth check separately",
+    "quality_flags": "Uninspected for measurements; inspect product-specific QC before use",
+    "license": "Inspect dataset-specific Canadian open licence",
+    "access_status": "downloadable_not_acquired",
+    "review_depth": "dataset_description",
+    "metadata_checked_utc": "2026-10-20",
+    "next_action": "Retrieve shape/geodatabase and interpret classification uncertainty spatially.",
+    "limitations": "Classification is not site-specific biological clearance; benthic disturbance still requires field assessment."
+  },
+  {
+    "id": "OCEAN-014",
+    "title": "North Atlantic right whale presence likelihood (pilot areas)",
+    "provider": "DFO",
+    "category": "species",
+    "region": "Bay of Fundy / maritime waters",
+    "source_url": "https://open.canada.ca/data/en/dataset/d159ac68-6e46-44b5-a4e9-951880892c63",
+    "download_url": null,
+    "variables": [
+      "seasonal likelihood polygons",
+      "sightings and local knowledge basis"
+    ],
+    "units": [
+      "classified probability context; review dictionary"
+    ],
+    "temporal_coverage": "2018 mapping, seasonal context",
+    "sampling_interval": "Spatial interpretation; not continuous detection",
+    "position_wgs84": null,
+    "depth_reference": "Surface/area likelihood not rotor depth",
+    "quality_flags": "Uninspected for measurements; inspect product-specific QC before use",
+    "license": "Open Government Licence — Canada",
+    "access_status": "downloadable_not_acquired",
+    "review_depth": "dataset_description",
+    "metadata_checked_utc": "2026-10-20",
+    "next_action": "Review data dictionary, geographic and temporal validity before any site screen.",
+    "limitations": "Does not establish presence/absence or a permitted mitigation plan."
+  },
+  {
+    "id": "OCEAN-015",
+    "title": "Scotian Shelf–Bay of Fundy marine conservation network sites",
+    "provider": "DFO",
+    "category": "marine_use",
+    "region": "Nova Scotia and Maritime Atlantic",
+    "source_url": "https://open.canada.ca/data/en/dataset/bb048082-bc05-4588-b4f0-492b1f1b8737",
+    "download_url": null,
+    "variables": [
+      "conservation boundaries",
+      "candidate sites"
+    ],
+    "units": [
+      "GIS polygons"
+    ],
+    "temporal_coverage": "Irregularly updated; dataset records modification Nov 2025",
+    "sampling_interval": "Spatial",
+    "position_wgs84": null,
+    "depth_reference": "N/A",
+    "quality_flags": "Uninspected for measurements; inspect product-specific QC before use",
+    "license": "Verify dataset resource license",
+    "access_status": "downloadable_not_acquired",
+    "review_depth": "dataset_description",
+    "metadata_checked_utc": "2026-10-20",
+    "next_action": "Retrieve vector layer and compare against legal protected areas, traditional use and active fisheries.",
+    "limitations": "Not a complete marine spatial-planning or permitting screen."
+  },
+  {
+    "id": "OCEAN-016",
+    "title": "ECCC Atlantic marine buoy hourly weather/waves",
+    "provider": "Environment and Climate Change Canada",
+    "category": "weather",
+    "region": "Scotian Shelf / Halifax area; NOT Minas Passage",
+    "source_url": "https://weather.gc.ca/marine/weatherConditions-regionalSummary_e.html?mapID=15&siteID=04500&stationID=XIB",
+    "download_url": null,
+    "variables": [
+      "wave height",
+      "period",
+      "wind",
+      "water temperature",
+      "air pressure"
+    ],
+    "units": [
+      "m",
+      "s",
+      "knots",
+      "°C",
+      "kPa"
+    ],
+    "temporal_coverage": "Near-real-time / archive varies",
+    "sampling_interval": "Hourly at selected buoys",
+    "position_wgs84": null,
+    "depth_reference": "Buoy surface; not turbine-hub depth",
+    "quality_flags": "Uninspected for measurements; inspect product-specific QC before use",
+    "license": "Meteorological Service of Canada terms; verify for machine downloads",
+    "access_status": "metadata_only",
+    "review_depth": "current_conditions_example",
+    "metadata_checked_utc": "2026-10-20",
+    "next_action": "Identify actually relevant buoy stations and official bulk machine-read access; map distance/exposure representativeness.",
+    "limitations": "Offshore buoys are not measurements at Fundy tidal turbine locations."
+  },
+  {
+    "id": "OCEAN-017",
+    "title": "FORCE Environmental Effects Monitoring 2025 annual report",
+    "provider": "FORCE",
+    "category": "environment",
+    "region": "Bay of Fundy / Minas Passage",
+    "source_url": "https://fundyforce.ca/document-collection/environmental-effects-monitoring-program-annual-report-2025",
+    "download_url": null,
+    "variables": [
+      "ecological monitoring results and instrumentation methods"
+    ],
+    "units": [
+      "report-specific"
+    ],
+    "temporal_coverage": "Calendar 2025",
+    "sampling_interval": "Monitoring schedule documented in PDF, not yet examined",
+    "position_wgs84": null,
+    "depth_reference": "Sensor/device-specific in report",
+    "quality_flags": "Uninspected for measurements; inspect product-specific QC before use",
+    "license": "Report copyright/permission to reuse data not checked",
+    "access_status": "report_not_machine_read",
+    "review_depth": "report_landing_page",
+    "metadata_checked_utc": "2026-10-20",
+    "next_action": "Read the actual attached annual PDF and methods/negative detection constraints; catalogue tables with citation pages.",
+    "limitations": "Monitoring report does not imply any turbine is ecologically safe; sensor detection probabilities are essential."
+  },
+  {
+    "id": "OCEAN-018",
+    "title": "Nova Scotia tidal demonstration-permit rules (2026)",
+    "provider": "Government of Nova Scotia",
+    "category": "regulation",
+    "region": "Bay of Fundy / Minas Passage",
+    "source_url": "https://novascotia.ca/programs/tidal-demonstration-permit/",
+    "download_url": null,
+    "variables": [
+      "capacity/application constraints",
+      "federal/provincial compliance gates"
+    ],
+    "units": [
+      "MW",
+      "dates"
+    ],
+    "temporal_coverage": "Application window Aug 7–Oct 30 2026",
+    "sampling_interval": "Administrative",
+    "position_wgs84": null,
+    "depth_reference": "N/A",
+    "quality_flags": "Uninspected for measurements; inspect product-specific QC before use",
+    "license": "Public information; official documents govern",
+    "access_status": "source_reviewed",
+    "review_depth": "full_web_page",
+    "metadata_checked_utc": "2026-10-20",
+    "next_action": "Read permit guide PDF and maintain regulator/Indigenous/fisheries decision gates; user has NOT requested an application.",
+    "limitations": "Public application rules do not authorize deployment, testing, or permission to use site."
+  },
+  {
+    "id": "OCEAN-019",
+    "title": "DFO Maritimes research vessel fisheries observations",
+    "provider": "Fisheries and Oceans Canada",
+    "category": "species",
+    "region": "Nova Scotia and Maritime Atlantic",
+    "source_url": "https://open.canada.ca/data/en/dataset/8ddcaeea-b806-4958-a79f-ba9ab645f53b",
+    "download_url": null,
+    "variables": [
+      "fish survey sampling / catch metadata"
+    ],
+    "units": [
+      "sets",
+      "species",
+      "count",
+      "weight",
+      "length"
+    ],
+    "temporal_coverage": "1970 onward; survey-dependent",
+    "sampling_interval": "Seasonal surveys",
+    "position_wgs84": null,
+    "depth_reference": "Stratum-specific, inspect records",
+    "quality_flags": "Uninspected for measurements; inspect product-specific QC before use",
+    "license": "Resource-specific terms",
+    "access_status": "discovery_portal",
+    "review_depth": "dataset_description",
+    "metadata_checked_utc": "2026-10-20",
+    "next_action": "Identify Fundy-specific surveys and unbiased species observations; require survey method and effort adjustment.",
+    "limitations": "Regional catch rates cannot quantify rotor collision probability."
+  },
+  {
+    "id": "OCEAN-020",
+    "title": "FORCE ADCP source processed NetCDF file",
+    "provider": "FORCE via CIOOS Atlantic ERDDAP",
+    "category": "current",
+    "region": "Bay of Fundy / Minas Passage",
+    "source_url": "https://cioosatlantic.ca/erddap/files/FORCE_Mar2018_ADCP_Currents/",
+    "download_url": "https://cioosatlantic.ca/erddap/files/FORCE_Mar2018_ADCP_Currents/Burst.VTC.DSEL.AVER.classic.nc",
+    "variables": [
+      "Burst.VTC.DSEL.AVER.classic.nc"
+    ],
+    "units": [
+      "NetCDF; variables as OCEAN-001"
+    ],
+    "temporal_coverage": "2018 spring campaign",
+    "sampling_interval": "Inspect NetCDF",
+    "position_wgs84": {
+      "latitude": 45.3631,
+      "longitude": -64.4275
+    },
+    "depth_reference": "ADCP range bins; need deployment metadata",
+    "quality_flags": "Uninspected for measurements; inspect product-specific QC before use",
+    "license": "CC BY 4.0 per linked dataset metadata",
+    "access_status": "downloadable_not_acquired",
+    "review_depth": "file_listing",
+    "metadata_checked_utc": "2026-10-20",
+    "next_action": "Download 3,348,741-byte file; verify checksum and CF dimensions with NetCDF reader; preserve raw outside Git.",
+    "limitations": "Duplicate access pathway to OCEAN-001, not an additional independent field campaign."
+  }
+]

@@ -32,3 +32,7 @@
 | Seawater cooled AI centre integration | Missing | Separate roadmap only, no dispatch or cooling simulation. |
 
 **Priority order:** measured RM1 benchmark > load/control validation > downtime/lifecycle model > NS resource+environment qualification > data-centre integration. Do not declare design improvements ahead of physical evidence.
+
+## Ocean-data registry 2026-10-20 (second pass)
+
+20 structured **source-discovery records** in `research/ocean_datasets.json`, with unique IDs, source and access links, provenance, variable/unit metadata, source/metadata review status, datum and QC gaps, reuse terms and exact next action. Two entries represent the same 2018 FORCE current campaign through distinct metadata/file URLs and must not be counted as independent measurements. Measured ocean time-series ingested into the repo or simulator: **zero**. First priority is acquisition and QA of FORCE 2018 ADCP, followed by published RM1 benchmarking. See `docs/OCEAN_DATA.md`. The catalogue does not exhaust regional records or include all 2026 deployments.

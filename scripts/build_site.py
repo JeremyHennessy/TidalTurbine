@@ -1,0 +1,24 @@
+"""Make a self-contained Pages artifact; no tools, API calls or paid hosting required."""
+import argparse
+from pathlib import Path
+from shutil import copy2, rmtree
+ROOT=Path(__file__).resolve().parents[1]
+FILES=('index.html','site/index.html','site/app.js','site/styles.css','site/assets/favicon.svg','reports/SCREEN-001.json','research/ocean_datasets.json')
+
+def build(target:Path):
+    target=target.resolve()
+    if target==ROOT or ROOT in target.parents and target.name not in ('dist','build-site'):
+        raise ValueError('Output must be a dedicated dist/build-site folder, not project source')
+    target.mkdir(parents=True,exist_ok=True)
+    for rel in FILES:
+        f=ROOT/rel
+        to=target/rel
+        to.parent.mkdir(parents=True,exist_ok=True)
+        copy2(f,to)
+    (target/'.nojekyll').write_text('',encoding='utf8')
+    print('Built static site:',target,'; 7 source-controlled files; source data remain in published research/ and reports/')
+
+def main():
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--out',default='dist');args=p.parse_args()
+    build(ROOT/args.out)
+if __name__=='__main__':main()
