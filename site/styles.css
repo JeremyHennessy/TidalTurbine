@@ -7,3 +7,16 @@
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
 
 @media(max-width:760px){.hero-coast svg text{display:none}}
+
+/* Added mechanism filters follow existing cards; original selected concept is preserved. */
+.mechanism-filters{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 16px;margin-bottom:16px;border:1px solid #234e62;background:#0b2736;border-radius:11px}
+.mechanism-filters label{font-size:11px;color:#93c7cb;text-transform:uppercase;letter-spacing:.08em}
+.mechanism-filters select,.mechanism-filters input{max-width:240px;min-width:140px;min-height:34px;background:#102d3e;color:#d6f2f1;border:1px solid #417082;border-radius:6px;padding:6px 9px}
+#mechanism-match{font-size:11px;color:#86b8c8;margin-left:auto}
+.design-choice[hidden]{display:none!important}
+#design-provenance{font-size:12px;line-height:1.55;margin-top:20px;overflow-wrap:anywhere}
+#design-provenance p{margin:8px 0;color:#b2cfdb}
+#rm2-reproduction{padding:20px;margin:24px 0}
+#rm2-reproduction svg{display:block;width:100%;max-width:760px;height:auto;margin:10px auto 15px}
+#rm2-reproduction .chart-note{margin-top:16px}
+@media(max-width:760px){.mechanism-filters{align-items:stretch;gap:8px}.mechanism-filters label{width:100%}.mechanism-filters select,.mechanism-filters input{max-width:unset;width:100%}#mechanism-match{margin-left:0}}

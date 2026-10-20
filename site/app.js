@@ -13,7 +13,7 @@ let selected = 'seabed';
 let annotations = true;
 const VALIDATION = [
   ['Analytical checks & screening', 'Analytical limiting cases, deterministic code and the synthetic SCREEN-001 baseline.', 'SOFTWARE CHECKS PASSED', 'complete'],
-  ['Reproduce published benchmark', 'Reproduce independently measured Sandia RM1 geometry, Cp/Ct curves and documented uncertainty.', 'NOT YET REPRODUCED', 'pending'],
+  ['Reproduce published benchmark', 'Processed RM2 Cp/CD data reproduced; independent RM1 and cross-flow hydrodynamic predictions not validated.', 'DATA PLOTTED · SOLVERS UNVALIDATED', 'pending'],
   ['Validated rotor & control', 'Turbulence, validated thrust/pitch maps, cavitation and measured blade-load distributions.', 'NOT STARTED', 'pending'],
   ['Coupled structure and moorings', 'Fatigue damage, foundation/cable stresses and floating-platform response under real conditions.', 'NOT STARTED', 'pending'],
   ['Serviceability & lifecycle cost', 'Maintenance histories, realistic weather access windows, failure and repair uncertainty.', 'NOT STARTED', 'pending'],
@@ -25,6 +25,65 @@ const DESIGNS = {
   crossflow:{short:'Cross-flow',name:'Cross-flow vertical-axis turbine',index:'03',sub:'Bidirectional cross-flow architecture',caption:'Vertical-axis rotor / alternative powertrain configuration',desc:'A cross-flow rotor may handle directional changes differently, but efficiency, torque variation and fatigue must be established.',pros:['Orientation may be less dependent on active yaw','Rotor layout can offer alternative packaging and recovery','Potentially suitable for some shallow/reversing regimes'],risks:['Strong cyclic blade loading and torque ripple can occur','Support-arm and blade bending stresses require evaluation','Comparative power coefficient remains unverified here'],evidence:'Reproducible Cp/CT versus TSR with turbulence, torque ripple, structural and maintenance measurements.'},
   kite:{short:'Tidal kite',name:'Tethered tidal kite',index:'04',sub:'Moving wing / tether / subsea power path',caption:'Swept trajectory / flying wing / tether anchor',desc:'A moving wing uses a large effective swept path. Its controls, tether loads, entanglement and retrieval introduce distinct failure modes.',pros:['Dynamic motion can increase relative flow at rotor','Device altitude can be adapted within suitable water columns','Some subsystems could potentially be retrieved'],risks:['Complex flight control and fault-response requirements','Tether wear, swept area, fishing activity and marine life interactions','Navigation and flight envelope require explicit environmental constraints'],evidence:'Measured trajectory and effective velocity, tether force/fatigue, control fault behavior and independently reviewed ecology.'}
 };
+
+// Canonical mechanism records are read from research/mechanisms.json, not replicated
+// by hardcoded performance assumptions. Existing four UI drawings are preserved.
+let mechanisms=[];
+let rm2=null;
+let references=[];
+const ADDITIONAL_SHORT={counter:'Counter-rotating',rim:'Open-centre',helical:'Helical cross-flow',savonius:'Savonius',foil:'Oscillating foil',screw:'Axial helix',duct:'Ducted rotor',pressure:'Pressure coupling',eel:'Piezoelectric flag',viv:'Vortex oscillator'};
+function schematicShape(key){
+ const base='<path d="M0 356Q110 339 204 359T408 354T700 360V410H0Z" fill="url(#sand)" stroke="#357080"/><path d="M30 135h620" stroke="#42b9c7" stroke-opacity=".24" stroke-dasharray="7 9"/>';
+ const rotor=(x,y,s=1)=>`<g transform="translate(${x} ${y}) scale(${s})"><path d="M0 0Q-17-62-6-100Q12-112 16-75L8-11Z" fill="url(#blade)" stroke="#86e0e0" stroke-width="2"/><path d="M0 0Q-17-62-6-100Q12-112 16-75L8-11Z" transform="rotate(120)" fill="url(#blade)" stroke="#86e0e0" stroke-width="2"/><path d="M0 0Q-17-62-6-100Q12-112 16-75L8-11Z" transform="rotate(240)" fill="url(#blade)" stroke="#86e0e0" stroke-width="2"/><circle r="14" fill="url(#metal)" stroke="#91ffed"/></g>`;
+ const gen=(x,y)=>`<rect x="${x}" y="${y}" width="89" height="44" rx="8" fill="url(#metal)" stroke="#82dade"/><text x="${x+45}" y="${y+27}" text-anchor="middle" fill="#d4fff8" font-size="11">PTO</text>`;
+ const arrow='<path d="M75 190h96m-12-9 12 9-12 9M540 190h90m-12-9 12 9-12 9" fill="none" stroke="#6fd4d9" stroke-width="3"/>';
+ let shapes={
+ counter:()=>`${base}<path d="M335 340V173h25v167" fill="url(#metal)"/>${rotor(264,195,.75)}${rotor(410,195,.75)}<path d="M264 195H410" stroke="#86bbc7" stroke-width="9"/>${gen(310,265)}<path d="M236 105q31-38 59 0m-3-13 3 13-14-3M374 104q34-39 63 0m-12-3 12 3-4-14" fill="none" stroke="#ffc884" stroke-width="2.5"/>`,
+ rim:()=>`${base}<path d="M337 340V275h25v65" fill="url(#metal)"/><circle cx="345" cy="188" r="112" fill="none" stroke="#1e667d" stroke-width="47"/><circle cx="345" cy="188" r="114" fill="none" stroke="#66d5e3" stroke-width="5"/><circle cx="345" cy="188" r="69" fill="none" stroke="#70bfca" stroke-width="3"/>${Array.from({length:12},(_,i)=>`<path d="M345 122Q362 140 359 165L349 184" transform="rotate(${i*30} 345 188)" fill="none" stroke="#9df4eb" stroke-width="6" opacity=".75"/>`).join('')}<circle cx="345" cy="188" r="35" fill="#092c3b" stroke="#57c6d1" stroke-dasharray="3 6"/>`,
+ helical:()=>`${base}<path d="M320 338V90h18v248" fill="url(#metal)" stroke="#73d5e1" stroke-width="2"/>${[0,1,2,3].map(i=>`<path d="M330 ${105+i*58}C450 ${127+i*58} 225 ${145+i*58} 336 ${165+i*58}" fill="none" stroke="url(#blade)" stroke-width="24" stroke-linecap="round"/>`).join('')}<ellipse cx="330" cy="104" rx="61" ry="13" fill="url(#metal)"/>${gen(291,342)}`,
+ savonius:()=>`${base}<path d="M347 337V102" stroke="#85d8db" stroke-width="9"/><path d="M345 99Q249 85 271 183Q273 235 345 219Q408 211 403 270Q400 317 343 315" fill="none" stroke="url(#blade)" stroke-width="33" stroke-linecap="round"/><ellipse cx="346" cy="106" rx="75" ry="13" fill="none" stroke="#91cbd3" stroke-width="5"/><ellipse cx="346" cy="320" rx="75" ry="13" fill="none" stroke="#91cbd3" stroke-width="5"/>${gen(432,274)}`,
+ foil:()=>`${base}<path d="M326 336V119" stroke="#71a6b5" stroke-width="7" stroke-dasharray="5 11"/><path d="M234 205Q360 176 453 221Q325 230 234 205Z" fill="url(#blade)" stroke="#9ef1e8" stroke-width="3"/><circle cx="302" cy="205" r="7" fill="#ffe1a0"/><path d="M333 166V107m-13 16 13-16 13 16M333 254v62m-13-17 13 17 13-17" fill="none" stroke="#ffd08b" stroke-width="3"/>${gen(472,288)}<path d="M326 263V309H472" stroke="#4ad0d9" fill="none" stroke-width="5"/><path d="M416 182q29 21 16 48m14-10-14 10-5-15" fill="none" stroke="#ffd08b" stroke-width="3"/>`,
+ screw:()=>`${base}<path d="M181 241H526" stroke="#8ce1e6" stroke-width="11"/>${[0,1,2,3,4,5,6].map(i=>`<path d="M${182+i*48} 177Q${208+i*48} 157 ${220+i*48} 224T${224+i*48} 303" fill="none" stroke="url(#blade)" stroke-width="22" stroke-linecap="round"/>`).join('')}<path d="M178 318V240h13m317 77v-77h13" fill="none" stroke="#729faf" stroke-width="10"/>${gen(530,218)}`,
+ duct:()=>`${base}<path d="M186 91Q278 160 330 160H402Q458 158 536 90L520 306Q446 266 405 266H330Q255 269 190 310Z" fill="#0d394a" stroke="#6bd8dc" stroke-width="5"/>${rotor(354,210,.9)}<path d="M355 317v32" stroke="#9bd8d9" stroke-width="14"/>${gen(500,311)}`,
+ pressure:()=>`${base}<path d="M171 180Q310 211 370 185Q434 160 507 182L467 292Q391 245 352 265Q268 280 190 292Z" fill="#11506a" stroke="#75d6dd" stroke-width="4"/><path d="M353 235V98H520" fill="none" stroke="#9ce6dc" stroke-width="9"/><circle cx="523" cy="96" r="46" fill="#163a4e" stroke="#7debdc" stroke-width="4"/><path d="M523 96L532 61L543 99L552 119L520 108" fill="#8cefe9"/><path d="M470 96h-49m15-13-15 13 15 13" fill="none" stroke="#ffd193" stroke-width="2"/>${gen(540,73)}`,
+ eel:()=>`${base}<rect x="188" y="157" width="42" height="139" rx="20" fill="url(#metal)" stroke="#65c0cd"/>${[0,1,2].map(i=>`<path d="M250 ${195+i*28}q18-17 38 0t38 0t38 0t38 0t38 0" stroke="#63d1d0" stroke-width="3" stroke-dasharray="4 11" fill="none"/>`).join('')}<path d="M247 245Q283 175 315 229T400 245T480 226" fill="none" stroke="url(#blade)" stroke-width="14" stroke-linecap="round"/><path d="M419 252 488 301" stroke="#6ddde0" stroke-width="4"/>${gen(479,285)}`,
+ viv:()=>`${base}<path d="M302 322V140h44v182" fill="none" stroke="#426d80" stroke-width="3" stroke-dasharray="9 9"/><rect x="312" y="130" width="49" height="209" rx="23" fill="url(#metal)" stroke="#87deeb" stroke-width="2"/><path d="M281 125q-50 39 1 79t0 78m98-155q55 39 1 78t0 76" stroke="#5fcbd4" fill="none" stroke-width="3" stroke-dasharray="6 8"/><path d="M355 178H474v92H355" fill="none" stroke="#6ad5d3" stroke-width="6"/>${gen(479,196)}`
+ };
+ return (shapes[key]||(()=>base))()+arrow;
+}
+const SCHEMATIC_LABELS={counter:[['Opposed rotors',300,71],['Shaft / PTO',492,307]],rim:[['Annular blades',480,106],['Open centre',307,191]],helical:[['Twisted cross-flow blades',416,91],['Vertical shaft',420,320]],savonius:[['Drag scoops',440,102],['Shaft / PTO',470,336]],foil:[['Heave + pitch',435,111],['Linear/hydraulic PTO',471,354]],screw:[['Continuous axial helix',270,122],['Shaft-driven PTO',540,185]],duct:[['Duct inlet and diffuser',332,76],['Rotor / nacelle PTO',456,318]],pressure:[['Pressure-coupled duct',160,95],['Secondary air turbine',465,60]],eel:[['Oscillating membrane',307,126],['Rectifier / storage',500,343]],viv:[['Moving cylinder',347,107],['Linear PTO',503,191]]};
+function extraLabels(key){return (SCHEMATIC_LABELS[key]||[]).map(([label,x,y])=>`<g class="diagram-annotations"><rect x="${x-9}" y="${y-16}" width="174" height="29" rx="6" fill="#082437" stroke="#276b80"/><text x="${x}" y="${y+1}" font-size="12" font-weight="bold" fill="#90f0e2">${safe(label)}</text></g>`).join('');}
+function applyMechanisms(rows){
+  mechanisms=rows;
+  for(const m of rows){
+    if(DESIGNS[m.id]) {DESIGNS[m.id].canonical=m;continue;}
+    DESIGNS[m.id]={short:ADDITIONAL_SHORT[m.id]||m.name,name:m.name,index:String(m.ordinal).padStart(2,'0'),sub:`${m.capture_mechanism} · ${m.motion}`,caption:m.power_boundary_and_denominator,desc:m.demonstrated_scale_or_output,pros:[`Capture: ${m.capture_mechanism}`,`Power-takeoff: ${m.power_takeoff}`,`Support: ${m.support}`],risks:[m.limitation,`Power denominator: ${m.power_boundary_and_denominator}`],evidence:m.questions.join(' '),canonical:m};
+  }
+}
+function renderMechanismFilters(){
+ const filter=$('#mechanism-filters');if(!filter)return;
+ const choices=[...new Set(mechanisms.map(m=>m.capture_mechanism))].sort();
+ filter.innerHTML=`<label for="capture-filter">Capture mechanism</label><select id="capture-filter"><option value="">All capture mechanisms</option>${choices.map(c=>`<option value="${safe(c)}">${safe(c.replaceAll('-',' '))}</option>`).join('')}</select><label for="mechanism-search">Search designs</label><input id="mechanism-search" type="search" placeholder="foil, helix, turbine…"><span id="mechanism-match" aria-live="polite"></span>`;
+ const paint=()=>{const capture=$('#capture-filter').value;const term=$('#mechanism-search').value.toLowerCase();let count=0;$$('.design-choice').forEach(btn=>{const m=DESIGNS[btn.dataset.design].canonical;const visible=!!m&&(!capture||m.capture_mechanism===capture)&&(!term||(m.name+' '+m.motion+' '+m.power_takeoff+' '+m.augmentation).toLowerCase().includes(term));btn.hidden=!visible;if(visible)count++;});$('#mechanism-match').textContent=`${count} of ${mechanisms.length} configurations`};
+ $('#capture-filter').addEventListener('change',paint);$('#mechanism-search').addEventListener('input',paint);paint();
+}
+function renderMechanismEvidence(){
+ const d=DESIGNS[selected];const m=d.canonical;const box=$('#design-provenance');if(!box)return;
+ if(!m){box.textContent='Canonical research record unavailable';return;}
+ box.innerHTML=`<div class="section-kicker">SOURCE / PROVENANCE</div><p><strong>Evidence:</strong> ${safe(m.evidence_depth)} · ${safe(m.evidence_class)}</p><p><strong>Model:</strong> ${safe(m.model_status)}</p><p><strong>Motion:</strong> ${safe(m.motion)}. <strong>Axis:</strong> ${safe(m.axis)}.</p><p><strong>Power denominator:</strong> ${safe(m.power_boundary_and_denominator)}</p><p><strong>Limitations:</strong> ${safe(m.limitation)}</p><a href="${safe(m.source_url)}" target="_blank" rel="noopener noreferrer" class="plain-link">Primary evidence ↗</a>`;
+}
+function rm2Plot(){
+ const root=$('#rm2-reproduction');if(!root)return;
+ if(!rm2){root.innerHTML='<div class="notice">RM2 data-reproduction report unavailable; no measured comparison displayed.</div>';return;}
+ const d=rm2.data,w=690,h=320,L=58,R=20,T=26,B=40;
+ const xx=t=>L+(t-.9)/(4.35-.9)*(w-L-R),yy=c=>T+(.42-c)/.42*(h-T-B);
+ const pts=d.map(x=>`${xx(x.mean_tsr).toFixed(1)},${yy(x.mean_cp).toFixed(1)}`).join(' ');
+ const errs=d.map(x=>`<line x1="${xx(x.mean_tsr)}" x2="${xx(x.mean_tsr)}" y1="${yy(x.mean_cp-x.exp_unc_cp)}" y2="${yy(x.mean_cp+x.exp_unc_cp)}" stroke="#9adddf" stroke-width="1.5" opacity=".75"/>`).join('');
+ const dots=d.map(x=>`<circle cx="${xx(x.mean_tsr)}" cy="${yy(x.mean_cp)}" r="3.5" fill="#5df1dc"><title>Run ${x.run}: TSR ${x.mean_tsr}, Cp ${x.mean_cp}, upstream exp_unc_cp ${x.exp_unc_cp}</title></circle>`).join('');
+ const peak=rm2.peak_observed;
+ root.innerHTML=`<div class="panel-head"><div><div class="section-kicker">RM2-OBS-001 · PUBLISHED DATA REPRODUCTION</div><h2>Cross-flow tow-tank Cp versus tip-speed ratio</h2><p>23 processed points; UNH 1:6 RM2 tow-tank model around 1 m/s. This is not a predictive solver or Fundy trial.</p></div><span class="tag tag-blue">OBSERVED PROCESSED DATA</span></div><svg viewBox="0 0 ${w} ${h}" role="img" aria-label="23 measured processed UNH RM2 Cp observations, upstream uncertainty whiskers; peak near TSR 3.1"><g font-family="Arial"><line x1="${L}" x2="${L}" y1="${T}" y2="${h-B}" stroke="#567f8e"/><line x1="${L}" x2="${w-R}" y1="${h-B}" y2="${h-B}" stroke="#567f8e"/>${[0,.1,.2,.3,.4].map(y=>`<text x="${L-9}" y="${yy(y)+4}" font-size="11" fill="#b2c7ca" text-anchor="end">${y.toFixed(1)}</text><path d="M${L} ${yy(y)}h${w-L-R}" stroke="#315e6c" stroke-dasharray="3 8"/>`).join('')}${[1,2,3,4].map(x=>`<text x="${xx(x)}" y="${h-19}" font-size="12" fill="#b2c7ca" text-anchor="middle">${x}</text>`).join('')}<polyline points="${pts}" fill="none" stroke="#49d7e6" stroke-width="2.4"/>${errs}${dots}<text x="${w/2}" y="${h-1}" font-size="12" fill="#b8d2d5" text-anchor="middle">Tip-speed ratio (dimensionless)</text><text transform="translate(16 ${h/2}) rotate(-90)" font-size="12" fill="#b8d2d5" text-anchor="middle">Reported Cp (projected D×H area)</text></g></svg><div class="result-strip"><div class="result-cell"><span>Observed maximum Cp</span><strong>${numeric(peak.mean_cp,4)}</strong></div><div class="result-cell"><span>Observed TSR at peak</span><strong>${numeric(peak.mean_tsr,3)}</strong></div><div class="result-cell"><span>Upstream exp_unc_cp field</span><strong>${numeric(peak.exp_unc_cp,4)}</strong></div></div><div class="chart-note">Values transcribed to 7 decimals from source CSV, not independently reconstructed from raw torque. Uncertainty shown as upstream field only (interpretation not re-established). <a href="${safe(rm2.source_url)}" target="_blank" rel="noopener noreferrer">View experimental source ↗</a></div>`;
+}
+
 function go(view) {
   if (!['overview','designs','experiments','ocean','research'].includes(view)) view = 'overview';
   $$('.view').forEach(el=>el.classList.toggle('current',el.id==='view-'+view));
@@ -41,7 +100,7 @@ function initNavigation() {
   go(location.hash.slice(1)||'overview');
 }
 function renderStats(){
-  const stats=[['▤','21','Core research references','From the foundation catalogue'],['⚗',report?'1':'—','Synthetic experiment', 'SCREEN-001 · repeatable'],['≋',ocean.length?String(ocean.length):'—','Ocean-data records','Source metadata · not raw files'],['◇','0','Validated turbine concepts','Physical validation pending']];
+  const stats=[['▤',references.length?String(references.length):'—','Research source records','Classified research catalogue'],['⚗',report?'1':'—','Synthetic experiment', 'SCREEN-001 · repeatable'],['≋',ocean.length?String(ocean.length):'—','Ocean-data records','Source metadata · not raw files'],['◇','0','Validated turbine concepts','Physical validation pending']];
   $('#stats').innerHTML=stats.map(([icon,val,name,desc])=>`<div class="stat"><span class="stat-icon" aria-hidden="true">${icon}</span><div><strong>${val}</strong><span class="stat-label">${name}</span><small>${desc}</small></div></div>`).join('');
 }
 function chartSvg(cap=0.8, overview=false){
@@ -119,9 +178,10 @@ function labelSvg(name,large){
   return (configs[name]||[]).map(([t,d,x,y,tx,ty])=>{const right=x>400,joinX=right?x-12:x+140;return `<g class="diagram-annotations"><circle cx="${tx}" cy="${ty}" r="4" fill="#66f0e1"/><path d="M${tx} ${ty} ${joinX} ${y-10}" stroke="#5de9e0" stroke-width="1.2" fill="none"/><rect x="${x}" y="${y-32}" width="${right?167:146}" height="49" rx="7" fill="#081d2d" opacity=".87" stroke="#36748a"/><text x="${x+10}" y="${y-14}" font-size="11" font-weight="bold" fill="#93f7e8">${safe(t)}</text><text x="${x+10}" y="${y+2}" font-size="9" fill="#b1d1d5">${safe(d)}</text></g>`;}).join('');
 }
 function designSvg(name,large=false){
-  const drawing={seabed:seabedSvg,floating:floatingSvg,crossflow:crossflowSvg,kite:kiteSvg}[name]();
+  const original={seabed:seabedSvg,floating:floatingSvg,crossflow:crossflowSvg,kite:kiteSvg}[name];
+  const drawing=original?original():schematicShape(name);
   const waves=Array.from({length:7},(_,i)=>`<path d="M-12 ${126+i*28}q90-15 170 0t180 0t180 0t180 0" fill="none" stroke="#27899a" stroke-width="1" opacity="${.11+i*.02}"/>`).join('');
-  return `<svg viewBox="0 0 700 410" role="img" aria-label="Illustrative technical drawing of ${safe(DESIGNS[name].name)}. Not to scale and not a tested engineering design.">${designDefs()}<rect width="700" height="410" fill="url(#oceanGlow)"/><rect width="700" height="410" fill="url(#diagramGrid)" opacity=".42"/>${waves}<g opacity=".85"><path d="M0 80H700" stroke="#25768c" stroke-dasharray="2 9"/><text x="20" y="32" fill="#6ba7b8" font-size="11" font-family="Arial" letter-spacing="2">TIDAL / LAB — ${DESIGNS[name].index} · CONCEPT</text><text x="675" y="32" text-anchor="end" fill="#6ba7b8" font-size="11">ILLUSTRATIVE / NOT TO SCALE</text></g>${drawing}${(annotations||!large)?labelSvg(name,large):''}<g stroke="#5e94a2" opacity=".65" stroke-width="1"><path d="M24 383h90m-90-6v12m90-12v12"/></g><text x="127" y="388" font-size="10" fill="#6aabba">Not a calibrated scale</text></svg>`;
+  return `<svg viewBox="0 0 700 410" role="img" aria-label="Illustrative technical drawing of ${safe(DESIGNS[name].name)}. Not to scale and not a tested engineering design.">${designDefs()}<rect width="700" height="410" fill="url(#oceanGlow)"/><rect width="700" height="410" fill="url(#diagramGrid)" opacity=".42"/>${waves}<g opacity=".85"><path d="M0 80H700" stroke="#25768c" stroke-dasharray="2 9"/><text x="20" y="32" fill="#6ba7b8" font-size="11" font-family="Arial" letter-spacing="2">TIDAL / LAB — ${DESIGNS[name].index} · CONCEPT</text><text x="675" y="32" text-anchor="end" fill="#6ba7b8" font-size="11">ILLUSTRATIVE / NOT TO SCALE</text></g>${drawing}${(annotations||!large)?(labelSvg(name,large)+extraLabels(name)):''}<g stroke="#5e94a2" opacity=".65" stroke-width="1"><path d="M24 383h90m-90-6v12m90-12v12"/></g><text x="127" y="388" font-size="10" fill="#6aabba">Not a calibrated scale</text></svg>`;
 }
 function renderDesign(){
   const d=DESIGNS[selected];
@@ -134,6 +194,7 @@ function renderDesign(){
   $('#design-pros').innerHTML=d.pros.map(x=>`<li>${safe(x)}</li>`).join('');
   $('#design-risks').innerHTML=d.risks.map(x=>`<li>${safe(x)}</li>`).join('');
   $('#design-evidence').textContent=d.evidence;
+  renderMechanismEvidence();
   $$('.design-choice').forEach(e=>e.classList.toggle('active',e.dataset.design===selected));
 }
 function setupDesign(){
@@ -141,6 +202,7 @@ function setupDesign(){
   $$('.design-choice').forEach(btn=>btn.addEventListener('click',()=>{selected=btn.dataset.design;renderDesign();}));
   $('#toggle-annotation').addEventListener('click',()=>{annotations=!annotations;const b=$('#toggle-annotation');b.classList.toggle('on',annotations);b.setAttribute('aria-pressed',String(annotations));b.textContent=annotations?'◈ Labels on':'◇ Labels off';renderDesign();});
   renderDesign();
+  renderMechanismFilters();
 }
 const CATEGORY_LABELS={current:'Currents',waves:'Waves',weather:'Weather',water_level:'Tide heights',bathymetry:'Bathymetry',seabed:'Seabed',discovery:'Discovery',hydrography:'Hydrography',habitat:'Habitat',species:'Species',marine_use:'Marine use',environment:'Monitoring',regulation:'Regulation'};
 function statusLabel(s){return ({downloadable_not_acquired:'File available · not ingested',metadata_only:'Metadata only',permission_gate:'Terms/access gate',portal_manual_download:'Portal download required',discovery_portal:'Discovery only',report_not_machine_read:'Report only',source_reviewed:'Web page reviewed'})[s]||'Needs review';}
@@ -159,10 +221,14 @@ function oceanRender(){
 }
 function enhanceStyles(){const style=document.createElement('style');style.textContent='.detail-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;background:#0e2a38;padding:16px;border-radius:8px}.detail-grid b{font-size:11px;color:#7de8dd}.detail-grid p{font-size:11px;color:#aac4ca;line-height:1.6;margin:5px 0 14px}.detail-grid a{font-size:11px}.dataset-table .detail-row td{padding:0}.detail-row[hidden]{display:none}@media(max-width:760px){.detail-grid{grid-template-columns:1fr}}';document.head.appendChild(style);}
 async function init(){
-  initNavigation();enhanceStyles();setupDesign();miniOverview();renderStats();
+  initNavigation();enhanceStyles();
+  try{const r=await fetch('../research/mechanisms.json',{cache:'no-cache'});if(!r.ok)throw Error('Mechanism registry fetch '+r.status);const rows=await r.json();if(!Array.isArray(rows)||rows.length<14)throw Error('Incomplete canonical mechanisms');applyMechanisms(rows);}catch(e){console.warn('Mechanism registry unavailable, retaining legacy designs',e);}
+  setupDesign();miniOverview();renderStats();
   try{const r=await fetch('../reports/SCREEN-001.json',{cache:'no-cache'});if(!r.ok)throw Error('Report fetch '+r.status);report=await r.json();if(report.inflow_kind!=='synthetic_two_harmonic'||report.classification!=='SIMULATION_RESULT_SYNTHETIC_NOT_VALIDATED')throw Error('Invalid provenance classification');}catch(e){console.warn('Archive unavailable',e);}
   try{const r=await fetch('../research/ocean_datasets.json',{cache:'no-cache'});if(!r.ok)throw Error('Inventory fetch '+r.status);ocean=await r.json();if(!Array.isArray(ocean))throw Error('Inventory not a list');}catch(e){console.warn('Data registry unavailable',e);}
-  renderStats();miniOverview();sensitivityRender();experimentRender();oceanRender();
+  try{const r=await fetch('../research/catalogue.json',{cache:'no-cache'});if(!r.ok)throw Error('Bibliography fetch '+r.status);references=await r.json();if(!Array.isArray(references))throw Error('Not a bibliography array');}catch(e){console.warn('Bibliography unavailable',e);}
+  try{const r=await fetch('../reports/RM2-OBS-001.json',{cache:'no-cache'});if(!r.ok)throw Error('RM2 report fetch '+r.status);const obs=await r.json();if(obs.classification!=='EXPERIMENTAL_PROCESSED_DATA_REPRODUCTION_NOT_PREDICTIVE_VALIDATION')throw Error('Invalid experiment provenance');rm2=obs;}catch(e){console.warn('RM2 reproduction unavailable',e);}
+  renderStats();miniOverview();sensitivityRender();experimentRender();oceanRender();rm2Plot();
   $('#export-slider').addEventListener('input',experimentRender);
   $('#reset-experiment').addEventListener('click',()=>{$('#export-slider').value='80';experimentRender();});
 }
