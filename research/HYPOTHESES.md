@@ -1,0 +1,11 @@
+# Falsifiable design hypotheses — no accepted winners
+
+| ID | Proposal / mechanism | Baseline comparator | Falsification criterion | Missing evidence |
+|---|---|---|---|---|
+| H-001 | Control-aware derating may reduce rotor cyclic loads sufficiently to offset export energy loss over life. | Same rotor and inflow operating without derating, identical downtime assumptions. | Coupled measured/validated control+load+fatigue+cost model finds no net lifetime benefit across credible site conditions. | Cp/Ct maps versus tip-speed/pitch and control, load spectra, S-N data, reliability/repair model, prices. |
+| H-002 | Direct drive may lower service burden by deleting gearbox. | Rated-power comparable geared turbine at same duty and resource. | Added generator/seal/bearing mass and failures plus conversion losses outweigh avoided gearbox repairs. | Public independent MTBF/MTTR, teardown/lift costs, actual generator efficiency/thermal design. |
+| H-003 | Recoverable module may shorten downtime. | Subsea service/recovery of equivalent fixed device. | Additional connectors and recovery equipment produce equal/worse lifetime delivered kWh or cost. | Vessel/weather-window time-series, recovery trial, connector failure records, inventory/spares. |
+| H-004 | Floating turbine may win where access conditions dominate foundation costs. | Seabed-fixed design at same characterized site. | Mooring/wave/cable loads and weather access erase access savings or permit constraints prevent deployment. | Coupled hydro-servo-mooring analysis, navigation/fisheries use, bathymetry, geology, shared costs. |
+| H-005 | Passive pitch may reduce cyclic loading without high service cost. | Rigid/active-pitch rotor under identical inflow. | Mean loads, friction/wear/failure introduce greater fatigue, cost or lost energy than gains. | Reproduction of Gambuzza et al. model test, preload/friction characterization, long-duration wear, multiple blades. |
+
+SCREEN-001 addresses only the electricity-export arithmetic subquestion of H-001. Export cap is *downstream*; it has no assumed connection to rotor thrust. It neither supports nor falsifies the load-life mechanism. Record negative results without deleting them.

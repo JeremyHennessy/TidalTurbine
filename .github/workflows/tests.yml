@@ -1,0 +1,25 @@
+name: Deterministic research checks
+on:
+  push:
+    branches: [main, 'research/**']
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.11', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Validate evidence catalogue
+        run: python scripts/check_catalogue.py
+      - name: Run unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Re-run synthetic screening experiment
+        run: python -m tidal_screen.cli --config configs/synthetic_screen.json --out reports/local-ci.json

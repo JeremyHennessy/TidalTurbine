@@ -1,0 +1,15 @@
+id,subsystem,potential_failure_mode,possible_mechanism,monitoring_candidate,repair_or_access_question,evidence_ref,frequency_status
+F-001,blade,root fatigue cracking,cyclic bending and flaws,strain/acoustic inspection,can rotor be recovered within a tidal window?,RT-001,unknown
+F-002,blade,erosion or impact damage,cavitation/debris/abrasion,inspection and vibration,repair versus replacement at sea?,RT-001,unknown
+F-003,pitch,actuator or passive hinge seizure,biofouling/corrosion/friction,position and motor/spring response,does modular access help?,PP-001,unknown
+F-004,pitch,incorrect spring preload,setting drift/assembly error,mean load and pitch angle,inspect preload before reinstallation?,PP-001,unknown
+F-005,drivetrain,bearing damage,fatigue/lubrication/water ingress,vibration and temperature,can cartridge be swapped quickly?,RT-001,unknown
+F-006,drivetrain,gear degradation,oil contamination/contact fatigue,oil debris vibration,does direct drive remove enough intervention?,RT-001,unknown
+F-007,sealing,seawater ingress,seal wear/pressure/corrosion,humidity/leak detector,how many sealing interfaces are created by modularity?,RT-001,unknown
+F-008,generator,winding or insulation failure,thermal/electrical fatigue,insulation and temperature,requires shop rewind or replacement?,RT-001,unknown
+F-009,power electronics,converter fault,thermal cycling and component aging,temperature/fault diagnostics,is replacement accessible from surface?,RT-001,unknown
+F-010,structure,foundation/interface degradation,scour/corrosion/fatigue,inspection and strain,requires vessel/ROV or large crane?,RT-001,unknown
+F-011,mooring,tether/anchor damage,cyclic tension/abrasion/drag,load cell and inspection,what is recovery fail-safe?,RT-001,unknown
+F-012,cable,export cable/connector fault,abrasion/flex/insulation damage,insulation and protection relays,shared array outage extent?,RT-001,unknown
+F-013,sensors,monitoring failure,ingress/calibration/drift,redundancy and QA,DFO monitoring compliance impact?,DFO-001,unknown
+F-014,rotor,biofouling growth,marine colonization,visual/vibration/power trends,cleaning interval unknown,RT-001,unknown

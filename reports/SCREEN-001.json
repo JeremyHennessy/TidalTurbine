@@ -1,0 +1,650 @@
+{
+  "baseline": {
+    "capacity_factor_fraction": 0.3307844226657295,
+    "duration_days": 14.0,
+    "energy_kwh": 22228.71320313702,
+    "export_cap_kw": 200.0,
+    "export_curtailment_kwh": 0.0,
+    "samples": 4032,
+    "timestep_s": 300.0,
+    "uncapped_energy_kwh": 22228.71320313702
+  },
+  "cannot_establish": [
+    "thrust or changes in rotor loads",
+    "fatigue life or device availability",
+    "economic benefit",
+    "physical feasibility of the curtailed operating state",
+    "environmental safety",
+    "site resource or grid adequacy"
+  ],
+  "classification": "SIMULATION_RESULT_SYNTHETIC_NOT_VALIDATED",
+  "comparison": {
+    "capacity_factor_fraction": 0.31481886188770325,
+    "duration_days": 14.0,
+    "energy_kwh": 21155.827518853657,
+    "export_cap_kw": 160.0,
+    "export_curtailment_kwh": 1072.885684283363,
+    "samples": 4032,
+    "timestep_s": 300.0,
+    "uncapped_energy_kwh": 22228.71320313702
+  },
+  "difference_export_energy_kwh": 1072.885684283363,
+  "difference_export_energy_percent": 4.8265757647723495,
+  "equation": "P_export=min(P_rated * cap_fraction, min(P_rated, (rho*A*Cp*eta*abs(u)^3)/(2*1000))) above cut-in; otherwise 0 kW",
+  "experiment_id": "SCREEN-001",
+  "inflow_kind": "synthetic_two_harmonic",
+  "inflow_provenance": "Two assumed sinusoidal components; NOT measured; NOT a Fundy or RM1 reconstruction",
+  "question": "How much synthetic export energy is lost by an electrical export cap?",
+  "run_provenance": {
+    "cli_sha256": "85ff6cd63d78b2ea3fd9078c9423ec38426582f0d590508940d6bbe3c7caf137",
+    "code_revision": "See commit containing this report; source-file hashes above uniquely identify run code",
+    "command": "python -m tidal_screen.cli --config configs/synthetic_screen.json --out reports/SCREEN-001.json",
+    "config_path": "configs/synthetic_screen.json",
+    "config_sha256": "a5a246e344f8c34ea74d45b9da73e09b54701c5695e9caab3d050b628abc040a",
+    "model_sha256": "61a8734290137dff9ed6f75038faa7185c1d32501b1c3e37eefef5b787ea8aa2",
+    "report_generation_date_utc": "2026-10-20"
+  },
+  "sensitivity": [
+    {
+      "conversion_efficiency": 0.85,
+      "energy_kwh": 6307.1738,
+      "power_coefficient": 0.3,
+      "primary_amplitude_m_s": 1.6,
+      "rated_power_kw": 150
+    },
+    {
+      "conversion_efficiency": 0.85,
+      "energy_kwh": 6307.1738,
+      "power_coefficient": 0.3,
+      "primary_amplitude_m_s": 1.6,
+      "rated_power_kw": 200
+    },
+    {
+      "conversion_efficiency": 0.85,
+      "energy_kwh": 6307.1738,
+      "power_coefficient": 0.3,
+      "primary_amplitude_m_s": 1.6,
+      "rated_power_kw": 300
+    },
+    {
+      "conversion_efficiency": 0.9,
+      "energy_kwh": 6678.18403,
+      "power_coefficient": 0.3,
+      "primary_amplitude_m_s": 1.6,
+      "rated_power_kw": 150
+    },
+    {
+      "conversion_efficiency": 0.9,
+      "energy_kwh": 6678.18403,
+      "power_coefficient": 0.3,
+      "primary_amplitude_m_s": 1.6,
+      "rated_power_kw": 200
+    },
+    {
+      "conversion_efficiency": 0.9,
+      "energy_kwh": 6678.18403,
+      "power_coefficient": 0.3,
+      "primary_amplitude_m_s": 1.6,
+      "rated_power_kw": 300
+    },
+    {
+      "conversion_efficiency": 0.95,
+      "energy_kwh": 7049.19425,
+      "power_coefficient": 0.3,
+      "primary_amplitude_m_s": 1.6,
+      "rated_power_kw": 150
+    },
+    {
+      "conversion_efficiency": 0.95,
+      "energy_kwh": 7049.19425,
+      "power_coefficient": 0.3,
+      "primary_amplitude_m_s": 1.6,
+      "rated_power_kw": 200
+    },
+    {
+      "conversion_efficiency": 0.95,
+      "energy_kwh": 7049.19425,
+      "power_coefficient": 0.3,
+      "primary_amplitude_m_s": 1.6,
+      "rated_power_kw": 300
+    },
+    {
+      "conversion_efficiency": 0.85,
+      "energy_kwh": 8409.56507,
+      "power_coefficient": 0.4,
+      "primary_amplitude_m_s": 1.6,
+      "rated_power_kw": 150
+    },
+    {
+      "conversion_efficiency": 0.85,
+      "energy_kwh": 8409.56507,
+      "power_coefficient": 0.4,
+      "primary_amplitude_m_s": 1.6,
+      "rated_power_kw": 200
+    },
+    {
+      "conversion_efficiency": 0.85,
+      "energy_kwh": 8409.56507,
+      "power_coefficient": 0.4,
+      "primary_amplitude_m_s": 1.6,
+      "rated_power_kw": 300
+    },
+    {
+      "conversion_efficiency": 0.9,
+      "energy_kwh": 8904.24537,
+      "power_coefficient": 0.4,
+      "primary_amplitude_m_s": 1.6,
+      "rated_power_kw": 150
+    },
+    {
+      "conversion_efficiency": 0.9,
+      "energy_kwh": 8904.24537,
+      "power_coefficient": 0.4,
+      "primary_amplitude_m_s": 1.6,
+      "rated_power_kw": 200
+    },
+    {
+      "conversion_efficiency": 0.9,
+      "energy_kwh": 8904.24537,
+      "power_coefficient": 0.4,
+      "primary_amplitude_m_s": 1.6,
+      "rated_power_kw": 300
+    },
+    {
+      "conversion_efficiency": 0.95,
+      "energy_kwh": 9398.92567,
+      "power_coefficient": 0.4,
+      "primary_amplitude_m_s": 1.6,
+      "rated_power_kw": 150
+    },
+    {
+      "conversion_efficiency": 0.95,
+      "energy_kwh": 9398.92567,
+      "power_coefficient": 0.4,
+      "primary_amplitude_m_s": 1.6,
+      "rated_power_kw": 200
+    },
+    {
+      "conversion_efficiency": 0.95,
+      "energy_kwh": 9398.92567,
+      "power_coefficient": 0.4,
+      "primary_amplitude_m_s": 1.6,
+      "rated_power_kw": 300
+    },
+    {
+      "conversion_efficiency": 0.85,
+      "energy_kwh": 10511.95634,
+      "power_coefficient": 0.5,
+      "primary_amplitude_m_s": 1.6,
+      "rated_power_kw": 150
+    },
+    {
+      "conversion_efficiency": 0.85,
+      "energy_kwh": 10511.95634,
+      "power_coefficient": 0.5,
+      "primary_amplitude_m_s": 1.6,
+      "rated_power_kw": 200
+    },
+    {
+      "conversion_efficiency": 0.85,
+      "energy_kwh": 10511.95634,
+      "power_coefficient": 0.5,
+      "primary_amplitude_m_s": 1.6,
+      "rated_power_kw": 300
+    },
+    {
+      "conversion_efficiency": 0.9,
+      "energy_kwh": 11130.30671,
+      "power_coefficient": 0.5,
+      "primary_amplitude_m_s": 1.6,
+      "rated_power_kw": 150
+    },
+    {
+      "conversion_efficiency": 0.9,
+      "energy_kwh": 11130.30671,
+      "power_coefficient": 0.5,
+      "primary_amplitude_m_s": 1.6,
+      "rated_power_kw": 200
+    },
+    {
+      "conversion_efficiency": 0.9,
+      "energy_kwh": 11130.30671,
+      "power_coefficient": 0.5,
+      "primary_amplitude_m_s": 1.6,
+      "rated_power_kw": 300
+    },
+    {
+      "conversion_efficiency": 0.95,
+      "energy_kwh": 11748.65708,
+      "power_coefficient": 0.5,
+      "primary_amplitude_m_s": 1.6,
+      "rated_power_kw": 150
+    },
+    {
+      "conversion_efficiency": 0.95,
+      "energy_kwh": 11748.65708,
+      "power_coefficient": 0.5,
+      "primary_amplitude_m_s": 1.6,
+      "rated_power_kw": 200
+    },
+    {
+      "conversion_efficiency": 0.95,
+      "energy_kwh": 11748.65708,
+      "power_coefficient": 0.5,
+      "primary_amplitude_m_s": 1.6,
+      "rated_power_kw": 300
+    },
+    {
+      "conversion_efficiency": 0.85,
+      "energy_kwh": 15854.84841,
+      "power_coefficient": 0.3,
+      "primary_amplitude_m_s": 2.2,
+      "rated_power_kw": 150
+    },
+    {
+      "conversion_efficiency": 0.85,
+      "energy_kwh": 15950.18974,
+      "power_coefficient": 0.3,
+      "primary_amplitude_m_s": 2.2,
+      "rated_power_kw": 200
+    },
+    {
+      "conversion_efficiency": 0.85,
+      "energy_kwh": 15950.18974,
+      "power_coefficient": 0.3,
+      "primary_amplitude_m_s": 2.2,
+      "rated_power_kw": 300
+    },
+    {
+      "conversion_efficiency": 0.9,
+      "energy_kwh": 16671.5349,
+      "power_coefficient": 0.3,
+      "primary_amplitude_m_s": 2.2,
+      "rated_power_kw": 150
+    },
+    {
+      "conversion_efficiency": 0.9,
+      "energy_kwh": 16888.43619,
+      "power_coefficient": 0.3,
+      "primary_amplitude_m_s": 2.2,
+      "rated_power_kw": 200
+    },
+    {
+      "conversion_efficiency": 0.9,
+      "energy_kwh": 16888.43619,
+      "power_coefficient": 0.3,
+      "primary_amplitude_m_s": 2.2,
+      "rated_power_kw": 300
+    },
+    {
+      "conversion_efficiency": 0.95,
+      "energy_kwh": 17442.46749,
+      "power_coefficient": 0.3,
+      "primary_amplitude_m_s": 2.2,
+      "rated_power_kw": 150
+    },
+    {
+      "conversion_efficiency": 0.95,
+      "energy_kwh": 17826.68265,
+      "power_coefficient": 0.3,
+      "primary_amplitude_m_s": 2.2,
+      "rated_power_kw": 200
+    },
+    {
+      "conversion_efficiency": 0.95,
+      "energy_kwh": 17826.68265,
+      "power_coefficient": 0.3,
+      "primary_amplitude_m_s": 2.2,
+      "rated_power_kw": 300
+    },
+    {
+      "conversion_efficiency": 0.85,
+      "energy_kwh": 19937.28506,
+      "power_coefficient": 0.4,
+      "primary_amplitude_m_s": 2.2,
+      "rated_power_kw": 150
+    },
+    {
+      "conversion_efficiency": 0.85,
+      "energy_kwh": 21139.79788,
+      "power_coefficient": 0.4,
+      "primary_amplitude_m_s": 2.2,
+      "rated_power_kw": 200
+    },
+    {
+      "conversion_efficiency": 0.85,
+      "energy_kwh": 21266.91965,
+      "power_coefficient": 0.4,
+      "primary_amplitude_m_s": 2.2,
+      "rated_power_kw": 300
+    },
+    {
+      "conversion_efficiency": 0.9,
+      "energy_kwh": 20734.27031,
+      "power_coefficient": 0.4,
+      "primary_amplitude_m_s": 2.2,
+      "rated_power_kw": 150
+    },
+    {
+      "conversion_efficiency": 0.9,
+      "energy_kwh": 22228.7132,
+      "power_coefficient": 0.4,
+      "primary_amplitude_m_s": 2.2,
+      "rated_power_kw": 200
+    },
+    {
+      "conversion_efficiency": 0.9,
+      "energy_kwh": 22517.91492,
+      "power_coefficient": 0.4,
+      "primary_amplitude_m_s": 2.2,
+      "rated_power_kw": 300
+    },
+    {
+      "conversion_efficiency": 0.95,
+      "energy_kwh": 21482.03014,
+      "power_coefficient": 0.4,
+      "primary_amplitude_m_s": 2.2,
+      "rated_power_kw": 150
+    },
+    {
+      "conversion_efficiency": 0.95,
+      "energy_kwh": 23256.62333,
+      "power_coefficient": 0.4,
+      "primary_amplitude_m_s": 2.2,
+      "rated_power_kw": 200
+    },
+    {
+      "conversion_efficiency": 0.95,
+      "energy_kwh": 23768.9102,
+      "power_coefficient": 0.4,
+      "primary_amplitude_m_s": 2.2,
+      "rated_power_kw": 300
+    },
+    {
+      "conversion_efficiency": 0.85,
+      "energy_kwh": 23003.41278,
+      "power_coefficient": 0.5,
+      "primary_amplitude_m_s": 2.2,
+      "rated_power_kw": 150
+    },
+    {
+      "conversion_efficiency": 0.85,
+      "energy_kwh": 25373.12295,
+      "power_coefficient": 0.5,
+      "primary_amplitude_m_s": 2.2,
+      "rated_power_kw": 200
+    },
+    {
+      "conversion_efficiency": 0.85,
+      "energy_kwh": 26583.64956,
+      "power_coefficient": 0.5,
+      "primary_amplitude_m_s": 2.2,
+      "rated_power_kw": 300
+    },
+    {
+      "conversion_efficiency": 0.9,
+      "energy_kwh": 23763.7516,
+      "power_coefficient": 0.5,
+      "primary_amplitude_m_s": 2.2,
+      "rated_power_kw": 150
+    },
+    {
+      "conversion_efficiency": 0.9,
+      "energy_kwh": 26444.7844,
+      "power_coefficient": 0.5,
+      "primary_amplitude_m_s": 2.2,
+      "rated_power_kw": 200
+    },
+    {
+      "conversion_efficiency": 0.9,
+      "energy_kwh": 28147.37209,
+      "power_coefficient": 0.5,
+      "primary_amplitude_m_s": 2.2,
+      "rated_power_kw": 300
+    },
+    {
+      "conversion_efficiency": 0.95,
+      "energy_kwh": 24470.79844,
+      "power_coefficient": 0.5,
+      "primary_amplitude_m_s": 2.2,
+      "rated_power_kw": 150
+    },
+    {
+      "conversion_efficiency": 0.95,
+      "energy_kwh": 27451.78303,
+      "power_coefficient": 0.5,
+      "primary_amplitude_m_s": 2.2,
+      "rated_power_kw": 200
+    },
+    {
+      "conversion_efficiency": 0.95,
+      "energy_kwh": 29679.78106,
+      "power_coefficient": 0.5,
+      "primary_amplitude_m_s": 2.2,
+      "rated_power_kw": 300
+    },
+    {
+      "conversion_efficiency": 0.85,
+      "energy_kwh": 26182.66943,
+      "power_coefficient": 0.3,
+      "primary_amplitude_m_s": 2.8,
+      "rated_power_kw": 150
+    },
+    {
+      "conversion_efficiency": 0.85,
+      "energy_kwh": 29746.28894,
+      "power_coefficient": 0.3,
+      "primary_amplitude_m_s": 2.8,
+      "rated_power_kw": 200
+    },
+    {
+      "conversion_efficiency": 0.85,
+      "energy_kwh": 32403.91872,
+      "power_coefficient": 0.3,
+      "primary_amplitude_m_s": 2.8,
+      "rated_power_kw": 300
+    },
+    {
+      "conversion_efficiency": 0.9,
+      "energy_kwh": 26827.0536,
+      "power_coefficient": 0.3,
+      "primary_amplitude_m_s": 2.8,
+      "rated_power_kw": 150
+    },
+    {
+      "conversion_efficiency": 0.9,
+      "energy_kwh": 30838.42426,
+      "power_coefficient": 0.3,
+      "primary_amplitude_m_s": 2.8,
+      "rated_power_kw": 200
+    },
+    {
+      "conversion_efficiency": 0.9,
+      "energy_kwh": 34158.78249,
+      "power_coefficient": 0.3,
+      "primary_amplitude_m_s": 2.8,
+      "rated_power_kw": 300
+    },
+    {
+      "conversion_efficiency": 0.95,
+      "energy_kwh": 27396.72567,
+      "power_coefficient": 0.3,
+      "primary_amplitude_m_s": 2.8,
+      "rated_power_kw": 150
+    },
+    {
+      "conversion_efficiency": 0.95,
+      "energy_kwh": 31848.11109,
+      "power_coefficient": 0.3,
+      "primary_amplitude_m_s": 2.8,
+      "rated_power_kw": 200
+    },
+    {
+      "conversion_efficiency": 0.95,
+      "energy_kwh": 35815.873,
+      "power_coefficient": 0.3,
+      "primary_amplitude_m_s": 2.8,
+      "rated_power_kw": 300
+    },
+    {
+      "conversion_efficiency": 0.85,
+      "energy_kwh": 29074.2668,
+      "power_coefficient": 0.4,
+      "primary_amplitude_m_s": 2.8,
+      "rated_power_kw": 150
+    },
+    {
+      "conversion_efficiency": 0.85,
+      "energy_kwh": 34910.22591,
+      "power_coefficient": 0.4,
+      "primary_amplitude_m_s": 2.8,
+      "rated_power_kw": 200
+    },
+    {
+      "conversion_efficiency": 0.85,
+      "energy_kwh": 41153.24186,
+      "power_coefficient": 0.4,
+      "primary_amplitude_m_s": 2.8,
+      "rated_power_kw": 300
+    },
+    {
+      "conversion_efficiency": 0.9,
+      "energy_kwh": 29570.12491,
+      "power_coefficient": 0.4,
+      "primary_amplitude_m_s": 2.8,
+      "rated_power_kw": 150
+    },
+    {
+      "conversion_efficiency": 0.9,
+      "energy_kwh": 35769.4048,
+      "power_coefficient": 0.4,
+      "primary_amplitude_m_s": 2.8,
+      "rated_power_kw": 200
+    },
+    {
+      "conversion_efficiency": 0.9,
+      "energy_kwh": 42848.73468,
+      "power_coefficient": 0.4,
+      "primary_amplitude_m_s": 2.8,
+      "rated_power_kw": 300
+    },
+    {
+      "conversion_efficiency": 0.95,
+      "energy_kwh": 30023.31502,
+      "power_coefficient": 0.4,
+      "primary_amplitude_m_s": 2.8,
+      "rated_power_kw": 150
+    },
+    {
+      "conversion_efficiency": 0.95,
+      "energy_kwh": 36528.96756,
+      "power_coefficient": 0.4,
+      "primary_amplitude_m_s": 2.8,
+      "rated_power_kw": 200
+    },
+    {
+      "conversion_efficiency": 0.95,
+      "energy_kwh": 44429.38063,
+      "power_coefficient": 0.4,
+      "primary_amplitude_m_s": 2.8,
+      "rated_power_kw": 300
+    },
+    {
+      "conversion_efficiency": 0.85,
+      "energy_kwh": 30909.75876,
+      "power_coefficient": 0.5,
+      "primary_amplitude_m_s": 2.8,
+      "rated_power_kw": 150
+    },
+    {
+      "conversion_efficiency": 0.85,
+      "energy_kwh": 37984.00889,
+      "power_coefficient": 0.5,
+      "primary_amplitude_m_s": 2.8,
+      "rated_power_kw": 200
+    },
+    {
+      "conversion_efficiency": 0.85,
+      "energy_kwh": 47609.34015,
+      "power_coefficient": 0.5,
+      "primary_amplitude_m_s": 2.8,
+      "rated_power_kw": 300
+    },
+    {
+      "conversion_efficiency": 0.9,
+      "energy_kwh": 31339.69902,
+      "power_coefficient": 0.5,
+      "primary_amplitude_m_s": 2.8,
+      "rated_power_kw": 150
+    },
+    {
+      "conversion_efficiency": 0.9,
+      "energy_kwh": 38677.9155,
+      "power_coefficient": 0.5,
+      "primary_amplitude_m_s": 2.8,
+      "rated_power_kw": 200
+    },
+    {
+      "conversion_efficiency": 0.9,
+      "energy_kwh": 49174.53275,
+      "power_coefficient": 0.5,
+      "primary_amplitude_m_s": 2.8,
+      "rated_power_kw": 300
+    },
+    {
+      "conversion_efficiency": 0.95,
+      "energy_kwh": 31734.5195,
+      "power_coefficient": 0.5,
+      "primary_amplitude_m_s": 2.8,
+      "rated_power_kw": 150
+    },
+    {
+      "conversion_efficiency": 0.95,
+      "energy_kwh": 39307.68759,
+      "power_coefficient": 0.5,
+      "primary_amplitude_m_s": 2.8,
+      "rated_power_kw": 200
+    },
+    {
+      "conversion_efficiency": 0.95,
+      "energy_kwh": 50600.42952,
+      "power_coefficient": 0.5,
+      "primary_amplitude_m_s": 2.8,
+      "rated_power_kw": 300
+    }
+  ],
+  "sensitivity_ranges_are_assumed": true,
+  "software": {
+    "implementation": "CPython",
+    "python": "3.13.5",
+    "stdlib_only": true
+  },
+  "supported_decision": "Quantify electrical export-cap energy penalty for the *assumed* power curve and synthetic inflow.",
+  "synthetic_current": {
+    "primary_amplitude_m_s": 2.2,
+    "primary_period_hours": 12.42,
+    "secondary_amplitude_m_s": 0.35,
+    "secondary_period_hours": 12.0,
+    "secondary_phase_rad": 0.4
+  },
+  "time_step_convergence": {
+    "energy_kwh": 22228.71320313702,
+    "half_energy_kwh": 22226.70447906574,
+    "half_timestep_s": 150.0,
+    "quarter_energy_kwh": 22225.933042757846,
+    "quarter_timestep_s": 75.0,
+    "relative_error_half_vs_quarter": 3.4708837933060896e-05,
+    "timestep_s": 300.0
+  },
+  "turbine": {
+    "conversion_efficiency": 0.9,
+    "cut_in_m_s": 0.7,
+    "diameter_m": 10.0,
+    "power_coefficient": 0.4,
+    "rated_power_kw": 200.0,
+    "seawater_density_kg_m3": 1025.0,
+    "swept_area_m2": 78.53981633974483
+  },
+  "turbine_provenance": "All nominal turbine values are engineering assumptions, not a product specification",
+  "uncertainty": "Parameter ranges are assumed sensitivities, not confidence bounds, calibrated measurement errors or predictions."
+}
