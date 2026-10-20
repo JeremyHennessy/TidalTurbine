@@ -12,6 +12,9 @@ let ocean = [];
 let selected = 'seabed';
 let compared = 'crossflow';
 let rm2Tradeoff = null;
+let rm1 = null;
+let forceCampaign = null;
+let forceSelectedRange = 29.5;
 let annotations = true;
 const VALIDATION = [
   ['Analytical checks & screening', 'Analytical limiting cases, deterministic code and the synthetic SCREEN-001 baseline.', 'SOFTWARE CHECKS PASSED', 'complete'],
@@ -166,7 +169,7 @@ function miniOverview(){
     const base=report.baseline.energy_kwh,cmp=report.comparison.energy_kwh;
     $('#overview-results').innerHTML=`<div class="result-cell"><span>Baseline / 14 days</span><strong>${numeric(base)} kWh</strong></div><div class="result-cell"><span>80% export cap</span><strong>${numeric(cmp)} kWh</strong></div><div class="result-cell"><span>Energy penalty</span><strong class="accent">${numeric(report.difference_export_energy_percent,2)}%</strong></div>`;
   }else {$('#overview-chart').innerHTML='<p class="empty">Archived experiment unavailable</p>';}
-  const names=[['01','FORCE ADCP currents','72-hour sample acquired · quality unresolved','≋'],['02','CHS water levels','Gauge observations and predictions, not current speed','◉'],['03','Fundy bathymetry','NONNA / GEBCO terrain records','▦'],['04','DFO ecology','Habitats, marine use and monitoring','♧']];
+  const names=[['01','FORCE ADCP currents','Full processed campaign acquired · native QC unresolved','≋'],['02','CHS water levels','Gauge observations and predictions, not current speed','◉'],['03','Fundy bathymetry','NONNA / GEBCO terrain records','▦'],['04','DFO ecology','Habitats, marine use and monitoring','♧']];
   $('#mini-data-list').innerHTML=names.map(([id,title,desc,icon])=>`<div class="mini-data-row"><span class="data-icon">${icon}</span><span><strong>${title}</strong><small>${desc}</small></span><span class="arrow">›</span></div>`).join('');
   $('#mini-gates').innerHTML=VALIDATION.map(([title,subtitle,state,kind],i)=>`<div class="gate-row"><span class="gate-num ${kind==='complete'?'complete':''}">${i+1}</span><span class="gate-text"><strong>${safe(title)}</strong><small>${safe(subtitle.slice(0,67))}${subtitle.length>67?'…':''}</small></span><span class="gate-check">${kind==='complete'?'✓':'○'}</span></div>`).join('');
   $('#research-gates').innerHTML=VALIDATION.map(([title,desc,state,kind],i)=>`<div class="research-gate"><span class="research-gate-num ${kind==='complete'?'active':''}">${i+1}</span><div class="research-gate-content"><h3>${safe(title)}</h3><p>${safe(desc)}</p><small>${safe(state)}</small></div></div>`).join('');
@@ -253,6 +256,41 @@ function oceanRender(){
   $('#data-search').addEventListener('input',paint);$('#type-filter').addEventListener('change',paint);paint();
 }
 function enhanceStyles(){const style=document.createElement('style');style.textContent='.detail-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;background:#0e2a38;padding:16px;border-radius:8px}.detail-grid b{font-size:11px;color:#7de8dd}.detail-grid p{font-size:11px;color:#aac4ca;line-height:1.6;margin:5px 0 14px}.detail-grid a{font-size:11px}.dataset-table .detail-row td{padding:0}.detail-row[hidden]{display:none}@media(max-width:760px){.detail-grid{grid-template-columns:1fr}}';document.head.appendChild(style);}
+function rm1Plot(){
+  const root=$('#rm1-plot');if(!root)return;
+  if(!rm1){root.innerHTML='<p class="empty">RM1 printed laboratory report unavailable; no observed points displayed.</p>';return;}
+  const side=$('#rm1-rotor-filter').value;
+  const rows=rm1.results.filter(p=>side==='both'||p.rotor===side);
+  if(!rows.length){root.innerHTML='<p class="empty">No RM1 rotor observations for the selection.</p>';return;}
+  const w=850,h=330,L=62,R=24,T=23,B=50;
+  const xx=v=>L+(v-1)/8.5*(w-L-R),yy=v=>T+(.55-v)/.55*(h-T-B);
+  const axis=[0,.1,.2,.3,.4,.5].map(v=>`<line x1='${L}' y1='${yy(v)}' x2='${w-R}' y2='${yy(v)}' stroke='#315565' stroke-dasharray='4 7'/><text x='${L-10}' y='${yy(v)+4}' fill='#a4bec8' font-size='12' text-anchor='end'>${v.toFixed(1)}</text>`).join('');
+  const ticks=[1,3,5,7,9].map(v=>`<text x='${xx(v)}' y='${h-21}' fill='#b0c9ce' font-size='12' text-anchor='middle'>${v}</text>`).join('');
+  const dots=rows.map(p=>{const fill=p.rotor==='right'?'#60dde2':'#ffc27d';const label=`${p.rotor} rotor — published TSR ${numeric(p.tsr,2)}, Cp ${numeric(p.reported_cp,3)}, RPM ${numeric(p.rpm,0)}, shaft power ${numeric(p.mechanical_power_w,3)} W`;return `<circle cx='${xx(p.tsr)}' cy='${yy(p.reported_cp)}' r='5.3' fill='${fill}' stroke='#0b2636' stroke-width='1.4'><title>${safe(label)}</title></circle>`;}).join('');
+  const stats=['right','left'].map(side=>{const p=rm1.reported_table[side];const at=p.source_points_at_max.map(x=>numeric(x.tsr,2)).join(' / ');return `<div><span>${side==='right'?'Right':'Left'} rotor · tabulated peak Cp</span><strong>${numeric(p.tabulated_max_cp,3)}</strong><small>TSR ${at} · ${p.n_points} published points</small></div>`;}).join('');
+  const svg=`<svg viewBox='0 0 ${w} ${h}' role='img' aria-label='RM1 published Appendix A Cp versus tip-speed ratio, ${rows.length} individual ${side==='both'?'left and right rotor':side+' rotor'} measurements; no fitted curve'><g font-family='Arial,sans-serif'>${axis}${ticks}<line x1='${L}' y1='${T}' x2='${L}' y2='${h-B}' stroke='#7398a3'/><line x1='${L}' y1='${h-B}' x2='${w-R}' y2='${h-B}' stroke='#7398a3'/>${dots}<text x='${w/2}' y='${h-2}' fill='#b6d0d3' text-anchor='middle' font-size='13'>Tip-speed ratio (dimensionless)</text><text transform='translate(16 ${h/2}) rotate(-90)' fill='#b6d0d3' text-anchor='middle' font-size='13'>Reported Cp (dimensionless)</text></g></svg>`;
+  root.innerHTML=`<div class='rm1-peaks'>${stats}<div><span>Shown · printed operating points</span><strong>${rows.length} / ${rm1.results.length}</strong><small>Published means; no confidence bands reconstructed</small></div></div><div class='rm1-legend'><span><i></i>Right rotor</span><span><i class='left'></i>Left rotor</span></div><div class='rm1-chart-scroll'>${svg}</div><p class='chart-note rm1-tablediscrepancy'>${safe(rm1.contradictions[0])}</p>`;
+}
+
+function renderForceCampaign(){
+  const root=$('#force-cells'),metrics=$('#force-campaign-metrics'),detail=$('#force-cell-detail'),caption=$('#force-window-caption');
+  if(!root||!metrics||!detail||!caption)return;
+  if(!forceCampaign){root.innerHTML='<p class="empty">Full FORCE processed-campaign QA report unavailable; no cell mask displayed.</p>';metrics.textContent='Source data not loaded';detail.textContent='No cell counts available.';return;}
+  const mode=$('#force-window').value,screen=mode==='screen';
+  const bins=forceCampaign.vertical_cell_summary.slice().sort((a,b)=>a.range_m_instrument_relative-b.range_m_instrument_relative);
+  const countKey=screen?'comparison_window_zero_triples':'exact_zero_triples';
+  const n=screen?forceCampaign.preterminal_pressure_screen_bursts:forceCampaign.time_bursts;
+  const chosen=bins.find(r=>r.range_m_instrument_relative===forceSelectedRange)||bins[28]||bins[0];
+  forceSelectedRange=chosen.range_m_instrument_relative;
+  const getPercent=r=>100*r[countKey]/n;
+  const cellHtml=r=>{const zero=r[countKey],pct=getPercent(r),chosenNow=r.range_m_instrument_relative===forceSelectedRange;const title=`Source range ${numeric(r.range_m_instrument_relative,1)} m: ${numeric(zero,0)} of ${numeric(n,0)} processed vectors exactly zero (${numeric(pct,2)}%). NOT scientifically qualified.`;return `<button type='button' class='force-cell' data-range='${r.range_m_instrument_relative}' aria-pressed='${String(chosenNow)}' title='${safe(title)}' aria-label='${safe(title)}'><span class='force-cell-bar' style='height:${Math.max(0,Math.min(100,pct)).toFixed(3)}%'></span></button>`;};
+  root.innerHTML=bins.map(cellHtml).join('');
+  metrics.innerHTML=`<div><span>Processed vectors · full campaign</span><strong>${numeric(forceCampaign.velocity_numeric_triplets,0)}</strong><small>${safe(forceCampaign.observed_utc_start.slice(0,10))} – ${safe(forceCampaign.observed_utc_end.slice(0,10))}</small></div><div><span>Exact-zero triples · full campaign</span><strong>${numeric(forceCampaign.total_all_component_exact_zero,0)}</strong><small>${numeric(forceCampaign.fraction_exact_zero*100,2)}% of all numeric triplets</small></div><div><span>Native-QC-approved rotor inflow</span><strong>${numeric(forceCampaign.source_approved_velocity_records,0)}</strong><small>Source beam flags unavailable · model blocked</small></div>`;
+  const z=chosen[countKey],percent=getPercent(chosen);
+  detail.innerHTML=`<div><strong>Source range ${numeric(forceSelectedRange,1)} m</strong><span>Instrument-relative label, not verified seabed elevation</span></div><div><strong>${numeric(z,0)} / ${numeric(n,0)} exact-zero triples</strong><span>${numeric(percent,2)}% of processed vectors in selected window</span></div><div><strong>Not scientifically qualified</strong><span>Native beam QC, fill encoding and range mapping unresolved</span></div>`;
+  caption.textContent=screen?'Exploratory ≥20 dbar arithmetic screen; removes the terminal low-pressure event, NOT a manufacturer QC rule.':'Entire published processed campaign, including 88 terminal all-zero profiles; recovery hypothesis unverified.';
+  root.querySelectorAll('.force-cell').forEach(b=>b.addEventListener('click',()=>{forceSelectedRange=Number(b.dataset.range);renderForceCampaign();}));
+}
 async function init(){
   initNavigation();enhanceStyles();
   try{const r=await fetch('../research/mechanisms.json',{cache:'no-cache'});if(!r.ok)throw Error('Mechanism registry fetch '+r.status);const rows=await r.json();if(!Array.isArray(rows)||rows.length<14)throw Error('Incomplete canonical mechanisms');applyMechanisms(rows);}catch(e){console.warn('Mechanism registry unavailable, retaining legacy designs',e);}
@@ -262,9 +300,13 @@ async function init(){
   try{const r=await fetch('../research/catalogue.json',{cache:'no-cache'});if(!r.ok)throw Error('Bibliography fetch '+r.status);references=await r.json();if(!Array.isArray(references))throw Error('Not a bibliography array');}catch(e){console.warn('Bibliography unavailable',e);}
   try{const r=await fetch('../reports/RM2-OBS-001.json',{cache:'no-cache'});if(!r.ok)throw Error('RM2 report fetch '+r.status);const obs=await r.json();if(obs.classification!=='EXPERIMENTAL_PROCESSED_DATA_REPRODUCTION_NOT_PREDICTIVE_VALIDATION')throw Error('Invalid experiment provenance');rm2=obs;}catch(e){console.warn('RM2 reproduction unavailable',e);}
   try{const r=await fetch('../reports/RM2-TRADEOFF-001.json',{cache:'no-cache'});if(!r.ok)throw Error('RM2 drag report fetch '+r.status);const data=await r.json();if(data.classification!=='DESCRIPTIVE_MEASURED_PROCESSED_COEFFICIENT_COMPARISON')throw Error('Invalid mean drag evidence');rm2Tradeoff=data;}catch(e){console.warn('RM2 mean drag report unavailable',e);}
-  renderStats();miniOverview();sensitivityRender();experimentRender();oceanRender();rm2Plot();renderRM2Tradeoff();
+  try{const r=await fetch('../reports/RM1-OBS-001.json',{cache:'no-cache'});if(!r.ok)throw Error('RM1 report fetch '+r.status);const data=await r.json();if(data.classification!=='PUBLISHED_TABLE_REPRODUCTION_PLUS_MECHANICAL_IDENTITY_NOT_PREDICTIVE_VALIDATION'||!Array.isArray(data.results)||data.results.length!==32||!['right','left'].every(side=>data.results.filter(p=>p.rotor===side).length===16)||!data.results.every(p=>Number.isFinite(p.tsr)&&Number.isFinite(p.reported_cp)))throw Error('Invalid RM1 table provenance');rm1=data;}catch(e){console.warn('RM1 table unavailable',e);}
+  try{const r=await fetch('../reports/FORCE-CAMPAIGN-QA-001.json',{cache:'no-cache'});if(!r.ok)throw Error('FORCE campaign QA fetch '+r.status);const data=await r.json();if(data.status!=='NUMERICAL_QA_ONLY_ZERO_SOURCE_APPROVED_ROTOR_INFLOW_BINS'||data.source_approved_velocity_records!==0||data.model_ingestion!=='BLOCKED_ZERO_SCIENTIFICALLY_QUALIFIED_BINS'||!Array.isArray(data.vertical_cell_summary)||data.vertical_cell_summary.length!==50||!data.vertical_cell_summary.every(p=>Number.isFinite(p.range_m_instrument_relative)&&Number.isFinite(p.exact_zero_triples)&&Number.isFinite(p.comparison_window_zero_triples)&&p.samples===data.time_bursts))throw Error('Invalid FORCE numeric-QA evidence');forceCampaign=data;}catch(e){console.warn('FORCE campaign QA unavailable',e);}
+  renderStats();miniOverview();sensitivityRender();experimentRender();oceanRender();rm2Plot();renderRM2Tradeoff();rm1Plot();renderForceCampaign();
   $('#export-slider').addEventListener('input',experimentRender);
   $('#rm2-share').addEventListener('change',renderRM2Tradeoff);
+  $('#rm1-rotor-filter').addEventListener('change',rm1Plot);
+  $('#force-window').addEventListener('change',renderForceCampaign);
   $('#reset-experiment').addEventListener('click',()=>{$('#export-slider').value='80';experimentRender();});
 }
 document.addEventListener('DOMContentLoaded',init);

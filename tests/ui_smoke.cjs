@@ -6,12 +6,12 @@ const path=require('node:path');
 const root=path.resolve(__dirname,'..');
 const html=fs.readFileSync(path.join(root,'site/index.html'),'utf8');
 const code=fs.readFileSync(path.join(root,'site/app.js'),'utf8');
-for(const id of ['comparison-grid','compare-select','rm2-tradeoff','rm2-share']){
+for(const id of ['comparison-grid','compare-select','rm2-tradeoff','rm2-share','rm1-plot','rm1-rotor-filter','force-cells','force-window']){
   assert.ok(html.includes('id="'+id+'"'),'missing DOM target '+id);
 }
 const elements=new Map();
 const element=(selector)=>{
-  if(!elements.has(selector))elements.set(selector,{innerHTML:'',textContent:'',value:selector==='#rm2-share'?'0.95':'',addEventListener(){},classList:{toggle(){},remove(){},add(){}},setAttribute(){}});
+  if(!elements.has(selector))elements.set(selector,{innerHTML:'',textContent:'',value:selector==='#rm2-share'?'0.95':selector==='#rm1-rotor-filter'?'both':selector==='#force-window'?'full':'',addEventListener(){},querySelectorAll(){return []},classList:{toggle(){},remove(){},add(){}},setAttribute(){}});
   return elements.get(selector);
 };
 const document={querySelector:element,querySelectorAll:()=>[],addEventListener(){}};
@@ -44,7 +44,40 @@ vm.runInContext('renderRM2Tradeoff()',ctx);
 assert.match(element('#rm2-tradeoff').innerHTML,/Alternative run 11/);
 vm.runInContext('rm2Tradeoff=null;renderRM2Tradeoff()',ctx);
 assert.match(element('#rm2-tradeoff').innerHTML,/unavailable/);
-assert.match(html,/5,160 of 14,400 velocity vectors are exact zero/);
-assert.match(html,/FORCE-72H-QA-001\.json/,'current acquired-sample QA report should be linked');
+
+ctx.rm1Fixture=JSON.parse(fs.readFileSync(path.join(root,'reports/RM1-OBS-001.json'),'utf8'));
+vm.runInContext('rm1=rm1Fixture;rm1Plot()',ctx);
+assert.match(element('#rm1-plot').innerHTML,/0\.477/,'source-published right peak should appear');
+assert.match(element('#rm1-plot').innerHTML,/0\.412/,'source-published left peak should appear');
+assert.equal((element('#rm1-plot').innerHTML.match(/<circle /g)||[]).length,32,'plot every published table point');
+assert.ok(!element('#rm1-plot').innerHTML.includes('<polyline'),'do not invent an interpolated performance curve');
+element('#rm1-rotor-filter').value='right';
+vm.runInContext('rm1Plot()',ctx);
+assert.equal((element('#rm1-plot').innerHTML.match(/<circle /g)||[]).length,16,'filter to right rotor');
+element('#rm1-rotor-filter').value='left';
+vm.runInContext('rm1Plot()',ctx);
+assert.equal((element('#rm1-plot').innerHTML.match(/<circle /g)||[]).length,16,'filter to left rotor');
+vm.runInContext('rm1=null;rm1Plot()',ctx);
+assert.match(element('#rm1-plot').innerHTML,/unavailable/,'do not fabricate unavailable RM1 points');
+
+ctx.forceFixture=JSON.parse(fs.readFileSync(path.join(root,'reports/FORCE-CAMPAIGN-QA-001.json'),'utf8'));
+vm.runInContext('forceCampaign=forceFixture;renderForceCampaign()',ctx);
+assert.equal((element('#force-cells').innerHTML.match(/class='force-cell'/g)||[]).length,50,'plot 50 actual range cells');
+assert.match(element('#force-campaign-metrics').innerHTML,/263,250/);
+assert.match(element('#force-campaign-metrics').innerHTML,/97,911/);
+assert.match(element('#force-cell-detail').innerHTML,/1,210 \/ 5,265 exact-zero triples/,'correct 29.5 m full-campaign count');
+assert.match(element('#force-cell-detail').innerHTML,/Not scientifically qualified/);
+element('#force-window').value='screen';
+vm.runInContext('renderForceCampaign()',ctx);
+assert.match(element('#force-cell-detail').innerHTML,/1,120 \/ 5,175 exact-zero triples/,'pressure-screened subset must use different counts');
+assert.match(element('#force-window-caption').textContent,/NOT a manufacturer QC rule/);
+vm.runInContext('forceSelectedRange=1.5;renderForceCampaign()',ctx);
+assert.match(element('#force-cell-detail').innerHTML,/0 \/ 5,175 exact-zero triples/);
+assert.match(element('#force-cell-detail').innerHTML,/Not scientifically qualified/,'a numeric-zero-free cell is still not QC-approved');
+vm.runInContext('forceCampaign=null;renderForceCampaign()',ctx);
+assert.match(element('#force-cells').innerHTML,/unavailable/,'do not display implied measured quality without report');
+
+assert.match(html,/97,911 of 263,250 velocity vectors are exact zero/);
+assert.match(html,/FORCE-CAMPAIGN-QA-001\.json/,'full processed-campaign QA report should be linked');
 assert.ok(!html.includes('Data acquisition pending'),'stale FORCE acquisition status');
-console.log('TidalLab UI smoke checks passed: canonical comparison, selected state, observed RM2 alternatives, absence and FORCE status.');
+console.log('TidalLab UI smoke checks passed: baseline startup, design/RM2 comparisons, RM1 source table, FORCE full campaign and pressure-screen counts plus evidence holds.');
