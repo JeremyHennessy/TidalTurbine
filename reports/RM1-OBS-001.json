@@ -1,0 +1,421 @@
+{
+  "id": "RM1-OBS-001",
+  "classification": "PUBLISHED_TABLE_REPRODUCTION_PLUS_MECHANICAL_IDENTITY_NOT_PREDICTIVE_VALIDATION",
+  "source": "https://www.sandia.gov/app/uploads/sites/273/dlm_uploads/RM1_Experimental_Results_Report_Final.pdf",
+  "source_location": "2014 RM1: Experimental Results, Appendix A, printed p.20, PDF page 20 (index 19); setup sections II-III; performance section IV.c.",
+  "transcription": "32 tabulated operating points; seven selected columns, printed precision retained; rotor side is separate, never averaged into a single universal Cp curve",
+  "source_fixture_sha256": "0f02e06328eb47bd184718fd3268c4e099b90998200091eaa8f3beb37fe18271",
+  "reference_geometry": {
+    "single_rotor_diameter_m": 0.5,
+    "single_rotor_disk_area_m2": "pi*(0.5/2)^2",
+    "number_of_rotors": 2,
+    "blade_profile": "NACA 4415 scaled test rotor; NOT baseline RM1 full-scale NACA-63(4)-24"
+  },
+  "laboratory_environment": {
+    "water_depth_m": 1.0,
+    "nominal_hub_speed_m_s": 1.05,
+    "water": "Mississippi River freshwater SAFL flume",
+    "blockage_uncorrected": true
+  },
+  "source_narrative": {
+    "right_cp_approx": 0.48,
+    "left_cp_approx": 0.43,
+    "tsr_approx": 5.1
+  },
+  "reported_table": {
+    "right": {
+      "tabulated_max_cp": 0.477,
+      "source_points_at_max": [
+        {
+          "rpm": 192.0,
+          "tsr": 4.87
+        }
+      ],
+      "n_points": 16,
+      "maximum_abs_shaft_power_difference_w": 0.0261,
+      "maximum_relative_shaft_power_difference_percent": 0.3233
+    },
+    "left": {
+      "tabulated_max_cp": 0.412,
+      "source_points_at_max": [
+        {
+          "rpm": 180.0,
+          "tsr": 4.57
+        },
+        {
+          "rpm": 204.0,
+          "tsr": 5.15
+        }
+      ],
+      "n_points": 16,
+      "maximum_abs_shaft_power_difference_w": 0.0329,
+      "maximum_relative_shaft_power_difference_percent": 0.2622
+    }
+  },
+  "method": "Compute nominal P=mean torque*2*pi*reported RPM/60 from printed means; compare within a coarse 1%/0.05 W gross-transcription tolerance. Small residuals are expected because speed and power can be instantaneous averages and reported RPM is nominal; do not call this a raw-data reproduction. Tabulated Cp is transcribed as reported and is NOT inferred by ratio of averaged power and nominal inflow: averaging and correction conventions require raw signals.",
+  "contradictions": [
+    "The 2014 narrative/figure states left Cp ~0.43 near TSR 5.1 while Appendix A left table has maxima 0.412 at TSR 4.57 and 5.15; exact difference cannot be resolved from rounded table alone.",
+    "The printed report introduction incorrectly labels RM1 as RM2 in one sentence; this test is the RM1 dual axial rotor."
+  ],
+  "unverified": [
+    "No source raw synchronized torque/velocity data processed",
+    "No model calibration/holdout, no predictive hydrodynamic validation",
+    "No direct measured thrust: Appendix A Ft and Ct are n/a",
+    "No structural blade cyclic load, fatigue or lifecycle evidence",
+    "Uncorrected facility blockage and different approach velocities prevent simple RM1-vs-RM2 Cp comparison"
+  ],
+  "results": [
+    {
+      "rotor": "right",
+      "rpm": 60.0,
+      "tsr": 1.51,
+      "torque_nm": 0.682,
+      "mechanical_power_w": 4.299,
+      "reported_cp": 0.038,
+      "approach_u_m_s": 1.05,
+      "power_from_mean_torque_w": 4.2851,
+      "shaft_power_difference_w": -0.0139
+    },
+    {
+      "rotor": "right",
+      "rpm": 90.0,
+      "tsr": 2.27,
+      "torque_nm": 1.24,
+      "mechanical_power_w": 11.675,
+      "reported_cp": 0.105,
+      "approach_u_m_s": 1.048,
+      "power_from_mean_torque_w": 11.6867,
+      "shaft_power_difference_w": 0.0117
+    },
+    {
+      "rotor": "right",
+      "rpm": 120.0,
+      "tsr": 3.02,
+      "torque_nm": 2.847,
+      "mechanical_power_w": 35.77,
+      "reported_cp": 0.32,
+      "approach_u_m_s": 1.05,
+      "power_from_mean_torque_w": 35.7765,
+      "shaft_power_difference_w": 0.0065
+    },
+    {
+      "rotor": "right",
+      "rpm": 150.0,
+      "tsr": 3.79,
+      "torque_nm": 2.866,
+      "mechanical_power_w": 45.024,
+      "reported_cp": 0.408,
+      "approach_u_m_s": 1.045,
+      "power_from_mean_torque_w": 45.019,
+      "shaft_power_difference_w": -0.005
+    },
+    {
+      "rotor": "right",
+      "rpm": 168.0,
+      "tsr": 4.26,
+      "torque_nm": 2.813,
+      "mechanical_power_w": 49.487,
+      "reported_cp": 0.452,
+      "approach_u_m_s": 1.042,
+      "power_from_mean_torque_w": 49.4889,
+      "shaft_power_difference_w": 0.0019
+    },
+    {
+      "rotor": "right",
+      "rpm": 180.0,
+      "tsr": 4.57,
+      "torque_nm": 2.688,
+      "mechanical_power_w": 50.675,
+      "reported_cp": 0.467,
+      "approach_u_m_s": 1.039,
+      "power_from_mean_torque_w": 50.6676,
+      "shaft_power_difference_w": -0.0074
+    },
+    {
+      "rotor": "right",
+      "rpm": 192.0,
+      "tsr": 4.87,
+      "torque_nm": 2.558,
+      "mechanical_power_w": 51.429,
+      "reported_cp": 0.477,
+      "approach_u_m_s": 1.037,
+      "power_from_mean_torque_w": 51.4316,
+      "shaft_power_difference_w": 0.0026
+    },
+    {
+      "rotor": "right",
+      "rpm": 204.0,
+      "tsr": 5.07,
+      "torque_nm": 2.603,
+      "mechanical_power_w": 55.618,
+      "reported_cp": 0.476,
+      "approach_u_m_s": 1.042,
+      "power_from_mean_torque_w": 55.6074,
+      "shaft_power_difference_w": -0.0106
+    },
+    {
+      "rotor": "right",
+      "rpm": 216.0,
+      "tsr": 5.45,
+      "torque_nm": 2.298,
+      "mechanical_power_w": 51.99,
+      "reported_cp": 0.467,
+      "approach_u_m_s": 1.048,
+      "power_from_mean_torque_w": 51.9795,
+      "shaft_power_difference_w": -0.0105
+    },
+    {
+      "rotor": "right",
+      "rpm": 228.0,
+      "tsr": 5.76,
+      "torque_nm": 2.14,
+      "mechanical_power_w": 51.104,
+      "reported_cp": 0.471,
+      "approach_u_m_s": 1.04,
+      "power_from_mean_torque_w": 51.0949,
+      "shaft_power_difference_w": -0.0091
+    },
+    {
+      "rotor": "right",
+      "rpm": 240.0,
+      "tsr": 6.07,
+      "torque_nm": 1.964,
+      "mechanical_power_w": 49.368,
+      "reported_cp": 0.454,
+      "approach_u_m_s": 1.041,
+      "power_from_mean_torque_w": 49.3607,
+      "shaft_power_difference_w": -0.0073
+    },
+    {
+      "rotor": "right",
+      "rpm": 252.0,
+      "tsr": 6.35,
+      "torque_nm": 1.832,
+      "mechanical_power_w": 48.369,
+      "reported_cp": 0.436,
+      "approach_u_m_s": 1.045,
+      "power_from_mean_torque_w": 48.3453,
+      "shaft_power_difference_w": -0.0237
+    },
+    {
+      "rotor": "right",
+      "rpm": 270.0,
+      "tsr": 6.82,
+      "torque_nm": 1.611,
+      "mechanical_power_w": 45.557,
+      "reported_cp": 0.414,
+      "approach_u_m_s": 1.044,
+      "power_from_mean_torque_w": 45.55,
+      "shaft_power_difference_w": -0.007
+    },
+    {
+      "rotor": "right",
+      "rpm": 300.0,
+      "tsr": 7.57,
+      "torque_nm": 1.29,
+      "mechanical_power_w": 40.525,
+      "reported_cp": 0.368,
+      "approach_u_m_s": 1.044,
+      "power_from_mean_torque_w": 40.5265,
+      "shaft_power_difference_w": 0.0015
+    },
+    {
+      "rotor": "right",
+      "rpm": 330.0,
+      "tsr": 8.32,
+      "torque_nm": 0.939,
+      "mechanical_power_w": 32.472,
+      "reported_cp": 0.295,
+      "approach_u_m_s": 1.044,
+      "power_from_mean_torque_w": 32.4495,
+      "shaft_power_difference_w": -0.0225
+    },
+    {
+      "rotor": "right",
+      "rpm": 360.0,
+      "tsr": 9.05,
+      "torque_nm": 0.675,
+      "mechanical_power_w": 25.473,
+      "reported_cp": 0.23,
+      "approach_u_m_s": 1.046,
+      "power_from_mean_torque_w": 25.4469,
+      "shaft_power_difference_w": -0.0261
+    },
+    {
+      "rotor": "left",
+      "rpm": 60.0,
+      "tsr": 1.51,
+      "torque_nm": 0.639,
+      "mechanical_power_w": 4.025,
+      "reported_cp": 0.037,
+      "approach_u_m_s": 1.044,
+      "power_from_mean_torque_w": 4.015,
+      "shaft_power_difference_w": -0.01
+    },
+    {
+      "rotor": "left",
+      "rpm": 90.0,
+      "tsr": 2.27,
+      "torque_nm": 1.161,
+      "mechanical_power_w": 10.918,
+      "reported_cp": 0.102,
+      "approach_u_m_s": 1.036,
+      "power_from_mean_torque_w": 10.9422,
+      "shaft_power_difference_w": 0.0242
+    },
+    {
+      "rotor": "left",
+      "rpm": 120.0,
+      "tsr": 3.02,
+      "torque_nm": 2.515,
+      "mechanical_power_w": 31.605,
+      "reported_cp": 0.296,
+      "approach_u_m_s": 1.036,
+      "power_from_mean_torque_w": 31.6044,
+      "shaft_power_difference_w": -0.0006
+    },
+    {
+      "rotor": "left",
+      "rpm": 150.0,
+      "tsr": 3.79,
+      "torque_nm": 2.579,
+      "mechanical_power_w": 40.504,
+      "reported_cp": 0.379,
+      "approach_u_m_s": 1.036,
+      "power_from_mean_torque_w": 40.5108,
+      "shaft_power_difference_w": 0.0068
+    },
+    {
+      "rotor": "left",
+      "rpm": 168.0,
+      "tsr": 4.26,
+      "torque_nm": 2.404,
+      "mechanical_power_w": 42.291,
+      "reported_cp": 0.4,
+      "approach_u_m_s": 1.032,
+      "power_from_mean_torque_w": 42.2934,
+      "shaft_power_difference_w": 0.0024
+    },
+    {
+      "rotor": "left",
+      "rpm": 180.0,
+      "tsr": 4.57,
+      "torque_nm": 2.314,
+      "mechanical_power_w": 43.616,
+      "reported_cp": 0.412,
+      "approach_u_m_s": 1.032,
+      "power_from_mean_torque_w": 43.6179,
+      "shaft_power_difference_w": 0.0019
+    },
+    {
+      "rotor": "left",
+      "rpm": 192.0,
+      "tsr": 4.87,
+      "torque_nm": 2.16,
+      "mechanical_power_w": 43.444,
+      "reported_cp": 0.406,
+      "approach_u_m_s": 1.036,
+      "power_from_mean_torque_w": 43.4294,
+      "shaft_power_difference_w": -0.0146
+    },
+    {
+      "rotor": "left",
+      "rpm": 204.0,
+      "tsr": 5.15,
+      "torque_nm": 2.081,
+      "mechanical_power_w": 44.447,
+      "reported_cp": 0.412,
+      "approach_u_m_s": 1.039,
+      "power_from_mean_torque_w": 44.456,
+      "shaft_power_difference_w": 0.009
+    },
+    {
+      "rotor": "left",
+      "rpm": 216.0,
+      "tsr": 5.45,
+      "torque_nm": 1.92,
+      "mechanical_power_w": 43.43,
+      "reported_cp": 0.408,
+      "approach_u_m_s": 1.034,
+      "power_from_mean_torque_w": 43.4294,
+      "shaft_power_difference_w": -0.0006
+    },
+    {
+      "rotor": "left",
+      "rpm": 228.0,
+      "tsr": 5.76,
+      "torque_nm": 1.782,
+      "mechanical_power_w": 42.55,
+      "reported_cp": 0.394,
+      "approach_u_m_s": 1.038,
+      "power_from_mean_torque_w": 42.5472,
+      "shaft_power_difference_w": -0.0028
+    },
+    {
+      "rotor": "left",
+      "rpm": 240.0,
+      "tsr": 6.07,
+      "torque_nm": 1.676,
+      "mechanical_power_w": 42.114,
+      "reported_cp": 0.393,
+      "approach_u_m_s": 1.036,
+      "power_from_mean_torque_w": 42.1225,
+      "shaft_power_difference_w": 0.0085
+    },
+    {
+      "rotor": "left",
+      "rpm": 252.0,
+      "tsr": 6.35,
+      "torque_nm": 1.533,
+      "mechanical_power_w": 40.449,
+      "reported_cp": 0.372,
+      "approach_u_m_s": 1.04,
+      "power_from_mean_torque_w": 40.4549,
+      "shaft_power_difference_w": 0.0059
+    },
+    {
+      "rotor": "left",
+      "rpm": 270.0,
+      "tsr": 6.82,
+      "torque_nm": 1.227,
+      "mechanical_power_w": 34.694,
+      "reported_cp": 0.322,
+      "approach_u_m_s": 1.037,
+      "power_from_mean_torque_w": 34.6926,
+      "shaft_power_difference_w": -0.0014
+    },
+    {
+      "rotor": "left",
+      "rpm": 300.0,
+      "tsr": 7.57,
+      "torque_nm": 1.027,
+      "mechanical_power_w": 32.29,
+      "reported_cp": 0.302,
+      "approach_u_m_s": 1.035,
+      "power_from_mean_torque_w": 32.2642,
+      "shaft_power_difference_w": -0.0258
+    },
+    {
+      "rotor": "left",
+      "rpm": 330.0,
+      "tsr": 8.32,
+      "torque_nm": 0.65,
+      "mechanical_power_w": 22.474,
+      "reported_cp": 0.207,
+      "approach_u_m_s": 1.039,
+      "power_from_mean_torque_w": 22.4624,
+      "shaft_power_difference_w": -0.0116
+    },
+    {
+      "rotor": "left",
+      "rpm": 360.0,
+      "tsr": 9.05,
+      "torque_nm": 0.332,
+      "mechanical_power_w": 12.549,
+      "reported_cp": 0.115,
+      "approach_u_m_s": 1.041,
+      "power_from_mean_torque_w": 12.5161,
+      "shaft_power_difference_w": -0.0329
+    }
+  ]
+}
