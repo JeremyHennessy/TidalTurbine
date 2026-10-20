@@ -10,6 +10,8 @@ const numeric = (v, digits = 1) => Number(v).toLocaleString('en-CA', {minimumFra
 let report = null;
 let ocean = [];
 let selected = 'seabed';
+let compared = 'crossflow';
+let rm2Tradeoff = null;
 let annotations = true;
 const VALIDATION = [
   ['Analytical checks & screening', 'Analytical limiting cases, deterministic code and the synthetic SCREEN-001 baseline.', 'SOFTWARE CHECKS PASSED', 'complete'],
@@ -84,6 +86,18 @@ function rm2Plot(){
  root.innerHTML=`<div class="panel-head"><div><div class="section-kicker">RM2-OBS-001 · PUBLISHED DATA REPRODUCTION</div><h2>Cross-flow tow-tank Cp versus tip-speed ratio</h2><p>23 processed points; UNH 1:6 RM2 tow-tank model around 1 m/s. This is not a predictive solver or Fundy trial.</p></div><span class="tag tag-blue">OBSERVED PROCESSED DATA</span></div><svg viewBox="0 0 ${w} ${h}" role="img" aria-label="23 measured processed UNH RM2 Cp observations, upstream uncertainty whiskers; peak near TSR 3.1"><g font-family="Arial"><line x1="${L}" x2="${L}" y1="${T}" y2="${h-B}" stroke="#567f8e"/><line x1="${L}" x2="${w-R}" y1="${h-B}" y2="${h-B}" stroke="#567f8e"/>${[0,.1,.2,.3,.4].map(y=>`<text x="${L-9}" y="${yy(y)+4}" font-size="11" fill="#b2c7ca" text-anchor="end">${y.toFixed(1)}</text><path d="M${L} ${yy(y)}h${w-L-R}" stroke="#315e6c" stroke-dasharray="3 8"/>`).join('')}${[1,2,3,4].map(x=>`<text x="${xx(x)}" y="${h-19}" font-size="12" fill="#b2c7ca" text-anchor="middle">${x}</text>`).join('')}<polyline points="${pts}" fill="none" stroke="#49d7e6" stroke-width="2.4"/>${errs}${dots}<text x="${w/2}" y="${h-1}" font-size="12" fill="#b8d2d5" text-anchor="middle">Tip-speed ratio (dimensionless)</text><text transform="translate(16 ${h/2}) rotate(-90)" font-size="12" fill="#b8d2d5" text-anchor="middle">Reported Cp (projected D×H area)</text></g></svg><div class="result-strip"><div class="result-cell"><span>Observed maximum Cp</span><strong>${numeric(peak.mean_cp,4)}</strong></div><div class="result-cell"><span>Observed TSR at peak</span><strong>${numeric(peak.mean_tsr,3)}</strong></div><div class="result-cell"><span>Upstream exp_unc_cp field</span><strong>${numeric(peak.exp_unc_cp,4)}</strong></div></div><div class="chart-note">Values transcribed to 7 decimals from source CSV, not independently reconstructed from raw torque. Uncertainty shown as upstream field only (interpretation not re-established). <a href="${safe(rm2.source_url)}" target="_blank" rel="noopener noreferrer">View experimental source ↗</a></div>`;
 }
 
+function renderRM2Tradeoff(){
+  const root=$('#rm2-tradeoff');if(!root)return;
+  if(!rm2Tradeoff){root.innerHTML='<p class="empty">RM2 drag report unavailable; no observed tradeoff shown.</p>';return;}
+  const baseline=rm2Tradeoff.baseline, share=Number($('#rm2-share').value);
+  const alternative=rm2Tradeoff.within_lab_mechanical_power_budgets.find(p=>Math.abs(p.minimum_fraction_of_peak_mechanical_cp-share)<1e-6);
+  if(!alternative||baseline.cp<=0||baseline.cd<=0){root.innerHTML='<p class="empty">The selected comparison is unavailable.</p>';return;}
+  const lane=(label,unit,reference,candidate)=>{
+    const width=Math.max(0,Math.min(100,100*candidate/reference)).toFixed(2);
+    return `<section class="tradeoff-lane"><h3>${safe(label)} <small>(${safe(unit)})</small></h3><div class="tradeoff-row"><span>Peak-Cp run ${baseline.run}</span><div class="tradeoff-track"><i class="baseline" style="width:100%"></i></div><strong>${numeric(reference,4)}</strong></div><div class="tradeoff-row"><span>Alternative run ${alternative.selected_source_run}</span><div class="tradeoff-track"><i class="alternative" style="width:${width}%"></i></div><strong>${numeric(candidate,4)}</strong></div></section>`;
+  };
+  root.innerHTML=`<div class="tradeoff-summary"><div><span>Observed operating-point TSR</span><strong>${numeric(baseline.tsr,3)} <small>→</small> ${numeric(alternative.observed_tsr,3)}</strong></div><div><span>Mechanical Cp reduction</span><strong>${numeric(alternative.mechanical_cp_decrease_percent,2)}%</strong></div><div><span>Mean streamwise Cd reduction</span><strong>${numeric(alternative.mean_streamwise_cd_decrease_percent,2)}%</strong></div></div><div class="tradeoff-lanes">${lane('Mechanical power coefficient','Cp',baseline.cp,alternative.observed_cp)}${lane('Mean streamwise drag coefficient','Cd',baseline.cd,alternative.observed_cd)}</div><p class="tradeoff-caveat">Both coefficients are published processed laboratory means. Lower mean drag does not establish smaller damaging cyclic loads, fatigue damage, electrical energy gain or a deployable controller.</p>`;
+}
 function go(view) {
   if (!['overview','designs','experiments','ocean','research'].includes(view)) view = 'overview';
   $$('.view').forEach(el=>el.classList.toggle('current',el.id==='view-'+view));
@@ -152,7 +166,7 @@ function miniOverview(){
     const base=report.baseline.energy_kwh,cmp=report.comparison.energy_kwh;
     $('#overview-results').innerHTML=`<div class="result-cell"><span>Baseline / 14 days</span><strong>${numeric(base)} kWh</strong></div><div class="result-cell"><span>80% export cap</span><strong>${numeric(cmp)} kWh</strong></div><div class="result-cell"><span>Energy penalty</span><strong class="accent">${numeric(report.difference_export_energy_percent,2)}%</strong></div>`;
   }else {$('#overview-chart').innerHTML='<p class="empty">Archived experiment unavailable</p>';}
-  const names=[['01','FORCE ADCP currents','Measured 2018 profiles, not ingested','≋'],['02','CHS water levels','Gauge observations and predictions, not current speed','◉'],['03','Fundy bathymetry','NONNA / GEBCO terrain records','▦'],['04','DFO ecology','Habitats, marine use and monitoring','♧']];
+  const names=[['01','FORCE ADCP currents','Two-hour sample acquired · quality unresolved','≋'],['02','CHS water levels','Gauge observations and predictions, not current speed','◉'],['03','Fundy bathymetry','NONNA / GEBCO terrain records','▦'],['04','DFO ecology','Habitats, marine use and monitoring','♧']];
   $('#mini-data-list').innerHTML=names.map(([id,title,desc,icon])=>`<div class="mini-data-row"><span class="data-icon">${icon}</span><span><strong>${title}</strong><small>${desc}</small></span><span class="arrow">›</span></div>`).join('');
   $('#mini-gates').innerHTML=VALIDATION.map(([title,subtitle,state,kind],i)=>`<div class="gate-row"><span class="gate-num ${kind==='complete'?'complete':''}">${i+1}</span><span class="gate-text"><strong>${safe(title)}</strong><small>${safe(subtitle.slice(0,67))}${subtitle.length>67?'…':''}</small></span><span class="gate-check">${kind==='complete'?'✓':'○'}</span></div>`).join('');
   $('#research-gates').innerHTML=VALIDATION.map(([title,desc,state,kind],i)=>`<div class="research-gate"><span class="research-gate-num ${kind==='complete'?'active':''}">${i+1}</span><div class="research-gate-content"><h3>${safe(title)}</h3><p>${safe(desc)}</p><small>${safe(state)}</small></div></div>`).join('');
@@ -183,6 +197,23 @@ function designSvg(name,large=false){
   const waves=Array.from({length:7},(_,i)=>`<path d="M-12 ${126+i*28}q90-15 170 0t180 0t180 0t180 0" fill="none" stroke="#27899a" stroke-width="1" opacity="${.11+i*.02}"/>`).join('');
   return `<svg viewBox="0 0 700 410" role="img" aria-label="Illustrative technical drawing of ${safe(DESIGNS[name].name)}. Not to scale and not a tested engineering design.">${designDefs()}<rect width="700" height="410" fill="url(#oceanGlow)"/><rect width="700" height="410" fill="url(#diagramGrid)" opacity=".42"/>${waves}<g opacity=".85"><path d="M0 80H700" stroke="#25768c" stroke-dasharray="2 9"/><text x="20" y="32" fill="#6ba7b8" font-size="11" font-family="Arial" letter-spacing="2">TIDAL / LAB — ${DESIGNS[name].index} · CONCEPT</text><text x="675" y="32" text-anchor="end" fill="#6ba7b8" font-size="11">ILLUSTRATIVE / NOT TO SCALE</text></g>${drawing}${(annotations||!large)?(labelSvg(name,large)+extraLabels(name)):''}<g stroke="#5e94a2" opacity=".65" stroke-width="1"><path d="M24 383h90m-90-6v12m90-12v12"/></g><text x="127" y="388" font-size="10" fill="#6aabba">Not a calibrated scale</text></svg>`;
 }
+function renderComparison(){
+  const root=$('#comparison-grid'), selector=$('#compare-select');
+  if(!root||!selector)return;
+  const choices=Object.keys(DESIGNS).filter(key=>key!==selected);
+  if(!choices.includes(compared)) compared=choices.includes('crossflow')?'crossflow':choices[0];
+  if(!compared){root.textContent='No alternative architecture available';return;}
+  selector.innerHTML=choices.map(key=>`<option value="${safe(key)}">${safe(DESIGNS[key].short)}</option>`).join('');
+  selector.value=compared;
+  const card=(key,role)=>{
+    const d=DESIGNS[key], m=d.canonical;
+    const cells=[['Capture',m?.capture_mechanism?.replaceAll('-',' ')||d.sub],['Motion',m?.motion||'Not independently defined'],['Support',m?.support||'Architecture-dependent'],['Power take-off',m?.power_takeoff||'Not specified']];
+    const rows=cells.map(([label,value])=>`<div><dt>${safe(label)}</dt><dd>${safe(value)}</dd></div>`).join('');
+    const href=m?.source_url?.startsWith('https://')?`<a href="${safe(m.source_url)}" target="_blank" rel="noopener noreferrer">Source record ↗</a>`:'<span>Source registry unavailable</span>';
+    return `<article class="comparison-concept"><div class="comparison-concept-head"><span>${safe(role)}</span><strong>${safe(d.index)}</strong></div><h3>${safe(d.name)}</h3><div class="comparison-drawing">${designSvg(key,true)}</div><dl class="comparison-specs">${rows}</dl><div class="comparison-question"><strong>Evidence still needed</strong><p>${safe(d.evidence)}</p></div><div class="comparison-source"><span>${safe(m?.evidence_depth||'Canonical evidence unavailable')}</span>${href}</div></article>`;
+  };
+  root.innerHTML=card(selected,'SELECTED CONCEPT')+card(compared,'COMPARISON CONCEPT');
+}
 function renderDesign(){
   const d=DESIGNS[selected];
   $('#overview-design').innerHTML=designSvg(selected);
@@ -195,7 +226,8 @@ function renderDesign(){
   $('#design-risks').innerHTML=d.risks.map(x=>`<li>${safe(x)}</li>`).join('');
   $('#design-evidence').textContent=d.evidence;
   renderMechanismEvidence();
-  $$('.design-choice').forEach(e=>e.classList.toggle('active',e.dataset.design===selected));
+  renderComparison();
+  $('.design-choice').forEach(e=>e.classList.toggle('active',e.dataset.design===selected));
 }
 function setupDesign(){
   $('#design-selector').innerHTML=Object.entries(DESIGNS).map(([key,d])=>`<button class="design-choice ${key===selected?'active':''}" data-design="${key}"><small>CONCEPT ${d.index}</small><strong>${d.short}</strong><span>${d.sub}</span></button>`).join('');
@@ -203,6 +235,7 @@ function setupDesign(){
   $('#toggle-annotation').addEventListener('click',()=>{annotations=!annotations;const b=$('#toggle-annotation');b.classList.toggle('on',annotations);b.setAttribute('aria-pressed',String(annotations));b.textContent=annotations?'◈ Labels on':'◇ Labels off';renderDesign();});
   renderDesign();
   renderMechanismFilters();
+  $('#compare-select').addEventListener('change',(event)=>{compared=event.target.value;renderComparison();});
 }
 const CATEGORY_LABELS={current:'Currents',waves:'Waves',weather:'Weather',water_level:'Tide heights',bathymetry:'Bathymetry',seabed:'Seabed',discovery:'Discovery',hydrography:'Hydrography',habitat:'Habitat',species:'Species',marine_use:'Marine use',environment:'Monitoring',regulation:'Regulation'};
 function statusLabel(s){return ({downloadable_not_acquired:'File available · not ingested',metadata_only:'Metadata only',permission_gate:'Terms/access gate',portal_manual_download:'Portal download required',discovery_portal:'Discovery only',report_not_machine_read:'Report only',source_reviewed:'Web page reviewed'})[s]||'Needs review';}
@@ -228,8 +261,10 @@ async function init(){
   try{const r=await fetch('../research/ocean_datasets.json',{cache:'no-cache'});if(!r.ok)throw Error('Inventory fetch '+r.status);ocean=await r.json();if(!Array.isArray(ocean))throw Error('Inventory not a list');}catch(e){console.warn('Data registry unavailable',e);}
   try{const r=await fetch('../research/catalogue.json',{cache:'no-cache'});if(!r.ok)throw Error('Bibliography fetch '+r.status);references=await r.json();if(!Array.isArray(references))throw Error('Not a bibliography array');}catch(e){console.warn('Bibliography unavailable',e);}
   try{const r=await fetch('../reports/RM2-OBS-001.json',{cache:'no-cache'});if(!r.ok)throw Error('RM2 report fetch '+r.status);const obs=await r.json();if(obs.classification!=='EXPERIMENTAL_PROCESSED_DATA_REPRODUCTION_NOT_PREDICTIVE_VALIDATION')throw Error('Invalid experiment provenance');rm2=obs;}catch(e){console.warn('RM2 reproduction unavailable',e);}
-  renderStats();miniOverview();sensitivityRender();experimentRender();oceanRender();rm2Plot();
+  try{const r=await fetch('../reports/RM2-TRADEOFF-001.json',{cache:'no-cache'});if(!r.ok)throw Error('RM2 drag report fetch '+r.status);const data=await r.json();if(data.classification!=='DESCRIPTIVE_MEASURED_PROCESSED_COEFFICIENT_COMPARISON')throw Error('Invalid mean drag evidence');rm2Tradeoff=data;}catch(e){console.warn('RM2 mean drag report unavailable',e);}
+  renderStats();miniOverview();sensitivityRender();experimentRender();oceanRender();rm2Plot();renderRM2Tradeoff();
   $('#export-slider').addEventListener('input',experimentRender);
+  $('#rm2-share').addEventListener('change',renderRM2Tradeoff);
   $('#reset-experiment').addEventListener('click',()=>{$('#export-slider').value='80';experimentRender();});
 }
 document.addEventListener('DOMContentLoaded',init);
