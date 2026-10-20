@@ -2,7 +2,7 @@
 
 **Purpose:** Find real in-water locations for testing, measuring, retrieving and iterating tidal-stream generator prototypes within plausible reach of Halifax. This is **not a coastal land purchase ranking, a grid electricity business case or a turbine-performance certification**. The 2018 Acadia/OERA study is historical source evidence, not proof of a 2026 authorization, a working public berth or a current tidal velocity at a particular point.
 
-**Repository reconciliation at research start:** \`main\` \`dd864309536bfa7a93edf6fd765e753c90372ebf\`; site/land-focused [PR #8](https://github.com/JeremyHennessy/TidalTurbine/pull/8) open at \`9b2e3c465ac57ab7e01579df4c650abac23b0b47\`. This work is an isolated additive test-location review and does not modify that PR, experimental code, historical results, Pages UI or any approved baseline. Recheck live status before changing either branch.
+**Repository reconciliation at research start:** `main` `dd864309536bfa7a93edf6fd765e753c90372ebf`; site/land-focused [PR #8](https://github.com/JeremyHennessy/TidalTurbine/pull/8) open at `9b2e3c465ac57ab7e01579df4c650abac23b0b47`. This work is an isolated additive test-location review and does not modify that PR, experimental code, historical results, Pages UI or any approved baseline. Recheck live status before changing either branch.
 
 ## Decision: different locations for different stages
 
@@ -46,6 +46,6 @@ These stages are **development hypotheses**, not legally exempt power categories
 
 ## Provenance, limits and preservation
 
-- **Study inspected:** MacDougall, Trowse, Hayes & Karsten, *Nova Scotia Small Tidal Test Centre: Gap Analysis and Business Case*, April **2018**; reviewed selected textual sections §3.4.2.1–3.4.2.5, §3.4.3 and appendix current/depth summaries, **not a full 105-page engineering re-evaluation**. URL above. Other external resources reviewed to the depths recorded in \`research/catalogue.json\`.
+- **Study inspected:** MacDougall, Trowse, Hayes & Karsten, *Nova Scotia Small Tidal Test Centre: Gap Analysis and Business Case*, April **2018**; reviewed selected textual sections §3.4.2.1–3.4.2.5, §3.4.3 and appendix current/depth summaries, **not a full 105-page engineering re-evaluation**. URL above. Other external resources reviewed to the depths recorded in `research/catalogue.json`.
 - **Not done:** no 2026 velocity measurement or seabed survey; no confirmed berth booking or quoted fees; no property visit, seller/operator outreach or legal/permit filing; no constructed/tested turbine; no source model reruns or unit tests changed by this documentation-only pass.
-- **Preservation:** The foundation \`SCREEN-001\`, RM2 reproduction, measured/source registries, approved TidalLab UI and other studies are unchanged. This document **supersedes the earlier land-first *priority* recommendation for turbine testing** but does not delete historical land research or claim those lots are unsuitable for any non-turbine use.
+- **Preservation:** The foundation `SCREEN-001`, RM2 reproduction, measured/source registries, approved TidalLab UI and other studies are unchanged. This document **supersedes the earlier land-first *priority* recommendation for turbine testing** but does not delete historical land research or claim those lots are unsuitable for any non-turbine use.
