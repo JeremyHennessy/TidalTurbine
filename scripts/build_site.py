@@ -3,7 +3,7 @@ import argparse
 from pathlib import Path
 from shutil import copy2, rmtree
 ROOT=Path(__file__).resolve().parents[1]
-FILES=('index.html','site/index.html','site/app.js','site/styles.css','site/assets/favicon.svg','reports/SCREEN-001.json','reports/RM2-OBS-001.json','reports/FORCE-SLICE-QA-001.json','research/ocean_datasets.json','research/mechanisms.json','research/catalogue.json')
+FILES=('index.html','site/index.html','site/app.js','site/styles.css','site/assets/favicon.svg','reports/SCREEN-001.json','reports/RM2-OBS-001.json','reports/RM2-TRADEOFF-001.json','reports/FORCE-SLICE-QA-001.json','reports/FORCE-72H-QA-001.json','research/ocean_datasets.json','research/mechanisms.json','research/catalogue.json')
 
 def build(target:Path):
     target=target.resolve()
@@ -16,7 +16,7 @@ def build(target:Path):
         to.parent.mkdir(parents=True,exist_ok=True)
         copy2(f,to)
     (target/'.nojekyll').write_text('',encoding='utf8')
-    print('Built static site:',target,'; 10 source-controlled files; source data remain in published research/ and reports/')
+    print('Built static site:',target,f'; {len(FILES)} source-controlled files; source data remain in published research/ and reports/')
 
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--out',default='dist');args=p.parse_args()
