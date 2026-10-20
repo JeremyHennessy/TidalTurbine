@@ -14,11 +14,11 @@ Python 3.10+ (standard library only):
 
 ```sh
 python -m unittest discover -s tests -v
-python -m tidal_screen.cli --config configs/synthetic_screen.json --out reports/latest.json
+python -m tidal_screen.cli --config configs/synthetic_screen.json --out reports/SCREEN-001.json
 python scripts/check_catalogue.py
 ```
 
-The first screen uses **synthetic** signed currents and a constant power coefficient. Electrical curtailment does **not** imply lower thrust or fatigue. Scripts, tests, and configurations are added in the foundation research branch; until merged, run these commands there.
+The first screen uses **synthetic** signed currents and a constant power coefficient. Electrical curtailment does **not** imply lower thrust or fatigue. The model, test suite and reproducible report are in this repository; see `docs/SIMULATION.md` for assumptions and `docs/CONTINUATION.md` for the next research gate.
 
 ## Scope, boundaries and provenance
 
