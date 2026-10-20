@@ -270,7 +270,7 @@ def write_results(report, json_path: Path, daily_path: Path):
     json_path.write_text(json.dumps(report,indent=2,sort_keys=True)+"\n",encoding="utf-8")
     daily=report["daily_arithmetic_summary"]
     with daily_path.open("w",newline="",encoding="utf-8") as f:
-        dw=csv.DictWriter(f,fieldnames=list(daily[0].keys()))
+        dw=csv.DictWriter(f,fieldnames=list(daily[0].keys()),lineterminator="\n")
         dw.writeheader();dw.writerows(daily)
 
 
