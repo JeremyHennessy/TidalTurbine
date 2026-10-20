@@ -1,0 +1,432 @@
+[
+  {
+    "id": "SANDIA-001",
+    "title": "Sandia DOE Reference Model Project",
+    "url": "https://energy.sandia.gov/programs/renewable-energy/hydrodynamic-energy-systems/projects/reference-model-project-rmp/",
+    "publication_date": "2014 (project publications)",
+    "access_date": "2026-10-20",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "sections_reviewed",
+    "reviewed_sections": [
+      "RMP overview",
+      "RM1 linked resource, performance and experimental documents"
+    ],
+    "supported_claims": [
+      "The programme identifies reference geometry, resource, experimental and cost-model materials for RM1 and other reference models."
+    ],
+    "limitations": [
+      "Some download bundles require submitting a form; no source measurements were downloaded."
+    ],
+    "access_status": "public HTML"
+  },
+  {
+    "id": "RM1-EXP-001",
+    "title": "DOE RM1: Experimental Results — Hill et al.",
+    "url": "https://energy.sandia.gov/download/81674/?tmstv=1738096203",
+    "publication_date": "2014-12-02",
+    "access_date": "2026-10-20",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "sections_reviewed",
+    "reviewed_sections": [
+      "report cover and contents pp.1-2",
+      "instrumentation uncertainty, report pp.9-10"
+    ],
+    "supported_claims": [
+      "The report documents RM1 experimental methodology and reported combined power-coefficient measurement uncertainty of approximately 3.9%."
+    ],
+    "limitations": [
+      "Only selected pages reviewed; raw time-series not acquired; no Cp curve reproduced."
+    ],
+    "access_status": "public 22-page PDF"
+  },
+  {
+    "id": "RT-001",
+    "title": "RealTide Deliverable 1.1 FMEA report",
+    "url": "https://tidalenergydata.org/media/documents/RealTide_Deliverable_1.1.pdf",
+    "publication_date": "2018 (per report context)",
+    "access_date": "2026-10-20",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "sections_reviewed",
+    "reviewed_sections": [
+      "Executive Summary pp.9-10",
+      "FMEA objectives/methodology §5.2",
+      "tables 7.1-7.3 pp.65-66",
+      "recommendations §7",
+      "conclusions §8"
+    ],
+    "supported_claims": [
+      "Four generic concept decompositions examined; electrical, rotor and drivetrain systems are important criticality priorities.",
+      "FMEA component/mode counts differ by concept complexity and do not measure actual failure probabilities."
+    ],
+    "limitations": [
+      "Report is 198 pages, not fully reviewed; ordinal/constructed risk assessments cannot establish measured service life."
+    ],
+    "access_status": "public 198-page PDF"
+  },
+  {
+    "id": "ORB-001",
+    "title": "Orbital Marine technology page",
+    "url": "https://www.orbitalmarine.com/technology/",
+    "publication_date": "current page (undated)",
+    "access_date": "2026-10-20",
+    "evidence_class": "MANUFACTURER_OR_PROJECT_CLAIM",
+    "review_depth": "full_content_review",
+    "reviewed_sections": [
+      "How it works",
+      "Tidal Application",
+      "Ocean Currents",
+      "River Application"
+    ],
+    "supported_claims": [
+      "Orbital describes a floating/retractable-leg service-access concept."
+    ],
+    "limitations": [
+      "Claims of service cost advantage are developer promotional statements, not independently verified comparisons."
+    ],
+    "access_status": "public HTML"
+  },
+  {
+    "id": "NOVA-001",
+    "title": "D2T2 Accelerator — Nova Innovation project periodic reporting",
+    "url": "https://cordis.europa.eu/project/id/734032/reporting",
+    "publication_date": "2020-03-31",
+    "access_date": "2026-10-20",
+    "evidence_class": "MANUFACTURER_OR_PROJECT_CLAIM",
+    "review_depth": "sections_reviewed",
+    "reviewed_sections": [
+      "project information and 2019-2020 periodic report summary"
+    ],
+    "supported_claims": [
+      "Nova reported direct-drive M100-D development and lower cost targets."
+    ],
+    "limitations": [
+      "Statements in EC-hosted partner reporting must not be treated as independent comparative LCOE, availability, or failure-rate evidence."
+    ],
+    "access_status": "public HTML"
+  },
+  {
+    "id": "PP-001",
+    "title": "Gambuzza et al., Model-scale experiments of passive pitch control",
+    "url": "https://arxiv.org/html/2208.01544v1",
+    "publication_date": "2022-08-02",
+    "access_date": "2026-10-20",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "sections_reviewed",
+    "reviewed_sections": [
+      "Abstract and introduction",
+      "§2.2 spring/friction and methods context",
+      "§3.3 discussion",
+      "§4 conclusions",
+      "Appendix A friction discussion"
+    ],
+    "supported_claims": [
+      "One passively pitching blade on a 1.2m model-scale turbine reduced root-bending-moment fluctuation by 15–45% over investigated tip-speed ratios, per the paper.",
+      "Spring and bearing friction and preload could erode benefits and increase mean loading."
+    ],
+    "limitations": [
+      "Not a full-scale endurance, MTBF or lifetime-cost experiment; inflow conditions and uncertainties must be replayed before generalization."
+    ],
+    "access_status": "public HTML"
+  },
+  {
+    "id": "MIN-001",
+    "title": "Minesto Deep Green technology",
+    "url": "https://www.minesto.com/our-technology/",
+    "publication_date": "current page (undated)",
+    "access_date": "2026-10-20",
+    "evidence_class": "MANUFACTURER_OR_PROJECT_CLAIM",
+    "review_depth": "sections_reviewed",
+    "reviewed_sections": [
+      "Technology overview",
+      "timeline and service claims"
+    ],
+    "supported_claims": [
+      "Developer describes tethered cross-current kite technology and reported electricity-to-grid milestones."
+    ],
+    "limitations": [
+      "Reported recovery and performance figures require independent test/design review."
+    ],
+    "access_status": "public HTML"
+  },
+  {
+    "id": "HYD-001",
+    "title": "HydroQuest tidal turbines and services",
+    "url": "https://www.hydroquest.fr/en/tidal-turbines-services/",
+    "publication_date": "current page (undated)",
+    "access_date": "2026-10-20",
+    "evidence_class": "MANUFACTURER_OR_PROJECT_CLAIM",
+    "review_depth": "full_content_review",
+    "reviewed_sections": [
+      "Services overview",
+      "project navigation"
+    ],
+    "supported_claims": [
+      "Developer offers engineering, turbine supply, installation, maintenance and monitoring."
+    ],
+    "limitations": [
+      "This page does not independently quantify cross-flow rotor fatigue or performance."
+    ],
+    "access_status": "public HTML"
+  },
+  {
+    "id": "MEY-OLD-001",
+    "title": "MeyGen original developer page (redirected)",
+    "url": "https://saerenewables.com/tidal-stream/meygen/",
+    "publication_date": "current URL",
+    "access_date": "2026-10-20",
+    "evidence_class": "UNKNOWN_OR_CONFLICT",
+    "review_depth": "landing_page_review",
+    "reviewed_sections": [
+      "redirect behavior observed"
+    ],
+    "supported_claims": [
+      "As accessed 2026-10-20, original deep link redirected to Ampeak corporate landing page."
+    ],
+    "limitations": [
+      "Original URL does not supply directly usable current metrics; do not quote stale embedded widget values."
+    ],
+    "access_status": "public HTML"
+  },
+  {
+    "id": "MEY-2025-001",
+    "title": "Ampeak MeyGen offshore servicing release",
+    "url": "https://ampeak.energy/offshore-works-completed-at-meygen-site/",
+    "publication_date": "2025-12-18",
+    "access_date": "2026-10-20",
+    "evidence_class": "MANUFACTURER_OR_PROJECT_CLAIM",
+    "review_depth": "landing_page_review",
+    "reviewed_sections": [
+      "public company news release and summary"
+    ],
+    "supported_claims": [
+      "Ampeak reported inspection, servicing and redeployment of three turbines in December 2025, with one returned to shore."
+    ],
+    "limitations": [
+      "Corporate operations claim; maintenance event counts cannot be used as unbiased population failure rates."
+    ],
+    "access_status": "public HTML"
+  },
+  {
+    "id": "NS-001",
+    "title": "Government of Nova Scotia tidal energy overview",
+    "url": "https://novascotia.ca/tidal-energy/",
+    "publication_date": "current page (undated)",
+    "access_date": "2026-10-20",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "full_content_review",
+    "reviewed_sections": [
+      "resource description",
+      "technology",
+      "sustainable development",
+      "task force"
+    ],
+    "supported_claims": [
+      "Province describes licensed projects, FORCE activity, regional tidal potential and applicable marine renewable policy."
+    ],
+    "limitations": [
+      "Regional resource estimates and development plans do not validate a particular site or machine."
+    ],
+    "access_status": "public HTML"
+  },
+  {
+    "id": "FORCE-001",
+    "title": "Fundy Ocean Research Centre for Energy home",
+    "url": "https://fundyforce.ca/",
+    "publication_date": "current page (undated)",
+    "access_date": "2026-10-20",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "full_content_review",
+    "reviewed_sections": [
+      "research and monitoring mission",
+      "news",
+      "sensor portal link"
+    ],
+    "supported_claims": [
+      "FORCE identifies Bay of Fundy tidal-stream research infrastructure and monitoring work."
+    ],
+    "limitations": [
+      "Homepage live sensor placeholders do not provide a reusable measured ADCP series."
+    ],
+    "access_status": "public HTML"
+  },
+  {
+    "id": "DFO-001",
+    "title": "DFO Guide to environmental monitoring for tidal devices, Bay of Fundy",
+    "url": "https://www.dfo-mpo.gc.ca/publications/pnw-ppe/tidal-energy-energie-maremotrice/bay-fundy-aeemp-baie-fundy-pasee-eng.html",
+    "publication_date": "current online guidance (undated)",
+    "access_date": "2026-10-20",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "full_content_review",
+    "reviewed_sections": [
+      "Purpose",
+      "Regulatory context",
+      "Guiding principles",
+      "Modelling/risk assessment",
+      "Monitoring coverage/equipment and reporting"
+    ],
+    "supported_claims": [
+      "DFO requires risk-based, adaptive monitoring within staged federal authorization; variability must cover tide, diel and seasons."
+    ],
+    "limitations": [
+      "Guidance is not a site permit; device-specific species interaction probability remains unmeasured in this repository."
+    ],
+    "access_status": "public HTML"
+  },
+  {
+    "id": "OES-001",
+    "title": "OES Environmental 2024 State of the Science",
+    "url": "https://tethys.pnnl.gov/publications/state-of-the-science-2024",
+    "publication_date": "2024-09-17",
+    "access_date": "2026-10-20",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "landing_page_review",
+    "reviewed_sections": [
+      "report bibliographic metadata and topic index"
+    ],
+    "supported_claims": [
+      "2024 synthesis covers collision, sound, EMF, habitat, wildlife, and human dimensions."
+    ],
+    "limitations": [
+      "313-page report not read: no detailed chapter conclusions or quantitative ecological claims adopted."
+    ],
+    "access_status": "metadata/abstract only; full 43MB report not downloaded"
+  },
+  {
+    "id": "DNV-001",
+    "title": "DNV-ST-0164 Tidal turbines",
+    "url": "https://www.dnv.com/energy/standards-guidelines/dnv-st-0164-tidal-turbines/",
+    "publication_date": "2015-10; amended 2021-11",
+    "access_date": "2026-10-20",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "landing_page_review",
+    "reviewed_sections": [
+      "edition information and scope"
+    ],
+    "supported_claims": [
+      "Public DNV site states edition October 2015, amended November 2021, for tidal turbines across their lifecycle."
+    ],
+    "limitations": [
+      "Full normative text behind subscription; edition current only as shown on accessible page; no compliance assessment possible."
+    ],
+    "access_status": "summary public; full text subscription gated"
+  },
+  {
+    "id": "QBL-001",
+    "title": "QBlade Marine Hydrokinetic documentation 2.0.9.7",
+    "url": "https://docs.qblade.org/src/user/turbine/marinehydrokinetic.html",
+    "publication_date": "docs version 2.0.9.7",
+    "access_date": "2026-10-20",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "sections_reviewed",
+    "reviewed_sections": [
+      "MHK introduction",
+      "simulation density/viscosity settings",
+      "added-mass/buoyancy structural-data keywords"
+    ],
+    "supported_claims": [
+      "Docs describe marine-hydrokinetic setup and added-mass/buoyancy considerations."
+    ],
+    "limitations": [
+      "No independent validation for the proposed turbine; using a manual does not confer appropriate licence or model suitability."
+    ],
+    "access_status": "public HTML"
+  },
+  {
+    "id": "QBL-LIC-001",
+    "title": "QBlade official licensing FAQ",
+    "url": "https://qblade.org/",
+    "publication_date": "current page (undated)",
+    "access_date": "2026-10-20",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "landing_page_review",
+    "reviewed_sections": [
+      "FAQ: Is QBlade Open Source?"
+    ],
+    "supported_claims": [
+      "QBlade says APL permits non-commercial use; commercial use requires licensing."
+    ],
+    "limitations": [
+      "Full license wording, version, reproducibility and alternatives must be independently checked."
+    ],
+    "access_status": "public HTML"
+  },
+  {
+    "id": "NS-2026-001",
+    "title": "Nova Scotia Tidal Demonstration Permit",
+    "url": "https://novascotia.ca/programs/tidal-demonstration-permit/",
+    "publication_date": "2026 (active program)",
+    "access_date": "2026-10-20",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "full_content_review",
+    "reviewed_sections": [
+      "eligibility",
+      "capacity",
+      "application deadline",
+      "requirements"
+    ],
+    "supported_claims": [
+      "Province lists 7.70MW program cap, project under 2MW, closing applications October 30, 2026."
+    ],
+    "limitations": [
+      "Application conditions subject to regulator decisions and updates; this repo has no permit."
+    ],
+    "access_status": "public HTML"
+  },
+  {
+    "id": "NS-2025-001",
+    "title": "Province announces new Eauclaire tidal projects",
+    "url": "https://news.novascotia.ca/en/2025/11/10/new-tidal-energy-projects-coming-nova-scotia",
+    "publication_date": "2025-11-10",
+    "access_date": "2026-10-20",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "landing_page_review",
+    "reviewed_sections": [
+      "government news report"
+    ],
+    "supported_claims": [
+      "New FORCE berths awarded for Eauclaire/Orbital projects were announced."
+    ],
+    "limitations": [
+      "Announcement alone is not evidence machines deployed or generated electricity."
+    ],
+    "access_status": "public HTML"
+  },
+  {
+    "id": "FORCE-2025-001",
+    "title": "FORCE 2025 project update",
+    "url": "https://fundyforce.ca/document-collection/force-2025-project-update",
+    "publication_date": "2025-12-31",
+    "access_date": "2026-10-20",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "landing_page_review",
+    "reviewed_sections": [
+      "project update paragraphs on Eauclaire and DFO authorization"
+    ],
+    "supported_claims": [
+      "FORCE reports DFO authorization for deployment of up to three Orbital O2-X turbines."
+    ],
+    "limitations": [
+      "Authorization is not proof of deployment; attached annual-report PDF not fully reviewed."
+    ],
+    "access_status": "public HTML"
+  },
+  {
+    "id": "MEK-2026-001",
+    "title": "Confederacy of Mainland Mi’kmaq — Bay of Fundy Ecological Knowledge Study",
+    "url": "https://fundyforce.ca/document-collection/bay-of-fundy-mi-kmaq-ecological-knowledge-study-report",
+    "publication_date": "2026-03-31 (FORCE metadata; Tethys lists July 6, 2026 publication)",
+    "access_date": "2026-10-20",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "landing_page_review",
+    "reviewed_sections": [
+      "FORCE description and authorship"
+    ],
+    "supported_claims": [
+      "Confederacy of Mainland Mi’kmaq led an ecological knowledge study to inform Bay of Fundy planning and monitoring."
+    ],
+    "limitations": [
+      "Full 103-page report not downloaded; this does not grant project permission or replace engagement/Indigenous rights considerations."
+    ],
+    "access_status": "study link public; conflicting reporting dates recorded"
+  }
+]
