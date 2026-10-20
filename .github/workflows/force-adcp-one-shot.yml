@@ -1,0 +1,32 @@
+name: One-shot FORCE ADCP public-data quality probe
+on:
+  push:
+    branches:
+      - probe/force-adcp-two-hour-2026-10-20
+permissions:
+  contents: read
+jobs:
+  bounded-public-data:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Fetch and screen at most 8MiB of FORCE 2018 ADCP
+        run: |
+          python scripts/qa_force_slice.py --fetch --out "$RUNNER_TEMP/force-qa"
+          test -s "$RUNNER_TEMP/force-qa/source.csv"
+          test -s "$RUNNER_TEMP/force-qa/qc.json"
+          python -c "import json,os,pathlib; p=pathlib.Path(os.environ['RUNNER_TEMP'])/'force-qa/qc.json'; a=json.loads(p.read_text()); assert a['valid_numeric_rows']>0; print('SOURCE QA',json.dumps({k:a[k] for k in ['classification','total_data_rows','valid_numeric_rows','rejected_rows','times_utc','cell_ranges_are_not_geodetic_depths','original_sha256','model_ingestion']},sort_keys=True))"
+      - name: Keep acquired source and QA summary outside Git history for one day
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: force-adcp-bounded-observations-ccby4
+          path: |
+            ${{ runner.temp }}/force-qa/source.csv
+            ${{ runner.temp }}/force-qa/qc.json
+          retention-days: 1
+          if-no-files-found: error
