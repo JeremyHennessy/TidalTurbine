@@ -27,8 +27,19 @@ class SiteTests(unittest.TestCase):
 class ForceQAEvidenceLinkTests(unittest.TestCase):
     def test_ocean_view_links_actual_acquired_qa_and_discloses_hold(self):
         html=(ROOT/'site/index.html').read_text(encoding='utf8')
-        self.assertIn('72h slice acquired · scientific QC blocked',html)
+        self.assertIn('Full processed campaign · QC blocked',html)
+        self.assertIn('FORCE-CAMPAIGN-QA-001.json',html)
         self.assertIn('FORCE-72H-QA-001.json',html)
         self.assertIn('FORCE-SLICE-QA-001.json',html)
         self.assertIn('not fit for rotor modelling',html)
         self.assertNotIn('physically validated ADCP velocity',html)
+
+class EvidenceVisualizationPackagingTests(unittest.TestCase):
+    def test_qualified_evidence_displays_use_canonical_reports(self):
+        html=(ROOT/'site/index.html').read_text(encoding='utf8')
+        self.assertIn('id="rm1-plot"',html)
+        self.assertIn('id="force-cells"',html)
+        self.assertIn('0 SCIENTIFICALLY QUALIFIED CELLS',html)
+        self.assertIn('≥20 dbar pressure screen · NOT source QC',html)
+        self.assertIn('reports/RM1-OBS-001.json',FILES)
+        self.assertIn('reports/FORCE-CAMPAIGN-QA-001.json',FILES)
