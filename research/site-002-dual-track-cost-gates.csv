@@ -1,0 +1,18 @@
+cost_id,component,A_known_cad,B_known_cad,certainty,confirmation_source,note
+LAND-ASK,Land acquisition asking price (not transaction cost),30000,169000,2026-10-20 advertised only,Quoted listing pages,Cumberland Bay Bluff Lot 2 versus West Bay Road Lot 03-1; not equivalent buildable parcels
+LAND-CLOSING,Transfer tax; HST where applicable; legal; survey; title and geotechnics,,,UNKNOWN,Conveyancer and municipality,Different property classes may affect tax; neither model includes these costs yet
+SITE-BASE,"Workshop/lab/storage buildings, serviced pad, security, road",,,UNKNOWN,Site-use design and contractors,Not authorized yet
+CONV-UTIL,"Grid connection, transformer capacity, meter, backup",,,UNKNOWN,Nova Scotia Power feasibility/quote,Listing phrase 'power at lot line' is not a quoted connection
+CONV-IT,"Telecom/fibre, redundant comms, telemetry",,,UNKNOWN,Provider address-specific survey,No address-specific coverage verified
+MARINE-ACCESS,Authorized experimental berth/site access agreement,,,UNKNOWN,FORCE/operator NDA pricing or alternative host proposal,FORCE published 2025 procurement says fee schedule NDA-gated; availability not verified
+SEA-LEASE,New submerged land lease/easement (if needed),,,UNKNOWN,Nova Scotia Crown Lands/Marine Renewables,Assume an authorization is required; no property grants automatic rights
+SURVEY-OCEAN,"ADCP, bathymetry, geotechnics, hydrographic datum, sediment",,,UNKNOWN,Qualified surveyor and hydrographer,Site-by-site assessment required; FORCE archival data not parcel measurements
+PERMIT-APPLICATION,Demonstration permit application fee (if route applicable),2000,2000,REGULATED FEE (CONDITIONAL),Nova Scotia Marine Renewable-energy Fees Regulations s.3,"Fee alone does not include studies, legal costs or authorization; FORCE licence route different"
+OTHER-PERMITS,"DFO, navigation, environmental impact, Indigenous engagement, legal",,,UNKNOWN,Relevant authorities and consultants,Site and project specific
+EXPORT-CABLE,New cable; landfall; protection; switchgear; grid interconnection,,,UNKNOWN,Electrical/marine engineers + connection study,A may use hosted electrical arrangements only if contract permits; never assume free use
+VESSEL,"Vessel mobilization/demobilization, crew, lifting windows",,,UNKNOWN,Marine contractors,May dominate small-device capex
+MONITORING,Ecology; underwater acoustics; fish monitoring; insurance,,,UNKNOWN,DFO-approved plan and insurers,Both scenarios require qualified monitoring
+OPERATING,"O&M, vessel callouts, retrievals, inspections, weather delays",,,UNKNOWN,Operator data/quotes,Annual lifecycle cost; no empirical downtime yet
+END-LIFE,"Decommissioning; seabed cable/foundation removal, restoration bond",,,UNKNOWN,Regulatory and engineering decommissioning estimate,Must account for both; potentially larger for new berth
+SCHEDULE,Permit lead time and schedule financing/carrying cost,,,UNKNOWN,Regulators/operators/planner,Can change economics materially
+REVENUE,Electricity export revenue or avoided grid import,,,UNKNOWN,Approved interconnection/tariff and validated energy model,NO modeled site-specific yield; do not assume sale/export
