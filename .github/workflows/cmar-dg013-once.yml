@@ -1,0 +1,64 @@
+name: One-shot bounded CMAR Digby DG013 deployment acquisition
+on:
+  push:
+    branches: [research/force-native-qc-independent-20261020]
+    paths: [.github/workflows/cmar-dg013-once.yml]
+permissions:
+  contents: read
+jobs:
+  acquire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Acquire source-identified Long Beach DG013 measurements with publisher gross-range QC flags
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from urllib.request import Request,urlopen
+          from urllib.parse import urlencode
+          from urllib.error import HTTPError
+          from datetime import datetime,timezone
+          from hashlib import sha256
+          import csv,io,json,os
+          out=Path(os.environ['RUNNER_TEMP'])/'cmar-dg013';out.mkdir()
+          names=['waterbody','station','deployment_id','time','latitude','longitude','sea_water_speed','sea_water_to_direction',
+            'sea_surface_wave_significant_height','sensor_depth_below_surface',
+            'grossrange_flag_sea_water_speed','grossrange_flag_sea_water_to_direction',
+            'grossrange_flag_sea_surface_wave_significant_height','grossrange_flag_sensor_depth_below_surface']
+          url='https://cioosatlantic.ca/erddap/tabledap/7iig-p4yk.csv?'+','.join(names)+'&'+urlencode({
+              'deployment_id':'"DG013"','time>':'2022-01-01T00:00:00Z','time<':'2022-11-20T00:00:00Z'})
+          m={'source_url':url,'provider':'CMAR/CIOOS Atlantic','license':'Nova Scotia Open Government Licence',
+             'project':'TidalTurbine','dataset':'7iig-p4yk','identified_deployment':'DG013',
+             'classification':'SOURCE_ACQUIRED_PUBLISHER_GROSS_RANGE_FLAGS_NOT_INSTRUMENT_NATIVE_QC',
+             'acquired_utc':datetime.now(timezone.utc).isoformat()}
+          try:
+              with urlopen(Request(url,headers={'User-Agent':'TidalTurbine-research/1.0'}),timeout=45) as r:
+                  blob=r.read(3_000_001)
+                  if len(blob)>3_000_000:raise ValueError('Exceeded 3 MB bounded acquisition')
+              x=list(csv.DictReader(io.StringIO(blob.decode('utf-8-sig'))))
+              if not x or any(n not in x[0] for n in names):raise ValueError('Missing header/observations')
+              if x[0].get('time') in ('UTC','ISO8601'):x=x[1:]
+              if not x or any(z['deployment_id']!='DG013' or z['station']!='Long Beach' for z in x):
+                  raise ValueError('Dataset not all from confirmed DG013 Long Beach')
+              (out/'cmar_dg013.csv').write_bytes(blob)
+              m.update({'status':'SOURCE_ACQUIRED','size_bytes':len(blob),
+                        'sha256':sha256(blob).hexdigest(),'rows':len(x),
+                        'utc_start':min(r['time'] for r in x),'utc_end':max(r['time'] for r in x),
+                        'qc_flags_speed':sorted(set(r['grossrange_flag_sea_water_speed'] for r in x))})
+          except HTTPError as e:
+              m.update({'status':'NOT_ACQUIRED','http_status':e.code,'error_preview':e.read(200).decode('utf-8','replace')})
+          except Exception as e:
+              m.update({'status':'NOT_ACQUIRED','error':str(e)[:300],'exception':type(e).__name__})
+          (out/'manifest.json').write_text(json.dumps(m,sort_keys=True,indent=2)+'\n')
+          print('CMAR_DG013',json.dumps(m,sort_keys=True))
+          PY
+      - name: Retain source and manifest outside source-control
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cmar-digby-dg013-measured-wave-current-2022
+          path: ${{ runner.temp }}/cmar-dg013/
+          retention-days: 7
+          if-no-files-found: warn
