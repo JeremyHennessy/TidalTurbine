@@ -51,7 +51,7 @@ jobs:
               with urlopen(Request(url,headers={'User-Agent':'TidalTurbine-research/1.0'}),timeout=45) as resp:
                   payload=resp.read(3_000_001)
                   if len(payload)>3_000_000:raise ValueError('bounded sample exceeded 3 MB')
-              data=payload.decode('utf8-sig')
+              data=payload.decode('utf-8-sig')
               rows=list(csv.DictReader(io.StringIO(data)))
               if not rows: raise ValueError('No measurements returned; preserve access diagnostic')
               if any(k not in rows[0] for k in fields):raise ValueError('Missing requested dataset field')
