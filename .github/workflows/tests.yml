@@ -1,7 +1,7 @@
 name: Deterministic research checks
 on:
   push:
-    branches: [main, 'research/**']
+    branches: [main, 'research/**', 'ui/**']
   pull_request:
 permissions:
   contents: read
