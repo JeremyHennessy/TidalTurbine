@@ -24,19 +24,20 @@
       "dbar"
     ],
     "temporal_coverage": "2018-03-30T20:02:33Z / 2018-05-24T16:02:30Z",
-    "sampling_interval": "Unverified; inspect source measurement timestamps",
+    "sampling_interval": "5265 reports, nominal 15 min, March 30 - May 24 2018, with terminal anomaly",
     "position_wgs84": {
       "latitude": 45.3631,
       "longitude": -64.4275
     },
-    "depth_reference": "cell_range 1.5–50.5 m; instrument head position/orientation and seabed datum NOT established",
-    "quality_flags": "Uninspected for measurements; inspect product-specific QC before use",
+    "depth_reference": "Upward Signature 500 platform transducer ~0.7m above seabed per Viehman et al.; product relative cell_range labels 1.5-50.5m conflict with literature first centre 2m from transducer; unresolved.",
+    "quality_flags": "Full processed observations acquired. 97,911 exact-zero vector triples and terminal pressure collapse flagged; no source-native beam correlation/tilt/zero-fill mapping; scientific validity BLOCKED.",
     "license": "CC BY 4.0 per live ERDDAP metadata; credit FORCE and CIOOS",
-    "access_status": "downloadable_not_acquired",
+    "access_status": "source_reviewed",
     "review_depth": "variable_level_metadata",
     "metadata_checked_utc": "2026-10-20",
-    "next_action": "Download original NetCDF; sha256; inspect instrument deployment, quality masks, vector rotation/coordinate convention, sampled intervals and valid cells; develop range-cell QA.",
-    "limitations": "No measured values currently imported. Min/max variable ranges do not constitute site design speeds; profile cells are distance from transducer, not depth."
+    "next_action": "Recover native AD2CP/beam quality and converter zero-fill rules, reconcile instrument range labels before any energy or load model.",
+    "limitations": "Downloaded processed observations have NOT passed scientific measurement QC; not valid turbine inflow, year-round resource or hazard characterization.",
+    "acquisition_evidence": "Full published processed FORCE 2018 NetCDF downloaded and checksum-pinned (SHA256 be8acb1802786a0db7f5c2952e4554fc25f03508550b7478a19a2f47d86864e2), 5265 bursts x 50 relative range bins; source native beam QC and geometry absent; ZERO cells approved for turbine inflow."
   },
   {
     "id": "OCEAN-002",
@@ -57,19 +58,20 @@
       "dbar"
     ],
     "temporal_coverage": "2018-03-30T20:02:33Z / 2018-05-24T16:02:30Z",
-    "sampling_interval": "Unverified; inspect time coordinates",
+    "sampling_interval": "Nominal 15 min, 5265 timestamps, March-May 2018",
     "position_wgs84": {
       "latitude": 45.3631,
       "longitude": -64.4275
     },
     "depth_reference": "Same bottom-mounted instrument; wave statistics derive from instrument pressure/acoustic analysis",
-    "quality_flags": "Uninspected for measurements; inspect product-specific QC before use",
+    "quality_flags": "Companion wave product with 431 period missing-value sentinels and terminal pressure anomaly; source-native wave processing/QA unreviewed, not fit for extremes analysis.",
     "license": "CC BY 4.0 per live ERDDAP metadata; credit FORCE and CIOOS",
-    "access_status": "downloadable_not_acquired",
+    "access_status": "source_reviewed",
     "review_depth": "variable_level_metadata",
     "metadata_checked_utc": "2026-10-20",
-    "next_action": "Download data and wave-processing methodology; align UTC windows against velocity record.",
-    "limitations": "Reported ranges are metadata only; short spring campaign cannot define annual/extreme-wave design conditions."
+    "next_action": "Obtain native wave processing and quality files; assess pressure-reference discrepancy and exclude missing period sentinel.",
+    "limitations": "Measured processed wave fields acquired; not an annual design/extreme-wave sample or native-QC approved.",
+    "acquisition_evidence": "Full processed FORCE companion wave NetCDF acquired with source SHA256 d538b46f4b702382386721a43d39ec253f281f48522a377bf456b5d3373001ee; 5265 time rows; 431 -9 wave-period fill values."
   },
   {
     "id": "OCEAN-003",
@@ -583,5 +585,49 @@
     "metadata_checked_utc": "2026-10-20",
     "next_action": "Download 3,348,741-byte file; verify checksum and CF dimensions with NetCDF reader; preserve raw outside Git.",
     "limitations": "Duplicate access pathway to OCEAN-001, not an additional independent field campaign."
+  },
+  {
+    "id": "OCEAN-021",
+    "title": "CMAR Digby County Wave Data — Long Beach DG013 (2022)",
+    "provider": "Centre for Marine Applied Research (CMAR) via CIOOS Atlantic",
+    "category": "waves",
+    "region": "St. Marys Bay, Digby County, Nova Scotia",
+    "source_url": "https://cioosatlantic.ca/erddap/info/7iig-p4yk/index.html",
+    "download_url": "https://cioosatlantic.ca/erddap/tabledap/7iig-p4yk.csv",
+    "variables": [
+      "time",
+      "deployment_id",
+      "latitude",
+      "longitude",
+      "sea_water_speed",
+      "sea_water_to_direction",
+      "sea_surface_wave_significant_height",
+      "sensor_depth_below_surface",
+      "grossrange_flag_*"
+    ],
+    "units": [
+      "UTC",
+      "WGS84 degrees",
+      "m/s",
+      "degrees to",
+      "m",
+      "m below water surface",
+      "publisher qualitative gross-range flags"
+    ],
+    "temporal_coverage": "2022-09-13T16:00:00Z/2022-11-19T01:00:00Z acquired DG013 subset",
+    "sampling_interval": "3 hours between 529 pairs; one 6-hour gap; 531 observations",
+    "position_wgs84": {
+      "latitude": 44.40473,
+      "longitude": -66.1627
+    },
+    "depth_reference": "sensor_depth_below_surface measured 24.448–30.073 m, not a vertical rotor inflow profile",
+    "quality_flags": "All 531 records have CMAR gross-range Pass for sea-water speed, direction, wave height and sensor depth; does NOT establish beam-level current QC or full engineering validity",
+    "license": "Nova Scotia Open Government Licence (source attributes CMAR)",
+    "access_status": "source_reviewed",
+    "review_depth": "bounded source acquisition plus descriptive numerical and publisher gross-range QA; NOT model validation",
+    "metadata_checked_utc": "2026-10-20",
+    "next_action": "Obtain method/units/ADCP native beam quality and independent matched currents before comparison with FORCE or rotor models.",
+    "limitations": "Separate St Marys Bay station, NOT Minas Passage or 3D turbine-depth inflow. Measured speed is sensor data in wave product, not certified turbine resource or annual extremes.",
+    "acquisition_evidence": "Original 60480-byte CSV SHA256 27bd18b64f2c71fb1502a663ede62f1d04b47a019dbb2fc5191190e028493ee8; one-shot GitHub Actions 39496314263, 7-day artifact 12298006905; QA derivation/reproducibility in research/observations/CMAR_DIGBY_DG013_2022_QA.json"
   }
 ]
