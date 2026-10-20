@@ -35,7 +35,7 @@ jobs:
         run: python scripts/build_site.py --out dist
       - name: Check browser JavaScript syntax
         run: node --check site/app.js
-      - name: Exercise interactive comparison and observed tradeoff without browser dependencies
+      - name: Smoke test TidalLab startup and observed experiment controls (Node)
         run: node tests/ui_smoke.cjs
       - name: Run unit tests
         run: python -m unittest discover -s tests -v
