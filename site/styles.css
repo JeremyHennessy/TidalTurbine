@@ -20,3 +20,50 @@
 #rm2-reproduction svg{display:block;width:100%;max-width:760px;height:auto;margin:10px auto 15px}
 #rm2-reproduction .chart-note{margin-top:16px}
 @media(max-width:760px){.mechanism-filters{align-items:stretch;gap:8px}.mechanism-filters label{width:100%}.mechanism-filters select,.mechanism-filters input{max-width:unset;width:100%}#mechanism-match{margin-left:0}}
+
+
+/* Additive concept comparison: existing studio and diagrams stay unchanged. */
+.comparison-panel{margin-top:17px;padding-bottom:5px}
+.comparison-head{align-items:end}
+.comparison-controls{display:grid;gap:6px;min-width:225px}
+.comparison-controls label,.tradeoff-controls label{font-size:11px;color:#b5d6db;font-weight:700}
+.comparison-controls select,.tradeoff-controls select{min-height:38px;border-radius:8px;border:1px solid #427080;background:#0c2b39;color:#e9fffa;padding:8px 11px}
+.comparison-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding:17px 18px}
+.comparison-concept{border:1px solid #2a5060;border-radius:10px;min-width:0;overflow:hidden;background:#0c2332}
+.comparison-concept-head{display:flex;justify-content:space-between;align-items:center;padding:14px 16px 0;color:#5ce6d7;font-size:10px;letter-spacing:.13em;font-weight:700}
+.comparison-concept-head strong{color:#a6bac3;font-size:12px}
+.comparison-concept h3{font-size:18px;margin:7px 16px 9px;line-height:1.3}
+.comparison-drawing{margin:0 10px;border:1px solid #245669;border-radius:8px;overflow:hidden}
+.comparison-drawing svg{display:block;width:100%;height:auto;max-height:270px}
+.comparison-specs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 16px;margin:15px 16px}
+.comparison-specs div{min-width:0}
+.comparison-specs dt{color:#83afba;font-size:10px;margin-bottom:4px}
+.comparison-specs dd{color:#e3f3f1;font-size:12px;margin:0;overflow-wrap:anywhere}
+.comparison-question{margin:0 16px 13px;border-top:1px solid #284957;padding-top:13px}
+.comparison-question strong{color:#75e9da;font-size:11px}
+.comparison-question p{font-size:11px;color:#afc7ce;line-height:1.55;margin:7px 0 0}
+.comparison-source{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:12px 16px;border-top:1px solid #244a57;font-size:10px;color:#8aadb7}
+.comparison-source a{font-weight:700;white-space:nowrap}
+.comparison-footnote,.tradeoff-footnote{font-size:11px;line-height:1.65;color:#a2bbc4;margin:0 18px 15px}
+.tradeoff-panel{margin-top:17px;padding-bottom:4px}
+.tradeoff-controls{display:flex;gap:11px;align-items:center;flex-wrap:wrap;padding:18px 20px 5px}
+.tradeoff-controls span{font-size:10px;color:#98b4bd}
+.tradeoff-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding:14px 20px 8px}
+.tradeoff-summary>div{background:#0f3040;border:1px solid #275569;border-radius:8px;padding:12px}
+.tradeoff-summary span{font-size:10px;color:#9cbbc5;display:block;line-height:1.45}
+.tradeoff-summary strong{display:block;font:600 21px 'Space Grotesk',system-ui,sans-serif;margin-top:4px;color:#ebfffa}
+.tradeoff-summary small{font-size:14px;color:#7fb2bf}
+.tradeoff-lanes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin:15px 20px}
+.tradeoff-lane{min-width:0}
+.tradeoff-lane h3{font-size:13px;color:#ddf5f1;margin-bottom:12px}
+.tradeoff-lane h3 small{font-size:10px;color:#93b5bb}
+.tradeoff-row{display:grid;grid-template-columns:minmax(100px,1fr) minmax(70px,1.6fr) 60px;align-items:center;gap:9px;margin:11px 0;font-size:10px;color:#a4c0c7}
+.tradeoff-row strong{text-align:right;font-variant-numeric:tabular-nums;color:#e6f7f2}
+.tradeoff-track{height:10px;border-radius:20px;background:#173544;overflow:hidden}
+.tradeoff-track i{display:block;height:100%;border-radius:20px}
+.tradeoff-track .baseline{background:#53b8e5}
+.tradeoff-track .alternative{background:#f8c178}
+.tradeoff-caveat{margin:5px 20px 13px;border-left:3px solid #db9c48;padding:8px 12px;background:#251f1a;color:#e1cda9;font-size:11px;line-height:1.55}
+.comparison-panel .empty,.tradeoff-panel .empty{padding:18px}
+@media(max-width:900px){.comparison-grid,.tradeoff-lanes{grid-template-columns:1fr}.comparison-head{align-items:start;flex-wrap:wrap}.tradeoff-summary{grid-template-columns:1fr 1fr}.comparison-controls{width:100%}}
+@media(max-width:600px){.comparison-grid{padding:12px}.comparison-specs{grid-template-columns:1fr 1fr}.tradeoff-summary{grid-template-columns:1fr}.tradeoff-row{grid-template-columns:96px minmax(65px,1fr) 52px}.tradeoff-controls{align-items:stretch}.tradeoff-controls select{width:100%}}
