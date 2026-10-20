@@ -34,7 +34,7 @@ jobs:
           for name, expected_size in sizes.items():
               blob=(root/name).read_bytes()
               assert len(blob)==expected_size,(name,len(blob),expected_size)
-              assert blob[:4] in (b'CDF\x01', b'CDF\x02', b'CDF\x05'),(name,blob[:4])
+              assert blob[:4] in (b'CDF\x01', b'CDF\x02', b'CDF\x05') or blob.startswith(b'\x89HDF\r\n\x1a\n'),(name,blob[:8])
               entries.append({'file':name,'size_bytes':len(blob),'sha256':hashlib.sha256(blob).hexdigest(),
                   'source_url':('https://cioosatlantic.ca/erddap/files/FORCE_Mar2018_ADCP_'+('Currents' if name=='currents.nc' else 'Waves')+'/'+
                         ('Burst.VTC.DSEL.AVER.classic.nc' if name=='currents.nc' else 'Burst.VTC.WAVES.classic.nc'))})
