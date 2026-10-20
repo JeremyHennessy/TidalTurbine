@@ -6,7 +6,7 @@
 |---|---|---|
 | Architecture families | Partial | 14 multidimensional exemplars in `mechanisms.json`, covering axial, cross-flow, drag, foil, free-stream axial screw, kite, duct, pressure-coupled, piezoelectric flag, vortex oscillator; independent normalization and field measurements missing. |
 | RM1 geometry and test | Partial | Sandia index/report uncertainty sections; dataset & Cp curve reproduction MISSING. |
-| Current and bathymetric resource | Missing | No georeferenced licensed ADCP/bathymetry ingested. |
+| Current and bathymetric resource | Partial (acquisition only) | One 2-hour FORCE ADCP 2018 slice **acquired and numerically screened**, not quality-approved. 206/450 exact-zero triples and unknown transducer geometry block model ingestion. No usable annual resource or bathymetric assessment. See `reports/FORCE-SLICE-QA-001.md`. |
 | Turbulence, shear, wave-current interaction | Missing | Need measured spectra and calibrated hydrodynamics. |
 | Rotor Cp/TSR / thrust Ct | Partial | RM2 cross-flow processed tow-tank 23-run Cp/CD-v-TSR series reproduced in `RM2-OBS-001`; independently recomputed rotor torque, a predictive cross-flow solver and RM1 axial-rotor curves still MISSING. |
 | Cavitation / tip vortex / debris | Missing | Site-specific pressure, blade surface and impacts. |
@@ -35,7 +35,7 @@
 
 ## Ocean-data registry 2026-10-20 (second pass)
 
-20 structured **source-discovery records** in `research/ocean_datasets.json`, with unique IDs, source and access links, provenance, variable/unit metadata, source/metadata review status, datum and QC gaps, reuse terms and exact next action. Two entries represent the same 2018 FORCE current campaign through distinct metadata/file URLs and must not be counted as independent measurements. Measured ocean time-series ingested into the repo or simulator: **zero**. First priority is acquisition and QA of FORCE 2018 ADCP, followed by published RM1 benchmarking. See `docs/OCEAN_DATA.md`. The catalogue does not exhaust regional records or include all 2026 deployments.
+20 structured **source-discovery records** in `research/ocean_datasets.json`, with unique IDs, source and access links, provenance, variable/unit metadata, source/metadata review status, datum and QC gaps, reuse terms and exact next action. Two entries represent the same 2018 FORCE current campaign through distinct metadata/file URLs and must not be counted as independent measurements. A short FORCE 2018 observation slice has been downloaded to a temporary Actions artifact and checked outside Git (**450 records; 206 all-zero triples**); it has **not** been quality approved or ingested into the simulator. Next priority is resolving the suspected mask/fill and obtaining a defensible time/depth profile alongside RM1 benchmarking. See `docs/OCEAN_DATA.md`. The catalogue does not exhaust regional records or include all 2026 deployments.
 
 ## Broader mechanism audit (third pass; 2026-10-20)
 
@@ -44,6 +44,10 @@
 - **Manufacturer/engineering-partner reports only:** Spiralis/Cape Horn axial skelter partial field point and CFD; Minesto Dragon rated power and recovery. Neither proves grid-scale mean energy, life, fish safety, net costs, fair aerodynamic comparison or availability.
 - **Concepts with no independently ingested performance curves:** helical Gorlov geometry, Savonius, pressure-coupled secondary air, Venturi augmentation, direct-drive foil, piezoelectric flag, VIV; these remain **mechanism discovery and modelling eligibility**, not performance-zero entries or rejected architectures.
 - **Claim audit:** 14 statements recorded in `research/CLAIM_AUDIT.csv`, including 'bladeless', 'fish safe', 'one moving part', 'much cheaper', 'recyclable', 'continuous power', awards, Venturi energy conservation and exposure/cumulative effects.
-- **FORCE acquisition:** `qa_force_slice.py` and synthetic fixture tests exist, but measured current files downloaded/QA-passed: **0** as of this working pass; see `docs/FORCE_QA_GATE.md`.
+- **FORCE acquisition:** `qa_force_slice.py` and synthetic fixture tests exist, but measured current source slice **acquired** later via GitHub probe; **scientific QA-passed: 0** due unknown quality and 206/450 zero triples; see `docs/FORCE_QA_GATE.md`.
 
 **Priority exclusion:** Numerical Cp comparisons across different denominators, including foil swept envelope, duct inlet and rotor disk, transverse frontal area and kite trajectory, are **not valid rankings** without a matched control-volume and duty/parasite accounting. Avoid arbitrarily weighted maturity/performance scores.
+
+## Evidence-based operating-point experiment — RM2-TRADEOFF-001 (2026-10-20)
+
+Observed *processed* 1:6 laboratory cross-flow Cp/Cd operating points now support a same-rig descriptive mean-drag tradeoff (`reports/RM2-TRADEOFF-001.md`). It shows loss of mechanical Cp alongside lower mean Cd when changing measured TSR, but **no cyclic bending/torque, fatigue, environmental, control-power, or lifetime evidence**. Do not use to rank different energy-harvesting mechanisms. Full source paper inspected through Uncertainty, Processing, Performance and Strut losses sections; existing source ID `RM2-DATA-001` retained, no artificial new bibliography count.

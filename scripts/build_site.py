@@ -3,7 +3,7 @@ import argparse
 from pathlib import Path
 from shutil import copy2, rmtree
 ROOT=Path(__file__).resolve().parents[1]
-FILES=('index.html','site/index.html','site/app.js','site/styles.css','site/assets/favicon.svg','reports/SCREEN-001.json','reports/RM2-OBS-001.json','research/ocean_datasets.json','research/mechanisms.json','research/catalogue.json')
+FILES=('index.html','site/index.html','site/app.js','site/styles.css','site/assets/favicon.svg','reports/SCREEN-001.json','reports/RM2-OBS-001.json','reports/FORCE-SLICE-QA-001.json','research/ocean_datasets.json','research/mechanisms.json','research/catalogue.json')
 
 def build(target:Path):
     target=target.resolve()

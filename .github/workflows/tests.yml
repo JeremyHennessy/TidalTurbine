@@ -25,6 +25,10 @@ jobs:
         run: |
           python scripts/reproduce_rm2.py
           git diff --exit-code -- reports/RM2-OBS-001.json
+      - name: Reproduce RM2 observed mean power-drag operating point analysis
+        run: |
+          python scripts/rm2_operating_points.py
+          git diff --exit-code -- reports/RM2-TRADEOFF-001.json
       - name: Validate ocean-source registry
         run: python scripts/check_ocean_catalogue.py
       - name: Build Pages research app

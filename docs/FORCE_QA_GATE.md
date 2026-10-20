@@ -1,6 +1,6 @@
 # FORCE / CIOOS measurement acquisition gate (2026-10-20)
 
-**Status: NOT ACQUIRED in this run.** The open CIOOS/FORCE source URL for the spring 2018 ADCP is discoverable. The local container cannot resolve the domain for direct curl, and an attempted source NetCDF download was unsuccessful. A failed access attempt is not a data result; no measured vectors were inserted into SCREEN-001 or RM2 reports. No current data histogram in Pages should be represented as observed.
+**Updated evidence status — source acquired; scientific QC blocked (2026-10-20).** An initial local container had no CIOOS DNS access, but a subsequently completed one-shot GitHub Actions run 39470715965 retrieved a real two-hour CSV slice (450 rows) and preserved it as a short-lived artifact. Independent local replay found 206 exact-zero velocity triples, including 21 entirely zero range cells, suspected fill/mask values. The original script counted all 450 as *numerically parseable*; this does not mean physically valid. See [`reports/FORCE-SLICE-QA-001.md`](../reports/FORCE-SLICE-QA-001.md) and its SHA-linked JSON. No measurements were ingested into the turbine simulator and no quality-approved depth profile exists.
 
 Verified [ERDDAP variable metadata](https://cioosatlantic.ca/erddap/info/FORCE_Mar2018_ADCP_Currents/index.html): UTC 2018-03-30 20:02:33 to 2018-05-24 16:02:30, WGS84 position 45.3631/-64.4275, transducer-relative `cell_range` 1.5 to 50.5 m, 50 range bins, velocity components E/N/up in m/s; sea-water pressure dbar and temp °C; CC BY 4.0 credit FORCE and CIOOS Atlantic. Instrument head height, pointing/tilt, manufacturer QC filters, blind zones, surface sidelobe masking and near-bottom blockage not established. Metadata *actual_range* is not a design current limit or clean sample.
 
@@ -23,3 +23,10 @@ The URL selects only selected velocity variables and a 2-hour UTC window and enf
 5. Compare alternative operating envelopes only after that gate; avoid placing a kite across unverified depth/navigation corridors.
 
 The existing source downloader `scripts/acquire_force_adcp.py` remains available for the complete 3,348,741-byte NetCDF, but successful byte-level download/signature checks also do not equal scientific quality control.
+
+## Reconciliation of evidence state / next test
+
+- Original acquisition: GitHub Actions artifact [12286987076](https://github.com/JeremyHennessy/TidalTurbine/actions/runs/39470715965/artifacts/12286987076); source bytes SHA256 `1a19da1e3cd214fc904d8e821cc50c7e959693aaffa4dc9c8e84ee6c663ac4cb`. Artifact retention 1 day, so keep an authorized private original if needed; do not commit raw CSV.
+- The **request URL encoding** must use `time%3E=` and `time%3C=`, not encode the comparison `=` as part of the key. A successful acquired artifact confirms endpoint selection and source data.
+- Corrected `scripts/qa_force_slice.py` now explicitly flags exact triples `(0,0,0)` without deciding their physical validity; arithmetic bounds alone are NOT publisher QC. Replay `python scripts/review_force_artifact.py --zip <artifact.zip>` or `--csv <original-source.csv>` and compare report SHA.
+- Resolve whether upper range cells were outside water, side-lobe masked, zero-filled or otherwise invalid via instrument orientation, water level, acoustic quality, transducer height and documentation. Until then, **do not use the 244 nonzero points either** as a validated resource distribution. This campaign is short relative to a tidal or seasonal cycle.

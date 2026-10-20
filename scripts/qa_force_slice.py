@@ -14,7 +14,7 @@ import io
 import json
 from math import hypot, isfinite
 from pathlib import Path
-from urllib.parse import urlencode
+from urllib.parse import quote
 from urllib.request import Request,urlopen
 
 ROOT=Path(__file__).resolve().parents[1]
@@ -28,7 +28,7 @@ MAX_BYTES=8*1024*1024
 def request_url():
     # Escape ampersands/inequalities correctly, retaining a literal comma in variables.
     # The URL uses server-side time filters, so never request the full campaign.
-    return BASE+'?'+','.join(FIELDS)+'&'+urlencode({'time>=':START,'time<=':END})
+    return BASE+'?'+','.join(FIELDS)+'&time%3E='+quote(START,safe=':-')+'&time%3C='+quote(END,safe=':-')
 
 def download(opener=urlopen,cap=MAX_BYTES):
     req=Request(request_url(),headers={'User-Agent':'TidalTurbine-academic-research/0.3'})
@@ -52,7 +52,7 @@ def qc(raw):
     rows=parsed[1:] if units_row else parsed
     for field in FIELDS:
         if field not in parsed[0]:raise ValueError('Missing field '+field)
-    valid=[];failure=Counter();uniques=set();bins=defaultdict(list);lat=set();lon=set()
+    valid=[];failure=Counter();uniques=set();bins=defaultdict(list);lat=set();lon=set();zero_by_cell=Counter()
     for row in rows:
         try:
             d=datetime.fromisoformat(row['time'].replace('Z','+00:00'))
@@ -66,6 +66,8 @@ def qc(raw):
             if key in uniques:raise ValueError('duplicate time/range cell')
             uniques.add(key);bins[z].append(d);lat.add(y);lon.add(x)
             valid.append((d,z,u,v,w))
+            if u==0 and v==0 and w==0:
+                zero_by_cell[z]+=1  # suspect zero-filled cell; not asserted to be physically invalid
         except (ValueError,TypeError,KeyError) as ex:failure[str(ex)]+=1
     all_times=sorted({r[0] for r in valid})
     gaps_s=[(b-a).total_seconds() for a,b in zip(all_times,all_times[1:])]
@@ -78,6 +80,12 @@ def qc(raw):
      'rejection_reasons':dict(failure),'times_utc':len(all_times),
      'observed_period_utc':([all_times[0].isoformat(),all_times[-1].isoformat()] if all_times else []),
      'cell_range_m':all_ranges,'cell_ranges_are_not_geodetic_depths':True,
+     'exact_zero_vector_rows':sum(zero_by_cell.values()),
+     'nonzero_finite_vector_rows':len(valid)-sum(zero_by_cell.values()),
+     'exact_zero_vector_fraction_numeric':round(sum(zero_by_cell.values())/len(valid),6) if valid else None,
+     'exact_zero_vectors_by_range_m':{str(z):zero_by_cell[z] for z in all_ranges if zero_by_cell[z]},
+     'entirely_zero_range_cells_m':[z for z in all_ranges if zero_by_cell[z]==len(bins[z])],
+     'zero_vector_quality_interpretation':'SUSPECT_ZERO_FILL_OR_MASK; cannot distinguish from physical still water without source QC',
      'observed_latitudes':sorted(lat),'observed_longitudes':sorted(lon),
      'nominal_timestep_s':Counter(gaps_s).most_common(1)[0][0] if gaps_s else None,
      'time_step_range_s':[min(gaps_s),max(gaps_s)] if gaps_s else [],
