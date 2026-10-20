@@ -1,0 +1,132 @@
+{
+  "id": "RM2-VARIABILITY-001",
+  "evidence_class": "DESCRIPTIVE_PUBLISHED_PROCESSED_DATA_NOT_CYCLIC_LOAD_VALIDATION",
+  "source": "https://github.com/UNH-CORE/RM2-tow-tank/blob/master/Data/Processed/Perf-1.0.csv",
+  "upstream_source_blob_sha": "1f284211d5c19593cf753e63727ae62a62356439",
+  "upstream_method": "https://github.com/UNH-CORE/RM2-tow-tank/blob/master/pyrm2tt/processing.py (calc_perf_stats and calc_perf_per_rev)",
+  "fixture_sha256": "e890913df375dda1e269d27a84d889a1eaeb10e1be0b594a06331b9ce2a72e77",
+  "source_attribution": "Bachant, Wosnik, Gunawan, Neary (2016), CC BY 4.0 source data, doi:10.6084/m9.figshare.1373899",
+  "definition": "std_cp and std_cd are spread of instantaneous derived coefficients over trimmed tow; std_cp_per_rev and std_cd_per_rev are between-revolution standard deviations of revolution MEANS. Neither yields instantaneous blade-root bending nor within-cycle torque spectrum.",
+  "baseline_run_12": {
+    "run": 12,
+    "n_revs": 10,
+    "mean_tsr": 3.099349483624899,
+    "mean_cp": 0.35460251857936176,
+    "mean_cd": 0.8458717342880612,
+    "std_cp": 0.12905790097548134,
+    "std_cd": 0.16845439696655418,
+    "std_cp_per_rev": 0.004966467739595581,
+    "std_cd_per_rev": 0.00504117044165649,
+    "exp_unc_cp": 0.00805044087719535,
+    "exp_unc_cd": 0.0036729604219277326
+  },
+  "alternative_run_10": {
+    "run": 10,
+    "n_revs": 9,
+    "mean_tsr": 2.899961751674067,
+    "mean_cp": 0.3480504236755432,
+    "mean_cd": 0.7992955738077838,
+    "std_cp": 0.12419244958182853,
+    "std_cd": 0.16008579795660952,
+    "std_cp_per_rev": 0.002594665729292712,
+    "std_cd_per_rev": 0.0032707540796268588,
+    "exp_unc_cp": 0.007273240097053945,
+    "exp_unc_cd": 0.002609716230107654
+  },
+  "descriptive_percent_change_candidate_vs_baseline": {
+    "mean_cp": -1.8477,
+    "mean_cd": -5.5063,
+    "std_cp": -3.77,
+    "std_cd": -4.9679,
+    "std_cp_per_rev": -47.7563,
+    "std_cd_per_rev": -35.1192
+  },
+  "source_rows": [
+    {
+      "run": 9,
+      "n_revs": 9,
+      "mean_tsr": 2.7995145152060825,
+      "mean_cp": 0.32943807413435366,
+      "mean_cd": 0.7682874264592359,
+      "std_cp": 0.13414384537657398,
+      "std_cd": 0.1612676909256095,
+      "std_cp_per_rev": 0.003675388567860989,
+      "std_cd_per_rev": 0.002965012979536568,
+      "exp_unc_cp": 0.00716950534438137,
+      "exp_unc_cd": 0.0023892509841527613
+    },
+    {
+      "run": 10,
+      "n_revs": 9,
+      "mean_tsr": 2.899961751674067,
+      "mean_cp": 0.3480504236755432,
+      "mean_cd": 0.7992955738077838,
+      "std_cp": 0.12419244958182853,
+      "std_cd": 0.16008579795660952,
+      "std_cp_per_rev": 0.002594665729292712,
+      "std_cd_per_rev": 0.0032707540796268588,
+      "exp_unc_cp": 0.007273240097053945,
+      "exp_unc_cd": 0.002609716230107654
+    },
+    {
+      "run": 11,
+      "n_revs": 9,
+      "mean_tsr": 2.99966171681198,
+      "mean_cp": 0.35201552114438417,
+      "mean_cd": 0.8221282527618573,
+      "std_cp": 0.12571886531432075,
+      "std_cd": 0.16009928727591916,
+      "std_cp_per_rev": 0.003598277870372625,
+      "std_cd_per_rev": 0.003452905996368754,
+      "exp_unc_cp": 0.00762961304790901,
+      "exp_unc_cd": 0.0027425931659217444
+    },
+    {
+      "run": 12,
+      "n_revs": 10,
+      "mean_tsr": 3.099349483624899,
+      "mean_cp": 0.35460251857936176,
+      "mean_cd": 0.8458717342880612,
+      "std_cp": 0.12905790097548134,
+      "std_cd": 0.16845439696655418,
+      "std_cp_per_rev": 0.004966467739595581,
+      "std_cd_per_rev": 0.00504117044165649,
+      "exp_unc_cp": 0.00805044087719535,
+      "exp_unc_cd": 0.0036729604219277326
+    },
+    {
+      "run": 13,
+      "n_revs": 10,
+      "mean_tsr": 3.1997534596095387,
+      "mean_cp": 0.35407956722053896,
+      "mean_cd": 0.863317817837994,
+      "std_cp": 0.13247204994836417,
+      "std_cd": 0.1792425287438506,
+      "std_cp_per_rev": 0.002821497165386315,
+      "std_cd_per_rev": 0.003855960016857334,
+      "exp_unc_cp": 0.008008481768779996,
+      "exp_unc_cd": 0.0028520947971652387
+    },
+    {
+      "run": 14,
+      "n_revs": 10,
+      "mean_tsr": 3.29959940694749,
+      "mean_cp": 0.3468976584035965,
+      "mean_cd": 0.8771006200476272,
+      "std_cp": 0.1356666680581025,
+      "std_cd": 0.19177151027345105,
+      "std_cp_per_rev": 0.003538652949003137,
+      "std_cd_per_rev": 0.005245269067577479,
+      "exp_unc_cp": 0.008314968989673334,
+      "exp_unc_cd": 0.003815782830596104
+    }
+  ],
+  "uncertainty": "Only nine or ten complete revolutions in these runs. No paired covariance, frequency spectrum, independent replicate significance or material fatigue damage calculated.",
+  "decision": "Request simultaneous torque-phase, blade-bending, strut and actuator load traces before claiming load benefit; tentative operating-point trend is worth testing but not validated.",
+  "excluded_conclusions": [
+    "No proof of reduced blade structural fatigue",
+    "No source raw instantaneous signal reprocessing",
+    "No improvement in turbine lifetime energy or maintenance",
+    "No extrapolation of Cp/Cd from freshwater tow tank to high-turbulence Fundy"
+  ]
+}

@@ -51,3 +51,16 @@
 ## Evidence-based operating-point experiment — RM2-TRADEOFF-001 (2026-10-20)
 
 Observed *processed* 1:6 laboratory cross-flow Cp/Cd operating points now support a same-rig descriptive mean-drag tradeoff (`reports/RM2-TRADEOFF-001.md`). It shows loss of mechanical Cp alongside lower mean Cd when changing measured TSR, but **no cyclic bending/torque, fatigue, environmental, control-power, or lifetime evidence**. Do not use to rank different energy-harvesting mechanisms. Full source paper inspected through Uncertainty, Processing, Performance and Strut losses sections; existing source ID `RM2-DATA-001` retained, no artificial new bibliography count.
+
+## New validation study — 2026-10-20: not a design selection
+
+- **RM1 axial published quantities:** inspected Sandia original printed Appendix A, 16 tabulated operating points per rotor; `RM1-OBS-001` transcribes Cp/TSR and checks nominal shaft-power consistency. This is **source-table reproduction**, not independent predictive rotor or fatigue validation. Left max Cp 0.412 in table versus 0.43 approximate in narrative remains a recorded conflict.
+- **RM2 cross-flow cyclic proxy:** six additional published processed points (`RM2-VARIABILITY-001`) reproduce instantaneous coefficient spread and across-revolution *mean* spread; **neither is blade fatigue or blade-root cyclic loading**. No causal lifetime claim.
+- **FORCE instrument:** publisher-identified upward-looking FAST3 Nortek Signature 500 and 5-min/15-min acquisition, upper 10% surface interference exclusion used in source analyses; exact per-cell quality and height unresolved. One-time **72-hour acquisition/NUMERICAL QA requested**, not scientific qualification until source artifact checked and native masks/geometry obtained.
+- **Three prototype candidates:** axial rotor, cross-flow rotor, nonrotating oscillating foil; explicit nonnumeric, independent hydrodynamic, net power, structural, environmental, manufacture and access gates. No winner, not a common-Cp fit. See `research/prototype_gates.json`.
+
+## Subsequent 72-hour FORCE QC + sensor primary-source correction (2026-10-20)
+
+- **Acquired**: 14,400 archived FORCE 2018 processed current vectors across 288 timestamps; raw 72-hour SHA256 pinned in `reports/FORCE-72H-QA-001.json`, source retained outside Git in one-shot Actions artifact. 5,160 exact all-zero vectors, 12 all-zero and 12 partial-zero range bins; 26 all-nonzero bins remain **numeric candidates only**, not physically quality-qualified. Pressure/highest-nonzero-boundary Pearson r≈0.996882 (descriptive).
+- **Instrument geometry partially recovered**: Viehman et al. 2022 confirms Nortek transducer face at 0.7m above seabed, blanking 1m, first sample centre 2m from face, but public ERDDAP starts range labels 1.5m. Cell label/geometry mismatch and native acoustic quality masks unresolved.
+- **Still missing before site energy**: raw beam correlation/amplitude and converter flags, calibrated depth/time mask, seasonal/annual representative vector coverage, instrumentation uncertainty, loads, fisheries/permission gates. No FORCE measured velocities fed to turbine models.

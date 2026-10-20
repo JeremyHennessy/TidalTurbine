@@ -1,0 +1,34 @@
+name: One-shot bounded FORCE 72h observational QA
+on:
+  push:
+    branches:
+      - 'research/force-rm1-design-gates-20261020'
+    paths:
+      - '.github/workflows/force-72h-qa-one-shot.yml'
+      - 'scripts/force_long_window.py'
+permissions:
+  contents: read
+jobs:
+  public-ocean-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Acquire three days of publicly documented FORCE measurements, numerical QA only
+        run: |
+          python scripts/force_long_window.py --fetch --out "$RUNNER_TEMP/force-72h"
+          test -s "$RUNNER_TEMP/force-72h/source.csv"
+          test -s "$RUNNER_TEMP/force-72h/qa.json"
+          python -c "import json,os,pathlib; d=json.loads((pathlib.Path(os.environ['RUNNER_TEMP'])/'force-72h/qa.json').read_text());assert d['distinct_time_bursts']>=100, 'Unexpectedly sparse data'; assert d['model_ingestion'].startswith('BLOCKED_');print('NUMERICAL QA ONLY: observations',d['parseable_numeric_rows'],'bursts',d['distinct_time_bursts'],'zero triples',d['exact_all_component_zero_vectors'],'SHA256',d['source_sha256'])"
+      - name: Archive raw measurements and QC for independent review (never commit to Git)
+        uses: actions/upload-artifact@v4
+        with:
+          name: force-adcp-72h-raw-qa-ccby4
+          path: |
+            ${{ runner.temp }}/force-72h/source.csv
+            ${{ runner.temp }}/force-72h/qa.json
+          if-no-files-found: error
+          retention-days: 7
