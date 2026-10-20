@@ -45,7 +45,7 @@ jobs:
                   'grossrange_flag_sea_water_speed','grossrange_flag_sea_water_to_direction',
                   'grossrange_flag_sea_surface_wave_significant_height','grossrange_flag_sensor_depth_below_surface']
           url='https://cioosatlantic.ca/erddap/tabledap/7iig-p4yk.csv0?'+','.join(fields)+'&'+urlencode({
-               'time>':'2021-09-22T00:00:00Z','time<':'2021-09-24T00:00:00Z'})
+               'time>':'2022-11-17T00:00:00Z','time<':'2022-11-19T01:00:00Z'})
           summary['independent_source_url']=url
           try:
               with urlopen(Request(url,headers={'User-Agent':'TidalTurbine-research/1.0'}),timeout=45) as resp:
