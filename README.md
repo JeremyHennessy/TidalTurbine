@@ -42,3 +42,20 @@ RealTide Deliverable 1.1: https://tidalenergydata.org/media/documents/RealTide_D
 DFO Bay of Fundy monitoring guide: https://www.dfo-mpo.gc.ca/publications/pnw-ppe/tidal-energy-energie-maremotrice/bay-fundy-aeemp-baie-fundy-pasee-eng.html
 
 This repository is for research; it provides no engineering certification, environmental authorization, grid-interconnection approval, or construction specification.
+
+## TidalLab — GitHub Pages research viewer
+
+The static [TidalLab workbench](https://jeremyhennessy.github.io/TidalTurbine/) is an interactive *research prototype*, not a validated device or site resource forecast. It includes desktop/mobile architectural visualizations of four established turbine concepts, the archived **synthetic** SCREEN-001 experiment with a browser-only electrical export-cap slider, a source-backed Nova Scotia ocean-data atlas, and the staged validation roadmap. The Pages URL only becomes usable after GitHub Pages publishes the updated `main` branch; see [Pages application notes](docs/PAGES_APP.md).
+
+### Data discovery and local preview
+
+The [ocean-source registry](research/ocean_datasets.json) currently catalogs 20 source-discovery records, **not 20 acquired datasets**. This includes the publicly listed [FORCE March–May 2018 ADCP currents](https://cioosatlantic.ca/erddap/info/FORCE_Mar2018_ADCP_Currents/index.html), corresponding waves, CHS tides, NONNA, GEBCO 2026, DFO hydrography, habitat and ecological monitoring. Instrument data have **not** been downloaded or processed into the simulation. See [data provenance and acquisition gates](docs/OCEAN_DATA.md).
+
+```sh
+python scripts/check_ocean_catalogue.py
+python scripts/acquire_force_adcp.py --dataset currents   # dry-run only
+python scripts/build_site.py --out dist
+python -m http.server 8000 --directory .                # open /site/
+```
+
+The original 14-day synthetic SCREEN-001 power model, its report and its assumptions remain unchanged. Export curtailment never demonstrates less thrust, fatigue or repair cost.

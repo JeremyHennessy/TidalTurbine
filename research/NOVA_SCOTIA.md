@@ -17,4 +17,6 @@
 3. Obtain DFO/FORCE monitoring plans/reports and detection probability/missing-data treatment; do not infer 'no collisions' from no detections.
 4. Model access windows and mooring/foundation/cable loads using site-specific measured conditions before economic preference.
 
-**Explicit open question:** Are publicly reusable velocity datasets suitable for independent RM1-style benchmarking and Fundy resource characterization? At present none were ingested; SCREEN-001 is synthetic only.
+**New 2026-10-20 discovery:** [OCEAN-001 FORCE March–May 2018 ADCP current profiles](https://cioosatlantic.ca/erddap/info/FORCE_Mar2018_ADCP_Currents/index.html) provide a listed CC BY 4.0 NetCDF file, published instrument coordinates (45.3631, -64.4275) and east/north/up velocity variables in m/s, and [OCEAN-002 waves](https://cioosatlantic.ca/erddap/info/FORCE_Mar2018_ADCP_Waves/index.html) from the same campaign. Source metadata examined; raw observations **not downloaded**, bin depths/QA unverified. This changes the dataset-discovery status but **does not change** SCREEN-001, which remains synthetic. See [OCEAN_DATA.md](../docs/OCEAN_DATA.md) and `research/ocean_datasets.json`.
+
+**Explicit open question:** After source acquisition and instrument calibration, can these public FORCE profiles support a defensible short-duration current characterization? They do **not** yet establish long-term resource adequacy, rotor load predictions or environmental safety.

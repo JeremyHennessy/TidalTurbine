@@ -1,0 +1,44 @@
+# TidalLab GitHub Pages research app — UX specification and boundaries
+
+## Objective
+A responsive, accessible *research workbench* for comparing established tidal-stream architectures and examining the verified SCREEN-001 numerical result. **A visualization of a device concept is not design engineering.** A synthetic power curve must remain visually differentiated from real measured ocean data.
+
+## Routes (static, client-side hash)
+
+- `#overview`: hero, research state, illustrative turbine SVG, archived experiment values, source discovery and six-stage validation progression.
+- `#designs`: four SVG architecture **mockups** (seabed HAT, recoverable floating, cross-flow, tethered kite), choice selector, annotations, pros/cons and specific falsification evidence. No scored ranking/winner.
+- `#experiments`: read `reports/SCREEN-001.json`. Replot two synthetic harmonics, baseline vs 80%-rated export cap, and archived 81-case sweep. Slider 50–100% runs **browser-only electrical** calculation; does not mutate report or infer blade load, Cp change, structural life, or ecological safety.
+- `#ocean`: approximate labelled Fundy schematic with one precisely documented FORCE instrument coordinate marker (45.3631, -64.4275), curated metadata table, search/type filters, data access status and expanded provenance/source links. No invented current values, no false cartographic precision.
+- `#research`: stages, actual evidence qualification status, source read path and three next gates.
+
+**No subscription or build service:** static HTML, SVG, JS, CSS; Python stdlib for test/site copying; no third-party JavaScript or embedded external maps. Text is encoded before injection. Mobile single-column layout; nav expands on small viewports; accessible link/focus/section labels; prefers-reduced-motion respected.
+
+## Hosting
+
+Repository-root `index.html` redirects to `site/`. All static files and canonical experiment/metadata JSON are committed to the repo; Pages can publish directly from main/root. The `.nojekyll` sentinel avoids Jekyll transformations. The site fetches relative canonical paths `../reports/SCREEN-001.json` and `../research/ocean_datasets.json`; paths work both locally and with repository-subpath GitHub Pages. **Check live Pages settings and complete post-merge deployment before claiming a public URL**; GitHub Actions tests are not a substitute for browser inspection.
+
+Local preview:
+
+```sh
+python scripts/build_site.py --out dist
+python -m http.server 8000 --directory .
+# Open http://localhost:8000/ (or /site/)
+```
+
+The `dist/` folder also contains the static artifact (root redirect + `site/`, archived JSON and registry), reproducibly copied by the builder. Build artifacts and raw datasets are not checked into Git.
+
+## Visual regression / approval
+
+This iteration introduces the first TidalLab visual language; no previously approved UI existed. After a screenshot is approved, lock that commit + screenshot and do not restyle the approved state for unrelated data/logic fixes. A design-review screenshot is not a scientifically calibrated illustration.
+
+## Boundaries and next functionality
+
+Not yet implemented: validated measured ADCP series visualization, RM1 benchmark overlays, physical blade/control model, solver visualization, authenticated collaborative edits, downloadable signed design files, grid-scale scheduling/battery dispatch and environmental risk prediction. Add each **only** when source and validation gates are met. GitHub Pages serves public files; sensitive Traditional Knowledge or restricted survey products must not be uploaded.
+
+## Multidimensional mechanisms and observed-benchmark extension (2026-10-20)
+
+**Do not replace approved foundational illustrations.** The original four conceptual diagrams (seabed HAT, floating recoverable, cross-flow, kite) and SCREEN-001 electrical-cap slider remain the same visual and numerical baselines. The explorer has ten additional labeled technical **concept** schematics and filters the fourteen configuration exemplars by capture mechanism, using the exact `research/mechanisms.json` canonical fields (source URL, PTO, support, motion, reference-area boundary, evidence depth, lack of validation). These are not CAD/CFD field results. The taxonomy is multidimensional: a fixed/variable pitch, seabed/floating support or duct is not a new fundamental energy mechanism.
+
+The experiment page separates two different epistemic categories: the unchanged **synthetic SCREEN-001** electrical cap model and **observed processed experimental RM2** Cp/CD-v-TSR tow-tank points, copied as a bounded CC BY 4.0 seven-decimal subset of a pinned source. `reports/RM2-OBS-001.json` has exact configuration and code to reproduce; only 23 observed runs at nominal 1.0 m/s for a 1:6 cross-flow model. No prediction of Bay of Fundy generation, structural life or physical superiority. Instrument FORCE data remains a **source-discovery** atlas, not a chart of downloaded current measurements. The app must not claim it is a site simulator.
+
+After any merge, verify the remote `main` commit, publication of `research/mechanisms.json` and `reports/RM2-OBS-001.json`, and successful current-run Actions. Independently navigate `https://jeremyhennessy.github.io/TidalTurbine/` on desktop/mobile before saying the live Pages site is updated. A Pages build job's success alone is insufficient to prove the new JavaScript and data load in a browser.

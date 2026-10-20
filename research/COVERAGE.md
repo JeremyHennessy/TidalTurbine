@@ -4,11 +4,11 @@
 
 | Topic | Coverage | Current evidence / next needed |
 |---|---|---|
-| Architecture families | Partial | Sandia index; RealTide sec 7; manufacturer pages; physical comparison missing. |
+| Architecture families | Partial | 14 multidimensional exemplars in `mechanisms.json`, covering axial, cross-flow, drag, foil, free-stream axial screw, kite, duct, pressure-coupled, piezoelectric flag, vortex oscillator; independent normalization and field measurements missing. |
 | RM1 geometry and test | Partial | Sandia index/report uncertainty sections; dataset & Cp curve reproduction MISSING. |
 | Current and bathymetric resource | Missing | No georeferenced licensed ADCP/bathymetry ingested. |
 | Turbulence, shear, wave-current interaction | Missing | Need measured spectra and calibrated hydrodynamics. |
-| Rotor Cp/TSR / thrust Ct | Partial | General experimental methodology, not replicated/model-calibrated. |
+| Rotor Cp/TSR / thrust Ct | Partial | RM2 cross-flow processed tow-tank 23-run Cp/CD-v-TSR series reproduced in `RM2-OBS-001`; independently recomputed rotor torque, a predictive cross-flow solver and RM1 axial-rotor curves still MISSING. |
 | Cavitation / tip vortex / debris | Missing | Site-specific pressure, blade surface and impacts. |
 | Cyclic loading, structural fatigue | Partial | Passive-pitch model test reviewed; S-N data and load spectrum missing. |
 | Blade materials/manufacturing | Missing | Qualified laminates, environmental aging, supply and inspection. |
@@ -31,4 +31,19 @@
 | QBlade capabilities / licensing | Partial | MHK tutorial and APL license FAQ; no benchmark trial. |
 | Seawater cooled AI centre integration | Missing | Separate roadmap only, no dispatch or cooling simulation. |
 
-**Priority order:** measured RM1 benchmark > load/control validation > downtime/lifecycle model > NS resource+environment qualification > data-centre integration. Do not declare design improvements ahead of physical evidence.
+**Priority order:** reproduce RM1 axial experimental quantity + independently challenge RM2 predictive modelling > real FORCE ADCP acquisition/QC > measured load/control and access windows > site/environment gates > data-centre dispatch integration. No single mechanism is the approved winner. Do not declare design improvements ahead of physical evidence.
+
+## Ocean-data registry 2026-10-20 (second pass)
+
+20 structured **source-discovery records** in `research/ocean_datasets.json`, with unique IDs, source and access links, provenance, variable/unit metadata, source/metadata review status, datum and QC gaps, reuse terms and exact next action. Two entries represent the same 2018 FORCE current campaign through distinct metadata/file URLs and must not be counted as independent measurements. Measured ocean time-series ingested into the repo or simulator: **zero**. First priority is acquisition and QA of FORCE 2018 ADCP, followed by published RM1 benchmarking. See `docs/OCEAN_DATA.md`. The catalogue does not exhaust regional records or include all 2026 deployments.
+
+## Broader mechanism audit (third pass; 2026-10-20)
+
+- **Reviewed primary processed experimental data:** UNH-CORE RM2 1:6 cross-flow tow-tank `Perf-1.0.csv` (23 data points, published `mean_cp`, `mean_cd`, `mean_tsr` and uncertainty fields). See `reports/RM2-OBS-001.md`; this is measured *processed experimental data reproduction*, not hydrodynamic model validation. Raw signals/10GB reprocessing remain missing.
+- **Limited primary / institutional:** EMEC device-family explanations; EMEC Flumill and OpenHydro historic test reports; Sandia RM1 public metadata/report index (quantitative reproduction missing); published abstract-only Allen/Smits piezoelectric flag (electrical output, load and fatigue unverified).
+- **Manufacturer/engineering-partner reports only:** Spiralis/Cape Horn axial skelter partial field point and CFD; Minesto Dragon rated power and recovery. Neither proves grid-scale mean energy, life, fish safety, net costs, fair aerodynamic comparison or availability.
+- **Concepts with no independently ingested performance curves:** helical Gorlov geometry, Savonius, pressure-coupled secondary air, Venturi augmentation, direct-drive foil, piezoelectric flag, VIV; these remain **mechanism discovery and modelling eligibility**, not performance-zero entries or rejected architectures.
+- **Claim audit:** 14 statements recorded in `research/CLAIM_AUDIT.csv`, including 'bladeless', 'fish safe', 'one moving part', 'much cheaper', 'recyclable', 'continuous power', awards, Venturi energy conservation and exposure/cumulative effects.
+- **FORCE acquisition:** `qa_force_slice.py` and synthetic fixture tests exist, but measured current files downloaded/QA-passed: **0** as of this working pass; see `docs/FORCE_QA_GATE.md`.
+
+**Priority exclusion:** Numerical Cp comparisons across different denominators, including foil swept envelope, duct inlet and rotor disk, transverse frontal area and kite trajectory, are **not valid rankings** without a matched control-volume and duty/parasite accounting. Avoid arbitrarily weighted maturity/performance scores.
