@@ -23,3 +23,11 @@ class SiteTests(unittest.TestCase):
         css=(ROOT/'site/styles.css').read_text(encoding='utf8')
         self.assertNotIn('http',css)
         self.assertNotIn('<script src="https',html)
+
+class ForceQAEvidenceLinkTests(unittest.TestCase):
+    def test_ocean_view_links_actual_acquired_qa_and_discloses_hold(self):
+        html=(ROOT/'site/index.html').read_text(encoding='utf8')
+        self.assertIn('2h slice acquired · physics QC pending',html)
+        self.assertIn('FORCE-SLICE-QA-001.json',html)
+        self.assertIn('not fit for rotor modelling',html)
+        self.assertNotIn('physically validated ADCP velocity',html)

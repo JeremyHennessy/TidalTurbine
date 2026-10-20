@@ -51,3 +51,31 @@ For SOURCE acquisition, review FORCE terms and use `python scripts/qa_force_slic
 ## Publication checkpoint after this work
 
 Before reporting completion, append the *verified* merged head and remote post-merge Actions status; if publication still in progress, state the exact open PR and head instead. A successful branch CI does **not** mean Pages is live. Verify the actual Pages URL independently and preserve an immutable visual baseline only after user approval. No recurring agent is operating because this file exists.
+
+
+## Subsequent research pass — FORCE acquired-data QA and RM2 operating points (2026-10-20)
+
+**Historical continuity:** Immutable foundation checkpoint `79e62ee3620990955d41f293147df5b16aed932f` and approved synthetic SCREEN-001 report are unchanged. Ocean/app merged `main` baseline `dd864309536bfa7a93edf6fd765e753c90372ebf` via PRs #6 and #7; its Actions #39470275812 passed Python 3.11/3.12 and Pages **build/deploy job** #39470274731 returned success. **An independent live URL browser verification is not recorded; do not claim it.** The prior paragraph saying no measured FORCE currents were acquired was true at the *earlier local-development checkpoint*, but has been superseded as follows.
+
+1. **Actual bounded FORCE slice acquired** on GitHub Actions [run #39470715965](https://github.com/JeremyHennessy/TidalTurbine/actions/runs/39470715965) at probe commit `3a3ffa54998c2a24428c87cf0f22ab7c1392b659`. Two-hour original CSV source size 30,276 B; SHA-256 `1a19da1e3cd214fc904d8e821cc50c7e959693aaffa4dc9c8e84ee6c663ac4cb`, 450 numeric rows across 9 times and 50 ADCP range cells. One-day-retention artifact ID 12286987076 contained source.csv + qc.json. A previously invisible scientific QA issue was discovered: **206 exactly (0,0,0) vectors** and **21 range cells entirely zero**, possibly masked/fill values. No physical depth or valid water-column profile established. **Zero source measurements fed to turbine model.** See `reports/FORCE-SLICE-QA-001.md` and `docs/FORCE_QA_GATE.md`. Corrected ERDDAP comparator encoding and zero-mask warnings are in `scripts/qa_force_slice.py`; replay from original bytes with `scripts/review_force_artifact.py` and pinned SHA. Do not commit raw data.
+2. **Measured RM2 within-one-rotor Cp/Cd operational tradeoff**: `reports/RM2-TRADEOFF-001.json`/`.md`, derived deterministically from the unchanged 23-row published processed cross-flow laboratory fixture at nominal 1.0 m/s. Candidate run TSR≈2.90 has measured-processed mean Cp ~1.85% below Cp-peak and Cd ~5.51% lower. This is **not** direct evidence of cyclic structural-load, fatigue or long-term-energy benefit, nor a controller or field model. Original [PLOS study](https://doi.org/10.1371/journal.pone.0163799) sections Uncertainty / Data Processing / Performance / Strut loss reviewed: ~10% uncorrected tank blockage and Reynolds/strut effects matter. PLOS paper overall Cp=0.37 at another Reynolds condition does not contradict the subset peak Cp≈0.3546.
+3. **Other branches owned by independent concurrent work:** [site PR #8](https://github.com/JeremyHennessy/TidalTurbine/pull/8) and [test-site PR #9](https://github.com/JeremyHennessy/TidalTurbine/pull/9) are separate; do not overwrite, rebase or merge their unrelated files while advancing physics. No approved visual components of TidalLab were changed during this pass.
+
+**Run/check commands** (all dependency-free Python standard library; numerical report reproduction does not need raw ADCP):
+
+```sh
+python -m unittest discover -s tests -v
+python scripts/check_catalogue.py
+python scripts/check_ocean_catalogue.py
+python scripts/check_mechanisms.py
+python scripts/reproduce_rm2.py
+python scripts/rm2_operating_points.py
+python scripts/qa_force_slice.py                    # dry run; no network
+python scripts/review_force_artifact.py --zip <original-acquired-artifact.zip>  # optional offline replay; SHA-pinned, not CI-required
+python scripts/build_site.py --out dist
+node --check site/app.js
+```
+
+**Three decision gates, not a claim of new design superiority:** (1) **FORCE sensor geometry and publisher QC**: resolve all-zero values, beam/sidelobe boundaries, water-column masks before a longer representative series may enter hydrodynamics; (2) **measure time-resolved loads/control energy for RM2-like operating-point alternatives** while respecting uncertainties and Reynolds/blockage, and continue the RM1 source reproduction (issue #3 and #4); (3) **maintenance/recovery/weather-window evidence and site permit/Indigenous interests** (issue #5; separate site PRs #8/#9), with matched lifetime energy and environmental conditions. Later data-centre grid dispatch is separate.
+
+**Publication handoff:** This section documents the new *proposed research work*, not a claim that it is merged. Verify exact PR head, remote file readback, Python 3.11/3.12 Actions checks and main post-merge status; append a later checkpoint after GitHub confirms merge. Never infer app live status solely from workflow success.

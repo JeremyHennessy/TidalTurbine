@@ -48,3 +48,7 @@ Power coefficients from different rows are **not** comparable without common ene
 - Independently reproduce RM1 axial benchmark; follow existing issue #3.
 - Review active/passive foil dynamics with net actuator/PTO measurements before any numerical turbine prediction.
 - Treat barrage/lagoons (tidal **head**), waves, OTEC and salinity-gradient as **adjacent categories**, not tidal-stream measurements.
+
+## Newly inspected primary-paper detail and what it changes (2026-10-20)
+
+Bachant et al. (2016), [PLOS ONE full paper](https://doi.org/10.1371/journal.pone.0163799), sections **Uncertainty Analysis**, **Data Processing**, **Performance**, **Strut drag losses**, Figures 6–11: 1:6 RM2 cross-flow reference, tow-tank area `D*H`, nominal freshwater density, uncorrected ~10% test-section blockage, physical Reynolds-number sensitivity and significant support-strut drag losses. The processed 1.0 m/s subset previously reproduced as `RM2-OBS-001` is now analyzed for a **within-the-same-rig mean Cp–Cd tradeoff** as `RM2-TRADEOFF-001` rather than pretending a new rotor geometry is superior. The paper reports a **different** overall max Cp≈0.37 at higher Reynolds number; the subset peak is ≈0.35460. An observed mean Cd reduction at lower TSR is not a blade-bending/fatigue result. Source uncertainty is preserved; no statistical significance on differences or life forecast is claimed. This evidence motivates issue #4 to measure loads and parasitic rotor support effects, not to approve an optimized design.

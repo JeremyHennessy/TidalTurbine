@@ -15,3 +15,12 @@
 - A source inventory counts discovery metadata separately from acquired/QA-vetted field data; FORCE 2018 ADCP is available for acquisition with CC BY 4.0 attribution, but raw files remain excluded from normal Git.
 - Preserve existing synthetic baseline/experiment and its test semantics. Measured velocity data must pass instrument-frame/depth/time/QC checks before any physically responsible modelling; measured inflow alone does not calibrate rotor Cp/Ct or fatigue.
 - Host at the existing Pages destination if settings permit; never claim live deployment from local screenshots alone.
+
+### 2026-10-20 / QA-HOLD-001 — acquired does not mean usable
+
+- The one-shot public FORCE CSV acquisition **succeeded**, unlike earlier local network attempts: original 30,276 B with pinned SHA-256 in `reports/FORCE-SLICE-QA-001.json` and provenance log. Basic numeric-screen acceptance (450/450) was not a quality approval. **206/450** velocity triples equal exact zero, with **21 full range cells zero**. Whether those are masked/no-return/out-of-water data cannot be determined from the downloaded subset; zero may be physical in other contexts. Mark all such vectors **unresolved**, not silently removed or accepted as true still-water.
+- Do not feed either zero or nonzero vectors from this slice into energy estimates until transducer geometry, heading/tilt, water level and source QC are qualified. Preserve only SHA-linked derived reports in normal Git. A two-hour sample cannot support annual design-site resource decisions.
+
+### 2026-10-20 / RM2-TRADEOFF-001 — examine measured drag along with mechanical power
+
+- In the one nominal-1m/s RM2 test matrix, derive a bounded **mean Cp vs mean Cd** descriptive operating-point comparison from previously processed source measurements. A lower-TSR choice shows lower mean Cd and lower mechanical Cp, not a proved fatigue/maintenance benefit. The experiment is meaningful for choosing the next simultaneous structural-load/control measurement, **not** selecting a turbine winner, a deployment site, or a synthetic reliability law.

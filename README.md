@@ -49,7 +49,7 @@ The static [TidalLab workbench](https://jeremyhennessy.github.io/TidalTurbine/) 
 
 ### Data discovery and local preview
 
-The [ocean-source registry](research/ocean_datasets.json) currently catalogs 20 source-discovery records, **not 20 acquired datasets**. This includes the publicly listed [FORCE March–May 2018 ADCP currents](https://cioosatlantic.ca/erddap/info/FORCE_Mar2018_ADCP_Currents/index.html), corresponding waves, CHS tides, NONNA, GEBCO 2026, DFO hydrography, habitat and ecological monitoring. Instrument data have **not** been downloaded or processed into the simulation. See [data provenance and acquisition gates](docs/OCEAN_DATA.md).
+The [ocean-source registry](research/ocean_datasets.json) currently catalogs 20 source-discovery records, **not 20 acquired datasets**. This includes the publicly listed [FORCE March–May 2018 ADCP currents](https://cioosatlantic.ca/erddap/info/FORCE_Mar2018_ADCP_Currents/index.html), corresponding waves, CHS tides, NONNA, GEBCO 2026, DFO hydrography, habitat and ecological monitoring. A bounded two-hour FORCE 2018 ADCP source CSV was **actually acquired** in GitHub Actions run 39470715965 and numerically screened, but 206 of 450 three-component vectors are exact zero (21 range cells entirely zero). Instrument geometry and source QC remain unresolved; no measured currents have entered the simulator. See [FORCE observed-slice QA](reports/FORCE-SLICE-QA-001.md). See [data provenance and acquisition gates](docs/OCEAN_DATA.md).
 
 ```sh
 python scripts/check_ocean_catalogue.py
@@ -59,3 +59,7 @@ python -m http.server 8000 --directory .                # open /site/
 ```
 
 The original 14-day synthetic SCREEN-001 power model, its report and its assumptions remain unchanged. Export curtailment never demonstrates less thrust, fatigue or repair cost.
+
+## Measured cross-flow operating-point research
+
+[RM2-TRADEOFF-001](reports/RM2-TRADEOFF-001.md) compares **published laboratory processed means** of Cp and streamwise Cd at different tip-speed ratios on the same 1:6 cross-flow rotor and nominal inflow. It identifies an experimentally observed *mean* power-versus-drag tradeoff; cyclic loads, controller energy, fatigue, lifetime economics and field validity remain untested. Replay with `python scripts/rm2_operating_points.py`.

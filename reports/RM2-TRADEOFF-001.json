@@ -1,0 +1,110 @@
+{
+  "id": "RM2-TRADEOFF-001",
+  "classification": "DESCRIPTIVE_MEASURED_PROCESSED_COEFFICIENT_COMPARISON",
+  "question": "At nominally equal 1 m/s laboratory inflow, how much observed mean rotor drag coefficient changes when operating below peak Cp at different measured tip-speed ratios?",
+  "hypothesis": "A lower tip speed ratio might reduce mean axial drag at the cost of shaft mechanical Cp; this cannot establish fatigue or lifetime benefit.",
+  "baseline": {
+    "run": 12,
+    "tsr": 3.0993495,
+    "cp": 0.3546025,
+    "cd": 0.8458717,
+    "reported_exp_unc_cp": 0.0080504,
+    "reported_exp_unc_cd": 0.003673,
+    "nominal_mechanical_power_w": 153.7561,
+    "nominal_mean_rotor_drag_n": 366.771
+  },
+  "source": "https://github.com/UNH-CORE/RM2-tow-tank/blob/master/Data/Processed/Perf-1.0.csv",
+  "source_git_blob_sha": "1f284211d5c19593cf753e63727ae62a62356439",
+  "source_fixture_sha256": "29fbd305655f1c96bdf8b0c67db266f8c132d56035e3537cdff06f2b24f7e51d",
+  "doi": "10.1371/journal.pone.0163799",
+  "evidence": "Same RM2 one-sixth-scale cross-flow rotor, previously processed laboratory towing runs; not new independent measurements.",
+  "references": {
+    "diameter_m": 1.075,
+    "height_m": 0.8067,
+    "projected_frontal_area_m2": 0.8672025,
+    "freshwater_density_kg_m3": 1000.0,
+    "nominal_inflow_speed_m_s": 1.0,
+    "unit_factors": "P_ref = 0.5*rho*A*U^3 [W]; F_ref=0.5*rho*A*U^2 [N]"
+  },
+  "selection_rule": "Select lowest observed point-estimate mean CD meeting each fixed descriptive Cp fraction of peak, chosen during this analysis (not prospectively preregistered) (same rig and nominal speed). No statistical significance or optimized controller claimed.",
+  "descriptive_nondominated_run_ids": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "within_lab_mechanical_power_budgets": [
+    {
+      "minimum_fraction_of_peak_mechanical_cp": 0.9,
+      "selected_source_run": 9,
+      "observed_tsr": 2.7995145,
+      "observed_cp": 0.3294381,
+      "observed_cd": 0.7682874,
+      "reported_exp_unc_cp": 0.0071695,
+      "reported_exp_unc_cd": 0.0023893,
+      "mechanical_cp_decrease_percent": 7.0965,
+      "mean_streamwise_cd_decrease_percent": 9.1721,
+      "nominal_mechanical_power_w": 142.8448,
+      "nominal_mean_rotor_drag_n": 333.1304
+    },
+    {
+      "minimum_fraction_of_peak_mechanical_cp": 0.95,
+      "selected_source_run": 10,
+      "observed_tsr": 2.8999618,
+      "observed_cp": 0.3480504,
+      "observed_cd": 0.7992956,
+      "reported_exp_unc_cp": 0.0072732,
+      "reported_exp_unc_cd": 0.0026097,
+      "mechanical_cp_decrease_percent": 1.8477,
+      "mean_streamwise_cd_decrease_percent": 5.5063,
+      "nominal_mechanical_power_w": 150.9151,
+      "nominal_mean_rotor_drag_n": 346.5756
+    },
+    {
+      "minimum_fraction_of_peak_mechanical_cp": 0.98,
+      "selected_source_run": 10,
+      "observed_tsr": 2.8999618,
+      "observed_cp": 0.3480504,
+      "observed_cd": 0.7992956,
+      "reported_exp_unc_cp": 0.0072732,
+      "reported_exp_unc_cd": 0.0026097,
+      "mechanical_cp_decrease_percent": 1.8477,
+      "mean_streamwise_cd_decrease_percent": 5.5063,
+      "nominal_mechanical_power_w": 150.9151,
+      "nominal_mean_rotor_drag_n": 346.5756
+    },
+    {
+      "minimum_fraction_of_peak_mechanical_cp": 0.99,
+      "selected_source_run": 11,
+      "observed_tsr": 2.9996617,
+      "observed_cp": 0.3520155,
+      "observed_cd": 0.8221283,
+      "reported_exp_unc_cp": 0.0076296,
+      "reported_exp_unc_cd": 0.0027426,
+      "mechanical_cp_decrease_percent": 0.7295,
+      "mean_streamwise_cd_decrease_percent": 2.807,
+      "nominal_mechanical_power_w": 152.6344,
+      "nominal_mean_rotor_drag_n": 356.4759
+    }
+  ],
+  "source_uncertainty": "Upstream exp_unc columns retained as reported. Published methodology describes expanded 95% intervals, but no covariance-aware significance or independent recalculation made here.",
+  "validation_status": "REPRODUCTION_OF_PUBLISHED_PROCESSED_MEANS_ONLY",
+  "missing": [
+    "Cyclic blade loads and bending moments",
+    "Torque ripple and fatigue spectrum",
+    "Actual control energy required to hold TSR in fluctuating currents",
+    "Paired uncertainty/covariance and repeated-condition independent replicates",
+    "Hydrodynamic blockage and Reynolds scaling, seawater and field turbulence",
+    "Maintenance and environmental evidence"
+  ],
+  "decision": "Prioritize measured cyclic loads and power-vs-drag controls in issue #4; do not assign fatigue, availability, LCOE or site-specific energy gains."
+}
