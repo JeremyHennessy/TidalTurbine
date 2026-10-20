@@ -1,0 +1,46 @@
+'use strict';
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const vm=require('node:vm');
+const path=require('node:path');
+const root=path.resolve(__dirname,'..');
+const html=fs.readFileSync(path.join(root,'site/index.html'),'utf8');
+const code=fs.readFileSync(path.join(root,'site/app.js'),'utf8');
+for(const id of ['comparison-grid','compare-select','rm2-tradeoff','rm2-share']){
+  assert.ok(html.includes('id="'+id+'"'),'missing DOM target '+id);
+}
+const elements=new Map();
+const element=(selector)=>{
+  if(!elements.has(selector))elements.set(selector,{innerHTML:'',textContent:'',value:selector==='#rm2-share'?'0.95':'',addEventListener(){},classList:{toggle(){},remove(){},add(){}},setAttribute(){}});
+  return elements.get(selector);
+};
+const document={querySelector:element,querySelectorAll:()=>[],addEventListener(){}};
+const ctx=vm.createContext({document,console,window:{},location:{},history:{},setTimeout,Math,Number,JSON});
+new vm.Script(code,{filename:'site/app.js'}).runInContext(ctx);
+ctx.registry=JSON.parse(fs.readFileSync(path.join(root,'research/mechanisms.json'),'utf8'));
+vm.runInContext('applyMechanisms(registry);renderComparison()',ctx);
+assert.match(element('#comparison-grid').innerHTML,/Seabed horizontal-axis turbine/);
+assert.match(element('#comparison-grid').innerHTML,/Cross-flow vertical-axis turbine/);
+assert.match(element('#comparison-grid').innerHTML,/Source record/);
+assert.equal(element('#compare-select').value,'crossflow');
+vm.runInContext("selected='crossflow';renderComparison()",ctx);
+assert.equal(element('#compare-select').value,'seabed','same design cannot compare to itself');
+assert.match(element('#comparison-grid').innerHTML,/SEABED/i);
+vm.runInContext("selected='foil';renderComparison()",ctx);
+assert.match(element('#comparison-grid').innerHTML,/Oscillating foil/i);
+ctx.drag=JSON.parse(fs.readFileSync(path.join(root,'reports/RM2-TRADEOFF-001.json'),'utf8'));
+vm.runInContext('rm2Tradeoff=drag;renderRM2Tradeoff()',ctx);
+assert.match(element('#rm2-tradeoff').innerHTML,/Alternative run 10/);
+assert.match(element('#rm2-tradeoff').innerHTML,/5.51%/);
+assert.match(element('#rm2-tradeoff').innerHTML,/not establish smaller damaging cyclic loads/);
+element('#rm2-share').value='0.90';
+vm.runInContext('renderRM2Tradeoff()',ctx);
+assert.match(element('#rm2-tradeoff').innerHTML,/Alternative run 9/);
+element('#rm2-share').value='0.99';
+vm.runInContext('renderRM2Tradeoff()',ctx);
+assert.match(element('#rm2-tradeoff').innerHTML,/Alternative run 11/);
+vm.runInContext('rm2Tradeoff=null;renderRM2Tradeoff()',ctx);
+assert.match(element('#rm2-tradeoff').innerHTML,/unavailable/);
+assert.match(html,/206 of 450 velocity vectors are exact zero/);
+assert.ok(!html.includes('Data acquisition pending'),'stale FORCE acquisition status');
+console.log('TidalLab UI smoke checks passed: canonical comparison, selected state, observed RM2 alternatives, absence and FORCE status.');
