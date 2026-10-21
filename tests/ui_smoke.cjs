@@ -111,7 +111,9 @@ assert.match(element('#force-cell-detail').innerHTML,/Not scientifically qualifi
 vm.runInContext('forceCampaign=null;renderForceCampaign()',ctx);
 assert.match(element('#force-cells').innerHTML,/unavailable/,'do not display implied measured quality without report');
 
-assert.match(html,/97,911 of 263,250 velocity vectors are exact zero/);
+assert.match(html,/97,911/,'FORCE exact-zero observation count must remain');
+assert.match(html,/263,250/,'FORCE complete processed-record count must remain');
+assert.match(html,/no FORCE observations enter energy modelling/,'do not use unqualified FORCE currents');
 assert.match(html,/FORCE-CAMPAIGN-QA-001\.json/,'full processed-campaign QA report should be linked');
 assert.ok(!html.includes('Data acquisition pending'),'stale FORCE acquisition status');
 console.log('TidalLab UI smoke checks passed: baseline startup, design/RM2 comparisons, RM1 source table, FORCE full campaign and pressure-screen counts plus evidence holds.');
