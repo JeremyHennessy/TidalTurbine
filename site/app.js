@@ -197,6 +197,10 @@ function labelSvg(name,large){
   return (configs[name]||[]).map(([t,d,x,y,tx,ty])=>{const right=x>400,joinX=right?x-12:x+140;return `<g class="diagram-annotations"><circle cx="${tx}" cy="${ty}" r="4" fill="#66f0e1"/><path d="M${tx} ${ty} ${joinX} ${y-10}" stroke="#5de9e0" stroke-width="1.2" fill="none"/><rect x="${x}" y="${y-32}" width="${right?167:146}" height="49" rx="7" fill="#081d2d" opacity=".87" stroke="#36748a"/><text x="${x+10}" y="${y-14}" font-size="11" font-weight="bold" fill="#93f7e8">${safe(t)}</text><text x="${x+10}" y="${y+2}" font-size="9" fill="#b1d1d5">${safe(d)}</text></g>`;}).join('');
 }
 function designSvg(name,large=false){
+  const design=DESIGNS[name];
+  if(typeof window!=='undefined' && window.TidalArtwork && window.TidalArtwork.has(name)){
+    return window.TidalArtwork.render(name,{name:design.name,index:design.index,large,annotations:annotations||!large});
+  }
   const original={seabed:seabedSvg,floating:floatingSvg,crossflow:crossflowSvg,kite:kiteSvg}[name];
   const drawing=original?original():schematicShape(name);
   const waves=Array.from({length:7},(_,i)=>`<path d="M-12 ${126+i*28}q90-15 170 0t180 0t180 0t180 0" fill="none" stroke="#27899a" stroke-width="1" opacity="${.11+i*.02}"/>`).join('');
@@ -232,12 +236,26 @@ function renderDesign(){
   $('#design-evidence').textContent=d.evidence;
   renderMechanismEvidence();
   renderComparison();
-  document.querySelectorAll('.design-choice').forEach(e=>e.classList.toggle('active',e.dataset.design===selected));
+  document.querySelectorAll('.design-choice').forEach(e=>{const active=e.dataset.design===selected;e.classList.toggle('active',active);e.setAttribute('aria-pressed',String(active));});
 }
 function setupDesign(){
-  $('#design-selector').innerHTML=Object.entries(DESIGNS).map(([key,d])=>`<button class="design-choice ${key===selected?'active':''}" data-design="${key}"><small>CONCEPT ${d.index}</small><strong>${d.short}</strong><span>${d.sub}</span></button>`).join('');
+  $('#design-selector').innerHTML=Object.entries(DESIGNS).map(([key,d])=>`<button type="button" class="design-choice ${key===selected?'active':''}" data-design="${key}" aria-pressed="${key===selected}"><div class="design-choice-preview" aria-hidden="true">${window.TidalArtwork?.has(key)?window.TidalArtwork.thumbnail(key):''}</div><div class="design-choice-info"><small>CONCEPT ${d.index}</small><strong>${safe(d.short)}</strong><span>${safe(d.sub)}</span></div></button>`).join('');
   $$('.design-choice').forEach(btn=>btn.addEventListener('click',()=>{selected=btn.dataset.design;renderDesign();}));
   $('#toggle-annotation').addEventListener('click',()=>{annotations=!annotations;const b=$('#toggle-annotation');b.classList.toggle('on',annotations);b.setAttribute('aria-pressed',String(annotations));b.textContent=annotations?'◈ Labels on':'◇ Labels off';renderDesign();});
+  $('#download-design-svg').addEventListener('click',()=>{
+    const art=window.TidalArtwork;
+    if(!art||!art.has(selected))return;
+    const svg=art.render(selected,{name:DESIGNS[selected].name,index:DESIGNS[selected].index,large:true,annotations});
+    const blob=new Blob([svg],{type:'image/svg+xml;charset=utf-8'});
+    const url=URL.createObjectURL(blob);
+    const link=document.createElement('a');
+    link.href=url;
+    link.download='tidallab-'+selected+'-concept.svg';
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.setTimeout(()=>URL.revokeObjectURL(url),1000);
+  });
   renderDesign();
   renderMechanismFilters();
   $('#compare-select').addEventListener('change',(event)=>{compared=event.target.value;renderComparison();});
