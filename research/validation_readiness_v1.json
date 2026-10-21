@@ -1,0 +1,128 @@
+{
+  "schema_version": "TT-RESEARCH-READINESS-V1",
+  "classification": "DESIGN_HYPOTHESIS",
+  "status": "BLOCKED_NOT_EXECUTED",
+  "source_base_sha": "29491cf6d65630d3621cc0bafa55abf14f83d706",
+  "reviewed_utc": "2026-10-21T15:06:00Z",
+  "purpose": "Record source and prospective predictive-validation prerequisites, not certify sensor quality or a model.",
+  "gates": {
+    "force_native_inflow": {
+      "instrument_configuration_and_serial": {
+        "status": "UNRESOLVED",
+        "evidence": null
+      },
+      "per_beam_native_quality": {
+        "status": "UNRESOLVED",
+        "evidence": null
+      },
+      "range_centres_and_absolute_vertical_reference": {
+        "status": "UNRESOLVED",
+        "evidence": null
+      },
+      "zero_missing_and_transform_lineage": {
+        "status": "UNRESOLVED",
+        "evidence": null
+      },
+      "surface_sidelobe_nearbed_and_motion_masks": {
+        "status": "UNRESOLVED",
+        "evidence": null
+      },
+      "independent_mask_holdout_review": {
+        "status": "UNRESOLVED",
+        "evidence": null
+      }
+    },
+    "unh_concurrent_sample": {
+      "instrument_readmes_units_and_license": {
+        "status": "UNRESOLVED",
+        "evidence": null
+      },
+      "calibration_offsets_drift_and_ranges": {
+        "status": "UNRESOLVED",
+        "evidence": null
+      },
+      "clock_epoch_timezone_sync_and_drift": {
+        "status": "UNRESOLVED",
+        "evidence": null
+      },
+      "source_quality_flags_and_missing_encodings": {
+        "status": "UNRESOLVED",
+        "evidence": null
+      },
+      "actual_common_interval_and_test_log": {
+        "status": "UNRESOLVED",
+        "evidence": null
+      },
+      "upstream_flow_direction_and_adcp_geometry": {
+        "status": "UNRESOLVED",
+        "evidence": null
+      },
+      "meter_boundary_sign_and_auxiliary_accounting": {
+        "status": "UNRESOLVED",
+        "evidence": null
+      }
+    },
+    "predictive_holdout": {
+      "frozen_solver_commit_and_environment": {
+        "status": "UNRESOLVED",
+        "evidence": null
+      },
+      "frozen_parameter_and_calibration_manifest": {
+        "status": "UNRESOLVED",
+        "evidence": null
+      },
+      "group_disjoint_source_split_and_leakage_audit": {
+        "status": "UNRESOLVED",
+        "evidence": null
+      },
+      "frozen_preprocessing_and_exclusions": {
+        "status": "UNRESOLVED",
+        "evidence": null
+      },
+      "frozen_observables_units_and_denominators": {
+        "status": "UNRESOLVED",
+        "evidence": null
+      },
+      "predeclared_numeric_acceptance_and_uncertainty": {
+        "status": "UNRESOLVED",
+        "evidence": null
+      },
+      "independent_replicate_and_autocorrelation_plan": {
+        "status": "UNRESOLVED",
+        "evidence": null
+      },
+      "prediction_artifact_before_target_unblinding": {
+        "status": "UNRESOLVED",
+        "evidence": null
+      },
+      "independent_review_of_registered_protocol": {
+        "status": "UNRESOLVED",
+        "evidence": null
+      }
+    }
+  },
+  "current_results": {
+    "qualified_force_inflow_rows": 0,
+    "unh_original_samples_acquired": 0,
+    "independent_predictive_holdouts_completed": 0,
+    "predictive_validation_claim": false,
+    "net_electrical_validation_claim": false,
+    "blade_stress_validation_claim": false
+  },
+  "existing_exposed_data": [
+    "reports/RM1-OBS-001.json",
+    "reports/RM2-OBS-001.json",
+    "reports/RM2-CROSSSPEED-001.json",
+    "reports/RM2-RAW-LOADS-001.json"
+  ],
+  "restrictions": [
+    "Already inspected RM1 tables and six RM2 trials are development/exploratory evidence, not newly blinded confirmation.",
+    "No current site energy, fatigue, device winner, physical test or field authorization follows from this checklist."
+  ],
+  "references": [
+    "docs/FORCE_NATIVE_ACCESS_PROBE_20261020.md",
+    "docs/UNH_FIELD_POWER_ELIGIBILITY_20261021.md",
+    "docs/PREDICTIVE_HOLDOUT_PROTOCOL_20261021.md",
+    "research/experiment_protocol_v1.json"
+  ]
+}
