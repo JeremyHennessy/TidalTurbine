@@ -1,0 +1,18 @@
+name: One-shot live TidalLab all-fourteen-artwork source parity
+on:
+  push:
+    branches: ['docs/artwork-live-pages-verification-20261021']
+    paths: ['.github/workflows/artwork-public-parity-one-shot.yml']
+permissions:
+  contents: read
+jobs:
+  live-seven-source-assets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify all seven public Pages HTML CSS JS and source report files
+        run: python scripts/verify_pages_live.py --check --tries 3
