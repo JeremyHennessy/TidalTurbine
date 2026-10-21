@@ -1,0 +1,67 @@
+name: One-shot source replay of RM2 sweep B and Nova Scotia current profiles
+on:
+  push:
+    branches: [research/rm2-second-sweep-ns-passage-qc-20261021]
+    paths: [.github/workflows/replay-b-passage-once.yml]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  source-replay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -r requirements-ocean.txt
+      - name: Retrieve short-lived original NI and CMAR observations
+        run: |
+          mkdir -p "$RUNNER_TEMP/orig"
+          gh run download 39604878791 --repo JeremyHennessy/TidalTurbine --name rm2-sweep-b-six-and-grand-petit-7d-sources --dir "$RUNNER_TEMP/orig"
+          python - <<'PY'
+          import os,zipfile
+          from pathlib import Path
+          src=Path(os.environ['RUNNER_TEMP'])/'orig'
+          with zipfile.ZipFile(src.parent/'orig.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for f in src.iterdir():
+                  if f.is_file(): z.write(f,f.name)
+          print('Original source files',len(list(src.iterdir())))
+          PY
+      - name: Replay independent original-source numerical processing
+        shell: bash
+        run: |
+          python scripts/replay_rm2_sweep_b.py --archive "$RUNNER_TEMP/orig.zip" --out "$RUNNER_TEMP/b.json"
+          python scripts/qa_ns_passage_profiles.py --archive "$RUNNER_TEMP/orig.zip" --out "$RUNNER_TEMP/ns.json"
+          python - <<'PY'
+          import json,os
+          from pathlib import Path
+          root=Path(os.environ['RUNNER_TEMP'])
+          a=json.loads((root/'b.json').read_text())
+          ref=json.loads(Path('reports/RM2-RAW-B-001.json').read_text())
+          assert len(a['trials'])==len(ref['trials'])==6
+          for x,y in zip(a['trials'],ref['trials']):
+              assert x['trial_id']==y['trial_id'] and x['original_ni_sha256']==y['original_ni_sha256']
+              for k in ('recomputed_cp','recomputed_cd','cp_abs_error','cd_abs_error'):
+                  assert abs(x[k]-y[k])<0.000004,(x['trial_id'],k,x[k],y[k])
+              for k in ('shaft_torque_nm','support_drag_n'):
+                  for field in ('mean','std'):
+                      assert abs(x[k][field]-y[k][field])<0.000004,(x['trial_id'],k,field)
+          for x,y in zip(a['within_speed_pairs'],ref['within_speed_pairs']):
+              assert x['speed_m_s']==y['speed_m_s']
+              for k in ('cp_change_percent','cd_change_percent','shaft_torque_sd_change_percent','support_drag_sd_change_percent'):
+                  assert abs(x[k]-y[k])<0.0015,(k,x[k],y[k])
+          b=json.loads((root/'ns.json').read_text())
+          report=json.loads(Path('reports/NS-PASSAGES-7D-SUMMARY-001.json').read_text())
+          assert b['records']==report['source_rows_total']==21872 and b['model_eligible_rows']==0
+          for x,y in zip(b['sites'],report['sites']):
+              assert x['deployment_id']==y['deployment_id']
+              assert x['source_sha256']==y['original_source_sha256']
+              assert x['n_unique_times']==y['unique_timestamps']
+              assert x['quality_flag_counts']['speed']==y['source_flag_speed_counts']
+              assert x['model_eligible_rows']==0
+          print('SOURCE REPLAY PASSED: 6 B NI trials and 21872 independent profile records, no site energy approval')
+          PY
