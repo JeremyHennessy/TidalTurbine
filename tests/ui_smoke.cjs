@@ -38,6 +38,7 @@ for(const item of rendered){
   assert.match(item.thumb,/aria-hidden="true"/,'selection thumbnails do not duplicate accessible text');
   assert.ok(item.svg.length>3400,'complete component scene expected for '+item.key);
   assert.ok(!item.svg.includes('undefined')&&!item.svg.includes('NaN'),'no broken rendered numbers for '+item.key);
+  assert.ok(!item.svg.includes('&nbsp;'),'exported standalone SVG must contain only XML-supported entities');
   uniqueScenes.add(item.svg.replace(/tidal-artwork-[a-z]+/g,'tidal-artwork-KEY'));
 }
 assert.equal(uniqueScenes.size,14,'every concept must have distinct mechanical artwork');
