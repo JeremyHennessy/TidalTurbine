@@ -1,0 +1,18 @@
+name: One-time verify live TidalLab GitHub Pages exact static bytes
+on:
+  push:
+    branches: ['research/pages-live-parity-rm2-20261021']
+    paths: ['.github/workflows/tidallab-public-parity-once.yml']
+permissions:
+  contents: read
+jobs:
+  live-http:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch six live Pages assets and verify Git source blob parity
+        run: python scripts/verify_pages_live.py --check --tries 3
