@@ -1,0 +1,32 @@
+name: One-shot public FORCE native-archive GET status
+on:
+  push:
+    branches: [research/validation-readiness-20261020]
+    paths: [.github/workflows/native-get-once.yml]
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bounded public GET (not HEAD) with Range cap
+        run: |
+          python - <<'PY'
+          import json,datetime,urllib.request,urllib.error
+          targets={'native_raw_ad2cp':'https://data.fundyforce.ca/forceCloud/index.php/s/TAEz9gwARDDXCTD?path=%2F',
+                   'native_deployment_metadata':'https://data.fundyforce.ca/forceCloud/index.php/s/85etc2wCZt7K9FA'}
+          outcomes={'time_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'probe':'GET with first-1024-byte cap, no raw download'}
+          for name,url in targets.items():
+              try:
+                  req=urllib.request.Request(url,headers={'Range':'bytes=0-1023','User-Agent':'TidalTurbine-archive-QC-probe/1'})
+                  with urllib.request.urlopen(req,timeout=13) as resp:
+                      head=resp.read(1024)
+                      outcomes[name]={'http_status':resp.status,'content_type':resp.headers.get('Content-Type'),
+                                      'content_length':resp.headers.get('Content-Length'),'bytes_inspected':len(head),
+                                      'html_first_words':head[:150].decode('utf8','replace') if resp.headers.get('Content-Type','').startswith('text/html') else None}
+              except urllib.error.HTTPError as err: outcomes[name]={'http_status':err.code,'error':'Public GET failed, no native bytes obtained'}
+              except Exception as exc: outcomes[name]={'error':type(exc).__name__,'no_native_bytes_obtained':True}
+          print('PUBLIC_FORCE_NATIVE_GET_PROBE '+json.dumps(outcomes,sort_keys=True))
+          PY
