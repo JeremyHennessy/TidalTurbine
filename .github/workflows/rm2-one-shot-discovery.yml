@@ -1,0 +1,60 @@
+name: One-shot RM2 primary raw source discovery and checkout snapshot
+on:
+  push:
+    branches: [research/rm2-raw-signal-gates-20261021]
+    paths: [.github/workflows/rm2-one-shot-discovery.yml]
+permissions: {contents: read}
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect Figshare article and record bounded indexed files
+        shell: bash
+        run: |
+          python - <<'PY'
+          import urllib.request,json,os
+          from pathlib import Path
+          dst=Path('rm2_source_index.json')
+          endpoint='https://api.figshare.com/v2/articles/1302029'
+          report={'api_endpoint':endpoint,'observation_status':'DISCOVERY_NOT_ACQUIRED'}
+          try:
+              req=urllib.request.Request(endpoint,headers={'Accept':'application/json','User-Agent':'TidalTurbine-research/1.0'})
+              with urllib.request.urlopen(req,timeout=30) as r:
+                  payload=r.read(3_000_001)
+                  if len(payload)>3_000_000: raise ValueError('Article JSON over 3MB')
+              obj=json.loads(payload); files=obj.get('files',[])
+              report.update({'article_title':obj.get('title'),'doi':obj.get('doi'),
+                'n_listed_files':len(files),'observed_status':'INDEX_LOADED',
+                'matches':[{'name':f.get('name'),'id':f.get('id'),'size':f.get('size'),'download_url':f.get('download_url'),'computed_md5':f.get('computed_md5')} for f in files if
+                     any(s in f.get('name','') for s in ('Perf-0.4_10_','Perf-0.4_12_','Perf-1.0_10_','Perf-1.0_12_','Perf-1.2_10_','Perf-1.2_12_'))],
+                'suffix_counts': {s:sum(f.get('name','').endswith(s) for f in files) for s in ('_nidata.h5','_acsdata.h5','_vecdata.h5','_metadata.json')}})
+          except Exception as ex:report.update({'observed_status':'BLOCKED','error_type':type(ex).__name__,'detail':str(ex)[:300]})
+          dst.write_text(json.dumps(report,indent=2)+'\n')
+          print('RM2_ARTICLE '+json.dumps({k:v for k,v in report.items() if k!='matches'}))
+          print('MATCHED_RM2_FILES '+json.dumps(report.get('matches',[]))[:12000])
+          PY
+      - name: Preserve source and machine readable discovery index
+        uses: actions/upload-artifact@v4
+        with:
+          name: tidal-current-source-snapshot-and-rm2-index
+          path: |
+            .github/
+            AGENTS.md
+            README.md
+            docs/
+            research/
+            reports/
+            requirements-ocean.txt
+            scripts/
+            tidal_screen/
+            tests/
+            site/
+            configs/
+            index.html
+            .gitignore
+            .nojekyll
+            rm2_source_index.json
+          retention-days: 2
+          if-no-files-found: error
