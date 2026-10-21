@@ -629,5 +629,87 @@
     "next_action": "Obtain method/units/ADCP native beam quality and independent matched currents before comparison with FORCE or rotor models.",
     "limitations": "Separate St Marys Bay station, NOT Minas Passage or 3D turbine-depth inflow. Measured speed is sensor data in wave product, not certified turbine resource or annual extremes.",
     "acquisition_evidence": "Original 60480-byte CSV SHA256 27bd18b64f2c71fb1502a663ede62f1d04b47a019dbb2fc5191190e028493ee8; one-shot GitHub Actions 39496314263, 7-day artifact 12298006905; QA derivation/reproducibility in research/observations/CMAR_DIGBY_DG013_2022_QA.json"
+  },
+  {
+    "id": "OCEAN-022",
+    "title": "Grand Passage DG012 — 2020 historical ADCP current profiles",
+    "provider": "Centre for Marine Applied Research / Nova Scotia Open Data",
+    "category": "current",
+    "region": "Grand Passage, Digby County, Nova Scotia",
+    "source_url": "https://data.novascotia.ca/resource/is3b-ip8b.json",
+    "download_url": "https://data.novascotia.ca/resource/is3b-ip8b.json",
+    "variables": [
+      "datetime",
+      "bin_height_above_sea_floor_m",
+      "bin_depth_below_surface_m",
+      "sea_water_speed_m_s",
+      "sea_water_to_direction_degree",
+      "qc_flag_sea_water_speed_m_s",
+      "qc_flag_sea_water_to_direction_degree"
+    ],
+    "units": [
+      "source timestamp offset unverified",
+      "m above seabed reported",
+      "m below surface reported",
+      "m/s",
+      "degrees",
+      "source publisher QC flags"
+    ],
+    "temporal_coverage": "2020-08-27 to 2020-09-02 (first source-verified week)",
+    "sampling_interval": "nominal 600 s between distinct timestamps in bounded selected source window",
+    "position_wgs84": {
+      "latitude": 44.27359,
+      "longitude": -66.3424
+    },
+    "depth_reference": "1.5–14.5 m above seabed, 14 bins; source vertical reference and native instrument correlation not fully verified",
+    "quality_flags": "Published per-field Pass, Suspect/Of Interest and Fail; reject or review suspect/fail; publisher Pass does not constitute native beam/instrument QC or turbine-depth engineering approval",
+    "license": "Nova Scotia Open Government Licence, attribute Nova Scotia and CMAR",
+    "access_status": "source_reviewed",
+    "review_depth": "bounded ~7-day original source rows downloaded, SHA256 pinned and numerically screened, engineering QC blocked",
+    "metadata_checked_utc": "2026-10-21",
+    "next_action": "Verify original ADCP beam-correlation/percent-good, heading, tilt, true depth/datum, source timezone, and full campaign quality before any turbine model or site comparison",
+    "limitations": "Historically different years and sites; no annual/extreme-current characterization, site suitability, device capture-area velocity, physical-load exposure, commercial output or legal authorization. Model eligibility ZERO.",
+    "acquisition_evidence": "10463 source-verified processed current-profile rows, original JSON SHA256 c7c3cf3863816e710d61c8079b8fa0ee2a17702917f2f30047bd9f07a4a1bb0d; source run 39604878791; see reports/NS-PASSAGES-7D-SUMMARY-001.json."
+  },
+  {
+    "id": "OCEAN-023",
+    "title": "Petit Passage DG002 — 2010 historical ADCP current profiles",
+    "provider": "Centre for Marine Applied Research / Nova Scotia Open Data",
+    "category": "current",
+    "region": "Petit Passage, Digby County, Nova Scotia",
+    "source_url": "https://data.novascotia.ca/resource/is3b-ip8b.json",
+    "download_url": "https://data.novascotia.ca/resource/is3b-ip8b.json",
+    "variables": [
+      "datetime",
+      "bin_height_above_sea_floor_m",
+      "bin_depth_below_surface_m",
+      "sea_water_speed_m_s",
+      "sea_water_to_direction_degree",
+      "qc_flag_sea_water_speed_m_s",
+      "qc_flag_sea_water_to_direction_degree"
+    ],
+    "units": [
+      "source timestamp offset unverified",
+      "m above seabed reported",
+      "m below surface reported",
+      "m/s",
+      "degrees",
+      "source publisher QC flags"
+    ],
+    "temporal_coverage": "2010-08-04 to 2010-08-10 (first source-verified week)",
+    "sampling_interval": "nominal 600 s between distinct timestamps in bounded selected source window",
+    "position_wgs84": {
+      "latitude": 44.3662,
+      "longitude": -66.2083
+    },
+    "depth_reference": "5.7–53.7 m above seabed, 13 bins; source vertical reference and native instrument correlation not fully verified",
+    "quality_flags": "Published per-field Pass, Suspect/Of Interest and Fail; reject or review suspect/fail; publisher Pass does not constitute native beam/instrument QC or turbine-depth engineering approval",
+    "license": "Nova Scotia Open Government Licence, attribute Nova Scotia and CMAR",
+    "access_status": "source_reviewed",
+    "review_depth": "bounded ~7-day original source rows downloaded, SHA256 pinned and numerically screened, engineering QC blocked",
+    "metadata_checked_utc": "2026-10-21",
+    "next_action": "Verify original ADCP beam-correlation/percent-good, heading, tilt, true depth/datum, source timezone, and full campaign quality before any turbine model or site comparison",
+    "limitations": "Historically different years and sites; no annual/extreme-current characterization, site suitability, device capture-area velocity, physical-load exposure, commercial output or legal authorization. Model eligibility ZERO.",
+    "acquisition_evidence": "11409 source-verified processed current-profile rows, original JSON SHA256 70a36f119439d5c1bddedb318b819001d3c8b517eb92cfa85ff3ec8dd60658fb; source run 39604878791; see reports/NS-PASSAGES-7D-SUMMARY-001.json."
   }
 ]
