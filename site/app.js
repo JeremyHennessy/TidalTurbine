@@ -12,6 +12,8 @@ let ocean = [];
 let selected = 'seabed';
 let compared = 'crossflow';
 let rm2Tradeoff = null;
+let rm2CrossSpeed = null;
+let rm2RawRig = null;
 let rm1 = null;
 let forceCampaign = null;
 let forceSelectedRange = 29.5;
@@ -291,6 +293,61 @@ function renderForceCampaign(){
   caption.textContent=screen?'Exploratory ≥20 dbar arithmetic screen; removes the terminal low-pressure event, NOT a manufacturer QC rule.':'Entire published processed campaign, including 88 terminal all-zero profiles; recovery hypothesis unverified.';
   root.querySelectorAll('.force-cell').forEach(b=>b.addEventListener('click',()=>{forceSelectedRange=Number(b.dataset.range);renderForceCampaign();}));
 }
+
+function renderRM2CrossSpeed(){
+  const root=$('#rm2-speed-bars');if(!root)return;
+  if(!rm2CrossSpeed){root.innerHTML='<p class="empty">Ten-series processed lab report unavailable; no trend inferred.</p>';return;}
+  const choice=$('#rm2-speed-sweep').value;
+  const rows=rm2CrossSpeed.series.filter(x=>choice==='both'||x.series_id.endsWith('-'+choice));
+  const lanes=[
+    {name:'Mechanical Cp penalty',key:'mechanical_cp_point_decrease_percent',max:35,style:'loss',unit:'% less mean Cp',note:'Mechanical power-coefficient decrease at the same nominal tow speed'},
+    {name:'Mean streamwise Cd decrease',key:'mean_streamwise_cd_point_decrease_percent',max:10,style:'drag',unit:'% less mean Cd',note:'Mean rotor drag-coefficient decrease, NOT damaging cyclic load'}
+  ];
+  const html=lanes.map(lane=>{
+    const groups=[0.4,0.6,0.8,1.0,1.2].map(speed=>{
+      const matches=rows.filter(x=>Math.abs(x.nominal_tow_speed_m_s-speed)<0.001).sort((a,b)=>a.series_id.localeCompare(b.series_id));
+      return '<div class="speed-row"><strong>'+numeric(speed,1)+' <small>m/s</small></strong><div class="speed-row-bars">'+matches.map(x=>{
+        const val=x.candidate_relative_to_tsr3p1[lane.key];
+        const sweep=x.series_id.endsWith('-B')?'B':'A';
+        const pct=Math.min(100,Math.max(0,100*val/lane.max));
+        return '<div class="speed-bar-row" title="'+safe(x.series_id+' '+numeric(val,2)+'%')+'"><span>Sweep '+sweep+'</span><div class="speed-track"><i class="'+lane.style+'" style="width:'+pct.toFixed(3)+'%"></i></div><b>'+numeric(val,2)+'%</b></div>';
+      }).join('')+'</div></div>';
+    }).join('');
+    return '<section class="speed-lane"><h3>'+lane.name+'</h3><p>'+lane.note+'</p><div class="speed-lane-body">'+groups+'</div><div class="speed-legend">Bar scale 0–'+lane.max+'% · '+lane.unit+' · no uncertainty inference</div></section>';
+  }).join('');
+  root.innerHTML='<div class="speed-metrics"><div><small>Processed source curves</small><strong>'+rows.length+' / 10</strong></div><div><small>Nominal speed range</small><strong>0.4–1.2 <small>m/s</small></strong></div><div><small>Physical fatigue evidence</small><strong>NOT MEASURED</strong></div></div><div class="speed-lanes">'+html+'</div><p class="speed-warning">At 0.4 m/s the Cp penalty is around 29%, not the ~2% seen at 1 m/s. Original exp_unc fields are not paired confidence intervals; no raw blade-root stress or net electrical power.</p>';
+}
+
+function renderRM2RawRig(){
+  const root=$('#rm2-raw-chart');if(!root)return;
+  if(!rm2RawRig){root.innerHTML='<p class="empty">Original six-trial NI reduction unavailable; do not infer rig load histories.</p>';return;}
+  const speed=Number($('#rm2-raw-speed').value),metric=$('#rm2-raw-metric').value;
+  const trials=rm2RawRig.trials.filter(x=>Math.abs(x.nominal_speed_m_s-speed)<0.00001).sort((a,b)=>a.nominal_tsr-b.nominal_tsr);
+  const pair=rm2RawRig.within_speed_pairs.find(x=>Math.abs(x.nominal_speed_m_s-speed)<0.00001);
+  if(trials.length!==2||!pair){root.innerHTML='<p class="empty">Requested measured rig pair unavailable.</p>';return;}
+  const key=metric==='torque'?'rig_shaft_torque_phase_mean':'rig_support_drag_phase_mean';
+  const unit=metric==='torque'?'N·m':'N';
+  const values=trials.flatMap(x=>x[key].means);
+  const lo=Math.min(...values),hi=Math.max(...values);
+  const spread=Math.max(1e-3,hi-lo),min=lo-.12*spread,max=hi+.12*spread;
+  const w=860,h=290,L=66,R=20,T=24,B=43;
+  const xAt=i=>L+i/35*(w-L-R),yAt=value=>T+(max-value)/(max-min)*(h-T-B);
+  const grid=[0,1,2,3,4].map(i=>{
+    const value=min+(max-min)*i/4,y=yAt(value);
+    return '<line x1="'+L+'" x2="'+(w-R)+'" y1="'+y+'" y2="'+y+'" stroke="#294c5d" stroke-dasharray="4 5"/><text x="'+(L-9)+'" y="'+(y+3)+'" fill="#a9c6cd" text-anchor="end" font-size="11">'+numeric(value,1)+'</text>';
+  }).join('');
+  const ticks=[0,9,18,27,35].map(i=>'<text x="'+xAt(i)+'" y="'+(h-18)+'" text-anchor="middle" fill="#b6c9cb" font-size="11">'+(i===35?'355':5+i*10)+'°</text>').join('');
+  const paths=trials.map((item,i)=>{
+    const points=item[key].means.map((v,j)=>xAt(j).toFixed(2)+','+yAt(v).toFixed(2)).join(' ');
+    return '<polyline points="'+points+'" stroke="'+(i===0?'#f7bd76':'#52d9de')+'" stroke-width="3" fill="none" stroke-linejoin="round"><title>TSR '+numeric(item.nominal_tsr,1)+' — phase-averaged rig '+(metric==='torque'?'shaft torque':'support drag')+'</title></polyline>';
+  }).join('');
+  const summary=metric==='torque'?
+    {v:pair.shaft_torque_std_change_percent,name:'Shaft torque standard deviation'}:
+    {v:pair.support_drag_p95_change_percent,name:'95th-percentile rig support drag'};
+  const sign=summary.v>0?'+':'';
+  root.innerHTML='<div class="rig-summary"><div><small>Original NI sample rate</small><strong>2,000 <small>Hz</small></strong></div><div><small>'+summary.name+' · TSR 2.9 vs 3.1</small><strong>'+sign+numeric(summary.v,2)+'%</strong></div><div><small>Structural fatigue verdict</small><strong>NOT EVALUABLE</strong></div></div><div class="rig-legend"><span><i class="candidate"></i>TSR 2.9 · source run 10</span><span><i class="reference"></i>TSR 3.1 · source run 12</span></div><div class="rig-svg-scroll"><svg viewBox="0 0 '+w+' '+h+'" role="img" aria-label="Original NI phase-averaged rig '+safe(metric)+' at '+numeric(speed,1)+' metres per second. Two short published tows, no measured blade stress.">'+grid+ticks+'<line x1="'+L+'" y1="'+T+'" x2="'+L+'" y2="'+(h-B)+'" stroke="#93bac4"/><line x1="'+L+'" y1="'+(h-B)+'" x2="'+(w-R)+'" y2="'+(h-B)+'" stroke="#93bac4"/>'+paths+'<text transform="translate(16 '+h/2+') rotate(-90)" fill="#b6ced1" font-size="12" text-anchor="middle">Rig '+safe(metric)+' ('+unit+')</text><text x="'+w/2+'" y="'+(h-3)+'" fill="#b6ced1" font-size="12" text-anchor="middle">Rotor phase · 10° bin means</text></svg></div><p class="rig-interpretation">Only original rig torque/support force is observed. Averaging by phase across 9–14 revolutions hides some true cycle extremes; no blade strain or material fatigue law was measured. Mechanical stress and net electricity remain unknown.</p>';
+}
+
 async function init(){
   initNavigation();enhanceStyles();
   try{const r=await fetch('../research/mechanisms.json',{cache:'no-cache'});if(!r.ok)throw Error('Mechanism registry fetch '+r.status);const rows=await r.json();if(!Array.isArray(rows)||rows.length<14)throw Error('Incomplete canonical mechanisms');applyMechanisms(rows);}catch(e){console.warn('Mechanism registry unavailable, retaining legacy designs',e);}
@@ -302,9 +359,16 @@ async function init(){
   try{const r=await fetch('../reports/RM2-TRADEOFF-001.json',{cache:'no-cache'});if(!r.ok)throw Error('RM2 drag report fetch '+r.status);const data=await r.json();if(data.classification!=='DESCRIPTIVE_MEASURED_PROCESSED_COEFFICIENT_COMPARISON')throw Error('Invalid mean drag evidence');rm2Tradeoff=data;}catch(e){console.warn('RM2 mean drag report unavailable',e);}
   try{const r=await fetch('../reports/RM1-OBS-001.json',{cache:'no-cache'});if(!r.ok)throw Error('RM1 report fetch '+r.status);const data=await r.json();if(data.classification!=='PUBLISHED_TABLE_REPRODUCTION_PLUS_MECHANICAL_IDENTITY_NOT_PREDICTIVE_VALIDATION'||!Array.isArray(data.results)||data.results.length!==32||!['right','left'].every(side=>data.results.filter(p=>p.rotor===side).length===16)||!data.results.every(p=>Number.isFinite(p.tsr)&&Number.isFinite(p.reported_cp)))throw Error('Invalid RM1 table provenance');rm1=data;}catch(e){console.warn('RM1 table unavailable',e);}
   try{const r=await fetch('../reports/FORCE-CAMPAIGN-QA-001.json',{cache:'no-cache'});if(!r.ok)throw Error('FORCE campaign QA fetch '+r.status);const data=await r.json();if(data.status!=='NUMERICAL_QA_ONLY_ZERO_SOURCE_APPROVED_ROTOR_INFLOW_BINS'||data.source_approved_velocity_records!==0||data.model_ingestion!=='BLOCKED_ZERO_SCIENTIFICALLY_QUALIFIED_BINS'||!Array.isArray(data.vertical_cell_summary)||data.vertical_cell_summary.length!==50||!data.vertical_cell_summary.every(p=>Number.isFinite(p.range_m_instrument_relative)&&Number.isFinite(p.exact_zero_triples)&&Number.isFinite(p.comparison_window_zero_triples)&&p.samples===data.time_bursts))throw Error('Invalid FORCE numeric-QA evidence');forceCampaign=data;}catch(e){console.warn('FORCE campaign QA unavailable',e);}
-  renderStats();miniOverview();sensitivityRender();experimentRender();oceanRender();rm2Plot();renderRM2Tradeoff();rm1Plot();renderForceCampaign();
+
+  try{const r=await fetch('../reports/RM2-CROSSSPEED-001.json',{cache:'no-cache'});if(!r.ok)throw Error('RM2 cross-speed fetch '+r.status);const data=await r.json();if(data.classification!=='DESCRIPTIVE_PUBLISHED_PROCESSED_LAB_MULTISPEED_COMPARISON_NO_LOAD_VALIDATION'||!Array.isArray(data.series)||data.series.length!==10||data.series.some(s=>!Number.isFinite(s.nominal_tow_speed_m_s)||!Number.isFinite(s.candidate_relative_to_tsr3p1.mechanical_cp_point_decrease_percent)||!Number.isFinite(s.candidate_relative_to_tsr3p1.mean_streamwise_cd_point_decrease_percent)))throw Error('Invalid source provenance or comparison');rm2CrossSpeed=data;}catch(e){console.warn('RM2 cross-speed unavailable',e);}
+  try{const r=await fetch('../reports/RM2-RAW-LOADS-001.json',{cache:'no-cache'});if(!r.ok)throw Error('Raw NI report fetch '+r.status);const data=await r.json();if(data.classification!=='ORIGINAL_NI_RIG_FORCE_AND_TORQUE_DESCRIPTIVE_REDUCTION_NOT_BLADE_STRAIN_OR_FATIGUE'||data.six_trials_acquired_and_sha_validated!==6||!Array.isArray(data.trials)||data.trials.length!==6||data.scientific_gates.fatigue_damage!=='NOT_EVALUABLE'||data.trials.some(t=>![t.rig_shaft_torque_phase_mean,t.rig_support_drag_phase_mean].every(p=>Array.isArray(p.means)&&p.means.length===36&&p.means.every(Number.isFinite))))throw Error('Invalid original NI evidence gate');rm2RawRig=data;}catch(e){console.warn('Raw NI rig data unavailable',e);}
+
+  renderStats();miniOverview();sensitivityRender();experimentRender();oceanRender();rm2Plot();renderRM2Tradeoff();rm1Plot();renderForceCampaign();renderRM2CrossSpeed();renderRM2RawRig();
   $('#export-slider').addEventListener('input',experimentRender);
   $('#rm2-share').addEventListener('change',renderRM2Tradeoff);
+  $('#rm2-speed-sweep').addEventListener('change',renderRM2CrossSpeed);
+  $('#rm2-raw-speed').addEventListener('change',renderRM2RawRig);
+  $('#rm2-raw-metric').addEventListener('change',renderRM2RawRig);
   $('#rm1-rotor-filter').addEventListener('change',rm1Plot);
   $('#force-window').addEventListener('change',renderForceCampaign);
   $('#reset-experiment').addEventListener('click',()=>{$('#export-slider').value='80';experimentRender();});
