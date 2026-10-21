@@ -27,7 +27,7 @@ assert.match(element('#design-viewport').innerHTML,/NOT TO SCALE/,'main studio i
 const expectedDesigns=['seabed','floating','counter','rim','crossflow','helical','savonius','foil','screw','kite','duct','pressure','eel','viv'];
 const rendered=vm.runInContext("Object.keys(DESIGNS).map(key=>({key,svg:designSvg(key,true),thumb:window.TidalArtwork.thumbnail(key)}))",ctx);
 assert.equal(rendered.length,14,'all fourteen canonical mechanism drawings must be upgraded');
-assert.deepEqual(rendered.map(x=>x.key).sort(),expectedDesigns.slice().sort());
+assert.deepEqual(Array.from(rendered,x=>x.key).sort(),expectedDesigns.slice().sort());
 const uniqueScenes=new Set();
 for(const item of rendered){
   assert.match(item.svg,/class="tidal-artwork tidal-artwork-/,'selected studio and comparisons use the new vector engine');
