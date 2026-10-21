@@ -1,0 +1,88 @@
+name: One-shot RM2 sweep-B and Nova Scotia profile source capture
+on:
+  push:
+    branches: [probe/paired-rm2-ns-profiles-20261021]
+    paths: [.github/workflows/paired-rm2-ns-profiles-once.yml]
+permissions:
+  contents: read
+jobs:
+  source-capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Acquire six source-verified second-sweep NI records and bounded site profile windows
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from urllib.request import Request,urlopen
+          from urllib.parse import urlencode
+          import json,hashlib,os
+          ROOT=Path(os.environ['RUNNER_TEMP'])/'paired-source';ROOT.mkdir()
+          def fetch(url,limit):
+              with urlopen(Request(url,headers={'User-Agent':'TidalTurbineResearch/1.0'}),timeout=85) as r:
+                  data=r.read(limit+1)
+              if len(data)>limit:raise ValueError('Source exceeded declared byte cap: '+url)
+              return data
+          src=[]
+          files=[
+            ('Perf-0.4-b_10',1913361,1913360),('Perf-0.4-b_12',1913371,1913370),
+            ('Perf-1.0-b_10',1914197,1914196),('Perf-1.0-b_12',1914207,1914206),
+            ('Perf-1.2-b_10',1915418,1915417),('Perf-1.2-b_12',1915429,1915428)]
+          for name,niid,metaid in files:
+              pack={'run':name,'origin':'Figshare UNH RM2 raw 1302029','files':[]}
+              for typ,id in [('nidata.h5',niid),('metadata.json',metaid)]:
+                  meta=json.loads(fetch('https://api.figshare.com/v2/file/'+str(id),100000))
+                  url='https://ndownloader.figshare.com/files/'+str(id)
+                  raw=fetch(url,23000000 if typ=='nidata.h5' else 20000)
+                  md5=hashlib.md5(raw).hexdigest()
+                  expected=meta.get('computed_md5') or meta.get('supplied_md5')
+                  if not expected or expected.lower()!=md5:raise ValueError('Publisher MD5 mismatch '+name+' '+typ)
+                  if int(meta['size'])!=len(raw):raise ValueError('Publisher size mismatch '+name)
+                  filename=name+'_'+typ
+                  (ROOT/filename).write_bytes(raw)
+                  pack['files'].append({'file':filename,'figshare_id':id,'original_name':meta['name'],'source_url':url,
+                     'bytes':len(raw),'source_md5':md5,'sha256':hashlib.sha256(raw).hexdigest()})
+              src.append(pack)
+              print('RM2_B_SOURCE',name,pack['files'][0]['bytes'],pack['files'][0]['sha256'],flush=True)
+          sites=[
+            ('DG012','2020-08-27T00:00:00','2020-09-03T00:00:00','Grand Passage'),
+            ('DG002','2010-08-04T00:00:00','2010-08-11T00:00:00','Petit Passage')]
+          profiles=[]
+          for ident,start,end,label in sites:
+              base='https://data.novascotia.ca/resource/is3b-ip8b.json'
+              where="deployment_id='"+ident+"' AND datetime >= '"+start+"' AND datetime < '"+end+"'"
+              counturl=base+'?'+urlencode({'$select':'count(*) as n','$where':where})
+              expected=int(json.loads(fetch(counturl,10000))[0]['n'])
+              if expected==0 or expected>30000:raise ValueError('Unexpected site profile count '+ident+' '+str(expected))
+              url=base+'?'+urlencode({'$where':where,'$order':'datetime ASC','$limit':30000})
+              raw=fetch(url,14000000)
+              rows=json.loads(raw)
+              if len(rows)!=expected or any(str(row.get('deployment_id'))!=ident for row in rows):
+                  raise ValueError('Incomplete or contaminated site profile '+ident+' '+str(len(rows)))
+              needed={'datetime','bin_height_above_sea_floor_m','bin_depth_below_surface_m','sea_water_speed_m_s','sea_water_to_direction_degree',
+                 'qc_flag_sea_water_speed_m_s','qc_flag_sea_water_to_direction_degree'}
+              if any(not needed.issubset(row) for row in rows):raise ValueError('Required profile fields absent '+ident)
+              (ROOT/(ident+'_7d_profiles.json')).write_bytes(raw)
+              record={'id':ident,'regional_label':label,'nominal_window_start':start,'nominal_window_end_exclusive':end,
+                 'source_url':url,'source_query_count_url':counturl,'records':expected,'bytes':len(raw),
+                 'sha256':hashlib.sha256(raw).hexdigest(),'first_record':rows[0], 'last_record':rows[-1],
+                 'scientific_qc':'UNQUALIFIED_PUBLISHER_FLAG_MEANING_UNVERIFIED','model_eligible':0}
+              profiles.append(record)
+              print('NS_PROFILE_SOURCE',ident,expected,record['sha256'],flush=True)
+          manifest={'schema':'TIDAL_ORIGINAL_SOURCE_CAPTURE_20261021','source_class':'ORIGINAL_LAB_NI_AND_PUBLIC_PROCESSED_NS_CURRENTS',
+             'rm2_second_sweep':src,'nova_scotia_profiles':profiles,
+             'limitations':['Second sweeps still contain no blade root strain or delivered electricity','Socrata QC pass is not beam-level velocity quality or turbine inflow validation',
+             'Profile source datetime timezone reference and full deployment geometry require validation'],
+             'model_eligible_ns_records':0}
+          (ROOT/'manifest.json').write_text(json.dumps(manifest,indent=2,sort_keys=True)+'\n')
+          print('SOURCE_CAPTURE',json.dumps({'rm2_trials':len(src),'sites':[(p['id'],p['records']) for p in profiles]}),flush=True)
+          PY
+      - name: Preserve source files outside Git for QA processing
+        uses: actions/upload-artifact@v4
+        with:
+          name: rm2-sweep-b-six-and-grand-petit-7d-sources
+          path: ${{ runner.temp }}/paired-source/
+          retention-days: 7
+          if-no-files-found: error
