@@ -1,0 +1,27 @@
+# TT-LOADS-01 / PROTO-COMPARE-01 — measurement-ready, unexecuted tidal-stream test protocol
+
+**As of 2026-10-20: PLAN ONLY.** Source: `research/experiment_protocol_v1.json`. No new hardware, operator/agency contact, physical test, native ADCP QC qualification, physical model validation or prototype selection has occurred. The original archived `SCREEN-001`, RM1 and RM2 observations retain their exact measured/synthetic classifications.
+
+## Specific test / falsification
+
+In one matched cross-flow rotor experiment, hold the same upstream measured conditions and compare source-like **RM2 run 12 TSR≈3.099** (observed Cp 0.3546025, Cd 0.8458717) versus **run 10 TSR≈2.900** (observed Cp 0.3480504, Cd 0.7992956). These are historical *laboratory processed means*, NOT a tested physical load-control algorithm. The candidate's mean Cp is 1.85% lower and mean Cd 5.51% lower; neither figure establishes smaller peak blade forces, fatigue cycles, actuator consumption or net electricity. Do not just clip electrical export (SCREEN-001 does not alter rotor forces).
+
+**Null hypothesis**: no useful reduction in damaging cyclic loads per matched electrical energy and operating exposure can be established. Falsify claimed structural benefit if stress cycles or peak loads increase, if net electricity after measured actuator/PT losses falls beyond predeclared tolerance, or if uncertainty/replicates cannot support inference.
+
+**Predeclare** the independent test sample size, randomized matched AB/BA order, identical inflow quality window, sensor calibration, null effect, stress metric, material stress transfer, acceptable energy penalty, uncertainty method, stop limits, scale and blockage corrections **before looking at tests**. The proposed 0.6/1.0/1.4 m/s bidirectional *laboratory* setpoints are engineering assumptions and do not describe available Nova Scotia currents. A 2-replicate minimum is a procedural example only, not statistical power or a certification target. The 6 steady inflow/direction conditions × 2 operating regimes = 12 study cells before repeats and separate transient tests.
+
+## Mandatory simultaneous measurement channels
+
+Record the 12 explicitly typed SI channels in the JSON: 3-D upstream velocity and turbulence; water density/depth/temp; phase; angular velocity; shaft torque; blade-root strain; strut/support strain; streamwise load cell; generator electrical signals; delivered load-side electricity; active/recovered control and auxiliary power; system fault/safety state. Choose sampling rate from highest fatigue-relevant signal frequency with measured anti-alias response and synchronization budget, **not a fabricated universal sampling Hz**. Preserve source raw traces outside Git; register hashes, sensor serial/calibration records, timestamps, outlier/null flags, trial IDs, failed runs and licensed provenance.
+
+Derived products: `E_mech = integral(torque × angular_velocity dt)`; `E_net = integral(delivered load-side watts dt minus auxiliary/control usage not yet included)` (never double-count). Structural result requires calibrated stress time histories, peak statistics, cycle counting, material-specific fatigue law with sensitivity and independently measured uncertainty. RM2's between-revolution **mean Cp/Cd spread** is not within-revolution blade-root stress or a fatigue spectrum. The [2023 measured turbulence study](https://doi.org/10.3390/en16041881) found important site/depth departures from assumed spectra and shear; underlying third-party field data were restricted. It does NOT calibrate our target device.
+
+## Three converter families; gates rather than winner scores
+
+`AXIAL-RM1-REFERENCE` (reference axial disk), `CROSSFLOW-RM2-REFERENCE` (projected D×H), and `FOIL-OSCILLATING-EXPERIMENTAL` (foil travel/real heave stroke plus full corridor) use different areas and mechanical/PTO channels. Cross-architecture test comparisons must normalize actual upstream control-volume energy, temporal occupancy, full corridor and **net measured electricity**, never directly sort unlike Cp values. Each has separate hydrodynamic, net energy, cyclic structure, environment and Mi'kmaq/fisheries participation, navigation/permit, fabrication and material, maintenance/retrieval/weather and end-of-life gates. Unknown stays **UNKNOWN**, not a numeric zero/negative/score. The foil's heave force×velocity + pitch moment×angular velocity needs actuator and parasitic energy subtracted; the code's balance equation is only a dimensional bookkeeping identity, not a physical performance curve.
+
+## Physical/field decision
+
+Current FORCE processed 2018 data and CMAR DG013 gross-range observations **have 0 model-eligible 3-D inflow bins** for a candidate testing berth. We have neither licensed native beam QC nor field-located current history, any structural strain traces or calibrated net electric run from these three candidate machines. **Do not build, buy, deploy or select a turbine winner from this plan.** A safe dry lab or flume test requires explicit independently approved machinery procedures, staff, equipment and all relevant authorizations; the repository records none.
+
+Reproduce the fail-closed planning assertions with `python scripts/check_validation_readiness.py` and `python -m unittest discover -s tests -p test_validation_readiness.py -v`. No device output is asserted by those checks. The scientific next task is actual original data acquisition / synchronized experiment, not modifying a screening curve to manufacture a validated improvement.

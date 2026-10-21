@@ -659,5 +659,166 @@
       "Ecological fish acoustics focus, not certified turbine resource, loading or site viability."
     ],
     "access_status": "Public peer-reviewed original full-text HTML sections directly examined."
+  },
+  {
+    "id": "NS-TESTCENTRE-2018",
+    "title": "Nova Scotia Small Tidal Test Centre: Gap Analysis and Business Case — Acadia / OERA",
+    "url": "https://netzeroatlantic.ca/sites/default/files/2019-05/Nova%20Scotia%20Small%20Tidal%20Test%20Centre%20-%20Gap%20Analysis%20and%20Business%20Case.pdf",
+    "publication_date": "2018-04",
+    "access_date": "2026-10-20",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "sections_reviewed",
+    "reviewed_sections": [
+      "Section 3.4.2.1 printed pp.18–20: Minas Passage",
+      "Section 3.4.2.2 printed pp.21–22: Grand/Petit Passages",
+      "Section 3.4.2.3 printed p.23: Digby Gut",
+      "Section 3.4.2.5 printed p.25: Rocky Run/Indian Sluice",
+      "Section 3.4.3 printed pp.26–27: area comparison",
+      "Appendix site-conditions summary printed pp.53–54"
+    ],
+    "supported_claims": [
+      "Historical assessment describes moderately energetic Grand Passage (2–3 m/s), more demanding Petit Passage (2.5–4.5 m/s), extreme Minas Passage, and an earlier Rocky Run bridge turbine test.",
+      "Rocky Run peak ≥2 m/s to perhaps 3 m/s in this report is VISUAL estimate only, not an ADCP current measurement.",
+      "2018 report treats marine safety, access, water clarity and ability to recover as critical test-centre choices."
+    ],
+    "limitations": [
+      "2018 report cannot confirm 2026 site access, bridge authorization, berth availability, legal permissions, or device suitability.",
+      "Only selected sections examined, not all 105 pages and underlying velocity sources.",
+      "Study's probable shallow bridge clearance ranges are not a survey of Rocky Run."
+    ],
+    "access_status": "public 105-page PDF; targeted sections text inspected"
+  },
+  {
+    "id": "NS-SWRESOURCE-2013",
+    "title": "Southwest Nova Scotia Tidal Energy Resource Assessment — FORCE catalogue",
+    "url": "https://fundyforce.ca/document-collection/southwest-nova-scotia-tidal-energy-resource-assessment",
+    "publication_date": "2013",
+    "access_date": "2026-10-20",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "landing_page_review",
+    "reviewed_sections": [
+      "Catalogue project description and dataset/result statement"
+    ],
+    "supported_claims": [
+      "Southwest Nova Scotia project reports ADCP surveying of Grand Passage, Petit Passage and Digby Gut and high-resolution bathymetry work."
+    ],
+    "limitations": [
+      "Linked volumes and original ADCP digital data were not retrieved or validated in this pass.",
+      "No rotor-depth measured speeds have been ingested."
+    ],
+    "access_status": "public HTML index; linked PDFs not reviewed in full"
+  },
+  {
+    "id": "NRC-DIGBY-2025",
+    "title": "NRCan — hydrodynamic site assessment for Digby Neck tidal development",
+    "url": "https://natural-resources.canada.ca/funding-partnerships/reducing-cost-stream-tidal-energy-generation-through-comprehensive-hydrodynamic-site-assessment",
+    "publication_date": "undated project; government page modified 2025-01-14",
+    "access_date": "2026-10-20",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "sections_reviewed",
+    "reviewed_sections": [
+      "Project results: Grand Passage ecoSPRAY",
+      "ADCP and flow-modelling results",
+      "Observations and next steps"
+    ],
+    "supported_claims": [
+      "Project assessed Grand Passage, Petit Passage and Digby Gut with measurements and models.",
+      "The page reports Petit Passage was most promising of the three in resource screening, not a demonstrated cheap public prototype site."
+    ],
+    "limitations": [
+      "Public project summary and historical research; no current berth permission or present-day turbine system operating status.",
+      "Underlying raw ADCP QA and commercial costs not inspected."
+    ],
+    "access_status": "public HTML"
+  },
+  {
+    "id": "NS-GRAND-2018-PERMIT",
+    "title": "Nova Scotia — 2018 permit for non-grid-connected PLAT-I tidal turbine test, Grand Passage",
+    "url": "https://news.novascotia.ca/en/2018/09/19/tidal-permit-issued-black-rock-tidal-power",
+    "publication_date": "2018-09-19",
+    "access_date": "2026-10-20",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "full_content_review",
+    "reviewed_sections": [
+      "Entire government news release"
+    ],
+    "supported_claims": [
+      "Nova Scotia authorized a developer's six-month, 280-kW floating Grand Passage non-grid field test with environmental effects monitoring.",
+      "Non-grid testing has a documented historical provincial authorization precedent."
+    ],
+    "limitations": [
+      "2018 permission applies to the named developer/device/site only; no 2026 exemption, permit, berth or permission for new equipment follows."
+    ],
+    "access_status": "public government HTML"
+  },
+  {
+    "id": "COVE-STELLA-2026",
+    "title": "COVE Stella Maris testing facilities — Dartmouth marine technology wet integration",
+    "url": "https://covesolutions.com/programs-services/stella-maris-testing-solution/",
+    "publication_date": "undated service page checked 2026-10-20",
+    "access_date": "2026-10-20",
+    "evidence_class": "MANUFACTURER_OR_PROJECT_CLAIM",
+    "review_depth": "sections_reviewed",
+    "reviewed_sections": [
+      "Testing solution features and capability descriptions"
+    ],
+    "supported_claims": [
+      "Facility advertises subsea platform, dockside testing and shoreside data access."
+    ],
+    "limitations": [
+      "It does NOT substantiate natural tidal current performance, permission for a rotating turbine or availability/cost for this project.",
+      "Operator-authored capability descriptions, not independently assessed turbine test results."
+    ],
+    "access_status": "public operator HTML"
+  },
+  {
+    "id": "NS-TIDAL-DEMO-GUIDE-2026",
+    "title": "Nova Scotia Tidal Demonstration Permit Application Guide — July 2026",
+    "url": "https://novascotia.ca/programs/tidal-demonstration-permit/tdp-application-guide.pdf",
+    "publication_date": "2026-07",
+    "access_date": "2026-10-20",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "sections_reviewed",
+    "reviewed_sections": [
+      "Introduction p.4 grid-connected project purpose",
+      "2.1–2.5 printed pp.9–10 entity, TRL, priority area, project size",
+      "Official programme deadline page read 2026-10-20"
+    ],
+    "supported_claims": [
+      "2026 application considers grid-connected tidal-stream demonstrators, at least TRL 4, qualifying NS entity, eligible Fundy priority area outside FORCE MREA, under 2 MW.",
+      "Guide July 2026 printed p.10 lists available-permit MREA caps 0.499 MW Petit, 1.999 MW Grand and 1.999 MW Digby; capacity figures may change.",
+      "Public programme web page states deadline 2026-10-30 11:59pm."
+    ],
+    "limitations": [
+      "Not a finding that our project/entity/site is eligible; no TRL 4, grid interconnection or permission established.",
+      "Guide not a substitute for applicable statute/regulations and remaining site-area capacities may change.",
+      "Does not certify that a non-grid prototype or Rocky Run is inside program jurisdiction."
+    ],
+    "access_status": "Public provincial PDF guide selected printed pages and current official programme webpage examined."
+  },
+  {
+    "id": "TURB-NABEREZHNYKH-2023",
+    "title": "Naberezhnykh et al. (2023), How Applicable Are Turbulence Assumptions Used in the Tidal Energy Industry?",
+    "url": "https://doi.org/10.3390/en16041881",
+    "publication_date": "2023-02-14",
+    "access_date": "2026-10-20",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "sections_reviewed",
+    "reviewed_sections": [
+      "Abstract: measured turbulence models and site variability",
+      "Table 1: EMEC and FORCE 2018/2022 ADCP study campaigns",
+      "Discussion and conclusions on shear, spectra and turbulence assumptions",
+      "Data Availability Statement: third-party restricted source measurements"
+    ],
+    "supported_claims": [
+      "The study compared field turbulence with commonly assumed spectral/shear/coherence representations at EMEC and FORCE and reports notable site/depth deviations.",
+      "Turbulence spectra and shear assumptions can materially affect simulated turbine loads; site-specific measurement is required for robust loads comparison."
+    ],
+    "limitations": [
+      "Underlying ADCP study data are explicitly third-party restricted; this is not access to 2018 FAST3 instrument 100258 native raw beam data.",
+      "2022 and other FORCE campaigns listed are NOT the same 2018 100258 processed publication and cannot substitute QC for it.",
+      "Paper does not quantify our turbine structural life, test-site turbine resource, or supplier accessibility."
+    ],
+    "access_status": "Public open-access journal paper, abstract, results/conclusions and data availability directly examined."
   }
 ]

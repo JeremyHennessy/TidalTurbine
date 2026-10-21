@@ -1,0 +1,220 @@
+{
+  "schema_version": "TT-EXPERIMENT-V1",
+  "created_utc": "2026-10-20",
+  "classification": "DESIGN_HYPOTHESIS_PROSPECTIVE_PROTOCOL_NO_MEASURED_RESULT",
+  "physical_experiments_run": 0,
+  "prototype_winner": null,
+  "qualified_site_inflow_rows": 0,
+  "scientific_status": "NOT_EXECUTED_BLOCKED_SITE_QC_AND_PHYSICAL_TEST_ACCESS",
+  "source_documents": [
+    "docs/RM1_RM2_STRUCTURAL_GATES_20261020.md",
+    "docs/PROTOTYPE_COMPARISON_20261020.md",
+    "reports/RM1-OBS-001.json",
+    "reports/RM2-TRADEOFF-001.json",
+    "reports/RM2-VARIABILITY-001.json",
+    "research/prototype_gates.json"
+  ],
+  "question": "At matched actual measured inflow, does deliberately reduced cross-flow mean drag reduce damaging cyclic loads and improve net delivered electricity/reliability compared with near-Cp-peak operation?",
+  "mechanism": "Lower controlled tip-speed ratio can change mean streamwise drag and mechanical Cp; reduced mean drag alone cannot predict cyclic structural stress or fatigue.",
+  "null_hypothesis": "After calibration and matched conditions, no credible reduction in damaging load cycles with acceptable net electrical output is demonstrated.",
+  "comparator": {
+    "rotor": "SAME 1:6 cross-flow RM2 geometry (test rig prototype matched for validity, not fabricated published hardware)",
+    "baseline_source_run": 12,
+    "baseline_nominal_tsr": 3.0993495,
+    "candidate_source_run": 10,
+    "candidate_nominal_tsr": 2.8999618,
+    "published_processed_mean_cp": {
+      "baseline": 0.3546025,
+      "candidate": 0.3480504
+    },
+    "published_processed_mean_cd": {
+      "baseline": 0.8458717,
+      "candidate": 0.7992956
+    },
+    "source_mean_tradeoff_only": "Candidate Cp approx 1.85 percent lower, mean Cd approx 5.51 percent lower, at nominal 1m/s tow tank; not tested structural or net electrical benefit.",
+    "mechanical_control": "Time-resolved rotor angular velocity/phase and calibrated shaft torque; actual control system energy must be metered.",
+    "same_inflow_requirement": "Match measured free-stream speed, vector direction, vertical shear, turbulence intensity, water properties, rotor immersion and test-section blockage; preregister tolerances before testing."
+  },
+  "prospective_lab_envelope_assumptions": {
+    "source_class": "ENGINEERING_ASSUMPTION_NOT_MEASURED_FIELD_RESOURCE",
+    "mean_inflow_setpoints_m_s": [
+      0.6,
+      1,
+      1.4
+    ],
+    "directions": [
+      "flood_analog",
+      "ebb_analog"
+    ],
+    "mandatory_repeat_protocol": "At least two separate independently prepared replicate opportunities with randomized AB/BA order per matched condition are design suggestions, NOT statistically powered sample sizes; actual sample size and uncertainty plan must be frozen before running.",
+    "condition_count_without_replicates": 6,
+    "rotor_control_pairs_per_condition": 2,
+    "minimum_total_mean_condition_cells_without_replicates": 12,
+    "startup_shutdown_and_reversals": "Separate preregistered transient regimes, not silently added to steady-state averages.",
+    "sample_rate": "Must be selected from highest expected blade/strain harmonics and anti-alias verification, with synchronization error budget and published sensitivity. No arbitrary universal Hz is asserted."
+  },
+  "mandatory_synced_channels": [
+    {
+      "id": "inflow_3d",
+      "si": "m/s",
+      "required": "upstream water velocity vectors, shear/turbulence, timestamps and verified quality"
+    },
+    {
+      "id": "fluid_state",
+      "si": "kg/m^3,degC,m",
+      "required": "water density, temperature, depth/immersion, blockages and wave state"
+    },
+    {
+      "id": "rotor_position",
+      "si": "rad",
+      "required": "rotor angular phase, direction and instantaneous TSR"
+    },
+    {
+      "id": "rotor_speed",
+      "si": "rad/s",
+      "required": "calibrated shaft angular velocity"
+    },
+    {
+      "id": "shaft_torque",
+      "si": "N*m",
+      "required": "calibrated synchronized mechanical shaft torque"
+    },
+    {
+      "id": "blade_root_strain",
+      "si": "microstrain",
+      "required": "blade-root strain in each critical bending direction, with stress transfer calibration"
+    },
+    {
+      "id": "strut_strain",
+      "si": "microstrain",
+      "required": "strut/support strain and vibration in relevant load paths"
+    },
+    {
+      "id": "mean_streamwise_drag",
+      "si": "N",
+      "required": "calibrated time-resolved support/load-cell forces; not just inferred from Cd"
+    },
+    {
+      "id": "generator_power",
+      "si": "W",
+      "required": "synchronous generator-side voltage/current waveform and power factor if AC"
+    },
+    {
+      "id": "delivered_electrical_power",
+      "si": "W",
+      "required": "load/grid-side electrical power after conversion losses"
+    },
+    {
+      "id": "control_and_actuator_power",
+      "si": "W",
+      "required": "positive and recovered actuator/control/PTO auxiliary consumption"
+    },
+    {
+      "id": "rig_status",
+      "si": "enum",
+      "required": "safety trips, stop/start, loss of sync, sensor saturation, invalid samples and cable/maintenance incidents"
+    }
+  ],
+  "uncertainty_and_blinding": [
+    "Log original sensor serials, traceable calibration certificates, zero offsets, drift and instrument ranges before and after runs.",
+    "Record a common clock and worst synchronization error relative to the fastest targeted load cycle.",
+    "Run fixed setpoints in randomized paired blocks with any dropped/aborted trials recorded and reasons preserved; do not exclude bad structural cases post hoc.",
+    "Calculate uncertainty for paired load/power effects from independent repeats, accounting for inflow variation and correlation; do not call upstream exp_unc fields new confidence intervals.",
+    "Predeclare primary stress metric, cycle counting bin boundaries, replication and confidence interpretation before observing results."
+  ],
+  "required_outputs": [
+    {
+      "key": "gross_mechanical_energy_j",
+      "operation": "integral of measured torque [N*m] × angular velocity [rad/s] dt",
+      "source": "measured"
+    },
+    {
+      "key": "delivered_electrical_energy_j",
+      "operation": "integral measured net load-side electrical power dt minus all separately metered auxiliary/control draw not already accounted for",
+      "source": "measured; avoid double counting"
+    },
+    {
+      "key": "peak_structural_stress_pa",
+      "operation": "convert calibrated blade/strut strain to stress using validated load path",
+      "source": "measured+material calibration"
+    },
+    {
+      "key": "fatigue_cycle_histogram",
+      "operation": "rainflow or equivalent cycle count with validated filters on time-resolved stress",
+      "source": "measured"
+    },
+    {
+      "key": "damage_per_equal_exposure",
+      "operation": "Miner/S-N sensitivity ONLY if material-specific design curves and full exposure are justified; report sensitivity/unknown otherwise",
+      "source": "conditional"
+    },
+    {
+      "key": "energy_per_tested_period",
+      "operation": "matched measured electricity per fixed test duration; include non-generating states",
+      "source": "measured"
+    }
+  ],
+  "falsifiers": [
+    "Mean Cd declines but peak blade/root moment or damaging stress cycles increase or remain uncertain under matched inflow.",
+    "Apparent mechanical Cp benefit disappears or reverses after measured actuator/control and conversion losses.",
+    "Effect fails replicate/uncertainty assessment, scale/blockage control or measured loads exceed declared stop limits.",
+    "Wave/turbulence or reversal invalidates assumed lab generalization."
+  ],
+  "independent_gates": {
+    "scientific_site_inflow": "BLOCKED",
+    "real_cyclic_load_measurements": "NOT_ACQUIRED",
+    "real_net_electrical_energy": "NOT_ACQUIRED",
+    "repeatability_uncertainty": "NOT_TESTED",
+    "structural_material_fatigue": "NOT_VALIDATED",
+    "ecology_and_mikmaq": "NOT_REVIEWED_FOR_PHYSICAL_SITE",
+    "marine_navigation_and_permission": "NO_AUTHORIZATION",
+    "manufacturing_end_of_life": "NOT_TESTED",
+    "maintenance_recovery": "NOT_TESTED"
+  },
+  "architectures": [
+    {
+      "id": "AXIAL-RM1-REFERENCE",
+      "type": "rotating_axial_lift",
+      "published_reference": "RM1-OBS-001: published printed Cp table only",
+      "reference_area": "rotor disk; report individual rotor and installed corridor",
+      "required_specific": [
+        "axial thrust and blade-root bending",
+        "yaw/reversal behavior",
+        "bearing/shaft seal loads"
+      ]
+    },
+    {
+      "id": "CROSSFLOW-RM2-REFERENCE",
+      "type": "rotating_transverse_lift",
+      "published_reference": "RM2-OBS-001 and RM2-TRADEOFF-001: processed mean coefficients only",
+      "reference_area": "frontal projected D×H; report installed corridor",
+      "required_specific": [
+        "blade/strut bending and torque ripple",
+        "phase-resolved load cycles at both TSR setpoints",
+        "matched controller parasitic energy"
+      ]
+    },
+    {
+      "id": "FOIL-OSCILLATING-EXPERIMENTAL",
+      "type": "nonrotating_reciprocating_heave_pitch",
+      "published_reference": "foil_balance bookkeeping dimensional identity, no measured net energy",
+      "reference_area": "actual foil span and heave stroke plus shared corridor",
+      "required_specific": [
+        "simultaneous heave force×velocity and pitch moment×angular rate",
+        "control actuation consumption and regenerative handling",
+        "joint/foil strain and jam/parkability limits"
+      ]
+    }
+  ],
+  "cross_architecture_common_gates": [
+    "identical actual measured incoming control-volume flux and time window",
+    "separately report area denominators and occupancy/corridor",
+    "measured net electricity after all PTO/control losses",
+    "independent ecological collision/trapping/noise requirements",
+    "independent manufacturing/material source and teardown/service evidence",
+    "independent safe retrieval/vessel access/weather windows",
+    "authorizations must be obtained before testing"
+  ],
+  "field_deployment_authorized": false,
+  "decision": "NO_SELECTION_OR_FIELD_DEPLOYMENT; acquire source-native current QC and actual sensor-controlled structural/power tests before any performance/fatigue winner statement"
+}
