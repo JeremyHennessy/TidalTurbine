@@ -1,0 +1,175 @@
+{
+  "schema": "RM2-RAW-SIX-NI-SOURCE-MANIFEST-001",
+  "evidence_class": "ORIGINAL_SOURCE_NI_SIGNALS_NUMERICALLY_ACQUIRED_NOT_STRESS_CALIBRATED",
+  "upstream_repo": "UNH-CORE/RM2-tow-tank",
+  "upstream_git_commit": "fdf80fe355c659ec0e3b1dce2f1c9c9800a777ef",
+  "original_data_license": "CC BY 4.0 — Bachant et al., UNH RM2-tow-tank experiment (2016)",
+  "source_url_root": "https://api.figshare.com/v2/file/download/",
+  "source_acquisition_run": "https://github.com/JeremyHennessy/TidalTurbine/actions/runs/39529582524",
+  "short_lived_actions_artifact_id": 12314777519,
+  "source_data_committed_to_git": false,
+  "selected_trial_count": 6,
+  "measurement_channels": [
+    "NI data/time (s)",
+    "data/torque_trans (Nm)",
+    "data/drag_left (N)",
+    "data/drag_right (N)",
+    "data/turbine_angle (degrees)",
+    "data/carriage_pos (m)",
+    "data/torque_arm (Nm)"
+  ],
+  "not_proven": [
+    "native calibration of blade-root structural stresses",
+    "independent inflow turbulence (requires Vectrino data)",
+    "net PTO electrical power",
+    "test-rig controller losses",
+    "statistically independent repeated experimental conditions",
+    "turbine fatigue or service life"
+  ],
+  "trials": [
+    {
+      "trial_id": "Perf-0.4_10",
+      "nominal_speed_m_s": 0.4,
+      "run": 10,
+      "ni": {
+        "id": 1913216,
+        "bytes": 13446240,
+        "sha256": "f6f3cd668d8d20f97c5aa2882a7f1131dcb8c9e389c7b36d1f2e1fd854aa1eab"
+      },
+      "metadata": {
+        "id": 1913215,
+        "bytes": 2134,
+        "sha256": "5a031ec274f0f5727362e1defc6664875a87edeb34bcb26bc2816985676d863a"
+      },
+      "processed_table": "Data/Processed/Perf-0.4.csv",
+      "processed_source_blob_sha": "05dae9a59a23d8ce558edd00d16f3bd1416d87ef",
+      "source_mean_cp": 0.0896820526946205,
+      "source_mean_cd": 0.7363157930892609,
+      "source_n_revolutions": 13,
+      "source_time_window_s": [
+        20,
+        59.79
+      ]
+    },
+    {
+      "trial_id": "Perf-0.4_12",
+      "nominal_speed_m_s": 0.4,
+      "run": 12,
+      "ni": {
+        "id": 1913226,
+        "bytes": 13423840,
+        "sha256": "fbcc4b20409f47664fbe747d9fcad85376201d92ff17c2e22558b380a13ea7c8"
+      },
+      "metadata": {
+        "id": 1913225,
+        "bytes": 2134,
+        "sha256": "70f558fb954b55c3904c94d8fd5cdf6f38332769309bd14e71b5bca193e7c13f"
+      },
+      "processed_table": "Data/Processed/Perf-0.4.csv",
+      "processed_source_blob_sha": "05dae9a59a23d8ce558edd00d16f3bd1416d87ef",
+      "source_mean_cp": 0.12785626180917634,
+      "source_mean_cd": 0.7977640532220681,
+      "source_n_revolutions": 14,
+      "source_time_window_s": [
+        20,
+        59.94
+      ]
+    },
+    {
+      "trial_id": "Perf-1.0_10",
+      "nominal_speed_m_s": 1,
+      "run": 10,
+      "ni": {
+        "id": 1914081,
+        "bytes": 9425440,
+        "sha256": "a2e681fb9dbf22511218e15658e97829b811684fcc578ac275a31a0289d9a6cf"
+      },
+      "metadata": {
+        "id": 1914080,
+        "bytes": 2118,
+        "sha256": "67fcbb77a0d63eed6c01f3d7a25d1de0796bb911df3d7f8ac91958e46ced27d9"
+      },
+      "processed_table": "Data/Processed/Perf-1.0.csv",
+      "processed_source_blob_sha": "1f284211d5c19593cf753e63727ae62a62356439",
+      "source_mean_cp": 0.3480504236755432,
+      "source_mean_cd": 0.7992955738077838,
+      "source_n_revolutions": 9,
+      "source_time_window_s": [
+        20,
+        30.87
+      ]
+    },
+    {
+      "trial_id": "Perf-1.0_12",
+      "nominal_speed_m_s": 1,
+      "run": 12,
+      "ni": {
+        "id": 1914091,
+        "bytes": 9425440,
+        "sha256": "f0e8f0f4d4f2c6ce4a3f798a4bfdae9101699663f34d2cd1d7fd164f5c56982f"
+      },
+      "metadata": {
+        "id": 1914090,
+        "bytes": 2118,
+        "sha256": "5148b9f41c648189f41367a19f1141a9c564fb0d2f30f227f85a88b5afd46a43"
+      },
+      "processed_table": "Data/Processed/Perf-1.0.csv",
+      "processed_source_blob_sha": "1f284211d5c19593cf753e63727ae62a62356439",
+      "source_mean_cp": 0.35460251857936176,
+      "source_mean_cd": 0.8458717342880612,
+      "source_n_revolutions": 10,
+      "source_time_window_s": [
+        20,
+        30.9
+      ]
+    },
+    {
+      "trial_id": "Perf-1.2_10",
+      "nominal_speed_m_s": 1.2,
+      "run": 10,
+      "ni": {
+        "id": 1915326,
+        "bytes": 9011040,
+        "sha256": "0c88e20e753d9333186499bc0ab5e09d570b6f1dd117e41212db9ad4a4c7635a"
+      },
+      "metadata": {
+        "id": 1915325,
+        "bytes": 2118,
+        "sha256": "c9c755dfe5912815953d43587af8e945bc5ec9fe9d53f4d142012e7188eb8b0a"
+      },
+      "processed_table": "Data/Processed/Perf-1.2.csv",
+      "processed_source_blob_sha": "46719af849890a398529331c0c0353931c93ddbc",
+      "source_mean_cp": 0.365204582303111,
+      "source_mean_cd": 0.7923275363954445,
+      "source_n_revolutions": 9,
+      "source_time_window_s": [
+        18,
+        26.73
+      ]
+    },
+    {
+      "trial_id": "Perf-1.2_12",
+      "nominal_speed_m_s": 1.2,
+      "run": 12,
+      "ni": {
+        "id": 1915336,
+        "bytes": 9011040,
+        "sha256": "eae06e4f7d47bc13b4f94a24c0924f81090988c839b936d5612ad01105be0cc5"
+      },
+      "metadata": {
+        "id": 1915335,
+        "bytes": 2118,
+        "sha256": "baef05720a767599ada0c8799fa21d4c75a3cae1226ca739842d2cf206f93571"
+      },
+      "processed_table": "Data/Processed/Perf-1.2.csv",
+      "processed_source_blob_sha": "46719af849890a398529331c0c0353931c93ddbc",
+      "source_mean_cp": 0.36950283910303916,
+      "source_mean_cd": 0.83518541384016,
+      "source_n_revolutions": 9,
+      "source_time_window_s": [
+        18,
+        26.77
+      ]
+    }
+  ]
+}
