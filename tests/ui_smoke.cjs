@@ -6,6 +6,7 @@ const path=require('node:path');
 const root=path.resolve(__dirname,'..');
 const html=fs.readFileSync(path.join(root,'site/index.html'),'utf8');
 const code=fs.readFileSync(path.join(root,'site/app.js'),'utf8');
+const artworkCode=fs.readFileSync(path.join(root,'site/artwork.js'),'utf8');
 for(const id of ['comparison-grid','compare-select','rm2-tradeoff','rm2-share','rm1-plot','rm1-rotor-filter','force-cells','force-window','rm2-speed-bars','rm2-speed-sweep','rm2-raw-chart','rm2-raw-speed','rm2-raw-metric']){
   assert.ok(html.includes('id="'+id+'"'),'missing DOM target '+id);
 }
@@ -16,11 +17,41 @@ const element=(selector)=>{
 };
 const document={querySelector:element,querySelectorAll:()=>[],addEventListener(){}};
 const ctx=vm.createContext({document,console,window:{},location:{},history:{},setTimeout,Math,Number,JSON});
+new vm.Script(artworkCode,{filename:'site/artwork.js'}).runInContext(ctx);
 new vm.Script(code,{filename:'site/app.js'}).runInContext(ctx);
 ctx.registry=JSON.parse(fs.readFileSync(path.join(root,'research/mechanisms.json'),'utf8'));
 vm.runInContext('applyMechanisms(registry);renderDesign()',ctx);
 assert.match(element('#design-title').textContent,/Seabed horizontal-axis turbine/,'initial selection should render the main studio');
 assert.match(element('#design-viewport').innerHTML,/NOT TO SCALE/,'main studio illustration should initialize');
+
+const expectedDesigns=['seabed','floating','counter','rim','crossflow','helical','savonius','foil','screw','kite','duct','pressure','eel','viv'];
+const rendered=vm.runInContext("Object.keys(DESIGNS).map(key=>({key,svg:designSvg(key,true),thumb:window.TidalArtwork.thumbnail(key)}))",ctx);
+assert.equal(rendered.length,14,'all fourteen canonical mechanism drawings must be upgraded');
+assert.deepEqual(rendered.map(x=>x.key).sort(),expectedDesigns.slice().sort());
+const uniqueScenes=new Set();
+for(const item of rendered){
+  assert.match(item.svg,/class="tidal-artwork tidal-artwork-/,'selected studio and comparisons use the new vector engine');
+  assert.match(item.svg,/role="img"/,'large technical drawings have text alternatives');
+  assert.match(item.svg,/TECHNICAL CONCEPT/,'consistent scientific visual header');
+  assert.match(item.svg,/SCHEMATIC GEOMETRY/,'drawing must not imply calibrated geometry');
+  assert.match(item.svg,/class="art-annotation"/,'all fourteen scenes require specific component labels');
+  assert.match(item.thumb,/aria-hidden="true"/,'selection thumbnails do not duplicate accessible text');
+  assert.ok(item.svg.length>3400,'complete component scene expected for '+item.key);
+  assert.ok(!item.svg.includes('undefined')&&!item.svg.includes('NaN'),'no broken rendered numbers for '+item.key);
+  uniqueScenes.add(item.svg.replace(/tidal-artwork-[a-z]+/g,'tidal-artwork-KEY'));
+}
+assert.equal(uniqueScenes.size,14,'every concept must have distinct mechanical artwork');
+vm.runInContext('setupDesign()',ctx);
+const selectorHTML=element('#design-selector').innerHTML;
+assert.equal((selectorHTML.match(/class="design-choice-preview"/g)||[]).length,14,'all options show a concept image thumbnail');
+assert.equal((selectorHTML.match(/aria-pressed="(?:true|false)"/g)||[]).length,14,'each selection exposes pressed state');
+const noLabels=vm.runInContext("window.TidalArtwork.render('crossflow',{annotations:false,large:true})",ctx);
+assert.ok(!noLabels.includes('class="art-annotation"'),'annotation toggle removes overlays rather than hiding components');
+const yesLabels=vm.runInContext("window.TidalArtwork.render('crossflow',{annotations:true,large:true})",ctx);
+assert.match(yesLabels,/class="art-annotation"/,'annotation overlay restores technical callouts');
+assert.match(html,/id="download-design-svg"/,'new stand-alone vector export control must be present');
+assert.ok(html.indexOf('artwork.js')<html.indexOf('app.js'),'vector definitions must load before app initialization');
+
 vm.runInContext('renderComparison()',ctx);
 assert.match(element('#comparison-grid').innerHTML,/Seabed horizontal-axis turbine/);
 assert.match(element('#comparison-grid').innerHTML,/Cross-flow vertical-axis turbine/);
@@ -116,4 +147,4 @@ assert.match(html,/263,250/,'FORCE complete processed-record count must remain')
 assert.match(html,/no FORCE observations enter energy modelling/,'do not use unqualified FORCE currents');
 assert.match(html,/FORCE-CAMPAIGN-QA-001\.json/,'full processed-campaign QA report should be linked');
 assert.ok(!html.includes('Data acquisition pending'),'stale FORCE acquisition status');
-console.log('TidalLab UI smoke checks passed: baseline startup, design/RM2 comparisons, RM1 source table, FORCE full campaign and pressure-screen counts plus evidence holds.');
+console.log('TidalLab UI smoke passed: all 14 distinct accessible design scenes, thumbnail selector, illustration/annotation controls, RM1/RM2 data and FORCE QA.');
