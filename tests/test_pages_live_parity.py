@@ -17,6 +17,7 @@ class PagesLiveParityFixtureTests(unittest.TestCase):
         self.assertIn("reports/RM2-RAW-LOADS-001.json", ASSETS)
         self.assertIn("reports/RM2-CROSSSPEED-001.json", ASSETS)
         self.assertIn("site/app.js", ASSETS)
+        self.assertIn("site/artwork.js", ASSETS)
 
     def test_git_blob_sha_deterministic_and_exact(self):
         self.assertEqual(git_blob_sha(b"test content"), "08cf6101416f0ce0dda3c80e627f333854c4085c")
