@@ -1,0 +1,37 @@
+{
+  "id": "RVAT-RUN13-CLOCK-METADATA-001-CHECK",
+  "status": "BLOCKED",
+  "reference_channel": "TorqueTrans",
+  "comparisons": [
+    {
+      "channel": "TorqueArm",
+      "relative_start_difference_s": 0.0,
+      "increment_ratio_to_reference": 1.0
+    },
+    {
+      "channel": "DragL",
+      "relative_start_difference_s": 0.0,
+      "increment_ratio_to_reference": 1.0
+    },
+    {
+      "channel": "DragR",
+      "relative_start_difference_s": 0.0,
+      "increment_ratio_to_reference": 1.0
+    },
+    {
+      "channel": "Untitled",
+      "relative_start_difference_s": 0.098499,
+      "increment_ratio_to_reference": 2000.0
+    }
+  ],
+  "issues": [
+    "Untitled: declared sampling increment mismatch",
+    "Untitled: declared starting timestamp mismatch",
+    "Untitled: measurement units absent",
+    "Intertrial physical encoder-zero evidence absent"
+  ],
+  "raw_samples_acquired": false,
+  "physical_validation": false,
+  "timestamp_interpretation": "As stored; no timezone or corrected clock inferred",
+  "decision": "Do not synthesize common timestamps or shift signals to force agreement. Resolve source clock and encoder conventions first."
+}
