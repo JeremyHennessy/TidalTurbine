@@ -35,6 +35,12 @@ class SiteTests(unittest.TestCase):
         self.assertIn('SCREEN-001 ONLY — SYNTHETIC, NOT VALIDATED',html)
         self.assertIn('NOT A LOAD OR FIELD RESULT',html)
         self.assertIn('NO BLADE STRESS DATA',html)
+    def test_additional_source_checked_reports_are_packaged_not_misrepresented(self):
+        self.assertIn('reports/RM2-RAW-B-001.json',FILES)
+        self.assertIn('reports/NS-PASSAGES-7D-SUMMARY-001.json',FILES)
+        self.assertEqual(__import__('json').loads((ROOT/'reports/NS-PASSAGES-7D-SUMMARY-001.json').read_text())['model_eligible_rows'],0)
+        self.assertEqual(__import__('json').loads((ROOT/'reports/RM2-RAW-B-001.json').read_text())['independent_blade_strain_measurements'],0)
+
     def test_no_remote_script_or_font_dependencies(self):
         html=(ROOT/'site/index.html').read_text(encoding='utf8')
         css=(ROOT/'site/styles.css').read_text(encoding='utf8')
