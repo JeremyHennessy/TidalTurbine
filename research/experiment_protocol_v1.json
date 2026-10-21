@@ -196,7 +196,7 @@
     },
     {
       "id": "FOIL-OSCILLATING-EXPERIMENTAL",
-      "type": "nonrotating_recipient_heave_pitch",
+      "type": "nonrotating_reciprocating_heave_pitch",
       "published_reference": "foil_balance bookkeeping dimensional identity, no measured net energy",
       "reference_area": "actual foil span and heave stroke plus shared corridor",
       "required_specific": [
