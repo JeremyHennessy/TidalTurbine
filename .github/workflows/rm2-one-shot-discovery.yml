@@ -1,60 +1,67 @@
-name: One-shot RM2 primary raw source discovery and checkout snapshot
+name: One-shot matched RM2 raw NI measurements by verified Figshare IDs
 on:
   push:
     branches: [research/rm2-raw-signal-gates-20261021]
     paths: [.github/workflows/rm2-one-shot-discovery.yml]
 permissions: {contents: read}
 jobs:
-  inspect:
+  primary-source:
     runs-on: ubuntu-latest
-    timeout-minutes: 7
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-      - name: Inspect Figshare article and record bounded indexed files
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install bounded HDF5 reader
+        run: python -m pip install h5py==3.15.1 numpy==2.3.5
+      - name: Acquire precise original files and checksum/structure validate
         shell: bash
+        env:
+          FILES_JSON: '[{"n":"Perf-0.4_10","id":1913216,"size":13446240,"md5":"a2f532242a9dd05e32f20ef25820626b","meta":1913215,"md5meta":"61ca1fe931379b60282e57f28640f0f0"},{"n":"Perf-0.4_12","id":1913226,"size":13423840,"md5":"002b42c13e38b7e5afe8401e3b822e58","meta":1913225,"md5meta":"84892c9d1374b15fa292cbbeaf3abc60"},{"n":"Perf-1.0_10","id":1914081,"size":9425440,"md5":"3ae7753cc6d0bc2a3da4fecc8f94c11a","meta":1914080,"md5meta":"82ac30bd8b81987132689142ac681deb"},{"n":"Perf-1.0_12","id":1914091,"size":9425440,"md5":"e869c33c3be7a19405bbf930e197542c","meta":1914090,"md5meta":"16a1e4b9a6ad3a9b0176eb4784ca4ac3"},{"n":"Perf-1.2_10","id":1915326,"size":9011040,"md5":"1dccfb4c55d6d3f8b90b64ca5165c7e4","meta":1915325,"md5meta":"5ed7a9f1e32abe973480566911a8b2c8"},{"n":"Perf-1.2_12","id":1915336,"size":9011040,"md5":"60994e1099652795fa05acc39eff1c88","meta":1915335,"md5meta":"5c7d5163bf42264afe5bec091354974f"}]'
         run: |
           python - <<'PY'
-          import urllib.request,json,os
           from pathlib import Path
-          dst=Path('rm2_source_index.json')
-          endpoint='https://api.figshare.com/v2/articles/1302029'
-          report={'api_endpoint':endpoint,'observation_status':'DISCOVERY_NOT_ACQUIRED'}
-          try:
-              req=urllib.request.Request(endpoint,headers={'Accept':'application/json','User-Agent':'TidalTurbine-research/1.0'})
-              with urllib.request.urlopen(req,timeout=30) as r:
-                  payload=r.read(3_000_001)
-                  if len(payload)>3_000_000: raise ValueError('Article JSON over 3MB')
-              obj=json.loads(payload); files=obj.get('files',[])
-              report.update({'article_title':obj.get('title'),'doi':obj.get('doi'),
-                'n_listed_files':len(files),'observed_status':'INDEX_LOADED',
-                'matches':[{'name':f.get('name'),'id':f.get('id'),'size':f.get('size'),'download_url':f.get('download_url'),'computed_md5':f.get('computed_md5')} for f in files if
-                     any(s in f.get('name','') for s in ('Perf-0.4_10_','Perf-0.4_12_','Perf-1.0_10_','Perf-1.0_12_','Perf-1.2_10_','Perf-1.2_12_'))],
-                'suffix_counts': {s:sum(f.get('name','').endswith(s) for f in files) for s in ('_nidata.h5','_acsdata.h5','_vecdata.h5','_metadata.json')}})
-          except Exception as ex:report.update({'observed_status':'BLOCKED','error_type':type(ex).__name__,'detail':str(ex)[:300]})
-          dst.write_text(json.dumps(report,indent=2)+'\n')
-          print('RM2_ARTICLE '+json.dumps({k:v for k,v in report.items() if k!='matches'}))
-          print('MATCHED_RM2_FILES '+json.dumps(report.get('matches',[]))[:12000])
+          from urllib.request import Request,urlopen
+          import os,json,hashlib,h5py,numpy as np
+          files=json.loads(os.environ['FILES_JSON'])
+          root=Path(os.environ['RUNNER_TEMP'])/'rm2-original-ni'
+          root.mkdir(parents=True,exist_ok=True)
+          proof=[]
+          for x in files:
+            pack={}
+            for kind, fid, expected_size, md5 in (
+              ('nidata.h5',x['id'],x['size'],x['md5']),
+              ('metadata.json',x['meta'],10000,x['md5meta'])
+            ):
+              url='https://ndownloader.figshare.com/files/'+str(fid)
+              with urlopen(Request(url,headers={'User-Agent':'TidalTurbine-research/1.0'}),timeout=90) as response:
+                data=response.read(expected_size+1)
+              if kind=='nidata.h5' and len(data)!=expected_size:raise ValueError(f'Unexpected bytes {x["n"]}: {len(data)}')
+              if kind=='metadata.json' and len(data)>expected_size:raise ValueError('Metadata source oversized')
+              if hashlib.md5(data).hexdigest()!=md5:raise ValueError('Source MD5 mismatch: '+x['n']+kind)
+              name=x['n']+'_'+kind
+              (root/name).write_bytes(data)
+              pack[kind]={'sha256':hashlib.sha256(data).hexdigest(),'figshare_file_id':fid,'source_md5':md5,'bytes':len(data),'name':name,'source_url':url}
+            with h5py.File(root/(x['n']+'_nidata.h5'),'r') as f:
+              shapes={k:list(f[k].shape) for k in f.keys()}
+              need=['time','carriage_pos','turbine_angle','torque_trans','drag_left','drag_right']
+              if not set(need).issubset(set(shapes)):raise ValueError('Missing raw NI channels: '+x['n'])
+              if len(set(f[k].shape for k in need))!=1:raise ValueError('NI array shape mismatch')
+              n=len(f['time']); start=float(f['time'][0]);end=float(f['time'][-1])
+              pack['ni_dataset_summary']={'sample_count':n,'time_start_s':start,'time_end_s':end,'dataset_shapes':shapes}
+            raw=json.loads((root/(x['n']+'_metadata.json')).read_text())
+            pack['physical_context']={'raw_keys':sorted(raw),'tow_speed_nominal':raw.get('Tow speed (m/s)'),'tsr_nominal':raw.get('Tip speed ratio')}
+            proof.append({'run':x['n'],'files':pack})
+            print('ACQUIRED_RM2_RUN',x['n'],'samples',n,'NI_SHA256',pack['nidata.h5']['sha256'])
+          (root/'manifest.json').write_text(json.dumps({'article_doi':'10.6084/m9.figshare.1302029','source_files':proof,
+              'processing_status':'RAW_NI_ACQUIRED_NO_BLADE_ROOT_STRAIN_NO_NET_ELECTRICITY','source_license':'CC BY 4.0'},indent=2)+'\n')
+          print('COMPLETE_SOURCE_FILES',len(proof))
           PY
-      - name: Preserve source and machine readable discovery index
+      - name: Preserve raw signals only in short-lived artifact (not Git)
         uses: actions/upload-artifact@v4
         with:
-          name: tidal-current-source-snapshot-and-rm2-index
-          path: |
-            .github/
-            AGENTS.md
-            README.md
-            docs/
-            research/
-            reports/
-            requirements-ocean.txt
-            scripts/
-            tidal_screen/
-            tests/
-            site/
-            configs/
-            index.html
-            .gitignore
-            .nojekyll
-            rm2_source_index.json
-          retention-days: 2
+          name: rm2-six-matched-raw-ni-source-files
+          path: ${{ runner.temp }}/rm2-original-ni/
+          retention-days: 7
           if-no-files-found: error
