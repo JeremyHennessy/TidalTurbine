@@ -30,10 +30,12 @@ jobs:
             ('Perf-0.4-b_10',1913361,1913360),('Perf-0.4-b_12',1913371,1913370),
             ('Perf-1.0-b_10',1914197,1914196),('Perf-1.0-b_12',1914207,1914206),
             ('Perf-1.2-b_10',1915418,1915417),('Perf-1.2-b_12',1915429,1915428)]
+          article=json.loads(fetch('https://api.figshare.com/v2/articles/1302029',3000000))
+          file_index={int(f['id']):f for f in article['files']}
           for name,niid,metaid in files:
               pack={'run':name,'origin':'Figshare UNH RM2 raw 1302029','files':[]}
               for typ,id in [('nidata.h5',niid),('metadata.json',metaid)]:
-                  meta=json.loads(fetch('https://api.figshare.com/v2/file/'+str(id),100000))
+                  meta=file_index[id]
                   url='https://ndownloader.figshare.com/files/'+str(id)
                   raw=fetch(url,23000000 if typ=='nidata.h5' else 20000)
                   md5=hashlib.md5(raw).hexdigest()
