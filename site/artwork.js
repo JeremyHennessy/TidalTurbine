@@ -242,7 +242,7 @@
     const name=escapeText(options.name||key);
     const alt=`Illustrative underwater mechanical schematic of ${name}, concept ${index}; not a manufactured drawing or validated performance model.`;
     const labels=options.annotations===false?"":annotations(key);
-    const title=options.thumb?"":`<g font-family="Arial,sans-serif"><text x="22" y="30" fill="#a8ebea" font-size="11" letter-spacing="2" font-weight="700">TIDAL / LAB &nbsp; • &nbsp; CONCEPT ${index}</text>
+    const title=options.thumb?"":`<g font-family="Arial,sans-serif"><text x="22" y="30" fill="#a8ebea" font-size="11" letter-spacing="2" font-weight="700">TIDAL / LAB · CONCEPT ${index}</text>
       <text x="680" y="30" text-anchor="end" fill="#afd7da" font-size="10" letter-spacing="1.2">TECHNICAL CONCEPT • NOT TO SCALE</text></g>`;
     const footer=options.thumb?"":`<g font-family="Arial,sans-serif"><path d="M23 383h75" stroke="#75b6c1" stroke-width="2"/><path d="M23 377v12m75-12v12" stroke="#75b6c1" stroke-width="1"/><text x="108" y="388" fill="#a2cbd2" font-size="10">SCHEMATIC GEOMETRY / NO DIMENSION CLAIM</text><text x="674" y="388" fill="#98cbd5" font-size="10" text-anchor="end">FLOW DIRECTION →</text></g>`;
     return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${options.thumb?"112 62 475 305":"0 0 700 410"}" preserveAspectRatio="xMidYMid meet" role="${options.thumb?"presentation":"img"}" ${options.thumb?'aria-hidden="true"':`aria-label="${alt}"`} class="tidal-artwork tidal-artwork-${key}">
