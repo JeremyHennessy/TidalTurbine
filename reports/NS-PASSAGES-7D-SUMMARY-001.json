@@ -1,0 +1,91 @@
+{
+  "id": "NS-PASSAGES-7D-SUMMARY-001",
+  "source": "Nova Scotia Open Data / CMAR current profiles is3b-ip8b",
+  "source_license": "Nova Scotia Open Government Licence; attribute CMAR/Nova Scotia",
+  "classification": "ORIGINAL_PUBLISHED_PROCESSED_MEASURED_PROFILE_DATA_QC_FLAGS_ONLY",
+  "sites": [
+    {
+      "deployment_id": "DG012",
+      "source_station": "Grand Passage",
+      "deployment_year": 2020,
+      "original_source_sha256": "c7c3cf3863816e710d61c8079b8fa0ee2a17702917f2f30047bd9f07a4a1bb0d",
+      "metadata_position_wgs84_approx": [
+        44.27359,
+        -66.3424
+      ],
+      "source_rows": 10463,
+      "unique_timestamps": 897,
+      "original_time_range": [
+        "2020-08-27T18:35:42.000",
+        "2020-09-02T23:55:42.000"
+      ],
+      "source_datetime_offset_unverified": true,
+      "vertical_bin_heights_above_seabed_m": {
+        "min": 1.5,
+        "max": 14.5,
+        "number_of_bins": 14
+      },
+      "cadence_seconds_counts": {
+        "600": 896
+      },
+      "source_flag_speed_counts": {
+        "Pass": 9523,
+        "Suspect/Of Interest": 820,
+        "Fail": 120
+      },
+      "publisher_pass_speed_sample_m_s": {
+        "median": 0.722,
+        "p95_nearest_rank": 1.218
+      },
+      "model_eligible_rows": 0,
+      "native_beam_quality_recovered": false
+    },
+    {
+      "deployment_id": "DG002",
+      "source_station": "Petite Passage",
+      "deployment_year": 2010,
+      "original_source_sha256": "70a36f119439d5c1bddedb318b819001d3c8b517eb92cfa85ff3ec8dd60658fb",
+      "metadata_position_wgs84_approx": [
+        44.3662,
+        -66.2083
+      ],
+      "source_rows": 11409,
+      "unique_timestamps": 934,
+      "original_time_range": [
+        "2010-08-04T12:30:00.000",
+        "2010-08-10T23:59:59.000"
+      ],
+      "source_datetime_offset_unverified": true,
+      "vertical_bin_heights_above_seabed_m": {
+        "min": 5.7,
+        "max": 53.7,
+        "number_of_bins": 13
+      },
+      "cadence_seconds_counts": {
+        "599": 1,
+        "600": 932
+      },
+      "source_flag_speed_counts": {
+        "Pass": 10274,
+        "Suspect/Of Interest": 907,
+        "Fail": 228
+      },
+      "publisher_pass_speed_sample_m_s": {
+        "median": 0.202,
+        "p95_nearest_rank": 0.414
+      },
+      "model_eligible_rows": 0,
+      "native_beam_quality_recovered": false
+    }
+  ],
+  "source_rows_total": 21872,
+  "model_eligible_rows": 0,
+  "acceptance": "BLOCKED_ORIGINAL_ADCP_BEAM_QUALITY_DATUM_AND_FIELD_REPRESENTATIVENESS",
+  "limitations": [
+    "Source 'Pass' flags are publisher quality-screen outputs, not independent measurement validation",
+    "One week per station, different years, depth cells, orientation and hydrodynamics; cannot rank sites",
+    "No source timestamps with explicit offset; do not assume UTC without publisher verification",
+    "Instrument-native beam correlation/percent-good and full vertical reference/uncertainty unresolved",
+    "No energy, structural-load, construction, environmental or marine-authorization claim"
+  ]
+}
