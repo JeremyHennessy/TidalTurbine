@@ -73,3 +73,14 @@ python -m pip install -r requirements-ocean.txt
 python scripts/process_force_campaign.py --archive /path/to/force-spring2018-complete-processed-netcdf.zip --prior-72h-archive /path/to/force-adcp-72h-raw-qa-ccby4.zip
 python scripts/check_force_campaign_report.py
 ```
+
+
+## Prototype testing readiness — October 2026
+
+**No in-water device has been built or validated.** The 2018 FORCE processed campaign contains 263,250 records but **zero** source-approved turbine-inflow records. CMAR DG013 provides 531 independent wave/sensor-speed readings with gross-range QA, not a qualified 3-D rotor-height inflow profile.
+
+The original native FORCE archive and metadata share still return server errors: four independent bounded public GET requests gave HTTP 500 in [Actions 39518864052](https://github.com/JeremyHennessy/TidalTurbine/actions/runs/39518864052). See [native archive access gate](docs/FORCE_NATIVE_ACCESS_PROBE_20261020.md). No original Nortek beams, geometry/quality masks, or approved inflow has been recovered.
+
+The [seven-site, tidal-prototype-only Nova Scotia shortlist](docs/TIDAL_TEST_SITE_SELECTION_2026-10-20.md) and [site evidence table](research/TIDAL_TEST_SITE_SCREEN_2026-10-20.csv) separate early remote reconnaissance (Rocky Run), historical open-water precedent (Grand Passage) and extreme-load later tests (FORCE). The previous Grand Passage PLAT-I installation was decommissioned and removed in 2023: no accessible berth is proven. The October 2026 demonstration permit is for eligible grid-connected projects at least TRL 4 within designated Fundy areas; this project has not demonstrated those criteria and has no permit.
+
+A [falsifiable load-versus-energy and three-prototype test plan](docs/LOAD_AND_PROTOTYPE_TEST_PROTOCOL_20261020.md) and [machine-readable protocol](research/experiment_protocol_v1.json) specify required synchronized phase/torque/strain/control electricity and independent ecological, manufacturing, maintenance and permit gates. [Fail-closed validation checks](scripts/check_validation_readiness.py) prevent mistaking this research plan for physical validation. Original TidalLab and SCREEN-001 simulations are unchanged.
