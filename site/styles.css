@@ -107,3 +107,40 @@
 .force-caveat strong{color:#ffdbab}
 @media(max-width:760px){.rm1-panel .panel-head,.force-panel .panel-head{flex-wrap:wrap}.rm1-peaks,.force-metrics{grid-template-columns:1fr 1fr}.rm1-plot-controls,.force-controls{align-items:stretch}.rm1-plot-controls select,.force-controls select{width:100%}}
 @media(max-width:520px){.rm1-peaks,.force-metrics{grid-template-columns:1fr}.rm1-chart-scroll{margin:0 12px}.force-chart-frame{padding:6px 12px}.force-caveat{margin:7px 12px}.rm1-footnote,.force-footnote{margin:6px 12px 14px}}
+
+
+/* Additive RM2 cross-speed/source-NI visual experiment panels; preserve legacy diagrams. */
+.rm2-speed-panel,.rm2-raw-panel{margin:18px 0;padding-bottom:3px}
+.rm2-speed-panel .panel-head,.rm2-raw-panel .panel-head{align-items:flex-start}
+.rm2-speed-controls,.rm2-raw-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:14px 20px 8px}
+.rm2-speed-controls label,.rm2-raw-controls label{color:#aacecf;font-size:11px;font-weight:700}
+.rm2-speed-controls select,.rm2-raw-controls select{background:#0b2a39;color:#e1f4f0;border:1px solid #437183;border-radius:8px;min-height:38px;padding:8px 10px;max-width:100%}
+.speed-metrics,.rig-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding:12px 20px 6px}
+.speed-metrics>div,.rig-summary>div{background:#103142;border:1px solid #2e5968;border-radius:9px;padding:11px 13px}
+.speed-metrics small,.rig-summary small{font-size:10px;line-height:1.4;color:#a3c0ca}
+.speed-metrics strong,.rig-summary strong{display:block;margin-top:5px;font:600 18px "Space Grotesk",system-ui,sans-serif;color:#ebfff7}
+.speed-lanes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding:13px 20px}
+.speed-lane{min-width:0;border:1px solid #285366;border-radius:10px;background:#0c2636;padding:14px}
+.speed-lane h3{margin:0 0 4px;font-size:14px;color:#e7f8f4}
+.speed-lane p{font-size:10px;line-height:1.6;color:#a0bfcb;min-height:38px;margin:0}
+.speed-row{display:grid;grid-template-columns:60px minmax(0,1fr);gap:7px;align-items:center;margin:13px 0}
+.speed-row>strong{font-size:12px;color:#e2f6f1;font-variant-numeric:tabular-nums}
+.speed-row>strong small{font-size:10px;color:#86afba}
+.speed-row-bars{display:grid;gap:5px;min-width:0}
+.speed-bar-row{display:grid;grid-template-columns:47px minmax(0,1fr) 51px;gap:7px;align-items:center;font-size:9px;color:#9fbec5}
+.speed-bar-row b{font-size:10px;text-align:right;color:#f8f6ea;font-variant-numeric:tabular-nums}
+.speed-track{background:#133c4d;height:9px;border-radius:10px;overflow:hidden}
+.speed-track i{display:block;height:100%;border-radius:10px}
+.speed-track .loss{background:linear-gradient(to right,#eca05f,#ffd496)}
+.speed-track .drag{background:linear-gradient(to right,#279baa,#63e4d8)}
+.speed-legend{margin-top:10px;font-size:10px;line-height:1.5;color:#94b8c1}
+.speed-warning,.rig-interpretation{margin:4px 20px 15px;padding:12px 14px;border-left:3px solid #dea96d;background:#2a251d;color:#ead4b7;font-size:11px;line-height:1.6}
+.speed-caveat{margin:8px 20px 17px;font-size:11px;line-height:1.65;color:#a4bcc8}
+.rig-legend{display:flex;gap:20px;flex-wrap:wrap;padding:11px 20px 4px;color:#aacdd0;font-size:11px}
+.rig-legend i{display:inline-block;width:18px;height:3px;vertical-align:middle;margin-right:7px}
+.rig-legend .candidate{background:#f7bd76}.rig-legend .reference{background:#52d9de}
+.rig-svg-scroll{overflow-x:auto;padding:5px 18px}
+.rig-svg-scroll svg{display:block;min-width:540px;width:100%;max-width:920px;height:auto;margin:auto}
+@media(max-width:1000px){.speed-lanes{grid-template-columns:1fr}.speed-lane p{min-height:0}}
+@media(max-width:700px){.speed-metrics,.rig-summary{grid-template-columns:1fr 1fr}.rm2-speed-controls,.rm2-raw-controls{align-items:stretch}.rm2-speed-controls select,.rm2-raw-controls select{width:100%}}
+@media(max-width:520px){.speed-metrics,.rig-summary{grid-template-columns:1fr}.speed-lanes{padding:10px}.speed-lane{padding:11px}.speed-row{grid-template-columns:46px minmax(0,1fr)}.speed-bar-row{grid-template-columns:44px minmax(0,1fr) 48px}.speed-caveat,.rig-interpretation{margin:7px 12px 13px}.rig-svg-scroll{padding:5px 10px}}
