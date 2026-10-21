@@ -43,3 +43,6 @@ class EvidenceVisualizationPackagingTests(unittest.TestCase):
         self.assertIn('≥20 dbar pressure screen · NOT source QC',html)
         self.assertIn('reports/RM1-OBS-001.json',FILES)
         self.assertIn('reports/FORCE-CAMPAIGN-QA-001.json',FILES)
+        self.assertIn('research/observations/FORCE_DAILY_CELL_QUALITY_V1_2018.json',FILES)
+        self.assertIn('id="force-daily-grid"',html)
+        self.assertIn('0 MODEL-ELIGIBLE RECORDS',html)

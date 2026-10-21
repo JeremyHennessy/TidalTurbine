@@ -77,6 +77,16 @@ assert.match(element('#force-cell-detail').innerHTML,/Not scientifically qualifi
 vm.runInContext('forceCampaign=null;renderForceCampaign()',ctx);
 assert.match(element('#force-cells').innerHTML,/unavailable/,'do not display implied measured quality without report');
 
+ctx.forceDailyFixture=JSON.parse(fs.readFileSync(path.join(root,'research/observations/FORCE_DAILY_CELL_QUALITY_V1_2018.json'),'utf8'));
+assert.equal(vm.runInContext('checkForceDailyQuality(forceDailyFixture)',ctx),true,'source-pinned numeric quality classification');
+vm.runInContext('forceDailyQuality=forceDailyFixture;renderForceDailyQuality()',ctx);
+assert.equal((element('#force-daily-grid').innerHTML.match(/class='force-day-cell/g)||[]).length,2800,'56 days x 50 range-cell state tiles');
+assert.match(element('#force-daily-detail').innerHTML,/0 scientifically approved/,'quality map must never certify a cell');
+vm.runInContext('forceDailyQuality=null;renderForceDailyQuality()',ctx);
+assert.match(element('#force-daily-grid').innerHTML,/unavailable/,'missing source should fail closed');
+const forged=structuredClone(ctx.forceDailyFixture);forged.model_eligible_rows=1;
+ctx.forgedDaily=forged;
+assert.throws(()=>vm.runInContext('checkForceDailyQuality(forgedDaily)',ctx),/Unsafe daily FORCE quality provenance/,'reject premature approved inflow');
 assert.match(html,/97,911 of 263,250 velocity vectors are exact zero/);
 assert.match(html,/FORCE-CAMPAIGN-QA-001\.json/,'full processed-campaign QA report should be linked');
 assert.ok(!html.includes('Data acquisition pending'),'stale FORCE acquisition status');

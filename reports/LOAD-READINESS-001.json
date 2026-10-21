@@ -1,0 +1,18 @@
+{
+  "id": "LOAD-READINESS-001",
+  "date_utc": "2026-10-20",
+  "evidence_class": "UNKNOWN_OR_CONFLICT",
+  "status": "MEASUREMENTS_REQUIRED_NO_STRUCTURAL_BENEFIT_ESTABLISHED",
+  "hypothesis": "At matched flow, a lower TSR reduces damage-relevant cyclic blade/strut/bearing loads for an acceptable measured net electrical energy sacrifice",
+  "baseline": "RM2 processed run 12, mean TSR ~3.0993; Cp peak; Cd present; phase-resolved structural loads NOT available",
+  "candidate": "RM2 processed run 10, mean TSR ~2.9000; mean Cp ~1.85% lower, mean Cd ~5.51% lower, no measured electricity after PTO",
+  "original_source": "https://github.com/UNH-CORE/RM2-tow-tank/blob/master/Data/Processed/Perf-1.0.csv",
+  "processed_source_git_blob": "1f284211d5c19593cf753e63727ae62a62356439",
+  "existing_observational_reports": ["reports/RM2-TRADEOFF-001.json", "reports/RM2-VARIABILITY-001.json"],
+  "new_trace_comparison_module": "tidal_screen/measured_load_gate.py",
+  "synchronized_measured_electrical_and_blade_root_load_traces_available": false,
+  "tested_fatigue_life_improvement": false,
+  "net_electrical_energy_observed": false,
+  "decision": "HOLD: Obtain comparable time-resolved bending/torque and net electric/auxiliary traces with calibrated inflow before physical conclusions.",
+  "source_appropriate_scope": "Published processed same-rig coefficient summaries only; no fatigue, plant availability, full-scale reliability or annual resource inference"
+}

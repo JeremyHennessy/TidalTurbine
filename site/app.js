@@ -14,6 +14,7 @@ let compared = 'crossflow';
 let rm2Tradeoff = null;
 let rm1 = null;
 let forceCampaign = null;
+let forceDailyQuality = null;
 let forceSelectedRange = 29.5;
 let annotations = true;
 const VALIDATION = [
@@ -291,6 +292,47 @@ function renderForceCampaign(){
   caption.textContent=screen?'Exploratory ≥20 dbar arithmetic screen; removes the terminal low-pressure event, NOT a manufacturer QC rule.':'Entire published processed campaign, including 88 terminal all-zero profiles; recovery hypothesis unverified.';
   root.querySelectorAll('.force-cell').forEach(b=>b.addEventListener('click',()=>{forceSelectedRange=Number(b.dataset.range);renderForceCampaign();}));
 }
+function renderForceDailyQuality(){
+  const root=$('#force-daily-grid'),detail=$('#force-daily-detail');
+  if(!root||!detail)return;
+  if(!forceDailyQuality){root.innerHTML='<p class="empty">Daily FORCE source quality unavailable; no classifications inferred.</p>';detail.textContent='Source data not loaded. Zero measurements scientifically approved.';return;}
+  const d=forceDailyQuality,ranges=d.range_relative_m;
+  const rows=d.daily.map((day,dayIndex)=>{
+    const buttons=ranges.map((range,i)=>{
+      const z=day.suspect_zero_by_cell[i],pending=day.pending_by_cell[i],terminal=day.terminal_bursts;
+      const state=terminal===day.bursts?'terminal':z===day.bursts?'zero':z?'mixed':'nonzero';
+      const title=`${day.day_utc}, instrument range ${numeric(range,1)} m: ${numeric(pending,0)} numeric pending QC, ${numeric(z,0)} suspect zeros, ${numeric(terminal,0)} pressure-screened samples; zero model eligible.`;
+      return `<button type='button' class='force-day-cell daily-${state}' data-day='${dayIndex}' data-cell='${i}' aria-pressed='false' title='${safe(title)}' aria-label='${safe(title)}'></button>`;
+    }).join('');
+    return `<div class='force-daily-row'><span class='force-daily-date'>${safe(day.day_utc.slice(5))}</span><div class='force-daily-bins'>${buttons}</div></div>`;
+  }).join('');
+  root.innerHTML=rows;
+  const describe=(dayIndex,cellIndex)=>{
+    const day=d.daily[dayIndex],range=ranges[cellIndex];
+    detail.innerHTML=`<div><strong>${safe(day.day_utc)}</strong><span>UTC observation day; ${numeric(day.bursts,0)} processed bursts</span></div><div><strong>Source range ${numeric(range,1)} m</strong><span>Not certified seabed elevation</span></div><div><strong>${numeric(day.pending_by_cell[cellIndex],0)} pending / ${numeric(day.suspect_zero_by_cell[cellIndex],0)} zeros / ${numeric(day.terminal_bursts,0)} pressure-screened</strong><span>0 scientifically approved · source beam QC unavailable</span></div>`;
+  };
+  describe(0,28);
+  root.onclick=event=>{
+    const el=event.target.closest('.force-day-cell');if(!el||!root.contains(el))return;
+    root.querySelectorAll('[aria-pressed="true"]').forEach(q=>q.setAttribute('aria-pressed','false'));
+    el.setAttribute('aria-pressed','true');
+    describe(Number(el.dataset.day),Number(el.dataset.cell));
+  };
+}
+function checkForceDailyQuality(d){
+  if(d.schema!=='FORCE_DAY_RANGE_QA_V1'||d.evidence_class!=='PROCESSED_OBSERVATION_ARITHMETIC_SCREEN_ONLY'||d.model_eligible_rows!==0||d.scientific_approved_cells!==0||d.native_beam_qc!=='UNAVAILABLE'||d.n_time!==5265||d.n_cells!==50||d.n_days!==56||d.n_records!==263250||d.source_sha256!=='be8acb1802786a0db7f5c2952e4554fc25f03508550b7478a19a2f47d86864e2'||!Array.isArray(d.daily)||d.daily.length!==56||!Array.isArray(d.range_relative_m)||d.range_relative_m.length!==50)throw Error('Unsafe daily FORCE quality provenance');
+  let n=0;
+  for(const day of d.daily){
+    if(day.suspect_zero_by_cell.length!==50||day.pending_by_cell.length!==50||day.terminal_bursts<0||day.terminal_bursts>day.bursts)throw Error('Malformed daily FORCE range-cell grid');
+    for(let i=0;i<50;i++){
+      const z=day.suspect_zero_by_cell[i],p=day.pending_by_cell[i];
+      if(!Number.isInteger(z)||!Number.isInteger(p)||z<0||p<0||z+p+day.terminal_bursts!==day.bursts)throw Error('Unpartitioned source observation state');
+      n++;
+    }
+  }
+  if(n!==2800)throw Error('Incomplete daily range grid');
+  return true;
+}
 async function init(){
   initNavigation();enhanceStyles();
   try{const r=await fetch('../research/mechanisms.json',{cache:'no-cache'});if(!r.ok)throw Error('Mechanism registry fetch '+r.status);const rows=await r.json();if(!Array.isArray(rows)||rows.length<14)throw Error('Incomplete canonical mechanisms');applyMechanisms(rows);}catch(e){console.warn('Mechanism registry unavailable, retaining legacy designs',e);}
@@ -302,7 +344,8 @@ async function init(){
   try{const r=await fetch('../reports/RM2-TRADEOFF-001.json',{cache:'no-cache'});if(!r.ok)throw Error('RM2 drag report fetch '+r.status);const data=await r.json();if(data.classification!=='DESCRIPTIVE_MEASURED_PROCESSED_COEFFICIENT_COMPARISON')throw Error('Invalid mean drag evidence');rm2Tradeoff=data;}catch(e){console.warn('RM2 mean drag report unavailable',e);}
   try{const r=await fetch('../reports/RM1-OBS-001.json',{cache:'no-cache'});if(!r.ok)throw Error('RM1 report fetch '+r.status);const data=await r.json();if(data.classification!=='PUBLISHED_TABLE_REPRODUCTION_PLUS_MECHANICAL_IDENTITY_NOT_PREDICTIVE_VALIDATION'||!Array.isArray(data.results)||data.results.length!==32||!['right','left'].every(side=>data.results.filter(p=>p.rotor===side).length===16)||!data.results.every(p=>Number.isFinite(p.tsr)&&Number.isFinite(p.reported_cp)))throw Error('Invalid RM1 table provenance');rm1=data;}catch(e){console.warn('RM1 table unavailable',e);}
   try{const r=await fetch('../reports/FORCE-CAMPAIGN-QA-001.json',{cache:'no-cache'});if(!r.ok)throw Error('FORCE campaign QA fetch '+r.status);const data=await r.json();if(data.status!=='NUMERICAL_QA_ONLY_ZERO_SOURCE_APPROVED_ROTOR_INFLOW_BINS'||data.source_approved_velocity_records!==0||data.model_ingestion!=='BLOCKED_ZERO_SCIENTIFICALLY_QUALIFIED_BINS'||!Array.isArray(data.vertical_cell_summary)||data.vertical_cell_summary.length!==50||!data.vertical_cell_summary.every(p=>Number.isFinite(p.range_m_instrument_relative)&&Number.isFinite(p.exact_zero_triples)&&Number.isFinite(p.comparison_window_zero_triples)&&p.samples===data.time_bursts))throw Error('Invalid FORCE numeric-QA evidence');forceCampaign=data;}catch(e){console.warn('FORCE campaign QA unavailable',e);}
-  renderStats();miniOverview();sensitivityRender();experimentRender();oceanRender();rm2Plot();renderRM2Tradeoff();rm1Plot();renderForceCampaign();
+  try{const r=await fetch('../research/observations/FORCE_DAILY_CELL_QUALITY_V1_2018.json',{cache:'no-cache'});if(!r.ok)throw Error('FORCE daily QA fetch '+r.status);const data=await r.json();checkForceDailyQuality(data);forceDailyQuality=data;}catch(e){console.warn('Daily numeric QA unavailable',e);}
+  renderStats();miniOverview();sensitivityRender();experimentRender();oceanRender();rm2Plot();renderRM2Tradeoff();rm1Plot();renderForceCampaign();renderForceDailyQuality();
   $('#export-slider').addEventListener('input',experimentRender);
   $('#rm2-share').addEventListener('change',renderRM2Tradeoff);
   $('#rm1-rotor-filter').addEventListener('change',rm1Plot);

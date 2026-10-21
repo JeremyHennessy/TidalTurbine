@@ -578,13 +578,14 @@
       "longitude": -64.4275
     },
     "depth_reference": "ADCP range bins; need deployment metadata",
-    "quality_flags": "Uninspected for measurements; inspect product-specific QC before use",
+    "quality_flags": "Same SHA256-verified processed current dataset as OCEAN-001; source beam quality and fill encoding absent; zero model-approved records.",
     "license": "CC BY 4.0 per linked dataset metadata",
-    "access_status": "downloadable_not_acquired",
-    "review_depth": "file_listing",
+    "access_status": "source_reviewed",
+    "review_depth": "file_listing_reconciled_to_acquired_source_binary",
     "metadata_checked_utc": "2026-10-20",
-    "next_action": "Download 3,348,741-byte file; verify checksum and CF dimensions with NetCDF reader; preserve raw outside Git.",
-    "limitations": "Duplicate access pathway to OCEAN-001, not an additional independent field campaign."
+    "next_action": "Use original current NetCDF checksum pinned in OCEAN-001; recover native .ad2cp and conversion code. This listing is an alternate access route, NOT another measurement campaign.",
+    "limitations": "This is a duplicate file-listing access route to OCEAN-001 and does not add independent observing coverage; processed-source acquisition does not prove scientific quality.",
+    "acquisition_evidence": "Processed FORCE currents acquired in Actions run 39484948868, 3348741 bytes, SHA256 be8acb1802786a0db7f5c2952e4554fc25f03508550b7478a19a2f47d86864e2; identical product to OCEAN-001."
   },
   {
     "id": "OCEAN-021",

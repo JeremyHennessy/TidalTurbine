@@ -107,3 +107,24 @@
 .force-caveat strong{color:#ffdbab}
 @media(max-width:760px){.rm1-panel .panel-head,.force-panel .panel-head{flex-wrap:wrap}.rm1-peaks,.force-metrics{grid-template-columns:1fr 1fr}.rm1-plot-controls,.force-controls{align-items:stretch}.rm1-plot-controls select,.force-controls select{width:100%}}
 @media(max-width:520px){.rm1-peaks,.force-metrics{grid-template-columns:1fr}.rm1-chart-scroll{margin:0 12px}.force-chart-frame{padding:6px 12px}.force-caveat{margin:7px 12px}.rm1-footnote,.force-footnote{margin:6px 12px 14px}}
+
+/* Additive source-derived daily QA heatmap; existing workbench styling remains unchanged. */
+.force-daily-panel{margin:18px 0;padding-bottom:4px}
+.force-daily-panel .panel-head{align-items:flex-start;flex-wrap:wrap}
+.force-daily-legend{display:flex;gap:12px;flex-wrap:wrap;padding:7px 20px 14px;color:#a9c6cc;font-size:11px}
+.force-daily-legend span{display:flex;gap:6px;align-items:center}
+.force-daily-legend i{display:inline-block;width:12px;height:12px;border-radius:3px;border:1px solid #51808b}
+.force-daily-scroll{margin:0 20px 13px;border:1px solid #284d5b;border-radius:9px;max-height:430px;overflow:auto;background:#0a2734}
+#force-daily-grid{width:max-content;min-width:100%;padding:10px}
+.force-daily-row{display:flex;gap:10px;align-items:center;min-height:17px}
+.force-daily-date{font-variant-numeric:tabular-nums;color:#a2bdc4;font-size:10px;display:inline-block;width:45px;flex:none}
+.force-daily-bins{display:grid;grid-template-columns:repeat(50,12px);gap:3px;align-items:center}
+.force-day-cell{width:12px;height:12px;padding:0;border:1px solid #426475;border-radius:2px;cursor:pointer}
+.force-day-cell.daily-nonzero,.force-daily-legend i.daily-nonzero{background:#257d76}
+.force-day-cell.daily-mixed,.force-daily-legend i.daily-mixed{background:#c78a42}
+.force-day-cell.daily-zero,.force-daily-legend i.daily-zero{background:#ad5d43}
+.force-day-cell.daily-terminal,.force-daily-legend i.daily-terminal{background:#617184}
+.force-day-cell:focus-visible,.force-day-cell[aria-pressed="true"]{outline:2px solid #e9fff8;outline-offset:1px;z-index:1}
+.force-daily-panel .force-cell-detail{margin:0 20px 8px}
+@media(max-width:520px){.force-daily-scroll{margin:0 12px 10px}.force-daily-panel .force-cell-detail{margin:0 12px 8px}.force-daily-legend{padding:8px 12px}}
+.force-daily-panel{scroll-margin-top:90px}

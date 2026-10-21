@@ -5,10 +5,10 @@
 | Topic | Coverage | Current evidence / next needed |
 |---|---|---|
 | Architecture families | Partial | 14 multidimensional exemplars in `mechanisms.json`, covering axial, cross-flow, drag, foil, free-stream axial screw, kite, duct, pressure-coupled, piezoelectric flag, vortex oscillator; independent normalization and field measurements missing. |
-| RM1 geometry and test | Partial | Sandia index/report uncertainty sections; dataset & Cp curve reproduction MISSING. |
-| Current and bathymetric resource | Partial (acquisition only) | One 2-hour FORCE ADCP 2018 slice **acquired and numerically screened**, not quality-approved. 206/450 exact-zero triples and unknown transducer geometry block model ingestion. No usable annual resource or bathymetric assessment. See `reports/FORCE-SLICE-QA-001.md`. |
+| RM1 geometry and test | Partial | Sandia RM1 Appendix A right/left 16-point Cp/TSR printed tables reproduced (RM1-OBS-001); raw signal, Ct/thrust and predictive-physics validation MISSING. |
+| Current and bathymetric resource | Partial (acquisition only) | Complete 5,265-burst FORCE current/wave processed files SHA-verified, with 263,250 cell records and quality-state classification; 97,911 exact-zero triplets and unverified beam QC/geometry BLOCK turbine inflow. Independent CMAR DG013 has 531 sensor observations but no rotor-depth 3-D inflow. See `docs/INGESTION_GATE_20261020.md`. |
 | Turbulence, shear, wave-current interaction | Missing | Need measured spectra and calibrated hydrodynamics. |
-| Rotor Cp/TSR / thrust Ct | Partial | RM2 cross-flow processed tow-tank 23-run Cp/CD-v-TSR series reproduced in `RM2-OBS-001`; independently recomputed rotor torque, a predictive cross-flow solver and RM1 axial-rotor curves still MISSING. |
+| Rotor Cp/TSR / thrust Ct | Partial | RM2 23 processed Cp/Cd/TSR observations and RM1 32 printed Cp/TSR observations reproduced (data reproduction only); independently calibrated load spectra, thrust/Ct and predictive solver validation MISSING. |
 | Cavitation / tip vortex / debris | Missing | Site-specific pressure, blade surface and impacts. |
 | Cyclic loading, structural fatigue | Partial | Passive-pitch model test reviewed; S-N data and load spectrum missing. |
 | Blade materials/manufacturing | Missing | Qualified laminates, environmental aging, supply and inspection. |
@@ -64,3 +64,7 @@ Observed *processed* 1:6 laboratory cross-flow Cp/Cd operating points now suppor
 - **Acquired**: 14,400 archived FORCE 2018 processed current vectors across 288 timestamps; raw 72-hour SHA256 pinned in `reports/FORCE-72H-QA-001.json`, source retained outside Git in one-shot Actions artifact. 5,160 exact all-zero vectors, 12 all-zero and 12 partial-zero range bins; 26 all-nonzero bins remain **numeric candidates only**, not physically quality-qualified. Pressure/highest-nonzero-boundary Pearson r≈0.996882 (descriptive).
 - **Instrument geometry partially recovered**: Viehman et al. 2022 confirms Nortek transducer face at 0.7m above seabed, blanking 1m, first sample centre 2m from face, but public ERDDAP starts range labels 1.5m. Cell label/geometry mismatch and native acoustic quality masks unresolved.
 - **Still missing before site energy**: raw beam correlation/amplitude and converter flags, calibrated depth/time mask, seasonal/annual representative vector coverage, instrumentation uncertainty, loads, fisheries/permission gates. No FORCE measured velocities fed to turbine models.
+
+## Current audit supersession — 2026-10-20
+
+Historical paragraphs above describing **20 source records**, a **two-hour-only** FORCE acquisition, or RM1 as not reproduced refer to earlier checkpoints. They are superseded by the 21-entry source registry, complete FORCE processed 2018 and CMAR DG013 acquisition, and RM1-OBS-001. Preserve them as research chronology, not present status. See `docs/INGESTION_GATE_20261020.md` and `docs/FORCE_NATIVE_QC_RECOVERY_20261020.md`. The dataset's 56-day × 50-cell QA grid is arithmetic screening **only**. The paired load/electricity protocol remains measurement blocked.
