@@ -820,5 +820,35 @@
       "Paper does not quantify our turbine structural life, test-site turbine resource, or supplier accessibility."
     ],
     "access_status": "Public open-access journal paper, abstract, results/conclusions and data availability directly examined."
+  },
+  {
+    "id": "RM2-UNH-CROSSSPEED-2016",
+    "title": "UNH RM2 tow-tank processed performance curves at 0.4–1.2 m/s — paired published speed-series evidence",
+    "url": "https://github.com/UNH-CORE/RM2-tow-tank/tree/fdf80fe355c659ec0e3b1dce2f1c9c9800a777ef/Data/Processed",
+    "publication_date": "2016",
+    "access_date": "2026-10-20",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "sections_reviewed",
+    "reviewed_sections": [
+      "README Test matrix sections: five nominal tow speeds and second (-b) performance curves",
+      "Data/Processed/Perf-{0.4,0.6,0.8,1.0,1.2}.csv, original commit fdf80fe355c659ec0e3b1dce2f1c9c9800a777ef",
+      "Data/Processed/Perf-{0.4,0.6,0.8,1.0,1.2}-b.csv, same immutable original commit",
+      "Mean TSR, mean Cp, mean Cd and exp_unc_* processed columns for nominal source runs 10 and 12; Cp maximum from each source series"
+    ],
+    "supported_claims": [
+      "Ten processed source series comprise first/second performance sweeps at each of five nominal freshwater towing speeds 0.4, 0.6, 0.8, 1.0 and 1.2 m/s.",
+      "Across the ten published point-estimate comparisons, nominal TSR 2.9 has lower reported mean Cp and mean Cd than nominal TSR 3.1, but relative Cp difference varies strongly with tow speed.",
+      "Original 1m/s ~1.85% Cp and ~5.51% mean Cd difference does not generalize as a fixed low-energy-cost drag derating across speeds."
+    ],
+    "limitations": [
+      "Only processed upstream means and source uncertainty columns reviewed; no raw synchronized strain/phase/torque/source uncertainty covariance or statistically powered independent trials.",
+      "Second sweeps are repeat performance curves of one scaled rotor, NOT ten independent turbines or evidence of full-scale reliability.",
+      "Tank blockage and Reynolds dependence, hydrodynamic shear and turbulence remain uncorrected/not independently validated here.",
+      "The comparison uses fixed nominal TSR 2.9 vs 3.1, not the observed maximum Cp in all series; no optimized controller, net electrical, physical fatigue, site hydrodynamics, ecological or LCOE claims.",
+      "Do not extrapolate to axial RM1 or nonrotating foil across incompatible power denominators."
+    ],
+    "access_status": "Public CC BY 4.0 upstream processed CSVs and README, 10 exact source Git blob SHAs pinned in reduced fixture",
+    "source_immutable_git_commit": "fdf80fe355c659ec0e3b1dce2f1c9c9800a777ef",
+    "derived_report": "reports/RM2-CROSSSPEED-001.json"
   }
 ]

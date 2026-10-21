@@ -1,0 +1,454 @@
+{
+  "id": "RM2-CROSSSPEED-001",
+  "classification": "DESCRIPTIVE_PUBLISHED_PROCESSED_LAB_MULTISPEED_COMPARISON_NO_LOAD_VALIDATION",
+  "source": {
+    "repository": "UNH-CORE/RM2-tow-tank",
+    "source_immutable_commit": "fdf80fe355c659ec0e3b1dce2f1c9c9800a777ef",
+    "original_processed_file_license": "CC BY 4.0; Bachant, Wosnik, Gunawan, Neary",
+    "doi": "10.6084/m9.figshare.1373899",
+    "reduced_fixture_git_blob_sha": "bd23e4ac4e756bd2b66cbb5cc0d9a84f77d56fa5",
+    "selected_raw_numeric_fields": "3 published processed rows per each of 10 original tables; 2 comparison runs + observed series Cp maximum"
+  },
+  "question": "How sensitive is the published same-rotor mechanical mean Cp-versus-mean streamwise Cd point-estimate change at nominal TSR 2.9 versus 3.1 to different controlled tow speeds?",
+  "comparison_protocol": {
+    "candidate_tsr_nominal": 2.9,
+    "reference_tsr_nominal": 3.1,
+    "selection": "predeclared comparison of nominal runs 10 vs 12 in each speed/series; no curve fit or reoptimization",
+    "series": "Published first and second performance curves (A and B) are not assumed independent population replicates.",
+    "posthoc_maximum_caveat": "Each series' observed point-estimate Cp maximum is descriptive and was selected from the full file, not a validated true optimum."
+  },
+  "series_count": 10,
+  "nominal_tow_speeds_m_s": [
+    0.4,
+    0.6,
+    0.8,
+    1,
+    1.2
+  ],
+  "descriptive_sign_count": {
+    "candidate_cp_lower_than_reference": 10,
+    "candidate_cd_lower_than_reference": 10
+  },
+  "series": [
+    {
+      "series_id": "RM2-0p4-A",
+      "nominal_tow_speed_m_s": 0.4,
+      "source_path": "Data/Processed/Perf-0.4.csv",
+      "source_git_blob_sha": "05dae9a59a23d8ce558edd00d16f3bd1416d87ef",
+      "source_full_table_rows": 29,
+      "candidate_tsr_2p9": {
+        "source_run": 10,
+        "nominal_tsr": 2.9,
+        "observed_mean_tsr": 2.9000981384448683,
+        "observed_mean_tow_speed_m_s": 0.3999909449610453,
+        "mean_cp": 0.0896820526946205,
+        "mean_cd": 0.7363157930892609,
+        "upstream_exp_unc_cp": 0.04484475258339244,
+        "upstream_exp_unc_cd": 0.007347761578526132,
+        "n_complete_revolutions": 13
+      },
+      "reference_tsr_3p1": {
+        "source_run": 12,
+        "nominal_tsr": 3.1,
+        "observed_mean_tsr": 3.100183228097944,
+        "observed_mean_tow_speed_m_s": 0.39999403855783666,
+        "mean_cp": 0.12785626180917634,
+        "mean_cd": 0.7977640532220681,
+        "upstream_exp_unc_cp": 0.047957144716875434,
+        "upstream_exp_unc_cd": 0.007962860617914057,
+        "n_complete_revolutions": 14
+      },
+      "posthoc_source_series_max_cp": {
+        "source_run": 15,
+        "observed_mean_tsr": 3.4002987911935563,
+        "mean_cp": 0.15580654190998644
+      },
+      "candidate_relative_to_tsr3p1": {
+        "mechanical_cp_point_decrease_percent": 29.8571,
+        "mean_streamwise_cd_point_decrease_percent": 7.7026
+      },
+      "candidate_relative_to_posthoc_series_max_cp": {
+        "mechanical_cp_point_decrease_percent": 42.4401
+      }
+    },
+    {
+      "series_id": "RM2-0p4-B",
+      "nominal_tow_speed_m_s": 0.4,
+      "source_path": "Data/Processed/Perf-0.4-b.csv",
+      "source_git_blob_sha": "69adb6c4a7afd44e8c83b575e8cf52ff96f7e7cc",
+      "source_full_table_rows": 29,
+      "candidate_tsr_2p9": {
+        "source_run": 10,
+        "nominal_tsr": 2.9,
+        "observed_mean_tsr": 2.900206598079841,
+        "observed_mean_tow_speed_m_s": 0.3999925232470471,
+        "mean_cp": 0.10116164673753654,
+        "mean_cd": 0.7446961910382325,
+        "upstream_exp_unc_cp": 0.04490177220813474,
+        "upstream_exp_unc_cd": 0.008264007500701706,
+        "n_complete_revolutions": 13
+      },
+      "reference_tsr_3p1": {
+        "source_run": 12,
+        "nominal_tsr": 3.1,
+        "observed_mean_tsr": 3.100300506469778,
+        "observed_mean_tow_speed_m_s": 0.3999934877315975,
+        "mean_cp": 0.14155233293959807,
+        "mean_cd": 0.8106809021443262,
+        "upstream_exp_unc_cp": 0.04796031457130808,
+        "upstream_exp_unc_cd": 0.0073974176945904085,
+        "n_complete_revolutions": 14
+      },
+      "posthoc_source_series_max_cp": {
+        "source_run": 14,
+        "observed_mean_tsr": 3.300147273800525,
+        "mean_cp": 0.1568523761627155
+      },
+      "candidate_relative_to_tsr3p1": {
+        "mechanical_cp_point_decrease_percent": 28.5341,
+        "mean_streamwise_cd_point_decrease_percent": 8.1394
+      },
+      "candidate_relative_to_posthoc_series_max_cp": {
+        "mechanical_cp_point_decrease_percent": 35.5052
+      }
+    },
+    {
+      "series_id": "RM2-0p6-A",
+      "nominal_tow_speed_m_s": 0.6,
+      "source_path": "Data/Processed/Perf-0.6.csv",
+      "source_git_blob_sha": "f5260ec2a6e02ab4ec9d8f38ad164f6f94544f93",
+      "source_full_table_rows": 29,
+      "candidate_tsr_2p9": {
+        "source_run": 10,
+        "nominal_tsr": 2.9,
+        "observed_mean_tsr": 2.8998436947603627,
+        "observed_mean_tow_speed_m_s": 0.6000095646867373,
+        "mean_cp": 0.23543599838403373,
+        "mean_cd": 0.7800758562363952,
+        "upstream_exp_unc_cp": 0.019996501285744133,
+        "upstream_exp_unc_cd": 0.004677626948375921,
+        "n_complete_revolutions": 12
+      },
+      "reference_tsr_3p1": {
+        "source_run": 12,
+        "nominal_tsr": 3.1,
+        "observed_mean_tsr": 3.1000060142075987,
+        "observed_mean_tow_speed_m_s": 0.6000108222490932,
+        "mean_cp": 0.2729869891468706,
+        "mean_cd": 0.8437801031597478,
+        "upstream_exp_unc_cp": 0.021340654983221193,
+        "upstream_exp_unc_cd": 0.004660157014639287,
+        "n_complete_revolutions": 13
+      },
+      "posthoc_source_series_max_cp": {
+        "source_run": 14,
+        "observed_mean_tsr": 3.2999829490497286,
+        "mean_cp": 0.2847702651699562
+      },
+      "candidate_relative_to_tsr3p1": {
+        "mechanical_cp_point_decrease_percent": 13.7556,
+        "mean_streamwise_cd_point_decrease_percent": 7.5499
+      },
+      "candidate_relative_to_posthoc_series_max_cp": {
+        "mechanical_cp_point_decrease_percent": 17.3242
+      }
+    },
+    {
+      "series_id": "RM2-0p6-B",
+      "nominal_tow_speed_m_s": 0.6,
+      "source_path": "Data/Processed/Perf-0.6-b.csv",
+      "source_git_blob_sha": "0beafa16880d26712e2f0788ec199be5e037f343",
+      "source_full_table_rows": 29,
+      "candidate_tsr_2p9": {
+        "source_run": 10,
+        "nominal_tsr": 2.9,
+        "observed_mean_tsr": 2.9002480192435964,
+        "observed_mean_tow_speed_m_s": 0.6000061228641173,
+        "mean_cp": 0.23202739601996142,
+        "mean_cd": 0.7889264608069678,
+        "upstream_exp_unc_cp": 0.01998365483382268,
+        "upstream_exp_unc_cd": 0.005116695351742801,
+        "n_complete_revolutions": 12
+      },
+      "reference_tsr_3p1": {
+        "source_run": 12,
+        "nominal_tsr": 3.1,
+        "observed_mean_tsr": 3.0999181536807074,
+        "observed_mean_tow_speed_m_s": 0.6000156791616285,
+        "mean_cp": 0.2683809700260695,
+        "mean_cd": 0.8491247334054556,
+        "upstream_exp_unc_cp": 0.021351344725403485,
+        "upstream_exp_unc_cd": 0.0038712365428408106,
+        "n_complete_revolutions": 13
+      },
+      "posthoc_source_series_max_cp": {
+        "source_run": 14,
+        "observed_mean_tsr": 3.299819716795583,
+        "mean_cp": 0.28021133440524765
+      },
+      "candidate_relative_to_tsr3p1": {
+        "mechanical_cp_point_decrease_percent": 13.5455,
+        "mean_streamwise_cd_point_decrease_percent": 7.0894
+      },
+      "candidate_relative_to_posthoc_series_max_cp": {
+        "mechanical_cp_point_decrease_percent": 17.1956
+      }
+    },
+    {
+      "series_id": "RM2-0p8-A",
+      "nominal_tow_speed_m_s": 0.8,
+      "source_path": "Data/Processed/Perf-0.8.csv",
+      "source_git_blob_sha": "b1c029259ffeec4ec9e22e236feba99f43abdcbe",
+      "source_full_table_rows": 27,
+      "candidate_tsr_2p9": {
+        "source_run": 10,
+        "nominal_tsr": 2.9,
+        "observed_mean_tsr": 2.899621077311068,
+        "observed_mean_tow_speed_m_s": 0.8000132453316166,
+        "mean_cp": 0.3100370303948682,
+        "mean_cd": 0.7897986182858556,
+        "upstream_exp_unc_cp": 0.011415158117752747,
+        "upstream_exp_unc_cd": 0.0038698557057586388,
+        "n_complete_revolutions": 10
+      },
+      "reference_tsr_3p1": {
+        "source_run": 12,
+        "nominal_tsr": 3.1,
+        "observed_mean_tsr": 3.0998345054529977,
+        "observed_mean_tow_speed_m_s": 0.8000213719320332,
+        "mean_cp": 0.3406604736952444,
+        "mean_cd": 0.8511517339544223,
+        "upstream_exp_unc_cp": 0.012061145700548663,
+        "upstream_exp_unc_cd": 0.003144660963713789,
+        "n_complete_revolutions": 11
+      },
+      "posthoc_source_series_max_cp": {
+        "source_run": 12,
+        "observed_mean_tsr": 3.0998345054529977,
+        "mean_cp": 0.3406604736952444
+      },
+      "candidate_relative_to_tsr3p1": {
+        "mechanical_cp_point_decrease_percent": 8.9894,
+        "mean_streamwise_cd_point_decrease_percent": 7.2082
+      },
+      "candidate_relative_to_posthoc_series_max_cp": {
+        "mechanical_cp_point_decrease_percent": 8.9894
+      }
+    },
+    {
+      "series_id": "RM2-0p8-B",
+      "nominal_tow_speed_m_s": 0.8,
+      "source_path": "Data/Processed/Perf-0.8-b.csv",
+      "source_git_blob_sha": "28d314296378d7f7ba04f44e545158c0299e4ce8",
+      "source_full_table_rows": 27,
+      "candidate_tsr_2p9": {
+        "source_run": 10,
+        "nominal_tsr": 2.9,
+        "observed_mean_tsr": 2.8997560154282342,
+        "observed_mean_tow_speed_m_s": 0.800022363168062,
+        "mean_cp": 0.3063863757296158,
+        "mean_cd": 0.7972108855947614,
+        "upstream_exp_unc_cp": 0.011410789533708589,
+        "upstream_exp_unc_cd": 0.004512503151559045,
+        "n_complete_revolutions": 10
+      },
+      "reference_tsr_3p1": {
+        "source_run": 12,
+        "nominal_tsr": 3.1,
+        "observed_mean_tsr": 3.0998889725184813,
+        "observed_mean_tow_speed_m_s": 0.8000278351164258,
+        "mean_cp": 0.32754650606340324,
+        "mean_cd": 0.8456088794712392,
+        "upstream_exp_unc_cp": 0.012255724050652707,
+        "upstream_exp_unc_cd": 0.005368632125663451,
+        "n_complete_revolutions": 11
+      },
+      "posthoc_source_series_max_cp": {
+        "source_run": 13,
+        "observed_mean_tsr": 3.1998898121337493,
+        "mean_cp": 0.3309276154675767
+      },
+      "candidate_relative_to_tsr3p1": {
+        "mechanical_cp_point_decrease_percent": 6.4602,
+        "mean_streamwise_cd_point_decrease_percent": 5.7234
+      },
+      "candidate_relative_to_posthoc_series_max_cp": {
+        "mechanical_cp_point_decrease_percent": 7.4159
+      }
+    },
+    {
+      "series_id": "RM2-1p0-A",
+      "nominal_tow_speed_m_s": 1,
+      "source_path": "Data/Processed/Perf-1.0.csv",
+      "source_git_blob_sha": "1f284211d5c19593cf753e63727ae62a62356439",
+      "source_full_table_rows": 23,
+      "candidate_tsr_2p9": {
+        "source_run": 10,
+        "nominal_tsr": 2.9,
+        "observed_mean_tsr": 2.899961751674067,
+        "observed_mean_tow_speed_m_s": 1.0000482888684454,
+        "mean_cp": 0.3480504236755432,
+        "mean_cd": 0.7992955738077838,
+        "upstream_exp_unc_cp": 0.007273240097053945,
+        "upstream_exp_unc_cd": 0.002609716230107654,
+        "n_complete_revolutions": 9
+      },
+      "reference_tsr_3p1": {
+        "source_run": 12,
+        "nominal_tsr": 3.1,
+        "observed_mean_tsr": 3.099349483624899,
+        "observed_mean_tow_speed_m_s": 1.000030770642202,
+        "mean_cp": 0.35460251857936176,
+        "mean_cd": 0.8458717342880612,
+        "upstream_exp_unc_cp": 0.00805044087719535,
+        "upstream_exp_unc_cd": 0.0036729604219277326,
+        "n_complete_revolutions": 10
+      },
+      "posthoc_source_series_max_cp": {
+        "source_run": 12,
+        "observed_mean_tsr": 3.099349483624899,
+        "mean_cp": 0.35460251857936176
+      },
+      "candidate_relative_to_tsr3p1": {
+        "mechanical_cp_point_decrease_percent": 1.8477,
+        "mean_streamwise_cd_point_decrease_percent": 5.5063
+      },
+      "candidate_relative_to_posthoc_series_max_cp": {
+        "mechanical_cp_point_decrease_percent": 1.8477
+      }
+    },
+    {
+      "series_id": "RM2-1p0-B",
+      "nominal_tow_speed_m_s": 1,
+      "source_path": "Data/Processed/Perf-1.0-b.csv",
+      "source_git_blob_sha": "3e91664e9c7516fd5de86b138bf5054f45b0aa7e",
+      "source_full_table_rows": 23,
+      "candidate_tsr_2p9": {
+        "source_run": 10,
+        "nominal_tsr": 2.9,
+        "observed_mean_tsr": 2.8997839499040907,
+        "observed_mean_tow_speed_m_s": 1.0000445354185832,
+        "mean_cp": 0.3458978492049717,
+        "mean_cd": 0.7963497937309771,
+        "upstream_exp_unc_cp": 0.0073881721661586625,
+        "upstream_exp_unc_cd": 0.003076637951315446,
+        "n_complete_revolutions": 9
+      },
+      "reference_tsr_3p1": {
+        "source_run": 12,
+        "nominal_tsr": 3.1,
+        "observed_mean_tsr": 3.0997020060575724,
+        "observed_mean_tow_speed_m_s": 1.0000353076216713,
+        "mean_cp": 0.35412142964142224,
+        "mean_cd": 0.8419407758434596,
+        "upstream_exp_unc_cp": 0.008416994758986334,
+        "upstream_exp_unc_cd": 0.00537451544666771,
+        "n_complete_revolutions": 10
+      },
+      "posthoc_source_series_max_cp": {
+        "source_run": 12,
+        "observed_mean_tsr": 3.0997020060575724,
+        "mean_cp": 0.35412142964142224
+      },
+      "candidate_relative_to_tsr3p1": {
+        "mechanical_cp_point_decrease_percent": 2.3222,
+        "mean_streamwise_cd_point_decrease_percent": 5.415
+      },
+      "candidate_relative_to_posthoc_series_max_cp": {
+        "mechanical_cp_point_decrease_percent": 2.3222
+      }
+    },
+    {
+      "series_id": "RM2-1p2-A",
+      "nominal_tow_speed_m_s": 1.2,
+      "source_path": "Data/Processed/Perf-1.2.csv",
+      "source_git_blob_sha": "46719af849890a398529331c0c0353931c93ddbc",
+      "source_full_table_rows": 17,
+      "candidate_tsr_2p9": {
+        "source_run": 10,
+        "nominal_tsr": 2.9,
+        "observed_mean_tsr": 2.899305732912861,
+        "observed_mean_tow_speed_m_s": 1.200109610538373,
+        "mean_cp": 0.365204582303111,
+        "mean_cd": 0.7923275363954445,
+        "upstream_exp_unc_cp": 0.005237621704657134,
+        "upstream_exp_unc_cd": 0.002309146261665671,
+        "n_complete_revolutions": 9
+      },
+      "reference_tsr_3p1": {
+        "source_run": 12,
+        "nominal_tsr": 3.1,
+        "observed_mean_tsr": 3.0998383609704363,
+        "observed_mean_tow_speed_m_s": 1.1999846864310149,
+        "mean_cp": 0.36950283910303916,
+        "mean_cd": 0.83518541384016,
+        "upstream_exp_unc_cp": 0.005815730932547982,
+        "upstream_exp_unc_cd": 0.0031347825566797427,
+        "n_complete_revolutions": 9
+      },
+      "posthoc_source_series_max_cp": {
+        "source_run": 12,
+        "observed_mean_tsr": 3.0998383609704363,
+        "mean_cp": 0.36950283910303916
+      },
+      "candidate_relative_to_tsr3p1": {
+        "mechanical_cp_point_decrease_percent": 1.1633,
+        "mean_streamwise_cd_point_decrease_percent": 5.1315
+      },
+      "candidate_relative_to_posthoc_series_max_cp": {
+        "mechanical_cp_point_decrease_percent": 1.1633
+      }
+    },
+    {
+      "series_id": "RM2-1p2-B",
+      "nominal_tow_speed_m_s": 1.2,
+      "source_path": "Data/Processed/Perf-1.2-b.csv",
+      "source_git_blob_sha": "eeb7e1e54a9f8cd60a8407cb1466ba56414e6602",
+      "source_full_table_rows": 17,
+      "candidate_tsr_2p9": {
+        "source_run": 10,
+        "nominal_tsr": 2.9,
+        "observed_mean_tsr": 2.8991685674750998,
+        "observed_mean_tow_speed_m_s": 1.2001281214203894,
+        "mean_cp": 0.36437932551797975,
+        "mean_cd": 0.8035351861306229,
+        "upstream_exp_unc_cp": 0.005937395416819012,
+        "upstream_exp_unc_cd": 0.004880302156311481,
+        "n_complete_revolutions": 9
+      },
+      "reference_tsr_3p1": {
+        "source_run": 12,
+        "nominal_tsr": 3.1,
+        "observed_mean_tsr": 3.10010307250358,
+        "observed_mean_tow_speed_m_s": 1.2000006947608204,
+        "mean_cp": 0.3648414058009858,
+        "mean_cd": 0.8586191558380484,
+        "upstream_exp_unc_cp": 0.006402528223008485,
+        "upstream_exp_unc_cd": 0.004359654490325926,
+        "n_complete_revolutions": 9
+      },
+      "posthoc_source_series_max_cp": {
+        "source_run": 14,
+        "observed_mean_tsr": 3.2994254276168884,
+        "mean_cp": 0.36922560884616246
+      },
+      "candidate_relative_to_tsr3p1": {
+        "mechanical_cp_point_decrease_percent": 0.1267,
+        "mean_streamwise_cd_point_decrease_percent": 6.4154
+      },
+      "candidate_relative_to_posthoc_series_max_cp": {
+        "mechanical_cp_point_decrease_percent": 1.3126
+      }
+    }
+  ],
+  "observed_finding": "All ten source-series point estimates show lower Cp and Cd at nominal TSR 2.9 than at 3.1, but the relative Cp penalty changes strongly with tow speed. A near-2% Cp cost at 1 m/s is not a universal derating rule.",
+  "uncertainty_and_limits": [
+    "Values copied from upstream previously processed freshwater laboratory means; no raw torque, blade or support strain reprocessing.",
+    "The original exp_unc_cp and exp_unc_cd fields are reproduced verbatim and are NOT recomputed or interpreted here as paired-difference confidence intervals.",
+    "Series A and B are two tow-tank performance sweeps with varying Reynolds number and possibly uncorrected tank blockage, not independent turbines or generalized sea-state statistics.",
+    "None of the observed coefficient differences establishes statistical significance, net delivered electricity, controller energy, alternating structural load, fatigue damage, lifecycle benefit or field extrapolation.",
+    "The comparison at fixed nominal TSR 3.1 is not necessarily the observed Cp maximum in each speed series; a distinct post-hoc maximum is reported as context only.",
+    "No scientifically qualified FORCE/CMAR site-specific inflow was used; do not feed the table into site energy/loads or equate unlike RM1 and RM2 Cp denominators."
+  ],
+  "decision": "Reject universal low-cost mechanical derating inference from the single 1 m/s RM2 series. Preregister matched-speed and turbulence-controlled cyclic-load, power and actuator-energy tests before recommending a controller or design winner."
+}
