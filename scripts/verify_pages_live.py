@@ -17,6 +17,7 @@ ASSETS = (
     "index.html",
     "site/index.html",
     "site/styles.css",
+    "site/artwork.js",
     "site/app.js",
     "reports/RM2-RAW-LOADS-001.json",
     "reports/RM2-CROSSSPEED-001.json",
@@ -69,7 +70,7 @@ def main():
                     raise
                 print(f"Pages CDN propagation check {attempt + 1}/{args.tries} for {path}: {type(error).__name__}", flush=True)
                 sleep(6)
-    print("LIVE PAGES HTTP SOURCE PARITY PASS: all six published artifacts match the committed source; not an in-browser JS test.")
+    print(f"LIVE PAGES HTTP SOURCE PARITY PASS: all {len(ASSETS)} published artifacts match the committed source; not an in-browser JS test.")
 
 
 if __name__ == "__main__":
