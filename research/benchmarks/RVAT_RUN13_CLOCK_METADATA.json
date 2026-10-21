@@ -1,0 +1,47 @@
+{
+  "id": "RVAT-RUN13-CLOCK-METADATA-001",
+  "classification": "PUBLISHED_SOURCE_INDEX_METADATA_NOT_ACQUIRED_RAW_MEASUREMENTS",
+  "source_url": "https://api.figshare.com/v2/file/download/1571974",
+  "source_bytes": 120467,
+  "source_sha256": "47d7a56f01fd9865288d2e7eda7187d6b07e03c049776af100fb9e3346769137",
+  "source_license": "CC BY 4.0, UNH RVAT-baseline experiment",
+  "upstream_commit": "1646a34a3653be70f3e10b7beaffd695be196d53",
+  "phase_origin_evidence": null,
+  "channels": [
+    {
+      "name": "TorqueTrans",
+      "sample_count": 72000,
+      "start_time_as_stored": "2013-03-10T03:41:46.160476",
+      "increment_s": 0.0005,
+      "units": "Nm"
+    },
+    {
+      "name": "TorqueArm",
+      "sample_count": 72000,
+      "start_time_as_stored": "2013-03-10T03:41:46.160476",
+      "increment_s": 0.0005,
+      "units": "Nm"
+    },
+    {
+      "name": "DragL",
+      "sample_count": 72000,
+      "start_time_as_stored": "2013-03-10T03:41:46.160476",
+      "increment_s": 0.0005,
+      "units": "N"
+    },
+    {
+      "name": "DragR",
+      "sample_count": 72000,
+      "start_time_as_stored": "2013-03-10T03:41:46.160476",
+      "increment_s": 0.0005,
+      "units": "N"
+    },
+    {
+      "name": "Untitled",
+      "sample_count": 72000,
+      "start_time_as_stored": "2013-03-10T03:41:46.258975",
+      "increment_s": 1.0,
+      "units": null
+    }
+  ]
+}
