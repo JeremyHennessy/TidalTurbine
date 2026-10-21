@@ -59,7 +59,7 @@ def attempt(item):
                           content_range=response.headers.get("Content-Range"))
             head = response.read(128)
             result["body_prefix"] = (
-                "ZIP_HEADER_ONLY" if head.startswith(b"PK\\x03\\x04")
+                "ZIP_HEADER_ONLY" if head.startswith(bytes.fromhex('504b0304'))
                 else "HTML_OR_OTHER_UNVERIFIED"
             )
     except HTTPError as exc:
