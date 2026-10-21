@@ -144,3 +144,9 @@
 @media(max-width:1000px){.speed-lanes{grid-template-columns:1fr}.speed-lane p{min-height:0}}
 @media(max-width:700px){.speed-metrics,.rig-summary{grid-template-columns:1fr 1fr}.rm2-speed-controls,.rm2-raw-controls{align-items:stretch}.rm2-speed-controls select,.rm2-raw-controls select{width:100%}}
 @media(max-width:520px){.speed-metrics,.rig-summary{grid-template-columns:1fr}.speed-lanes{padding:10px}.speed-lane{padding:11px}.speed-row{grid-template-columns:46px minmax(0,1fr)}.speed-bar-row{grid-template-columns:44px minmax(0,1fr) 48px}.speed-caveat,.rig-interpretation{margin:7px 12px 13px}.rig-svg-scroll{padding:5px 10px}}
+
+/* Newly sourced mechanical measurements are visible from overview without changing the design studio. */
+.latest-lab-note{margin:14px 0 19px;line-height:1.65;font-size:12px}
+.latest-lab-note strong{display:block;color:#f4e0bb;font-size:11px;letter-spacing:.06em;margin-bottom:4px}
+.latest-lab-note .plain-link{display:inline-block;margin-left:5px;white-space:nowrap;font-weight:700}
+@media(max-width:600px){.latest-lab-note .plain-link{display:block;margin:9px 0 0}}
