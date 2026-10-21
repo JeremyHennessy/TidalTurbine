@@ -1,0 +1,27 @@
+name: One-shot acquire six public RM2 NI mechanical trials
+on:
+  push:
+    branches: ['research/rm2-raw-six-trials-20261020']
+    paths: ['.github/workflows/rm2-raw-six-once.yml']
+permissions:
+  contents: read
+jobs:
+  acquire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install source-format scientific reader
+        run: pip install -r requirements-ocean.txt
+      - name: Acquire and verify six source NI files, preserving raw outside Git
+        run: python scripts/inspect_rm2_raw.py --fetch --out data/local/rm2_six_raw
+      - name: Archive source and QA for local reproducibility
+        uses: actions/upload-artifact@v4
+        with:
+          name: rm2-six-trial-raw-qa-source
+          path: data/local/rm2_six_raw/
+          if-no-files-found: error
+          retention-days: 2
