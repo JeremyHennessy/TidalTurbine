@@ -44,12 +44,17 @@ jobs:
               (root/name).write_bytes(data)
               pack[kind]={'sha256':hashlib.sha256(data).hexdigest(),'figshare_file_id':fid,'source_md5':md5,'bytes':len(data),'name':name,'source_url':url}
             with h5py.File(root/(x['n']+'_nidata.h5'),'r') as f:
-              shapes={k:list(f[k].shape) for k in f.keys()}
-              need=['time','carriage_pos','turbine_angle','torque_trans','drag_left','drag_right']
-              if not set(need).issubset(set(shapes)):raise ValueError('Missing raw NI channels: '+x['n'])
-              if len(set(f[k].shape for k in need))!=1:raise ValueError('NI array shape mismatch')
-              n=len(f['time']); start=float(f['time'][0]);end=float(f['time'][-1])
-              pack['ni_dataset_summary']={'sample_count':n,'time_start_s':start,'time_end_s':end,'dataset_shapes':shapes}
+              datasets={}
+              def visit(path,obj):
+                if isinstance(obj,h5py.Dataset): datasets[path]=list(obj.shape)
+              f.visititems(visit)
+              stems={p.rsplit('/',1)[-1]:p for p in datasets}
+              needed=['time','carriage_pos','turbine_angle','torque_trans','drag_left','drag_right']
+              missing=[p for p in needed if p not in stems]
+              if missing:raise ValueError(f'Missing raw NI channels: {x["n"]} {missing}, available: {list(datasets)}')
+              n=len(f[stems['time']]); start=float(f[stems['time']][0]);end=float(f[stems['time']][-1])
+              pack['ni_dataset_summary']={'sample_count':n,'time_start_s':start,'time_end_s':end,
+                                          'dataset_shapes':datasets,'key_map':stems}
             raw=json.loads((root/(x['n']+'_metadata.json')).read_text())
             pack['physical_context']={'raw_keys':sorted(raw),'tow_speed_nominal':raw.get('Tow speed (m/s)'),'tsr_nominal':raw.get('Tip speed ratio')}
             proof.append({'run':x['n'],'files':pack})
