@@ -19,7 +19,7 @@ class PagesLiveParityFixtureTests(unittest.TestCase):
         self.assertIn("site/app.js", ASSETS)
 
     def test_git_blob_sha_deterministic_and_exact(self):
-        self.assertEqual(git_blob_sha(b"test content"), "d670460b4b4aece5915caf5c68d12f560a9fe3e4")
+        self.assertEqual(git_blob_sha(b"test content"), "08cf6101416f0ce0dda3c80e627f333854c4085c")
 
     def test_arbitrary_urls_and_paths_rejected_before_any_network(self):
         with self.assertRaises(ValueError):
