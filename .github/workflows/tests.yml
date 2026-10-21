@@ -29,6 +29,8 @@ jobs:
         run: |
           python scripts/rm2_operating_points.py
           git diff --exit-code -- reports/RM2-TRADEOFF-001.json
+      - name: Check source-pinned RM2 cross-speed power and mean-drag reproducibility
+        run: python scripts/rm2_cross_speed.py --check
       - name: Reproduce published RM1 axial lab table and RM2 variability
         run: |
           python scripts/reproduce_rm1.py
