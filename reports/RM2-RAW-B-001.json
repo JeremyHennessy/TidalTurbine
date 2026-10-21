@@ -1,0 +1,179 @@
+{
+  "id": "RM2-RAW-B-001",
+  "classification": "MEASURED_RIG_TORQUE_AND_DRAG_DESCRIPTIVE_SOURCE_REPRODUCTION_NOT_BLADE_FATIGUE",
+  "source": "UNH RM2 original Figshare raw article 1302029; 2015 NI 2000 Hz second sweeps",
+  "n_trials": 6,
+  "trials": [
+    {
+      "trial_id": "Perf-0.4-b_10",
+      "speed_m_s": 0.4,
+      "tsr_nominal": 2.9,
+      "sample_rate_hz": 2000,
+      "steady_samples": 79580,
+      "original_ni_sha256": "d3cd3622934475154c1b46c7c41589f71f9fcf505709eb317093e3de7c5d5feb",
+      "original_metadata_sha256": "e9f1ddb0c5143ac9916d916ee0747feb0573db7de4ef4432bf656bfc6ee5fd8a",
+      "upstream_processed_cp": 0.10116164673753654,
+      "upstream_processed_cd": 0.7446961910382325,
+      "recomputed_cp": 0.101332,
+      "recomputed_cd": 0.743363,
+      "cp_abs_error": 0.00017,
+      "cd_abs_error": 0.001333,
+      "shaft_torque_nm": {
+        "mean": 1.169527,
+        "std": 4.101471
+      },
+      "support_drag_n": {
+        "mean": 51.688297,
+        "std": 23.604433
+      }
+    },
+    {
+      "trial_id": "Perf-0.4-b_12",
+      "speed_m_s": 0.4,
+      "tsr_nominal": 3.1,
+      "sample_rate_hz": 2000,
+      "steady_samples": 79880,
+      "original_ni_sha256": "01aea381ca06884c78d36f7daa647e853c377732140747c558d44016133184f6",
+      "original_metadata_sha256": "549d36aa74b839ba8139a4a3cecf12bbafcf7e0dbe6eaf6b2e5dcedf8153eeb7",
+      "upstream_processed_cp": 0.14155233293959807,
+      "upstream_processed_cd": 0.8106809021443262,
+      "recomputed_cp": 0.14167,
+      "recomputed_cd": 0.809248,
+      "cp_abs_error": 0.000118,
+      "cd_abs_error": 0.001433,
+      "shaft_torque_nm": {
+        "mean": 1.581707,
+        "std": 4.286855
+      },
+      "support_drag_n": {
+        "mean": 56.266577,
+        "std": 24.018452
+      }
+    },
+    {
+      "trial_id": "Perf-1.0-b_10",
+      "speed_m_s": 1,
+      "tsr_nominal": 2.9,
+      "sample_rate_hz": 2000,
+      "steady_samples": 21740,
+      "original_ni_sha256": "0ff4a4fbf393fc87299b9c63ed14572096eebe75e8d9cc312100f68a1e43529a",
+      "original_metadata_sha256": "ed9c17350b92660dc97d898fc2270cb4fcdda57afe0f7cc9fe199461f04cf819",
+      "upstream_processed_cp": 0.3458978492049717,
+      "upstream_processed_cd": 0.7963497937309771,
+      "recomputed_cp": 0.345653,
+      "recomputed_cd": 0.796091,
+      "cp_abs_error": 0.000245,
+      "cd_abs_error": 0.000259,
+      "shaft_torque_nm": {
+        "mean": 27.511521,
+        "std": 9.089599
+      },
+      "support_drag_n": {
+        "mean": 345.440953,
+        "std": 69.006817
+      }
+    },
+    {
+      "trial_id": "Perf-1.0-b_12",
+      "speed_m_s": 1,
+      "tsr_nominal": 3.1,
+      "sample_rate_hz": 2000,
+      "steady_samples": 21780,
+      "original_ni_sha256": "e34bce02bdeb882dcd07d039de4b90b61a3cb51983e4449b13e82439b5c22b5b",
+      "original_metadata_sha256": "5dabc86a10c97dfe876162fac463c22e7c30282236a8cb48dc2f1e2098d13185",
+      "upstream_processed_cp": 0.35412142964142224,
+      "upstream_processed_cd": 0.8419407758434596,
+      "recomputed_cp": 0.353805,
+      "recomputed_cd": 0.841651,
+      "cp_abs_error": 0.000316,
+      "cd_abs_error": 0.00029,
+      "shaft_torque_nm": {
+        "mean": 26.372605,
+        "std": 8.987438
+      },
+      "support_drag_n": {
+        "mean": 365.236366,
+        "std": 73.178278
+      }
+    },
+    {
+      "trial_id": "Perf-1.2-b_10",
+      "speed_m_s": 1.2,
+      "tsr_nominal": 2.9,
+      "sample_rate_hz": 2000,
+      "steady_samples": 17460,
+      "original_ni_sha256": "e2f5db93f329b9b226f60cc349a704a5ee46aa9f1150eac986b8c0050e24a1dd",
+      "original_metadata_sha256": "f19a16a9d840e08910902684f137fc14ec0008ccc474c429c1bc2038f262d299",
+      "upstream_processed_cp": 0.36437932551797975,
+      "upstream_processed_cd": 0.8035351861306229,
+      "recomputed_cp": 0.363805,
+      "recomputed_cd": 0.802868,
+      "cp_abs_error": 0.000574,
+      "cd_abs_error": 0.000667,
+      "shaft_torque_nm": {
+        "mean": 41.781118,
+        "std": 12.345342
+      },
+      "support_drag_n": {
+        "mean": 501.963745,
+        "std": 110.290805
+      }
+    },
+    {
+      "trial_id": "Perf-1.2-b_12",
+      "speed_m_s": 1.2,
+      "tsr_nominal": 3.1,
+      "sample_rate_hz": 2000,
+      "steady_samples": 17560,
+      "original_ni_sha256": "4a84ea95a1c0013d0cf8c31f935f22f1dca951343f2b61d739cb53b41b7b3a8c",
+      "original_metadata_sha256": "e19a656e8a07db1b0204dc687d1c89524d2733635834f45c36b92da501663107",
+      "upstream_processed_cp": 0.3648414058009858,
+      "upstream_processed_cd": 0.8586191558380484,
+      "recomputed_cp": 0.363951,
+      "recomputed_cd": 0.857548,
+      "cp_abs_error": 0.00089,
+      "cd_abs_error": 0.001071,
+      "shaft_torque_nm": {
+        "mean": 39.118408,
+        "std": 12.280974
+      },
+      "support_drag_n": {
+        "mean": 536.202193,
+        "std": 122.560706
+      }
+    }
+  ],
+  "within_speed_pairs": [
+    {
+      "speed_m_s": 0.4,
+      "cp_change_percent": -28.4732,
+      "cd_change_percent": -8.1415,
+      "shaft_torque_sd_change_percent": -4.3245,
+      "support_drag_sd_change_percent": -1.7238
+    },
+    {
+      "speed_m_s": 1,
+      "cp_change_percent": -2.3041,
+      "cd_change_percent": -5.4132,
+      "shaft_torque_sd_change_percent": 1.1367,
+      "support_drag_sd_change_percent": -5.7004
+    },
+    {
+      "speed_m_s": 1.2,
+      "cp_change_percent": -0.0401,
+      "cd_change_percent": -6.3763,
+      "shaft_torque_sd_change_percent": 0.5241,
+      "support_drag_sd_change_percent": -10.0113
+    }
+  ],
+  "model_eligible_force_inflow": 0,
+  "independent_blade_strain_measurements": 0,
+  "net_delivered_electricity_measurements": 0,
+  "repeatability_inference": "A/B historical sweeps are not independently powered matched structural-fatigue experiments",
+  "scientific_limits": [
+    "Original source NI calibration metadata not independently verified",
+    "Approximate upstream filtering and steady-window recipe with explicit +/-0.006 coefficient reproduction gate",
+    "No calibration of blade-root strain or material fatigue cycles",
+    "No controller or delivered electrical power"
+  ]
+}
