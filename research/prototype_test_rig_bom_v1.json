@@ -1,0 +1,188 @@
+{
+  "schema": "TT-TEST-RIG-BOM-V1",
+  "evidence_class": "ENGINEERING_DESIGN_ASSUMPTION_UNQUOTED_NOT_APPROVED",
+  "scope": "Dry flume/tow-tank scaled experiment only; not coastal installation or grid demonstration",
+  "approval_to_purchase": false,
+  "physical_device_built": false,
+  "quotes_acquired": 0,
+  "requirements_before_sizing": [
+    "Select and document tank cross-section/water depth and marine-rated equivalent rig; calculate blockage and safe swept clearance",
+    "Review hydraulic/fluid load envelope from prospective test setpoints, including shutdown/transient conditions",
+    "Size frame, anchors, load cells, shaft torque meter, couplings, fuses and dump/load bank by an independent licensed equipment engineer against test limits",
+    "Separate rotor tests by architecture and report different capture-area definitions, identical upstream control-volume and metered auxiliary power"
+  ],
+  "candidate_lab_architectures": [
+    "AXIAL-RM1-REFERENCE",
+    "CROSSFLOW-RM2-REFERENCE",
+    "FOIL-OSCILLATING-EXPERIMENTAL"
+  ],
+  "baseline_electricity_requirements": "Net measured delivered load-side electricity; all motor/actuator/PTO parasitics separately measured; no assumption of positive net export",
+  "systems": [
+    {
+      "id": "MECH-1",
+      "name": "Modular non-powered lockable support frame with interchangeable rotor/foil fixtures",
+      "quantity_assumption": 1,
+      "unit": "assembly",
+      "gate": "Strength, blockage, safe removal and containment reviewed"
+    },
+    {
+      "id": "MECH-2",
+      "name": "Shaft torque/rotary angle transducer with stated uncertainty and calibration certificate",
+      "quantity_assumption": 1,
+      "unit": "assembly",
+      "gate": "Bandwidth/peak range and phase response selected from predicted transients"
+    },
+    {
+      "id": "MECH-3",
+      "name": "Independent streamwise and cross-stream multi-axis support load-cell",
+      "quantity_assumption": 1,
+      "unit": "calibrated assembly",
+      "gate": "Independent zero/reversal calibration and safety load case"
+    },
+    {
+      "id": "MECH-4",
+      "name": "Blade-root full bridge strain-gauge circuits (two critical axes per tested blade)",
+      "quantity_assumption": 6,
+      "unit": "channels minimum proposal",
+      "gate": "Material-specific strain-stress transfer calibrated; water protection"
+    },
+    {
+      "id": "MECH-5",
+      "name": "Strut / mooring / frame instrumented load path",
+      "quantity_assumption": 2,
+      "unit": "sensing locations minimum proposal",
+      "gate": "Separate shaft/strut loads to avoid inferring blade stress from support drag"
+    },
+    {
+      "id": "MECH-6",
+      "name": "Shaft angle absolute or quadrature encoder with index pulse",
+      "quantity_assumption": 1,
+      "unit": "assembly",
+      "gate": "Measured phase alignment and timing jitter uncertainty"
+    },
+    {
+      "id": "FLUID-1",
+      "name": "Upstream 3-D current/velocity instrument (ADV or source-qualified ADCP) with calibration",
+      "quantity_assumption": 1,
+      "unit": "instrument",
+      "gate": "Measured local inflow, shear and turbulence; not tidal height proxy"
+    },
+    {
+      "id": "FLUID-2",
+      "name": "Fluid temperature, pressure/depth and density/source sampling",
+      "quantity_assumption": 1,
+      "unit": "calibrated sensor suite",
+      "gate": "Characterize viscosity, blockage and submergence under reversal"
+    },
+    {
+      "id": "ELECT-1",
+      "name": "Swappable generator / electrical PTO and protected DC conversion for rotating geometries",
+      "quantity_assumption": 1,
+      "unit": "assembly",
+      "gate": "Measured mechanical in and electric out; no assumed conversion efficiency"
+    },
+    {
+      "id": "ELECT-2",
+      "name": "Independent metering of load-side three-phase or DC volts/amps/watts and direction",
+      "quantity_assumption": 1,
+      "unit": "calibrated power analyzer",
+      "gate": "Record signed delivered electricity including negative draw"
+    },
+    {
+      "id": "ELECT-3",
+      "name": "Actuator/controller/auxiliary independent power metering",
+      "quantity_assumption": 1,
+      "unit": "calibrated power analyzer",
+      "gate": "Account active pitch, braking, pumping, telemetry and platform loads"
+    },
+    {
+      "id": "ELECT-4",
+      "name": "Overvoltage / overcurrent protected programmable load bank or dissipative dump",
+      "quantity_assumption": 1,
+      "unit": "safe load assembly",
+      "gate": "Sizing based on worst credible fault; no unreviewed shore/grid connection"
+    },
+    {
+      "id": "DAQ-1",
+      "name": "Single-clock synchronized multi-channel differential DAQ with sufficient strain/encoder/force inputs",
+      "quantity_assumption": 1,
+      "unit": "DAQ",
+      "gate": "Traceable anti-alias, timing and sensor sample rates derived from natural frequencies"
+    },
+    {
+      "id": "DAQ-2",
+      "name": "Onboard timestamped raw recorder with source hashes and unaltered channels",
+      "quantity_assumption": 1,
+      "unit": "recording unit",
+      "gate": "Document trial ids, dropped records, filter chain and chain of custody"
+    },
+    {
+      "id": "SAFETY-1",
+      "name": "Accessible dual-path emergency-stop and motor/PTO de-energizing isolation",
+      "quantity_assumption": 1,
+      "unit": "assembly",
+      "gate": "Witnessed dry test with fail-safe behavior for jam, sensor loss and power loss"
+    },
+    {
+      "id": "SAFETY-2",
+      "name": "Exclusion-zone shrouds, physical restraint, guarded drives and independent overspeed trip",
+      "quantity_assumption": 1,
+      "unit": "protective assembly",
+      "gate": "Stop all personnel access while energized; written risk assessment"
+    },
+    {
+      "id": "SAFETY-3",
+      "name": "Ground-fault protection, sealed connectors, safe lifting and tagged retrieval points",
+      "quantity_assumption": 1,
+      "unit": "assembly",
+      "gate": "Water/electrical inspection and deenergized recovery procedure"
+    },
+    {
+      "id": "ENV-1",
+      "name": "Visual/acoustic environmental baseline sensors as permitted by test venue",
+      "quantity_assumption": 1,
+      "unit": "set",
+      "gate": "Baseline fish/noise data and thresholds, not omitted because flume test initially"
+    },
+    {
+      "id": "FAB-1",
+      "name": "Interchangeable axial/crossflow/foil manufactured test articles and inspected material coupons",
+      "quantity_assumption": 3,
+      "unit": "prototype articles",
+      "gate": "No fabrication without verified rig interface, uncertainty/strength review"
+    },
+    {
+      "id": "FAB-2",
+      "name": "Versioned material, seals, bearings, corrosion and reusable/recyclable component log",
+      "quantity_assumption": 1,
+      "unit": "documentation set",
+      "gate": "Independent manufacturing and disposal gate"
+    }
+  ],
+  "costing": {
+    "currency": "CAD",
+    "supplier_quotes_verified": 0,
+    "material_unit_prices_known": false,
+    "capital_budget_verified": false,
+    "price_extrapolation": "BLOCKED_NO_MARKET_QUOTES",
+    "notes": "Quantities are provisional engineering placeholders, not a purchase list or cost estimate. Obtain venue, load capacities, qualified component specifications and at least 2 independent quotes before budget."
+  },
+  "safety_go_nogo": [
+    "Document operator/venue acceptance and trained supervision",
+    "Witness emergency shutoff and measured overspeed shutdown",
+    "Calibrate phase/clock, force, torque, strain and electrical meters",
+    "De-risk short low-flow operation behind guards before any incremental setpoint",
+    "Document fisheries/DFO/NS/Transport/Mi'kmaq/access/site permissions separately before any in-water field test"
+  ],
+  "gates": {
+    "mechanical_structural_design": "UNKNOWN",
+    "calibration_and_metrology": "UNKNOWN",
+    "experimental_venue": "UNKNOWN",
+    "hardware_fabrication": "NOT_AUTHORIZED",
+    "external_communications": "NOT_AUTHORIZED",
+    "physical_water_test": "NOT_AUTHORIZED",
+    "inwater_site_deployment": "NOT_AUTHORIZED",
+    "local_environmental_monitoring": "NOT_APPROVED",
+    "procurement": "NOT_AUTHORIZED"
+  }
+}
