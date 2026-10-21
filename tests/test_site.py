@@ -35,6 +35,20 @@ class SiteTests(unittest.TestCase):
         self.assertIn('SCREEN-001 ONLY — SYNTHETIC, NOT VALIDATED',html)
         self.assertIn('NOT A LOAD OR FIELD RESULT',html)
         self.assertIn('NO BLADE STRESS DATA',html)
+    def test_fourteen_scalable_tidal_artworks_packaged_and_loaded_first(self):
+        html=(ROOT/'site/index.html').read_text(encoding='utf8')
+        art=(ROOT/'site/artwork.js').read_text(encoding='utf8')
+        app=(ROOT/'site/app.js').read_text(encoding='utf8')
+        self.assertIn('site/artwork.js',FILES)
+        self.assertLess(html.index('src="artwork.js"'),html.index('src="app.js"'))
+        self.assertIn('id="download-design-svg"',html)
+        self.assertIn('window.TidalArtwork.thumbnail(key)',app)
+        self.assertIn('window.TidalArtwork.render(name',app)
+        self.assertIn('root.TidalArtwork',art)
+        for design in ('seabed','floating','counter','rim','crossflow','helical','savonius','foil','screw','kite','duct','pressure','eel','viv'):
+            self.assertIn('scene'+design.capitalize()+'(',art)
+        self.assertNotIn('https://',art,'art must be self-contained SVG with no remote textures')
+
     def test_no_remote_script_or_font_dependencies(self):
         html=(ROOT/'site/index.html').read_text(encoding='utf8')
         css=(ROOT/'site/styles.css').read_text(encoding='utf8')
