@@ -1,6 +1,6 @@
-# Test specification: does sacrificing modest energy actually reduce damaging loads?
+# Measurement analyzer supplement to TT-EXPERIMENT-V1: does a small energy sacrifice reduce damaging loads?
 
-**Status: NO synchronized structural-load + electrical-power experiment acquired.** A tool that can compare measured channels is implemented, but no manufactured success trace has been added to the evidence set. [UNH RM2 primary processed observations](https://github.com/UNH-CORE/RM2-tow-tank) are the source of the prior same-rig `RM2-TRADEOFF-001` and `RM2-VARIABILITY-001`; both describe coefficients, NOT blade stress or service life.
+**Authoritative prospective test specification:** [research/experiment_protocol_v1.json](../research/experiment_protocol_v1.json) and [docs/LOAD_AND_PROTOTYPE_TEST_PROTOCOL_20261020.md](LOAD_AND_PROTOTYPE_TEST_PROTOCOL_20261020.md), merged in PR #19. This note is an implementation supplement, NOT a competing test plan.\n\n**Status: NO synchronized structural-load + electrical-power experiment acquired.** A tool that can compare measured channels is implemented, but no manufactured success trace has been added to the evidence set. [UNH RM2 primary processed observations](https://github.com/UNH-CORE/RM2-tow-tank) are the source of the prior same-rig `RM2-TRADEOFF-001` and `RM2-VARIABILITY-001`; both describe coefficients, NOT blade stress or service life.
 
 ## Preregistered engineering question
 
