@@ -6,7 +6,7 @@ const path=require('node:path');
 const root=path.resolve(__dirname,'..');
 const html=fs.readFileSync(path.join(root,'site/index.html'),'utf8');
 const code=fs.readFileSync(path.join(root,'site/app.js'),'utf8');
-for(const id of ['comparison-grid','compare-select','rm2-tradeoff','rm2-share','rm1-plot','rm1-rotor-filter','force-cells','force-window']){
+for(const id of ['comparison-grid','compare-select','rm2-tradeoff','rm2-share','rm1-plot','rm1-rotor-filter','force-cells','force-window','rm2-speed-bars','rm2-speed-sweep','rm2-raw-chart','rm2-raw-speed','rm2-raw-metric']){
   assert.ok(html.includes('id="'+id+'"'),'missing DOM target '+id);
 }
 const elements=new Map();
@@ -44,6 +44,40 @@ vm.runInContext('renderRM2Tradeoff()',ctx);
 assert.match(element('#rm2-tradeoff').innerHTML,/Alternative run 11/);
 vm.runInContext('rm2Tradeoff=null;renderRM2Tradeoff()',ctx);
 assert.match(element('#rm2-tradeoff').innerHTML,/unavailable/);
+
+
+ctx.crossFixture=JSON.parse(fs.readFileSync(path.join(root,'reports/RM2-CROSSSPEED-001.json'),'utf8'));
+element('#rm2-speed-sweep').value='both';
+vm.runInContext('rm2CrossSpeed=crossFixture;renderRM2CrossSpeed()',ctx);
+assert.equal((element('#rm2-speed-bars').innerHTML.match(/class="speed-bar-row"/g)||[]).length,20,'two coefficients × ten published source series');
+assert.match(element('#rm2-speed-bars').innerHTML,/29\.86%/,'observed slow-speed Cp penalty should be visible');
+assert.match(element('#rm2-speed-bars').innerHTML,/NOT MEASURED/,'physical fatigue remains unknown');
+element('#rm2-speed-sweep').value='A';
+vm.runInContext('renderRM2CrossSpeed()',ctx);
+assert.equal((element('#rm2-speed-bars').innerHTML.match(/class="speed-bar-row"/g)||[]).length,10,'five first-sweep rows for each coefficient');
+element('#rm2-speed-sweep').value='B';
+vm.runInContext('renderRM2CrossSpeed()',ctx);
+assert.match(element('#rm2-speed-bars').innerHTML,/Sweep B/,'second source sweep should be interactive');
+assert.ok(!element('#rm2-speed-bars').innerHTML.includes('Sweep A'),'A entries hidden on B selection');
+vm.runInContext('rm2CrossSpeed=null;renderRM2CrossSpeed()',ctx);
+assert.match(element('#rm2-speed-bars').innerHTML,/unavailable/,'no false new source data');
+
+ctx.rawNI=JSON.parse(fs.readFileSync(path.join(root,'reports/RM2-RAW-LOADS-001.json'),'utf8'));
+element('#rm2-raw-speed').value='1.0';
+element('#rm2-raw-metric').value='drag';
+vm.runInContext('rm2RawRig=rawNI;renderRM2RawRig()',ctx);
+assert.equal((element('#rm2-raw-chart').innerHTML.match(/<polyline /g)||[]).length,2,'two original NI rotor-phase traces');
+assert.match(element('#rm2-raw-chart').innerHTML,/-4\.68%/,'raw measured drag p95 change');
+assert.match(element('#rm2-raw-chart').innerHTML,/NOT EVALUABLE/,'rig support loads are not fatigue');
+element('#rm2-raw-metric').value='torque';
+vm.runInContext('renderRM2RawRig()',ctx);
+assert.match(element('#rm2-raw-chart').innerHTML,/\+1\.71%/,'1m/s shaft-torque variation increased');
+element('#rm2-raw-speed').value='0.4';
+vm.runInContext('renderRM2RawRig()',ctx);
+assert.match(element('#rm2-raw-chart').innerHTML,/0\.4 metres per second/,'0.4m/s original NI test selected');
+vm.runInContext('rm2RawRig=null;renderRM2RawRig()',ctx);
+assert.match(element('#rm2-raw-chart').innerHTML,/unavailable/,'raw source missing should be explicit');
+assert.match(html,/NO BLADE STRESS DATA/,'never label original NI rig drag as blade bending');
 
 ctx.rm1Fixture=JSON.parse(fs.readFileSync(path.join(root,'reports/RM1-OBS-001.json'),'utf8'));
 vm.runInContext('rm1=rm1Fixture;rm1Plot()',ctx);
