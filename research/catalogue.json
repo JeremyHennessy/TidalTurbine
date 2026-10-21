@@ -820,5 +820,51 @@
       "Paper does not quantify our turbine structural life, test-site turbine resource, or supplier accessibility."
     ],
     "access_status": "Public open-access journal paper, abstract, results/conclusions and data availability directly examined."
+  },
+  {
+    "id": "NORTEK-QC-SIGNATURE-2026",
+    "title": "Nortek Support: Internal data quality control for Signature averaged files",
+    "url": "https://support.nortekgroup.com/hc/en-us/articles/27060647072156-Internal-data-quality-control",
+    "publication_date": "2026-04-27",
+    "access_date": "2026-10-20",
+    "evidence_class": "MANUFACTURER_OR_PROJECT_CLAIM",
+    "review_depth": "full_manufacturer_support_article",
+    "reviewed_sections": [
+      "Raw versus averaged files",
+      "Correlation cutoff, Percent Good and documented sentinel outputs",
+      "Document revision date"
+    ],
+    "supported_claims": [
+      "Nortek states raw .ad2cp single-ping file has no onboard QC applied; averaged _avgd.ad2cp discards pings with correlation below 50% and reports Percent Good.",
+      "Nortek documents flagged averaged-cell velocity -32.767 m/s, speed 46.34 m/s, direction 225 degrees when Percent Good below 50%."
+    ],
+    "limitations": [
+      "General 2026 manufacturer documentation, NOT deployment-specific evidence for FAST3 serial 100258 in 2018.",
+      "Cannot determine what FORCE/CIOOS 2022 conversion does to original flag values or whether its all-zero vectors represent this rule.",
+      "No original data, source processing script, native correlation or physical geometry was obtained."
+    ],
+    "access_status": "Manufacturer online help article read in full 2026-10-20."
+  },
+  {
+    "id": "NORTEK-FILES-SIGNATURE-2026",
+    "title": "Nortek Support: Signature data file types and original deployment configuration files",
+    "url": "https://support.nortekgroup.com/hc/en-us/articles/27060689928348-Data-files",
+    "publication_date": "2026-04-27",
+    "access_date": "2026-10-20",
+    "evidence_class": "MANUFACTURER_OR_PROJECT_CLAIM",
+    "review_depth": "full_manufacturer_support_article",
+    "reviewed_sections": [
+      "Data files list and descriptions",
+      "Data conversion configuration",
+      "Article revision date"
+    ],
+    "supported_claims": [
+      "Nortek distinguishes single-ping .ad2cp, averaged _avgd.ad2cp and .deploy/.hdr/.cfg recording and instrument configuration."
+    ],
+    "limitations": [
+      "No assertion that these exact source files were obtained for the 2018 FORCE archive.",
+      "Available generic file descriptions do not settle tidal range cell geometry or producer zero-fill masks."
+    ],
+    "access_status": "Manufacturer file-type guide read in full 2026-10-20."
   }
 ]
