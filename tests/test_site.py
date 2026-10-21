@@ -26,6 +26,15 @@ class SiteTests(unittest.TestCase):
         self.assertIn('NO BLADE STRESS DATA',html)
         self.assertIn('reports/RM2-CROSSSPEED-001.json',FILES)
         self.assertIn('reports/RM2-RAW-LOADS-001.json',FILES)
+    def test_overview_links_to_real_rm2_evidence_with_boundaries(self):
+        html=(ROOT/'site/index.html').read_text(encoding='utf8')
+        self.assertIn('NEW LAB EVIDENCE',html)
+        self.assertIn('Explore laboratory data',html)
+        self.assertIn('Full FORCE campaign acquired',html)
+        self.assertIn('blade-root stress or net electricity',html)
+        self.assertIn('SCREEN-001 ONLY — SYNTHETIC, NOT VALIDATED',html)
+        self.assertIn('NOT A LOAD OR FIELD RESULT',html)
+        self.assertIn('NO BLADE STRESS DATA',html)
     def test_no_remote_script_or_font_dependencies(self):
         html=(ROOT/'site/index.html').read_text(encoding='utf8')
         css=(ROOT/'site/styles.css').read_text(encoding='utf8')
