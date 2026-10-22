@@ -98,8 +98,40 @@ const types={'.html':'text/html','.js':'text/javascript','.css':'text/css','.jso
    await page.screenshot({path:path.join(out,'service-'+label+'-normal-result.png'),animations:'disabled'});
    await page.locator('#service-energy-lab').screenshot({path:path.join(out,'service-'+label+'-panel.png'),animations:'disabled',style:captureStyle});
   }
+
+  // Dated Research progress and the source-backed component candidate.
+  for (const [width,height,label] of [[1440,1000,'desktop'],[390,844,'mobile']]) {
+   await page.setViewportSize({width,height});
+   await page.goto(`http://127.0.0.1:${server.address().port}/site/index.html#research`,{waitUntil:'networkidle'});
+   await page.locator('#research-progress').waitFor({state:'visible'});
+   assert.match(await page.locator('#research-gates').innerText(),/DESK STUDY IN PROGRESS.*FIELD EVIDENCE PENDING/);
+   assert.match(await page.locator('#research-status-boundary').innerText(),/No physical gate promoted/);
+   assert.match(await page.locator('#research-next-evidence').innerText(),/Zero qualified cells/);
+   for(const id of ['research-progress']) {
+    const box=await page.locator('#'+id).boundingBox();assert.ok(box.x>=0&&box.x+box.width<=width,'research panel fits');
+    await page.locator('#research-progress-title').scrollIntoViewIfNeeded();
+    await page.screenshot({path:path.join(out,'research-'+label+'-normal.png'),animations:'disabled'});
+    await page.locator('#'+id).screenshot({path:path.join(out,'research-'+label+'-panel.png'),animations:'disabled',style:captureStyle});
+   }
+   await page.locator('#research-open-designs').scrollIntoViewIfNeeded();await page.locator('#research-open-designs').click();
+   await page.locator('#component-interface-lab').waitFor({state:'visible'});
+   assert.match(await page.locator('#component-displacement').innerText(),/15 mm hub displacement/);
+   assert.match(await page.locator('#component-boundary').innerText(),/Not a complete service envelope/);
+   const link=page.locator('#component-ktr-source');await link.scrollIntoViewIfNeeded();
+   assert.ok(await link.evaluate(el=>{const r=el.getBoundingClientRect();return el.contains(document.elementFromPoint(r.x+r.width/2,r.y+r.height/2));}),'source link is pointer reachable with normal navigation');
+   for(const id of ['component-interface-lab','research-progress']) {
+    const c=await page.locator('#'+id).evaluate(el=>{
+     const lum=s=>s.match(/[\d.]+/g).slice(0,3).map(Number).map(n=>{n/=255;return n<=.04045?n/12.92:((n+.055)/1.055)**2.4;}).reduce((a,n,i)=>a+n*[.2126,.7152,.0722][i],0);
+     const bg=lum(getComputedStyle(el).backgroundColor);return [...el.querySelectorAll('p,li,a,h2,h3')].map(x=>{const fg=lum(getComputedStyle(x).color);return (Math.max(fg,bg)+.05)/(Math.min(fg,bg)+.05);});
+    });assert.ok(c.every(n=>n>=4.5),'new explanatory text contrast >=4.5:1');
+   }
+   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'component page fits');
+   await page.locator('#component-interface-title').scrollIntoViewIfNeeded();
+   await page.screenshot({path:path.join(out,'component-'+label+'-normal.png'),animations:'disabled'});
+   await page.locator('#component-interface-lab').screenshot({path:path.join(out,'component-'+label+'-panel.png'),animations:'disabled',style:captureStyle});
+  }
   assert.deepEqual(errors,[]);
-  fs.writeFileSync(path.join(out,'result.json'),JSON.stringify({result:'PASS',browser:'Chromium',viewports:[[1440,1000],[390,844]],serviceChecks:['12 pointer-reachable number controls and reset at both viewports','default negative delta','monitoring-free gain','negative net import','infeasible equality','empty input clears all budgets','outage beyond period clears all budgets','panel and page horizontal fit','text contrast >=4.5:1'],checks:['default obstruction','sensor margin','parked configuration','hatch conflict','custom label','empty input erases stale diagram','both axial alternatives indeterminate','field enablement','14 existing artwork selectors','mobile controls and horizontal fit','zero uncaught page errors','detail contrast >=4.5:1','explicit dark SVG label color','all six controls pointer-reachable with normal navigation at both viewports'],capture:'Panel screenshots hide fixed navigation solely during capture. Separate normal full-page and viewport screenshots retain normal navigation. All six controls receive real pointer clicks with normal DOM at both viewports. Reduced-motion browser context.',scope:'Actual browser UI consistency only; not physics, lift, ecological or production deployment validation'},null,2)+'\n');
+  fs.writeFileSync(path.join(out,'result.json'),JSON.stringify({result:'PASS',browser:'Chromium',viewports:[[1440,1000],[390,844]],researchChecks:['direct Research deep-link','dated completed source/software milestones','service stage remains pending','zero qualified FORCE cells visible','real pointer navigation to Designs','manufacturer dimension and bounded envelope','source link pointer reachability','desktop/mobile horizontal fit and text contrast'],serviceChecks:['12 pointer-reachable number controls and reset at both viewports','default negative delta','monitoring-free gain','negative net import','infeasible equality','empty input clears all budgets','outage beyond period clears all budgets','panel and page horizontal fit','text contrast >=4.5:1'],checks:['default obstruction','sensor margin','parked configuration','hatch conflict','custom label','empty input erases stale diagram','both axial alternatives indeterminate','field enablement','14 existing artwork selectors','mobile controls and horizontal fit','zero uncaught page errors','detail contrast >=4.5:1','explicit dark SVG label color','all six controls pointer-reachable with normal navigation at both viewports'],capture:'Panel screenshots hide fixed navigation solely during capture. Separate normal full-page and viewport screenshots retain normal navigation. All six controls receive real pointer clicks with normal DOM at both viewports. Reduced-motion browser context.',scope:'Actual browser UI consistency only; not physics, lift, ecological or production deployment validation'},null,2)+'\n');
   console.log('PASS: actual Chromium desktop/mobile clearance interactions, fail-closed states, inherited artwork count and mobile fit. Screenshots saved for visual review.');
  } catch(e) {
   if(page)await page.screenshot({path:path.join(out,'failure.png'),fullPage:true}).catch(()=>{});

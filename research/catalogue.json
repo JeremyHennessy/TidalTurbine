@@ -850,5 +850,85 @@
     "access_status": "Public CC BY 4.0 upstream processed CSVs and README, 10 exact source Git blob SHAs pinned in reduced fixture",
     "source_immutable_git_commit": "fdf80fe355c659ec0e3b1dce2f1c9c9800a777ef",
     "derived_report": "reports/RM2-CROSSSPEED-001.json"
+  },
+  {
+    "id": "KTR-SH-005",
+    "title": "KTR ROTEX SH operating/assembly instructions, 40229 EN edition 12",
+    "url": "https://www.ktr.com/fileadmin/ktr/media/Manuals/40229en000000.pdf",
+    "publication_date": "2025-11-28",
+    "access_date": "2026-10-22",
+    "evidence_class": "MANUFACTURER_OR_PROJECT_CLAIM",
+    "review_depth": "sections_reviewed",
+    "reviewed_sections": [
+      "Printed p4 illustration2/tables3–4; p12 section4.6, visually checked",
+      "Extracted selection/alignment text pp7,10–14"
+    ],
+    "supported_claims": [
+      "Size38 GJL: L114, E24, DH80, W15 mm; bore24–45 mm. W is hub displacement. Disassembly needs an axial hub slide."
+    ],
+    "limitations": [
+      "Example only; no size selected. W excludes radial/tool/guard access and turbine extraction. Loads, speed, salt exposure and full retrieval remain unqualified."
+    ],
+    "access_status": "Official public source read; no supplier approval or field validation",
+    "download_sha256": "f678883a4db59f56e66e5454eb036d5b95cc45dba37ca1754f3f08822a211b54"
+  },
+  {
+    "id": "KTR-SH-PAGE-005",
+    "title": "KTR ROTEX SH product description",
+    "url": "https://www.ktr.com/sg/en/products/rotex-torsionally-flexible-jaw-couplings/rotex-sh/",
+    "publication_date": "Undated; accessed 2026-10-22",
+    "access_date": "2026-10-22",
+    "evidence_class": "MANUFACTURER_OR_PROJECT_CLAIM",
+    "review_depth": "sections_reviewed",
+    "reviewed_sections": [
+      "Official product description text"
+    ],
+    "supported_claims": [
+      "Split hubs permit radial removal without moving adjacent machines; horizontal or vertical arrangements are described."
+    ],
+    "limitations": [
+      "This does not mean zero local axial clearance, wet-service approval or complete turbine retrieval. CAD not inspected."
+    ],
+    "access_status": "Official public source read; no supplier approval or field validation"
+  },
+  {
+    "id": "SXL-KEY-005",
+    "title": "Thordon SXL tapered-key guide-bearing leaflet",
+    "url": "https://thordonbearings.com/docs/default-source/hydro-power/documents/thordon-sxl-water-lubricated-main-shaft-guide-bearings.pdf?sfvrsn=538c03b4_24",
+    "publication_date": "SXL 01/24",
+    "access_date": "2026-10-22",
+    "evidence_class": "MANUFACTURER_OR_PROJECT_CLAIM",
+    "review_depth": "sections_reviewed",
+    "reviewed_sections": [
+      "Single page, text and illustration visually checked"
+    ],
+    "supported_claims": [
+      "Manufacturer describes bearing-shell replacement while retaining shaft and metal housing."
+    ],
+    "limitations": [
+      "Advertised service time is not a measured duration for this project. No tide, sediment, access or turbine-specific qualification."
+    ],
+    "access_status": "Official public source read; no supplier approval or field validation",
+    "download_sha256": "3196631bb4c7cc2bc048fb3f115f62b878837756ff61befdf95be4c3ff22b54e"
+  },
+  {
+    "id": "SXL-GUIDE-005",
+    "title": "Thordon SXL turbine guide-bearing installation and operation",
+    "url": "https://thordonbearings.com/docs/default-source/marine/documents/for-successful-installation-of-sxl-turbine-guide-bearings.pdf?sfvrsn=b6b5eb2a_6",
+    "publication_date": "SXLSIO 02/2024",
+    "access_date": "2026-10-22",
+    "evidence_class": "MANUFACTURER_OR_PROJECT_CLAIM",
+    "review_depth": "sections_reviewed",
+    "reviewed_sections": [
+      "PDF pp1–3 extracted; specification p2 visually checked"
+    ],
+    "supported_claims": [
+      "Guide calls for anti-rotation, axial bearing retention and specified fit; minimum flow 0.3 L/min per mm shaft diameter, low-flow monitoring and abrasive-water management."
+    ],
+    "limitations": [
+      "Bearing retention is not a rotor-thrust rating. Hydro guidance does not qualify a tidal installation. Housing sizing, loads, support, flow supply and shaft finish need application review."
+    ],
+    "access_status": "Official public source read; no supplier approval or field validation",
+    "download_sha256": "042df52e39a1e8f829de612abe57d0eb1c63130107b48be81f50768c7b5cb2ed"
   }
 ]
