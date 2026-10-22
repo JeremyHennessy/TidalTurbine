@@ -52,7 +52,9 @@ jobs:
         run: |
           node --check site/clearance_model.js
           node --check site/clearance.js
-          node --test tests/test_clearance.cjs tests/test_clearance_ui.cjs
+          node --check site/service_energy_model.js
+          node --check site/service_energy.js
+          node --test tests/test_clearance.cjs tests/test_clearance_ui.cjs tests/test_service_energy.cjs tests/test_service_energy_ui.cjs
       - name: Run unit tests
         run: python -m unittest discover -s tests -v
       - name: Re-run synthetic screening experiment
@@ -80,7 +82,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: concept-003-browser-${{ github.sha }}
+          name: concept-003-004-browser-${{ github.sha }}
           path: browser-artifacts/
           if-no-files-found: warn
           retention-days: 7
