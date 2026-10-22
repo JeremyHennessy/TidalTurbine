@@ -32,6 +32,14 @@ const types={'.html':'text/html','.js':'text/javascript','.css':'text/css','.jso
   });assert.ok(contrast>=4.5,'detail text contrast must be at least 4.5:1');
   assert.equal(await page.locator('#clearance-diagram svg').first().evaluate(el=>getComputedStyle(el).color),'rgb(23, 52, 66)');
   const captureStyle='#sidebar,.topbar{visibility:hidden!important}'; // Isolate panel; do not alter interaction tests.
+  async function normalPageEvidence(label) {
+   for(const id of ['layout','preset','ptoX','sensorX','margin','hatch']) {
+    const control=page.locator('#clearance-'+id);await control.scrollIntoViewIfNeeded();await control.click();await page.keyboard.press('Escape');
+   }
+   await page.locator('#clearance-title').scrollIntoViewIfNeeded();
+   await page.screenshot({path:path.join(out,label+'-normal-full.png'),fullPage:true,animations:'disabled'});
+   await page.screenshot({path:path.join(out,label+'-normal-viewport.png'),animations:'disabled'});
+  }
 
   assert.match(await status(),/Potential interference: PTO/);
   assert.equal(await page.locator('#clearance-diagram svg').count(),2);
@@ -47,15 +55,17 @@ const types={'.html':'text/html','.js':'text/javascript','.css':'text/css','.jso
   }
   await page.selectOption('#clearance-layout','CF-LIFT-2');assert.equal(await page.locator('#clearance-ptoX').isDisabled(),false);assert.match(await status(),/No box interference/);
   assert.equal(await page.locator('#design-selector button').count(),14);
+  await normalPageEvidence('desktop');
   await page.locator('#clearance-lab').screenshot({path:path.join(out,'desktop-1440.png'),animations:'disabled',style:captureStyle});
   await page.setViewportSize({width:390,height:844});
   await page.selectOption('#clearance-preset','inline');assert.match(await status(),/Potential interference: PTO/);
   await page.selectOption('#clearance-preset','outer');assert.match(await status(),/No box interference/);
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'mobile page must not overflow horizontally');
   const box=await page.locator('#clearance-lab').boundingBox();assert.ok(box.x>=0 && box.x+box.width<=390,'mobile panel fits viewport');
+  await normalPageEvidence('mobile');
   await page.locator('#clearance-lab').screenshot({path:path.join(out,'mobile-390.png'),animations:'disabled',style:captureStyle});
   assert.deepEqual(errors,[]);
-  fs.writeFileSync(path.join(out,'result.json'),JSON.stringify({result:'PASS',browser:'Chromium',viewports:[[1440,1000],[390,844]],checks:['default obstruction','sensor margin','parked configuration','hatch conflict','custom label','empty input erases stale diagram','both axial alternatives indeterminate','field enablement','14 existing artwork selectors','mobile controls and horizontal fit','zero uncaught page errors','detail contrast >=4.5:1','explicit dark SVG label color'],capture:'Panel screenshots hide fixed navigation solely during capture; interactions use normal DOM. Reduced-motion browser context.',scope:'Actual browser UI consistency only; not physics, lift, ecological or production deployment validation'},null,2)+'\n');
+  fs.writeFileSync(path.join(out,'result.json'),JSON.stringify({result:'PASS',browser:'Chromium',viewports:[[1440,1000],[390,844]],checks:['default obstruction','sensor margin','parked configuration','hatch conflict','custom label','empty input erases stale diagram','both axial alternatives indeterminate','field enablement','14 existing artwork selectors','mobile controls and horizontal fit','zero uncaught page errors','detail contrast >=4.5:1','explicit dark SVG label color','all six controls pointer-reachable with normal navigation at both viewports'],capture:'Panel screenshots hide fixed navigation solely during capture. Separate normal full-page and viewport screenshots retain normal navigation. All six controls receive real pointer clicks with normal DOM at both viewports. Reduced-motion browser context.',scope:'Actual browser UI consistency only; not physics, lift, ecological or production deployment validation'},null,2)+'\n');
   console.log('PASS: actual Chromium desktop/mobile clearance interactions, fail-closed states, inherited artwork count and mobile fit. Screenshots saved for visual review.');
  } catch(e) {
   if(page)await page.screenshot({path:path.join(out,'failure.png'),fullPage:true}).catch(()=>{});
