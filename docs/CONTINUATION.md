@@ -1,3 +1,22 @@
+## 2026-10-22 12:08 UTC: released retrieval and service-energy tools
+
+Both authorized app updates are merged. PR30 introduced the whole-module retrieval screen; PR31 introduced conditional service-energy accounting. Current released app commit: `8f9d779de15eca73d27029b7e630e9bc9c0a6728`, source tree `0406d41918eb412fb28d86fd1fa0681e781b74c5`. All 154 source blobs were verified against the candidate. PR8 remains untouched.
+
+- PR30: all six exact-head checks passed, independent code/visual review passed, main CI39773879786 and Pages39773879470 passed, and ten public assets matched source bytes.
+- PR31: all six exact-head checks passed. Independent desk/code review reran all 22 new checks and found no static/math blocker; separate bounded panel visual review passed. Actual Chromium tested twelve assumption controls plus reset at desktop1440 and mobile390 viewports, signed net imports, infeasible equality, invalid-state clearing, contrast and fit. Main CI39774717555: all three jobs passed. Pages39774716288 passed; all 13 checked public HTTP assets matched source bytes.
+- Verification commands remain `node --test tests/test_clearance.cjs tests/test_clearance_ui.cjs tests/test_service_energy.cjs tests/test_service_energy_ui.cjs` (48 pass), `python -m unittest discover -s tests` (112 pass, 13 optional-source skips), `node tests/ui_smoke.cjs` (pass), and `python scripts/build_site.py --out dist` (24 source-controlled files). The JS port matched 108 Concept002 scenarios across 1,404 numeric equalities. New-feature browser assertions are in `tests/clearance_browser.cjs`.
+
+Latest report: `docs/CONCEPT_SERVICE_ENERGY_20261022.md`. Live app: https://jeremyhennessy.github.io/TidalTurbine/site/index.html#designs . Acceptance is Chromium viewport software consistency and HTTP source parity, not Safari/WebKit, physical-device, live-browser or engineering/ecological validation. Every geometry and service input remains an explicit assumption. Matched stored energy and no-double-counting constraints are visible.
+
+Top three next actions:
+1. Replace assumed service/access and auxiliary quantities only with qualified, permitted records; do not infer annual energy, reliability, cost savings or an architecture winner from this single-event calculation.
+2. Obtain qualified complete component/interface envelopes before refining rigging, relocation paths or axial retrieval geometry. No lift safety or build-readiness claim follows from box clearance.
+3. Resolve FORCE native configuration/QC lineage and RM2 target originals/physical encoder registration through permitted evidence. FORCE remains zero qualified inflow cells and the frozen RM2 comparison remains unexecuted. Denied endpoints, outreach, physical work, new credentials and spending remain outside scope.
+
+Historical checkpoints below describe their dates; the released-state checkpoint above supersedes their publication/browser-pending wording. No new feature is introduced by this documentation correction.
+
+---
+
 ## 2026-10-22 11:53 UTC: Concept003 released, Concept004 browser gate next
 
 PR30 was merged after explicit user release approval as `6118db4ac1a6748575171d07f8a3cd69c70c6ed7`. Its source tree exactly matches the reviewed `736d0bef` candidate. All six pre-merge checks passed; independent code and bounded Chromium viewport review passed. Main CI39773879786 and Pages deployment39773879470 passed. Ten public HTTP assets, including all three new clearance files, matched the committed bytes. This is not live-browser execution.
