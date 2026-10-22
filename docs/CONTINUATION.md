@@ -1,3 +1,28 @@
+## 2026-10-22 11:53 UTC: Concept003 released, Concept004 browser gate next
+
+PR30 was merged after explicit user release approval as `6118db4ac1a6748575171d07f8a3cd69c70c6ed7`. Its source tree exactly matches the reviewed `736d0bef` candidate. All six pre-merge checks passed; independent code and bounded Chromium viewport review passed. Main CI39773879786 and Pages deployment39773879470 passed. Ten public HTTP assets, including all three new clearance files, matched the committed bytes. This is not live-browser execution.
+
+Concept004 has independent desk/code review with no math/static blocker. All 48 local Node checks pass, including 22 new checks independently rerun. The visible accounting boundary requires matched initial/final stored energy, no auxiliary double counting, constant opportunity power, one service event and continuous separately powered monitoring. Actual Concept004 browser acceptance remains pending. User instruction to push updates covers publishing this isolated candidate; no physical work, new access or spending is authorized.
+
+Next: verify Concept003 main CI/Pages/served bytes; then exact-head Concept004 Chromium desktop/mobile-viewport interactions and screenshot review before merge; preserve unresolved FORCE and RM2 evidence gates. Historical checkpoints below retain their original states.
+
+---
+
+## 2026-10-22 11:14 UTC: Concept004 local continuation, release pending
+
+Remote main was checked at11:08 UTC: `dda3a61a545ff5672f5f350034ed73520079c0bd`. PR30 remains on reviewed `736d0bef8fd0a436667a06003c30cd2515d8b78a`; all six push/PR checks passed, with independent code and bounded Chromium new-panel visual review. Readiness, merge and deployment remain pending approval. PR8 is untouched.
+
+A separate local Concept004 app candidate extends the delivered Concept002 single-event energy accounting. Latest specification: `docs/CONCEPT_SERVICE_ENERGY_20261022.md`. Twelve explicitly assumed inputs expose access/task/recommissioning outage, continuous monitoring and restart imports. No measured device or architecture ranking is introduced.
+
+Actual local commands: `node --test tests/test_clearance.cjs tests/test_clearance_ui.cjs tests/test_service_energy.cjs tests/test_service_energy_ui.cjs` (48 pass); `python -m unittest discover -s tests` (112 pass,13 optional-source skips); `node tests/ui_smoke.cjs` (pass); `python scripts/build_site.py --out dist` (24 source files). The JS accounting port matched108 existing Concept002 scenarios across1,404 numeric checks. New browser assertions are prepared, not executed. Prior Concept003 screenshots do not validate this addition.
+
+Top three actions:
+1. Resolve PR30 release approval, then verify exact merged main CI, Pages and served bytes. Do not retry a denied transition without materially relevant new authorization.
+2. Independently review Concept004 accounting/code, run its actual Chromium desktop/mobile-viewport checks, inspect screenshots and verify exact CI before considering publication or release.
+3. Replace hypothetical service/auxiliary quantities only with qualified permitted evidence. FORCE native configuration/QC lineage and RM2 target originals/encoder registration remain unresolved; frozen comparison is unexecuted. Do not retry denied sources or conduct physical work/outreach.
+
+---
+
 # CONTINUATION — authoritative checkpoints and current research gates
 
 Repository scope: `JeremyHennessy/TidalTurbine` **only**. Re-fetch the exact live `main` head, open PRs/issues, Actions and `AGENTS.md` before making changes. This file is a chronology, not permission to overwrite later work or to force-push. Do not infer deployed Pages from passing CI.

@@ -50,3 +50,7 @@ FORCE still has zero qualified inflow cells. Required native configuration/beam 
 1. Replace assumed boxes with qualified component/interface envelopes, including cables and disconnect tooling, without claiming unknown dimensions are measurements.
 2. Model the entire PTO relocation and crane/rigging path only once those envelopes and host geometry are known.
 3. Independently review access, load cases, uncertainty and environmental monitoring before any physical programme. This software grants no construction, lifting, site-access or wildlife authorization.
+
+## Acceptance update, 2026-10-22 11:53 UTC
+
+The earlier pending-browser paragraph records the initial draft state. Subsequently, exact reviewed head `736d0bef8fd0a436667a06003c30cd2515d8b78a` passed all six push/PR checks. Actual Chromium at 1440×1000 and 390×844 exercised normal-navigation pointer access, fail-closed states, contrast and horizontal fit. Initial screenshots failed contrast review; corrected screenshots were rerun and inspected, with independent bounded new-panel visual acceptance. PR CI run: https://github.com/JeremyHennessy/TidalTurbine/actions/runs/39767419817. The reviewed source was merged as `6118db4ac1a6748575171d07f8a3cd69c70c6ed7`. Main CI/Pages/live-byte verification is separate. This acceptance covers Concept003, not the subsequently added Concept004 service-energy panel; neither implies Safari/device or engineering/ecological validation.

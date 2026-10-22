@@ -64,8 +64,42 @@ const types={'.html':'text/html','.js':'text/javascript','.css':'text/css','.jso
   const box=await page.locator('#clearance-lab').boundingBox();assert.ok(box.x>=0 && box.x+box.width<=390,'mobile panel fits viewport');
   await normalPageEvidence('mobile');
   await page.locator('#clearance-lab').screenshot({path:path.join(out,'mobile-390.png'),animations:'disabled',style:captureStyle});
+  // Concept004 assertions are separate from the already reviewed clearance results.
+  for (const [width,height,label] of [[1440,1000,'desktop'],[390,844,'mobile']]) {
+   await page.setViewportSize({width,height});
+   const serviceStatus=()=>page.locator('#service-energy-status').innerText();
+   const reset=()=>page.locator('#service-energy-reset').click();
+   await reset();assert.match(await serviceStatus(),/-0.18 kWh/);
+   assert.equal(await page.locator('#service-energy-lab input').count(),12);
+   for(const control of await page.locator('#service-energy-lab input').all()) {
+    await control.scrollIntoViewIfNeeded();await control.click();
+   }
+   await page.fill('#service-energy-candidate-monitorW','0');assert.match(await serviceStatus(),/1.5 kWh/);
+   await reset();await page.fill('#service-energy-powerW','0');assert.match(await serviceStatus(),/-1.68 kWh/);
+   assert.match(await page.locator('#service-energy-candidate-budget').innerText(),/-1.78 kWh/);
+   await reset();await page.fill('#service-energy-candidate-taskH','20');
+   assert.match(await page.locator('#service-energy-threshold').innerText(),/No nonnegative.*reaches equal/);
+   for(const [id,value] of [['candidate-taskH',''],['periodH','1']]) {
+    await reset();await page.fill('#service-energy-'+id,value);assert.match(await serviceStatus(),/No result/);
+    for(const output of ['baseline-budget','candidate-budget','threshold','balance']) assert.equal(await page.locator('#service-energy-'+output).innerText(),'');
+   }
+   await reset();
+   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'service page must fit viewport');
+   const serviceBox=await page.locator('#service-energy-lab').boundingBox();
+   assert.ok(serviceBox.x>=0 && serviceBox.x+serviceBox.width<=width,'service panel fits viewport');
+   const serviceContrast=await page.evaluate(()=>{
+    const lum=s=>s.match(/[\d.]+/g).slice(0,3).map(Number).map(n=>{n/=255;return n<=.04045?n/12.92:((n+.055)/1.055)**2.4;}).reduce((a,n,i)=>a+n*[.2126,.7152,.0722][i],0);
+    const fg=lum(getComputedStyle(document.getElementById('service-energy-balance')).color),bg=lum(getComputedStyle(document.getElementById('service-energy-lab')).backgroundColor);
+    return (Math.max(fg,bg)+.05)/(Math.min(fg,bg)+.05);
+   });assert.ok(serviceContrast>=4.5,'service explanatory text contrast >=4.5:1');
+   await page.locator('#service-energy-title').scrollIntoViewIfNeeded();
+   await page.screenshot({path:path.join(out,'service-'+label+'-normal-inputs.png'),animations:'disabled'});
+   await page.locator('#service-energy-status').scrollIntoViewIfNeeded();
+   await page.screenshot({path:path.join(out,'service-'+label+'-normal-result.png'),animations:'disabled'});
+   await page.locator('#service-energy-lab').screenshot({path:path.join(out,'service-'+label+'-panel.png'),animations:'disabled',style:captureStyle});
+  }
   assert.deepEqual(errors,[]);
-  fs.writeFileSync(path.join(out,'result.json'),JSON.stringify({result:'PASS',browser:'Chromium',viewports:[[1440,1000],[390,844]],checks:['default obstruction','sensor margin','parked configuration','hatch conflict','custom label','empty input erases stale diagram','both axial alternatives indeterminate','field enablement','14 existing artwork selectors','mobile controls and horizontal fit','zero uncaught page errors','detail contrast >=4.5:1','explicit dark SVG label color','all six controls pointer-reachable with normal navigation at both viewports'],capture:'Panel screenshots hide fixed navigation solely during capture. Separate normal full-page and viewport screenshots retain normal navigation. All six controls receive real pointer clicks with normal DOM at both viewports. Reduced-motion browser context.',scope:'Actual browser UI consistency only; not physics, lift, ecological or production deployment validation'},null,2)+'\n');
+  fs.writeFileSync(path.join(out,'result.json'),JSON.stringify({result:'PASS',browser:'Chromium',viewports:[[1440,1000],[390,844]],serviceChecks:['12 pointer-reachable number controls and reset at both viewports','default negative delta','monitoring-free gain','negative net import','infeasible equality','empty input clears all budgets','outage beyond period clears all budgets','panel and page horizontal fit','text contrast >=4.5:1'],checks:['default obstruction','sensor margin','parked configuration','hatch conflict','custom label','empty input erases stale diagram','both axial alternatives indeterminate','field enablement','14 existing artwork selectors','mobile controls and horizontal fit','zero uncaught page errors','detail contrast >=4.5:1','explicit dark SVG label color','all six controls pointer-reachable with normal navigation at both viewports'],capture:'Panel screenshots hide fixed navigation solely during capture. Separate normal full-page and viewport screenshots retain normal navigation. All six controls receive real pointer clicks with normal DOM at both viewports. Reduced-motion browser context.',scope:'Actual browser UI consistency only; not physics, lift, ecological or production deployment validation'},null,2)+'\n');
   console.log('PASS: actual Chromium desktop/mobile clearance interactions, fail-closed states, inherited artwork count and mobile fit. Screenshots saved for visual review.');
  } catch(e) {
   if(page)await page.screenshot({path:path.join(out,'failure.png'),fullPage:true}).catch(()=>{});
