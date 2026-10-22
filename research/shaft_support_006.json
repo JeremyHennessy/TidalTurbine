@@ -1,0 +1,99 @@
+{
+  "id": "SHAFT-SUPPORT-006",
+  "date": "2026-10-22",
+  "status": "REQUIREMENTS_CANDIDATE_NOT_COMPONENT_SELECTION",
+  "source_ids": [
+    "SKF-SUPPORT-006",
+    "SXL-GUIDE-005",
+    "SXL-KEY-005",
+    "KTR-SH-005"
+  ],
+  "source_facts": {
+    "sxl_guide_surface": {
+      "source_id": "SXL-GUIDE-005",
+      "unit": "micrometres Ra",
+      "ideal_initial_finish": 0.4,
+      "initial_finish_up_to": 1.6,
+      "maintenance_finish_strictly_less_than": 1.6,
+      "selected_project_specification": false
+    },
+    "sxl_bonded_route": {
+      "source_id": "SXL-GUIDE-005",
+      "finish_machine_bore_after_bonding": true,
+      "interchangeable_with_tapered_key_route_established": false
+    },
+    "support_roles": {
+      "source_id": "SKF-SUPPORT-006",
+      "locating": "radial support and bidirectional axial location",
+      "non_locating": "radial support with thermal axial movement",
+      "selected_arrangement": null
+    },
+    "coupling_torque": {
+      "source_id": "KTR-SH-005",
+      "spider_rating_is_shaft_hub_rating": false,
+      "selected_size": null
+    }
+  },
+  "required_load_cases": [
+    "normal generation in each flow direction",
+    "start, stop, slack and reversal",
+    "fault, braking and loss of electrical load",
+    "parked/locked condition",
+    "coupling removed",
+    "guide-bearing component removed",
+    "retrieval and transfer"
+  ],
+  "minimum_load_record_fields": [
+    "case and boundary conditions",
+    "coordinate frame and positive directions",
+    "radial forces Fx/Fy and axial force Fz",
+    "bending moments Mx/My and shaft torque Mz",
+    "signed speed and time/duty or cycle counts",
+    "gravity and buoyancy state",
+    "bearing/support locations and stiffness assumptions",
+    "source, uncertainty, combination/correlation and qualification status"
+  ],
+  "unknowns": {
+    "shaft_diameter_mm": null,
+    "shaft_orientation": null,
+    "support_spacing_mm": null,
+    "radial_load_envelope_N": null,
+    "axial_load_envelope_N": null,
+    "bending_moment_envelope_Nm": null,
+    "peak_reversing_torque_Nm": null,
+    "shaft_material": null,
+    "hub_key_geometry": null,
+    "housing_fit": null,
+    "bearing_clearance": null,
+    "bearing_static_rating": null,
+    "bearing_dynamic_rating": null,
+    "required_life_cycles": null,
+    "thermal_displacement_mm": null,
+    "service_state_support": null,
+    "qualified_installed_cost": null
+  },
+  "architectures": [
+    {
+      "id": "CF-LIFT-2",
+      "support_loads_qualified": false,
+      "component_selected": false,
+      "dry_side_source_applicable": true
+    },
+    {
+      "id": "AX-DRY-2",
+      "support_loads_qualified": false,
+      "component_selected": false,
+      "dry_side_source_applicable": true
+    },
+    {
+      "id": "AX-POD-2",
+      "support_loads_qualified": false,
+      "component_selected": false,
+      "dry_side_source_applicable": false
+    }
+  ],
+  "gate": "No hardware selection until a qualified load/support/fit and environment record exists; the illustrative mean torque is not a design envelope.",
+  "next_question": "Can independently supported shaft datums and a qualified renewal route fit the matched service task without transferring rotor loads through the removed component?",
+  "comparison_requirement": "Compare the same renewal task for interference-fit, bonded split-housing and tapered-key routes; do not transfer one route’s service claim to another.",
+  "evidence_class": "DESIGN_HYPOTHESIS"
+}

@@ -930,5 +930,28 @@
     ],
     "access_status": "Official public source read; no supplier approval or field validation",
     "download_sha256": "042df52e39a1e8f829de612abe57d0eb1c63130107b48be81f50768c7b5cb2ed"
+  },
+  {
+    "id": "SKF-SUPPORT-006",
+    "title": "SKF bearing maintenance handbook: support arrangements",
+    "url": "https://www.skf.com/binaries/pub12/Images/0901d1968013be94-SKF-bearing-maintenance-handbook---10001_1-EN%281%29_tcm_12-463040.pdf",
+    "publication_date": "2011-09 (PUB SR/P7 10001/1 EN)",
+    "access_date": "2026-10-22",
+    "evidence_class": "MANUFACTURER_OR_PROJECT_CLAIM",
+    "review_depth": "sections_reviewed",
+    "reviewed_sections": [
+      "Copyright/edition page; foreword scope",
+      "Printed p30, PDF page34: arrangement text and figures9–11 visually inspected"
+    ],
+    "supported_claims": [
+      "Locating support restrains a shaft axially in both directions; a non-locating support permits thermal axial movement while supporting radial load.",
+      "Separate radial and thrust bearings are an alternative arrangement, not a selected tidal support."
+    ],
+    "limitations": [
+      "2011 maintenance handbook, explicitly not an application design catalogue. Not current product selection, bearing ratings, tidal immersion qualification or certification.",
+      "No selected shaft diameter, support spacing, fits, bearing type or load envelope."
+    ],
+    "access_status": "Official PDF downloaded; selected page visually inspected",
+    "download_sha256": "fb187363e7909b42f448eee2f9e15881138d6ffd6176699ea315175b70101bcf"
   }
 ]
