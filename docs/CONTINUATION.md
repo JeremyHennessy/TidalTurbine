@@ -1,3 +1,13 @@
+## 2026-10-22 15:08 UTC: Shaft-support requirements candidate
+
+Checked remote main `4aa33d1e40a0fd46d5a3387d5d5d1fb2edc3ecc2`, the released PR33 tree. PR33 main CI 39798019855 and Pages 39798021338 passed; 14 selected public assets plus the /site/ directory route matched accepted source. The older 14:26 pending release checkpoint below is historical and superseded. PR8 remains untouched; no new issues found. No new 006 PR exists at this checkpoint.
+
+Latest report: `docs/SHAFT_SUPPORT_REQUIREMENTS_20261022.md`; register: `research/shaft_support_006.json`. Source-backed manufacturing constraints distinguish interference-fit, bonded and tapered-key renewal routes. Initial versus maintenance surface-finish conditions are kept separate. SKF's 2011 maintenance guidance clarifies support functions, not current hardware selection. No diameter, arrangement, rating, load or cost is selected.
+
+Actual local checks: `python -m unittest discover -s tests` (140 run: 127 passed, 13 optional-source skips); `node --test tests/test_clearance.cjs tests/test_clearance_ui.cjs tests/test_service_energy.cjs tests/test_service_energy_ui.cjs` (48 passed); `node --check tests/clearance_browser.cjs`; `python scripts/check_catalogue.py` (45 records); `python scripts/check_mechanisms.py` (14 classified cases); `node tests/ui_smoke.cjs` (14 scenes); `python scripts/build_site.py` (24 source files). Independent review and exact-head hosted browser/visual acceptance for 006 are pending at this dated candidate checkpoint.
+
+Next three actions: (1) review and test the bounded 006 display and source claims; (2) assemble qualified shaft geometry, support positions and combined load cases before selecting hardware; (3) compare matched renewal tasks with route-specific machining, access and support requirements, without transferring advertised service times. FORCE native burst/configuration/QC lineage and RM2 B10/B12 originals plus physical encoder zero remain missing; the frozen comparison is unexecuted. Physical, environmental and outreach permissions do not change.
+
 ## 2026-10-22 14:26 UTC: Research progress and component-interface candidate
 
 Checked remote main `a4dd670f8ae401d28bd0eb02f43c14d8cfb0e1b9`; only open PR8, unchanged. Served `site/index.html` and `site/app.js` matched that released source. The hard-coded serviceability “NOT STARTED” row was stale; this candidate marks desk work in progress while keeping the physical gate pending. Dated Research milestones now link completed benchmark reproduction and released Concept003/004 tools to their limits. Concept005 adds manufacturer-qualified component facts and an explicitly unselected interface hypothesis, not another performance simulator.
