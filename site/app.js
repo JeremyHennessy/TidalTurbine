@@ -20,10 +20,10 @@ let forceSelectedRange = 29.5;
 let annotations = true;
 const VALIDATION = [
   ['Analytical checks & screening', 'Analytical limiting cases, deterministic code and the synthetic SCREEN-001 baseline.', 'SOFTWARE CHECKS PASSED', 'complete'],
-  ['Reproduce published benchmark', 'Published RM1 axial table and RM2 processed Cp/Cd observations reproduced; predictive solvers and structural loads remain unvalidated.', 'DATA PLOTTED · SOLVERS UNVALIDATED', 'pending'],
+  ['Reproduce published benchmark', 'Published RM1 axial table and RM2 processed Cp/Cd observations reproduced; predictive solvers and structural loads remain unvalidated.', 'TABLE REPRODUCTION COMPLETE · SOLVERS UNVALIDATED', 'pending'],
   ['Validated rotor & control', 'Turbulence, validated thrust/pitch maps, cavitation and measured blade-load distributions.', 'NOT STARTED', 'pending'],
   ['Coupled structure and moorings', 'Fatigue damage, foundation/cable stresses and floating-platform response under real conditions.', 'NOT STARTED', 'pending'],
-  ['Serviceability & lifecycle cost', 'Maintenance histories, realistic weather access windows, failure and repair uncertainty.', 'NOT STARTED', 'pending'],
+  ['Serviceability & lifecycle cost', 'Concept003 retrieval and Concept004 service-energy tools released 22 Oct 2026. Component interfaces checked in Concept005; measured service, access, failure and cost evidence still required.', 'DESK STUDY IN PROGRESS · FIELD EVIDENCE PENDING', 'pending'],
   ['Independent physical review', 'Independently reviewed testing and ecological evaluation before a site claim.', 'NOT STARTED', 'pending']
 ];
 const DESIGNS = {

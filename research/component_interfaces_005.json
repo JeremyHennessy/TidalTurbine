@@ -1,0 +1,89 @@
+{
+  "id": "COMPONENT-INTERFACE-005",
+  "date": "2026-10-22",
+  "status": "DESK_CANDIDATE_NOT_SELECTED",
+  "evidence_class": "DESIGN_HYPOTHESIS",
+  "source_ids": [
+    "KTR-SH-005",
+    "KTR-SH-PAGE-005",
+    "SXL-KEY-005",
+    "SXL-GUIDE-005"
+  ],
+  "catalogue_example": {
+    "source_id": "KTR-SH-005",
+    "family": "ROTEX SH",
+    "size": 38,
+    "material": "GJL",
+    "selected": false,
+    "evidence_class": "MANUFACTURER_OR_PROJECT_CLAIM",
+    "units": "mm",
+    "dimensions": {
+      "L": 114,
+      "E": 24,
+      "DH": 80,
+      "W": 15,
+      "bore_min": 24,
+      "bore_max": 45
+    },
+    "W_meaning": "local axial hub displacement, not whole-module extraction",
+    "complete_service_envelope_mm": null
+  },
+  "architectures": [
+    {
+      "id": "CF-LIFT-2",
+      "dry_coupling_candidate": true,
+      "full_retrieval_qualified": false,
+      "component_size_selected": false
+    },
+    {
+      "id": "AX-DRY-2",
+      "dry_coupling_candidate": true,
+      "full_retrieval_qualified": false,
+      "component_size_selected": false
+    },
+    {
+      "id": "AX-POD-2",
+      "dry_coupling_candidate": false,
+      "full_retrieval_qualified": false,
+      "component_size_selected": false,
+      "reason": "No qualified submerged pod interface; dry-side evidence not transferable"
+    }
+  ],
+  "hypothesis": {
+    "question": "Can service components be replaced while retaining rotor and generator datums, with independent shaft support and verified local access?",
+    "comparator": "Same maintenance task using a one-piece interface requiring shaft or machine withdrawal; compare both dry-PTO architectures fairly.",
+    "mechanism": "Separate component renewal from whole-cartridge retrieval to investigate reduced disassembly and realignment burden.",
+    "falsifier": "Required support, hub/key travel, radial removal or tool/guard access cannot fit; or added hardware and water-system burdens erase any measured benefit.",
+    "necessary_evidence": [
+      "qualified load envelope and torsional review",
+      "shaft geometry and independent axial/radial support in each service state",
+      "supplier-qualified bearing/hub/shaft fit and environment",
+      "dimensioned disassembly motion for selected components",
+      "matched measured service tasks and installed cost",
+      "metered pumping and other auxiliary demand without double counting"
+    ]
+  },
+  "unknowns": {
+    "shaft_diameter_mm": null,
+    "bearing_dimensions_mm": null,
+    "radial_tool_guard_access_mm": null,
+    "selected_component_hub_travel_mm": null,
+    "axial_complete_machine_length_mm": null,
+    "qualified_peak_torque_Nm": null,
+    "service_duration_h": null,
+    "complete_cost": null,
+    "water_system_power_W": null
+  },
+  "prohibitions": [
+    "No build-ready or lift-safety claim",
+    "No measured service-time, efficiency or cost advantage",
+    "No wildlife safety or permitting approval",
+    "No architecture winner",
+    "No replacement of the synthetic retrieval or energy inputs with catalogue geometry"
+  ],
+  "external_gates": [
+    "FORCE: zero qualified cells; native burst/configuration/QC lineage still required",
+    "RM2: B10/B12 originals and physical encoder zero pending; frozen comparison unexecuted",
+    "Environmental, marine-use, fisheries, Mi’kmaq engagement and permitting gates unchanged"
+  ]
+}

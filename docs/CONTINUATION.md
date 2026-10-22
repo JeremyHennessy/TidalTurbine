@@ -1,3 +1,18 @@
+## 2026-10-22 14:26 UTC: Research progress and component-interface candidate
+
+Checked remote main `a4dd670f8ae401d28bd0eb02f43c14d8cfb0e1b9`; only open PR8, unchanged. Served `site/index.html` and `site/app.js` matched that released source. The hard-coded serviceability “NOT STARTED” row was stale; this candidate marks desk work in progress while keeping the physical gate pending. Dated Research milestones now link completed benchmark reproduction and released Concept003/004 tools to their limits. Concept005 adds manufacturer-qualified component facts and an explicitly unselected interface hypothesis, not another performance simulator.
+
+Latest report: `docs/COMPONENT_INTERFACES_20261022.md`; traceable record: `research/component_interfaces_005.json`. Four official-source records were added to `research/catalogue.json`. KTR edition12 drawing and disassembly, and Thordon bearing guidance, were inspected with source/date/section limits. The local hub-displacement example is not the full turbine retrieval stroke. Crossflow and axial dry-PTO alternatives receive the same conditional opportunity; the submerged pod is unqualified.
+
+Local checks: `python -m unittest discover -s tests` (133 run, 13 optional-source skips, 120 passed); `python -m unittest discover -s tests -p test_component_interfaces.py -v` (8 new consistency tests); `python scripts/check_catalogue.py` (44 records); `python scripts/check_mechanisms.py`; `python scripts/check_validation_readiness.py`; `node tests/ui_smoke.cjs`; `node --check site/app.js`; `node --check tests/clearance_browser.cjs`; `node --test tests/test_clearance.cjs tests/test_clearance_ui.cjs tests/test_service_energy.cjs tests/test_service_energy_ui.cjs` (48 passed); `python scripts/build_site.py --out dist` (24 published source files). Exact-head CI, actual Chromium screenshots, independent review and deployment verification are pending at this candidate checkpoint. These tests do not validate a device.
+
+Top three next actions:
+1. Complete exact-head browser/independent review and live verification of the reporting correction; do not promote physical gates merely to make the dashboard look advanced.
+2. Resolve the selected shaft/support/load and component-removal interface before choosing hardware; compare the same service task, full installed cost and metered auxiliaries in both dry-PTO alternatives.
+3. Keep source qualification separate: FORCE native burst/configuration/QC lineage and RM2 B10/B12 originals plus physical encoder zero remain pending. No denied RVAT1571973/OSM retry, outreach, spending, credentials or physical activity occurred. Environmental, fisheries, Mi’kmaq and permitting gates remain unchanged.
+
+Historical checkpoints below remain records of their own commit and review scope.
+
 ## 2026-10-22 12:08 UTC: released retrieval and service-energy tools
 
 Both authorized app updates are merged. PR30 introduced the whole-module retrieval screen; PR31 introduced conditional service-energy accounting. Current released app commit: `8f9d779de15eca73d27029b7e630e9bc9c0a6728`, source tree `0406d41918eb412fb28d86fd1fa0681e781b74c5`. All 154 source blobs were verified against the candidate. PR8 remains untouched.
