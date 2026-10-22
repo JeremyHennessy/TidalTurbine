@@ -20,7 +20,7 @@
         for(const [name,b] of Object.entries(r.obstacles)) shapes+=rect(b,mode,name==='PTO'?'#ba6427':name==='sensor'?'#925bb8':'#8c999f',name);
         const raised=r.initial.slice();raised[4]+=r.dz;raised[5]+=r.dz;
         if(mode==='side') shapes+=rect(raised,mode,'#1493bd','Raised assembly');
-        return `<figure><svg viewBox="0 0 400 380" role="img" aria-label="${mode==='plan'?'Plan projection of listed objects and the vertical swept corridor':'Side projection of initial and raised assembly, deck, PTO and sensor'}"><text x="16" y="25" fill="currentColor">${mode==='plan'?'PLAN · x / y':'SIDE · x / z'} · metres</text>${shapes}<text x="16" y="365" fill="currentColor">${mode==='plan'?'Projection, not a second collision test':'Vertical translation only: 2.60 m'}</text></svg><figcaption>${mode==='plan'?'Plan projections can overlap even when z differs.':'Whole shaft-inclusive module, not rotor alone.'}</figcaption></figure>`;
+        return `<figure><svg viewBox="0 0 400 380" role="img" aria-label="${mode==='plan'?'Plan projection of listed objects and the vertical swept corridor':'Side projection of initial and raised assembly, deck, PTO and sensor'}">${shapes}<text x="16" y="16" fill="currentColor">${mode==='plan'?'PLAN · x / y':'SIDE · x / z'} · metres</text><text x="16" y="365" fill="currentColor">${mode==='plan'?'Projection, not a second collision test':'Vertical translation only: 2.60 m'}</text></svg><figcaption>${mode==='plan'?'Plan projections can overlap even when z differs.':'Whole shaft-inclusive module, not rotor alone.'}</figcaption></figure>`;
       }).join('');
       get('diagram').innerHTML=figures;
     }
