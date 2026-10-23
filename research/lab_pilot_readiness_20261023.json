@@ -1,0 +1,336 @@
+{
+  "schema": "TT-LAB-PILOT-READINESS-1",
+  "date": "2026-10-23",
+  "based_on_main_commit": "4c40ca2547e741739259fdabbfa24049dcc75b7f",
+  "classification": "RESEARCH_AND_DESK_READINESS_ONLY",
+  "objective": "Prepare a safe, independently measurable small-scale tidal-stream generator laboratory experiment without selecting a winner or conflating mechanical means with blade stress and net electricity.",
+  "separation_of_workstreams": {
+    "laboratory_test": "May progress after venue, design, metrology and safety approval; does not require previous FORCE site ADCP qualification to test controlled water.",
+    "site_specific_energy_forecast": "Blocked on instrument-qualified site current profiles and independent device performance/electricity validation.",
+    "in_water_test": "Separately blocked on site permissions, qualified flow, marine safety, environmental and retrieval provisions."
+  },
+  "physics_status": {
+    "qualified_site_inflow_rows": 0,
+    "physical_lab_trials_documented": 0,
+    "physical_field_deployments_documented": 0,
+    "prototype_winner": null,
+    "independent_predictive_validation": false,
+    "measured_blade_fatigue_benefit": false,
+    "measured_net_electricity_benefit": false
+  },
+  "permissions": {
+    "external_contact_authorized": false,
+    "purchasing_authorized": false,
+    "physical_lab_operation_authorized": false,
+    "field_deployment_authorized": false,
+    "environmental_approval_obtained": false
+  },
+  "reference_prototype_ids": [
+    "AXIAL-RM1-REFERENCE",
+    "CROSSFLOW-RM2-REFERENCE",
+    "FOIL-OSCILLATING-EXPERIMENTAL"
+  ],
+  "pilot_comparator": {
+    "primary_design": "CROSSFLOW-RM2-REFERENCE",
+    "mechanism": "Same cross-flow rotor at separately calibrated approximate TSR 2.9 candidate versus 3.1 baseline; historical processed mean drag/Cp reductions alone do not prove load-cycle reduction.",
+    "prospective_test_setpoints_m_s": [
+      0.6,
+      1,
+      1.4
+    ],
+    "flow_direction_cases": [
+      "forward",
+      "reverse"
+    ],
+    "experimental_result_status": "NO_NEW_PHYSICAL_TESTS",
+    "registered_sample_size": null,
+    "prespecified_acceptable_energy_penalty": null,
+    "prespecified_load_benefit_threshold": null,
+    "mandatory_measurement_ids": [
+      "inflow_3d",
+      "rotor_position",
+      "rotor_speed",
+      "shaft_torque",
+      "blade_root_strain",
+      "strut_strain",
+      "mean_streamwise_drag",
+      "generator_power",
+      "delivered_electrical_power",
+      "control_and_actuator_power",
+      "rig_status"
+    ],
+    "acceptance_boundary": "Report paired net electrical energy, time-resolved stress cycles, calibration, repeatability/uncertainty and all failures separately; no inferred fatigue life or winner."
+  },
+  "gates": [
+    {
+      "id": "SOURCE-NATIVE-QC",
+      "phase": "source",
+      "status": "UNRESOLVED",
+      "evidence": null,
+      "requirement": "Recover native FORCE export lineage, transducer geometry, masks and bin mapping or independent scientifically qualified local site profiles",
+      "reference": "docs/TIDAL_SOURCE_RESOLUTION_20261021.md",
+      "required_evidence": "Source-specific QC and rotor-height current evidence; no synthetic mapping"
+    },
+    {
+      "id": "LAB-FACILITY",
+      "phase": "lab",
+      "status": "UNRESOLVED",
+      "evidence": null,
+      "requirement": "Select venue and obtain written venue acceptance for intended moving machinery and test cell",
+      "reference": "docs/PROTOTYPE_TEST_RIG_ENGINEERING_20261020.md",
+      "required_evidence": "Actual facility test section, limits, operator availability and approved scope"
+    },
+    {
+      "id": "LAB-CONTAINMENT",
+      "phase": "lab",
+      "status": "UNRESOLVED",
+      "evidence": null,
+      "requirement": "Obtain professional safety review, mechanical restraint, guards, isolation, emergency stop and supervised operation",
+      "reference": "research/prototype_test_rig_bom_v1.json",
+      "required_evidence": "Reviewed facility-specific containment and witnessed stop test"
+    },
+    {
+      "id": "LAB-CALIBRATION",
+      "phase": "lab",
+      "status": "UNRESOLVED",
+      "evidence": null,
+      "requirement": "Specify and calibrate common-clock 3-D inflow, torque, angle, force, blade strain and electrical measurement",
+      "reference": "research/experiment_protocol_v1.json",
+      "required_evidence": "Traceable certificates, raw timing check and uncertainty budget"
+    },
+    {
+      "id": "LAB-REPLICATION",
+      "phase": "lab",
+      "status": "UNRESOLVED",
+      "evidence": null,
+      "requirement": "Preregister AB/BA randomization, independent replicates and an uncertainty/power plan",
+      "reference": "docs/PREDICTIVE_HOLDOUT_PROTOCOL_20261021.md",
+      "required_evidence": "Frozen protocol, tolerance, exclusions and independent reviewer"
+    },
+    {
+      "id": "LAB-STRUCTURAL-LOADS",
+      "phase": "lab",
+      "status": "UNRESOLVED",
+      "evidence": null,
+      "requirement": "Measure simultaneous blade-root/strut cycle-resolved loads, not just mean support drag",
+      "reference": "docs/RM1_RM2_STRUCTURAL_GATES_20261020.md",
+      "required_evidence": "Calibrated matched inflow load time histories, raw trace and material stress basis"
+    },
+    {
+      "id": "LAB-NET-ELECTRICITY",
+      "phase": "lab",
+      "status": "UNRESOLVED",
+      "evidence": null,
+      "requirement": "Measure delivered load-side energy and separately metered auxiliaries without double counting",
+      "reference": "docs/LOAD_AND_PROTOTYPE_TEST_PROTOCOL_20261020.md",
+      "required_evidence": "Signed synchronous generator/PTO/load/control energy traces and accounting"
+    },
+    {
+      "id": "LAB-COMPARE",
+      "phase": "lab",
+      "status": "UNRESOLVED",
+      "evidence": null,
+      "requirement": "Compare cross-flow TSR 2.9/3.1 on same rotor before any cross-architecture claims",
+      "reference": "reports/RM2-CROSSSPEED-001.json",
+      "required_evidence": "Matched randomized runs with material uncertainty and separate energy/load outcomes"
+    },
+    {
+      "id": "ENGINEERING-GEOMETRY",
+      "phase": "engineering",
+      "status": "UNRESOLVED",
+      "evidence": null,
+      "requirement": "Replace assumption-only Concept003 envelopes with facility-specific documented complete interface CAD",
+      "reference": "docs/CONCEPT_RETRIEVAL_SCREEN_20261022.md",
+      "required_evidence": "Qualified supplier dimensions, retrieval path, loading/clearance review"
+    },
+    {
+      "id": "ENGINEERING-SHAFT",
+      "phase": "engineering",
+      "status": "UNRESOLVED",
+      "evidence": null,
+      "requirement": "Resolve 17 unresolved shaft/support/bearing selections and service-state load paths",
+      "reference": "research/shaft_support_006.json",
+      "required_evidence": "Qualified load envelope, shaft layout and independently reviewed bearing/hub/fits"
+    },
+    {
+      "id": "ENGINEERING-MANUFACTURING",
+      "phase": "engineering",
+      "status": "UNRESOLVED",
+      "evidence": null,
+      "requirement": "Select manufacturing route, inspect materials and verify tolerances and renewal sequence",
+      "reference": "docs/SHAFT_SUPPORT_REQUIREMENTS_20261022.md",
+      "required_evidence": "Supplier drawings, shop feasibility, corrosion/seal and independent safety review"
+    },
+    {
+      "id": "ENGINEERING-BUDGET",
+      "phase": "engineering",
+      "status": "UNRESOLVED",
+      "evidence": null,
+      "requirement": "Obtain written venue quote and critical instrumentation/fabrication quotes before any all-in budget",
+      "reference": "research/prototype_test_rig_bom_v1.json",
+      "required_evidence": "Verified cost scope including labor, calibration, travel, shipping, tax and contingency"
+    },
+    {
+      "id": "FIELD-FLOW",
+      "phase": "field",
+      "status": "UNRESOLVED",
+      "evidence": null,
+      "requirement": "Qualify berth-specific rotor-height current profiles and uncertainty, including ebb/flood, slack and extremes",
+      "reference": "docs/TIDAL_TEST_SITE_SELECTION_2026-10-20.md",
+      "required_evidence": "Site-specific observed inflow plus seasonal/exposure limitations"
+    },
+    {
+      "id": "FIELD-PERMISSIONS",
+      "phase": "field",
+      "status": "UNRESOLVED",
+      "evidence": null,
+      "requirement": "Verify property/berth rights, Mi'kmaq/fisheries, DFO/NS/Transport and site/operator authorization",
+      "reference": "docs/TIDAL_TEST_SITE_SELECTION_2026-10-20.md",
+      "required_evidence": "Written relevant permissions and environmental/navigation gates"
+    },
+    {
+      "id": "FIELD-RECOVERY",
+      "phase": "field",
+      "status": "UNRESOLVED",
+      "evidence": null,
+      "requirement": "Qualify marine retrieval, maintenance/weather windows, emergency response and end-of-life plan",
+      "reference": "docs/PROTOTYPE_COMPARISON_20261020.md",
+      "required_evidence": "Reviewed recovery plan, environmental baseline and service records"
+    }
+  ],
+  "venues": [
+    {
+      "id": "DAL-AQUATRON",
+      "name": "Dalhousie Aquatron Laboratory",
+      "location": "Halifax, Nova Scotia",
+      "candidate_role": "HISTORIC_CONTROLLED_TURBINE_AND_FISH_INTERACTION_RESEARCH",
+      "evidence_class": "PUBLISHED_HISTORIC_STUDY_AND_FACILITY_DESCRIPTION",
+      "sources": [
+        "https://www.dal.ca/dept/aquatron/about.html",
+        "https://tethys.pnnl.gov/publications/tidal-turbine-marine-life-interaction-study-fish"
+      ],
+      "limitation": "Historic turbine/fish tank work does not establish 2026 current/rotor testing permission, instrumentation, tariffs or availability.",
+      "published_daily_rate_cad": null,
+      "operator_acceptance_confirmed": false,
+      "available_dates_confirmed": false,
+      "facility_instrumentation_confirmed_for_project": false
+    },
+    {
+      "id": "COVE-STELLA",
+      "name": "COVE Stella Maris Testing Solution",
+      "location": "Dartmouth, Nova Scotia",
+      "candidate_role": "WET_INSTRUMENTATION_INTEGRATION_ONLY_UNLESS_OPERATOR_CONFIRMS_MOVING_TEST",
+      "evidence_class": "OPERATOR_FACILITY_DESCRIPTION",
+      "sources": [
+        "https://covesolutions.com/programs-services/stella-maris-testing-solution/"
+      ],
+      "limitation": "Subsea/dockside instrumentation capability is not a verified current-driven rotating turbine test venue.",
+      "published_daily_rate_cad": null,
+      "operator_acceptance_confirmed": false,
+      "available_dates_confirmed": false,
+      "facility_instrumentation_confirmed_for_project": false
+    },
+    {
+      "id": "MUN-TOW",
+      "name": "Memorial University engineering towing tank",
+      "location": "St. John's, Newfoundland and Labrador",
+      "candidate_role": "POTENTIAL_MATCHED_TOWED_ROTOR_MECHANICS_EXPERIMENT",
+      "evidence_class": "UNIVERSITY_FACILITY_DESCRIPTION",
+      "sources": [
+        "https://www.mun.ca/engineering/ona/research/research-facilities/towing-tank/"
+      ],
+      "limitation": "Facility lists current/wave-driven energy device research; no project acceptance, qualified metrology, cost or availability established.",
+      "published_daily_rate_cad": null,
+      "operator_acceptance_confirmed": false,
+      "available_dates_confirmed": false,
+      "facility_instrumentation_confirmed_for_project": false
+    },
+    {
+      "id": "MI-CSAR",
+      "name": "Marine Institute Centre for Sustainable Aquatic Resources flume",
+      "location": "St. John's, Newfoundland and Labrador",
+      "candidate_role": "POTENTIAL_PUMPED_FLUME_EXPERIMENT_REQUIRES_RIG_ACCEPTANCE",
+      "evidence_class": "OFFICIAL_PUBLISHED_LIST_RATE_AND_FACILITY_SCOPE",
+      "sources": [
+        "https://www.mi.mun.ca/departments/centreforsustainableaquaticresources/services/",
+        "https://www.mi.mun.ca/facilities/flumetank/"
+      ],
+      "limitation": "Published flume rate is not a quote or confirmation that this moving rotor, instrumentation and water speeds can be accommodated.",
+      "published_daily_rate_cad": 5000,
+      "rate_effective_date": "2026-04-01",
+      "operator_acceptance_confirmed": false,
+      "available_dates_confirmed": false,
+      "facility_instrumentation_confirmed_for_project": false
+    },
+    {
+      "id": "NRC-TOW",
+      "name": "NRC towing tank",
+      "location": "St. John's, Newfoundland and Labrador",
+      "candidate_role": "POTENTIAL_HIGH_INSTRUMENTATION_REFERENCE_TEST",
+      "evidence_class": "GOVERNMENT_FACILITY_CAPABILITY",
+      "sources": [
+        "https://nrc.canada.ca/en/research-development/nrc-facilities/towing-tank-research-facility",
+        "https://nrc.canada.ca/en/research-development/products-services/technical-advisory-services/physical-modelling-services"
+      ],
+      "limitation": "Official page lists propulsion and force testing; fees project-specific and project use unapproved.",
+      "published_daily_rate_cad": null,
+      "operator_acceptance_confirmed": false,
+      "available_dates_confirmed": false,
+      "facility_instrumentation_confirmed_for_project": false
+    }
+  ],
+  "budget": {
+    "currency": "CAD",
+    "status": "LIST_RATE_ONLY_NO_ALL_IN_QUOTE",
+    "published_venue_id": "MI-CSAR",
+    "source_url": "https://www.mi.mun.ca/departments/centreforsustainableaquaticresources/services/",
+    "published_daily_rate_cad": 5000,
+    "published_rate_effective_date": "2026-04-01",
+    "illustrative_day_counts": [
+      1,
+      2,
+      3
+    ],
+    "supplier_quotes_received": 0,
+    "all_in_project_cost_cad": null,
+    "approved_spending_cad": null,
+    "venue_booking_confirmed": false,
+    "unpriced_categories": [
+      "prototype design and independent structural/electrical review",
+      "model fabrication, shaft support, seals and material inspection",
+      "calibrated load cells, strain gauges, encoder, torque meter and DAQ",
+      "upstream ADV/ADCP and electrical power analyzers",
+      "facility operators, safety observer, setup, downtime and additional days",
+      "travel, shipping, taxes, insurance, contingency and data analysis"
+    ],
+    "interpretation": "Day-count multiplication yields only published flume list-rate examples; NOT a test estimate, availability, quote or approved purchasing authorization."
+  },
+  "regulatory_watch": {
+    "source_url": "https://novascotia.ca/programs/tidal-demonstration-permit/",
+    "source_checked": "2026-10-23",
+    "current_guide_version_released": "2026-10-21",
+    "posted_application_close_date": "2026-10-30",
+    "posted_application_close_time": "23:59 local",
+    "scope": "Bay of Fundy grid-connected tidal demonstration permit; not a lab permit or evidence of eligibility for this unbuilt low-TRL prototype.",
+    "project_eligibility_verified": false,
+    "application_submitted": false,
+    "permit_obtained": false
+  },
+  "candidate_sites": [
+    "Rocky Run (remote pre-site reconnaissance only)",
+    "Grand Passage (historic later stage, no confirmed berth)"
+  ],
+  "documentation": [
+    "docs/PROTOTYPE_TEST_RIG_ENGINEERING_20261020.md",
+    "docs/LOAD_AND_PROTOTYPE_TEST_PROTOCOL_20261020.md",
+    "docs/TIDAL_TEST_SITE_SELECTION_2026-10-20.md",
+    "docs/FORCE_MANUFACTURER_GEOMETRY_20261021.md",
+    "docs/PROTOTYPE_COMPARISON_20261020.md",
+    "docs/SHAFT_SUPPORT_REQUIREMENTS_20261022.md"
+  ],
+  "next_three_actions": [
+    "Identify technically capable venue and obtain explicit permission to request facility/rig fit and pricing before any outside contact.",
+    "Freeze actual lab geometry, load limits, sensor specifications, safety and replication protocol with independent professional review.",
+    "Secure an approved metered laboratory run, while qualifying FORCE or independent local site inflow in parallel for later site-specific decisions."
+  ]
+}

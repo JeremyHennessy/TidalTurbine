@@ -77,6 +77,8 @@ python scripts/check_force_campaign_report.py
 
 ## Prototype testing readiness — October 2026
 
+The [October 23, 2026 lab pilot readiness package](docs/LAB_PILOT_READINESS_20261023.md) adds source-backed local/Canadian test-venue leads (including historic Dalhousie Aquatron turbine experiments), one **published CAD $5,000/day Marine Institute flume list rate** and a fail-closed 15-gate physical readiness register. That rate is **not a project estimate, quotation, booking or approval**, and the site-specific FORCE data remains unusable for engineering forecasts. Run `python scripts/check_lab_pilot_readiness.py` for the currently blocked status. The laboratory venue can be qualified independently of later field ADCP site QC; **no physical test is documented or authorized**.
+
 **No in-water device has been built or validated.** The 2018 FORCE processed campaign contains 263,250 records but **zero** source-approved turbine-inflow records. CMAR DG013 provides 531 independent wave/sensor-speed readings with gross-range QA, not a qualified 3-D rotor-height inflow profile.
 
 The original native FORCE archive and metadata share still return server errors: four independent bounded public GET requests gave HTTP 500 in [Actions 39518864052](https://github.com/JeremyHennessy/TidalTurbine/actions/runs/39518864052). See [native archive access gate](docs/FORCE_NATIVE_ACCESS_PROBE_20261020.md). No original Nortek beams, geometry/quality masks, or approved inflow has been recovered.
