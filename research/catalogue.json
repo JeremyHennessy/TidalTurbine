@@ -1169,5 +1169,37 @@
       "Cross-correlation-aligned time series must not be silently treated as measured common-clock synchronization or an independent holdout."
     ],
     "access_status": "Publisher public abstract/highlights reviewed; no raw data or full methods assessed"
+  },
+  {
+    "id": "UNH-2023-OMAE-BLADE-010",
+    "title": "Bharath et al. 2023: Open Water Blade Strain Measurements on a Vertical-Axis Tidal Turbine",
+    "url": "https://tethys-engineering.pnnl.gov/sites/default/files/publications/Bharath_et_al_2023.pdf",
+    "publication_date": "2023-06 (OMAE2023-101076, conference 11–16 June)",
+    "access_date": "2026-10-23",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "sections_reviewed",
+    "reviewed_sections": [
+      "PDF text extracted: pp2–3 turbine geometry and GPS-based MODAQ design, instrument telemetry",
+      "PDF text extracted: pp6–7 turbine flow/thrust instrumentation and off-grid dump-load experiment",
+      "PDF text extracted: pp7–8 electronic compass, clock/network source limitations and ADV pipe incident",
+      "PDF text extracted: p8 Table 1 eight-gauge peak-to-trough statistic, source event 2022-11-22",
+      "PDF text extracted: p9 electrical 1-second averages, 18–31 rpm and 6.4/11.5kN thrust; PDF screenshot fetch unavailable"
+    ],
+    "supported_claims": [
+      "Table 1 reports peak-to-trough per-rotation strain-difference statistics at eight blade positions on a different 3.2m × 1.7m four-bladed turbine during November 22, 2022; means are 8.1, 37.1, 86.8, 55.6, 21.5, 35.7, 69.7, and 6.3 as printed.",
+      "Authors identify sensors 3 and 7 adjacent to upper and lower struts as showing the strongest cycle variation; raw blade stress/fatigue life cannot be recovered from that table.",
+      "For the instrumented-blade tests, the turbine was off-grid with rectified generator output routed through control electronics to a 25kW dump resistor rather than the grid; output power is not net grid electricity.",
+      "Publication reports rotor operation around 18–31rpm, turbine output averaged over 1s, and turbine thrust 6.4kN mean with peaks up to 11.5kN; these are source-level deployment summaries, not necessarily matched statistics for Table1's date.",
+      "ADCP/CTD systems were detached from the synchronized main data system following a networking failure; the near-rotor ADV observed turbine-influenced velocities, not necessarily undisturbed free-stream inflow.",
+      "An upstream ADV supporting pipe was damaged on 2022-11-27 and removed on December 8; the November 22 source example is not proven identical to a different 2025 paper's unspecified late-November ebb case."
+    ],
+    "limitations": [
+      "Open PDF text-extraction inspected; PDF page screenshot renderer returned cache-miss/unavailable. Numeric table transcription not independently visually checked and physical units absent from extracted Table 1; no microstrain/stress unit assumed for these numerical values.",
+      "Published conference paper provides processed descriptive statistics rather than source-native strain, flow, timing, QC, geometry, calibration or a material fatigue damage law.",
+      "The 2022 Nov22 table is not a sourced full multi-stream UTC interval; 2025 paper late-November analysis may be different and cannot be conflated without raw clocks.",
+      "Off-grid rectifier/dumpload and one-second power averages do not prove synchronized per-blade-pass power or net system export after auxiliaries.",
+      "Published figures and measured thrust/rpm summary belong to the same author campaign but may cover different durations; do not merge into a single matched numerical performance condition."
+    ],
+    "access_status": "Public 10-page PDF text inspected through web; screenshot attempts unsuccessful; no original raw archives, READMEs or synchronized timestamps acquired."
   }
 ]
