@@ -19,6 +19,10 @@ ASSETS = (
     "site/styles.css",
     "site/artwork.js",
     "site/app.js",
+    "site/field_research.js",
+    "site/field_research.css",
+    "research/metrology_prereg_v1.json",
+    "research/field_strain_evidence_20261023.json",
     "reports/RM2-RAW-LOADS-001.json",
     "reports/RM2-CROSSSPEED-001.json",
 )

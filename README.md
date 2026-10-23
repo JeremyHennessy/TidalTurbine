@@ -60,6 +60,10 @@ python -m http.server 8000 --directory .                # open /site/
 
 The original 14-day synthetic SCREEN-001 power model, its report and its assumptions remain unchanged. Export curtailment never demonstrates less thrust, fatigue or repair cost.
 
+## Independent field strain and electrical measurement evidence (2026-10-23)
+
+The [TidalLab Research panel](https://jeremyhennessy.github.io/TidalTurbine/site/index.html#research) now groups **12 unqualified lab measurement channels** and three separately limited recent published studies. The [source review](docs/FIELD_STRAIN_COMPARISON_20261023.md) identifies DOE public metadata for 17 possible 2022 UNH field instrument resources (blade strain, ADCP/ADV, thrust, Voltsys, IMU), not original acquired samples. The field turbine differs from RM2 and no source-validated overlap, fatigue, net-electricity or local FORCE inflow is established. The panel is a strictly additive Research view; prior UI and scientific models are unchanged.
+
 ## Measured cross-flow operating-point research
 
 [RM2-TRADEOFF-001](reports/RM2-TRADEOFF-001.md) compares **published laboratory processed means** of Cp and streamwise Cd at different tip-speed ratios on the same 1:6 cross-flow rotor and nominal inflow. It identifies an experimentally observed *mean* power-versus-drag tradeoff; cyclic loads, controller energy, fatigue, lifetime economics and field validity remain untested. Replay with `python scripts/rm2_operating_points.py`.

@@ -1060,5 +1060,88 @@
       "No purchased/full IEC text or newer-edition review, testing evidence, site rating or compliance claim."
     ],
     "access_status": "Official IEC publication metadata/summary only, paid normative text not acquired"
+  },
+  {
+    "id": "DOE-UNH-STRAIN-CATALOG-008",
+    "title": "DOE Data.gov cross-flow field blade-strain dataset catalogue",
+    "url": "https://catalog.data.gov/dataset/in-situ-blade-strain-measurements-of-a-crossflow-turbine-operating-in-a-tidal-flow",
+    "publication_date": "2025-01-01 (catalogue last update)",
+    "access_date": "2026-10-23",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "sections_reviewed",
+    "reviewed_sections": [
+      "Public 2022 UNH/AMEC deployment description",
+      "17-resource distribution manifest: original strain, flow, thrust, Voltsys, motion sensor families"
+    ],
+    "supported_claims": [
+      "Official DOE record describes a 2022 four-blade 3.2m x 1.7m field cross-flow turbine, with eight blade gauges, ADCP/ADV current, thrust, Voltsys electrical and IMU streams.",
+      "Seventeen public resources are listed; acquiring and qualifying an overlapping original interval has not been accomplished."
+    ],
+    "limitations": [
+      "Catalogue metadata is not acquired raw data, valid QC, calibrated stresses, verified clock synchronization or matched net-electric boundaries.",
+      "One bounded ordinary original ADCP README read returned HTTP429; do not bypass access limits.",
+      "Not the original UNH RM2 1:6 laboratory rotor and not Nova Scotia site currents."
+    ],
+    "access_status": "Official public metadata read; no original sensor files or native READMEs acquired and validated."
+  },
+  {
+    "id": "UNH-STRAIN-PAPER-2025-008",
+    "title": "Bichanich et al. 2025 in-situ blade strain, thrust, flow and electric output",
+    "url": "https://research-hub.nlr.gov/en/publications/in-situ-blade-strain-measurements-and-fatigue-analysis-of-a-cross/",
+    "publication_date": "2025 (Renewable Energy 239, 121977)",
+    "access_date": "2026-10-23",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "sections_reviewed",
+    "reviewed_sections": [
+      "National Laboratory of the Rockies public institutional abstract and bibliography"
+    ],
+    "supported_claims": [
+      "An independent cross-flow 2022 field deployment used eight full-bridge blade strain gauges with time-synchronized velocity, thrust, rotor speed and electrical output."
+    ],
+    "limitations": [
+      "Abstract and metadata reviewed, not original source records or the full experimental methods.",
+      "Different rotor, site, controller and meter boundaries from original RM2; no direct fatigue or lifetime energy effect transfer."
+    ],
+    "access_status": "Official institutional abstract reviewed; raw samples not acquired."
+  },
+  {
+    "id": "MYERS-FLUME-2025-008",
+    "title": "Myers et al. 2025 site-to-flume fatigue load comparison",
+    "url": "https://marineenergyjournal.org/imej/article/view/138",
+    "publication_date": "2025-10-20",
+    "access_date": "2026-10-23",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "sections_reviewed",
+    "reviewed_sections": [
+      "International Marine Energy Journal abstract, date and DOI"
+    ],
+    "supported_claims": [
+      "An instrumented 1:20 turbine tested in circulating flume and tidal site; authors report roughly fivefold greater fatigue damage at their field site than typical low-turbulence laboratory conditions."
+    ],
+    "limitations": [
+      "Journal abstract only; full paper test methods and original signals not analysed.",
+      "The fivefold result is turbine-and-test specific, not a universal factor for our project."
+    ],
+    "access_status": "Journal abstract reviewed, original traces not acquired."
+  },
+  {
+    "id": "DILLENBURGER-STRAIN-2026-008",
+    "title": "Dillenburger-Keenan et al. 2026 damage equivalent strain scenario comparison",
+    "url": "https://pure.qub.ac.uk/en/publications/damage-equivalent-strain-as-a-metric-for-tidal-turbine-blade-fati/",
+    "publication_date": "2026-01-15",
+    "access_date": "2026-10-23",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "sections_reviewed",
+    "reviewed_sections": [
+      "Queen's University Belfast institutional abstract and bibliographic detail"
+    ],
+    "supported_claims": [
+      "Proposed a strain-window proxy and found revolution frequency dominated fatigue-related scenarios on their particular transverse-axis cross-flow turbine."
+    ],
+    "limitations": [
+      "Device-specific published abstract, not a universal finding that turbulence has no importance.",
+      "No underlying raw measurements or calibration and lifetime model independently checked."
+    ],
+    "access_status": "Institutional publication abstract and metadata only."
   }
 ]

@@ -1,0 +1,25 @@
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const root=path.resolve(__dirname,'..'),viewer=require('../site/field_research.js');
+const data=JSON.parse(fs.readFileSync(path.join(root,'research/field_strain_evidence_20261023.json')));
+const protocol=JSON.parse(fs.readFileSync(path.join(root,'research/metrology_prereg_v1.json')));
+assert.deepEqual(viewer.verify(data,protocol),{channels:12,numericUnqualified:11,gatesUnresolved:9,studies:3});
+assert.deepEqual(['all','flow','mechanics','structure','electric','status'].map(k=>viewer.subset(protocol.channels,k).length),[12,2,4,2,3,1]);
+assert.equal((viewer.channelCards(protocol.channels,'all').match(/class="field-channel"/g)||[]).length,12);
+assert.equal((viewer.paperCards(data.studies).match(/class="field-paper"/g)||[]).length,3);
+assert.throws(()=>viewer.subset(protocol.channels,'bad'),/Invalid filter/);
+function fail(edit){const e=structuredClone(data),p=structuredClone(protocol);edit(e,p);assert.throws(()=>viewer.verify(e,p));}
+fail((e,p)=>e.project_measurements.net_electric_runs=1);
+fail((e,p)=>e.field_dataset.original_archives_acquired=1);
+fail((e,p)=>e.field_dataset.qualified_joint_intervals=1);
+fail((e,p)=>e.hard_gates.contact_authorized=true);
+fail((e,p)=>e.hard_gates.measurement_gates_unresolved=0);
+fail((e,p)=>e.studies.pop());
+fail((e,p)=>e.studies[0].url='javascript:alert(1)');
+fail((e,p)=>p.channels.pop());
+fail((e,p)=>p.channels[0].calibration_record='fake.pdf');
+fail((e,p)=>p.independent_acceptance_gates[0].state='PASS');
+fail((e,p)=>p.measured_results.project_net_electricity_measured=true);
+const p=structuredClone(protocol);p.channels[0].role='<script>unsafe</script>';
+assert.ok(!viewer.channelCards(p.channels,'flow').includes('<script>'));
+console.log('PASS 12 uncalibrated channels, three bounded studies, source-only evidence and no-contact guards');
