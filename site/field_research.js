@@ -32,6 +32,24 @@
    guard(d&&d.status==='CATALOG_METADATA_ONLY'&&d.original_archives_acquired===0
     &&d.qualified_joint_intervals===0&&d.resource_count===17,'Raw files not science qualified');
    validURL(d.url);
+   const caseEvidence=e.publication_reported_case;
+   guard(caseEvidence &&
+    caseEvidence.source_id==='UNH-STRAIN-PAPER-2025-008' &&
+    caseEvidence.evidence_class==='PUBLISHED_EVIDENCE_PREVIEW_EXCERPT_NOT_SOURCE_SENSOR_VALIDATION' &&
+    caseEvidence.interval_description==='LATE_NOVEMBER_2022_EBB_TIDE_UNDATED' &&
+    JSON.stringify(caseEvidence.reported_synchronized_families)===
+      JSON.stringify(['STRAIN','THRUST','ADV_UPSTREAM','ADV_DOWNSTREAM']) &&
+    caseEvidence.reported_upstream_adcp==='LEAK_DAMAGE_DATA_UNRECOVERABLE_IN_PAPER_ANALYZED_EVENT' &&
+    caseEvidence.electrical_power_same_analyzed_event==='UNKNOWN_NOT_STATED_IN_RESULTS_EXCERPT' &&
+    caseEvidence.rectifier_power_boundary==='UNVERIFIED_NOT_NET_DELIVERED' &&
+    caseEvidence.exact_interval_start_utc===null &&
+    caseEvidence.exact_interval_end_utc===null &&
+    caseEvidence.original_source_bytes_acquired===0 &&
+    caseEvidence.original_overlap_utc_verified===false &&
+    caseEvidence.results_excerpt_not_full_methods===true &&
+    caseEvidence.qualification==='AUTHOR_REPORTED_SOME_SYNCHRONIZATION_NOT_INDEPENDENTLY_REPRODUCED',
+    'Publication preview cannot become qualified exact source interval or net electricity');
+   validURL(caseEvidence.publisher_preview_url);
    guard(Array.isArray(d.families)&&d.families.length===5
     &&new Set(d.families.map(x=>x.key)).size===5,'Instrument families missing');
    guard(Array.isArray(e.studies)&&e.studies.length===3
@@ -123,7 +141,11 @@
     '<p>DOE catalogue lists '+e.field_dataset.resource_count+
     ' resource entries; 0 original instrument archives acquired or qualified here.</p>'+
     '<p>'+encode(e.field_dataset.physical_scope)+'</p>'+
-    '<a href="'+encode(validURL(e.field_dataset.url))+'" target="_blank" rel="noopener noreferrer">Explore DOE data catalogue ↗</a>';
+    '<p><strong>Paper-reported late-November ebb subset:</strong> '+encode(
+       'upstream/downstream ADV, blade strain and thrust synchronized by the authors; upstream ADCP data lost after leak damage in that experiment.')+'</p>'+
+    '<p>'+encode('Exact source UTC and Voltsys coincidence remain UNKNOWN. This is a paper preview, not independently qualified raw sensor data.')+'</p>'+
+    '<a href="'+encode(validURL(e.field_dataset.url))+'" target="_blank" rel="noopener noreferrer">Explore DOE data catalogue ↗</a> · '+
+    '<a href="'+encode(validURL(e.publication_reported_case.publisher_preview_url))+'" target="_blank" rel="noopener noreferrer">See paper results preview ↗</a>';
    counts.textContent=result.channels+' required channels · '+result.numericUnqualified+
     ' numeric channels without calibration records · '+result.gatesUnresolved+
     ' unresolved independent metrology gates';

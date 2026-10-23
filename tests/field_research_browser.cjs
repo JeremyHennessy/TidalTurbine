@@ -34,6 +34,10 @@ const types={'.html':'text/html','.js':'text/javascript','.css':'text/css','.jso
    assert.match(await page.locator('#field-evidence-counts').innerText(),/11 numeric channels without calibration records/);
    assert.match(await page.locator('#field-evidence-state').innerText(),/0 qualified original source intervals/);
    assert.match(await page.locator('#field-source-discovery').innerText(),/0 original instrument archives acquired/);
+   assert.match(await page.locator('#field-source-discovery').innerText(),/Paper-reported late-November ebb subset/);
+   assert.match(await page.locator('#field-source-discovery').innerText(),/upstream ADCP data lost/);
+   assert.match(await page.locator('#field-source-discovery').innerText(),/Voltsys coincidence remain UNKNOWN/);
+   assert.match(await page.locator('#field-source-discovery a').nth(1).getAttribute('href'),/^https:\/\/www\.sciencedirect\.com\//);
    await page.locator('[data-channel-filter="electric"]').click();
    assert.equal(await page.locator('#field-channel-list .field-channel').count(),3);
    assert.equal(await page.locator('[data-channel-filter="electric"]').getAttribute('aria-pressed'),'true');
@@ -44,7 +48,7 @@ const types={'.html':'text/html','.js':'text/javascript','.css':'text/css','.jso
    const box=await page.locator('#field-evidence-lab').boundingBox();
    assert.ok(box.x>=0&&box.x+box.width<=width+1,'evidence panel fits viewport');
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'no horizontal overflow');
-   const external=page.locator('#field-source-discovery a');
+   const external=page.locator('#field-source-discovery a').first();
    assert.match(await external.getAttribute('href'),/^https:\/\/catalog\.data\.gov\//);
    assert.equal(await external.getAttribute('rel'),'noopener noreferrer');
    await page.locator('#field-evidence-title').scrollIntoViewIfNeeded();

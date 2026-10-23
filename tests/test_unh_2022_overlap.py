@@ -222,6 +222,36 @@ class UNH2022OverlapTests(unittest.TestCase):
         with self.assertRaisesRegex(SourceEligibilityError, "No original measured"):
             blocked_status(registry)
 
+    def test_publisher_reported_partial_sync_is_not_four_stream_validation(self):
+        case = self.catalogue["publisher_reported_case"]
+        self.assertEqual(case["interval_description"], "LATE_NOVEMBER_2022_EBB_TIDE_UNDATED")
+        self.assertEqual(case["reported_synchronized_families"],
+                         ["STRAIN", "THRUST", "ADV_UPSTREAM", "ADV_DOWNSTREAM"])
+        self.assertIsNone(case["exact_interval_start_utc"])
+        self.assertIsNone(case["exact_interval_end_utc"])
+        self.assertEqual(case["electrical_power_same_analyzed_event"],
+                         "UNKNOWN_NOT_STATED_IN_RESULTS_EXCERPT")
+        self.assertEqual(case["original_source_bytes_acquired"], 0)
+        summary = blocked_status()
+        reported = summary["publication_reported_late_november_partial_sync"]
+        self.assertFalse(reported["exact_utc_window_verified"])
+        self.assertEqual(reported["voltsys_same_case"], "UNKNOWN")
+        self.assertEqual(summary["scientifically_qualified_windows"], 0)
+
+    def test_cannot_promote_published_excerpt_to_measured_source(self):
+        for key, value in (
+            ("exact_interval_start_utc", "2022-11-24T12:00:00Z"),
+            ("original_overlap_utc_verified", True),
+            ("electrical_power_same_analyzed_event", "VERIFIED"),
+            ("reported_upstream_adcp", "VALID"),
+        ):
+            with self.subTest(key=key):
+                forged = copy.deepcopy(self.catalogue)
+                forged["publisher_reported_case"][key] = value
+                with self.assertRaisesRegex(
+                        SourceEligibilityError, "partial-synchronization"):
+                    source_registry(forged)
+
     def test_file_bounds_and_no_automatic_source_download(self):
         self.assertLess(len((self.base / "STRAIN.csv").read_bytes()), MAX_CSV_BYTES)
         self.assertFalse(self.catalogue["automated_original_downloads"])

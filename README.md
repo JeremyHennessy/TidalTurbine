@@ -60,6 +60,10 @@ python -m http.server 8000 --directory .                # open /site/
 
 The original 14-day synthetic SCREEN-001 power model, its report and its assumptions remain unchanged. Export curtailment never demonstrates less thrust, fatigue or repair cost.
 
+## 2025 paper's late-November 2022 sensor subset — bounded finding
+
+The [publisher-excerpt evidence review](docs/UNH_2022_LATE_NOV_ADV_SUBSET_20261023.md) now reports an **ebb tide in late November 2022** when the authors synchronized **both ADV flow sensors, blade strain and thrust**; the paper also reports its upstream ADCP data were lost following leak damage. The precise UTC interval and **simultaneous Voltsys electrical readings for that ebb case remain unknown**. This narrows future lawful source acquisition to a candidate ADV/strain/thrust study only; there are still zero acquired original measurements or qualified four-stream load-vs-net-power data. TidalLab's existing [Research & Gates panel](https://jeremyhennessy.github.io/TidalTurbine/site/index.html#research) displays this limited finding without changing approved layouts or promoting source quality.
+
 ## 2022 UNH native sensor-clock eligibility — October 23, 2026
 
 The [original UNH 2022 source and synchronization audit](docs/UNH_2022_CLOCK_OVERLAP_GATE_20261023.md) recovered exact publisher source URLs/DOI/licence and documented **HTTP 429** for original STRAIN/THRUST/VOLTSYS/ADCP README access and the operational schedule. **Zero original archives, source-verified timestamps or qualified common intervals** were acquired. The new offline, bounded `python scripts/qualify_unh_2022_overlap.py` refuses to invent them and can later screen *locally supplied, SHA-pinned and source-QC documented* CSV timestamps for **provisional overlap candidates** only. No physical stress/fatigue/net electricity claim, outreach, source restriction bypass or UI redesign follows.

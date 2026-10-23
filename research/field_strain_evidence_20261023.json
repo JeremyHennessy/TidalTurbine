@@ -85,5 +85,29 @@
     "physical_test_authorized": false,
     "prototype_winner": null
   },
-  "original_source_status": "ORIGINAL_SENSOR_FILES_NOT_ACQUIRED"
+  "original_source_status": "ORIGINAL_SENSOR_FILES_NOT_ACQUIRED",
+  "publication_reported_case": {
+    "source_id": "UNH-STRAIN-PAPER-2025-008",
+    "publisher_preview_url": "https://www.sciencedirect.com/science/article/abs/pii/S0960148124020457",
+    "evidence_class": "PUBLISHED_EVIDENCE_PREVIEW_EXCERPT_NOT_SOURCE_SENSOR_VALIDATION",
+    "reviewed_surface": "PUBLISHER_PUBLIC_RESULTS_AND_DISCUSSION_PREVIEW",
+    "interval_description": "LATE_NOVEMBER_2022_EBB_TIDE_UNDATED",
+    "exact_interval_start_utc": null,
+    "exact_interval_end_utc": null,
+    "reported_synchronized_families": [
+      "STRAIN",
+      "THRUST",
+      "ADV_UPSTREAM",
+      "ADV_DOWNSTREAM"
+    ],
+    "reported_upstream_adcp": "LEAK_DAMAGE_DATA_UNRECOVERABLE_IN_PAPER_ANALYZED_EVENT",
+    "electrical_power_same_analyzed_event": "UNKNOWN_NOT_STATED_IN_RESULTS_EXCERPT",
+    "rectifier_power_boundary": "UNVERIFIED_NOT_NET_DELIVERED",
+    "original_source_bytes_acquired": 0,
+    "original_overlap_utc_verified": false,
+    "results_excerpt_not_full_methods": true,
+    "qualification": "AUTHOR_REPORTED_SOME_SYNCHRONIZATION_NOT_INDEPENDENTLY_REPRODUCED",
+    "interpretation": "The published late-November ebb analysis narrows a conditional ADV+strain+thrust source check but does not establish a four-stream electricity interval or instrument-specific UTC/calibration/QC.",
+    "limitation": "Publisher preview contains no exact dates/timestamps, instrument serials, sampled calibration, Voltsys coincidence or full methods. No original CSV/README data recovered."
+  }
 }
