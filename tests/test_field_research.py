@@ -21,7 +21,9 @@ class FieldResearchTests(unittest.TestCase):
   self.assertFalse(self.e['hard_gates']['contact_authorized'])
  def test_studies_have_catalogue_and_limitations(self):
   c={x['id']:x for x in self.catalogue}
-  self.assertEqual(len(c),55)
+  self.assertEqual(len(c),56)
+  self.assertIn('UNH-2023-OMAE-BLADE-010',c)
+  self.assertEqual(c['UNH-2023-OMAE-BLADE-010']['review_depth'],'sections_reviewed')
   self.assertIn('CLOCK-SKEW-BLADE-2021-009',c)
   self.assertTrue(c['CLOCK-SKEW-BLADE-2021-009']['limitations'])
   original=json.loads((ROOT/'research/UNH_2022_SOURCE_ACCESS_001.json').read_text())
