@@ -1093,14 +1093,18 @@
     "evidence_class": "PUBLISHED_EVIDENCE",
     "review_depth": "sections_reviewed",
     "reviewed_sections": [
-      "National Laboratory of the Rockies public institutional abstract and bibliography"
+      "National Laboratory of the Rockies public institutional abstract and bibliography",
+      "Publisher public Results and discussion preview excerpt on late-November 2022 ebb and instrumentation failures"
     ],
     "supported_claims": [
-      "An independent cross-flow 2022 field deployment used eight full-bridge blade strain gauges with time-synchronized velocity, thrust, rotor speed and electrical output."
+      "An independent cross-flow 2022 field deployment used eight full-bridge blade strain gauges with time-synchronized velocity, thrust, rotor speed and electrical output.",
+      "Publisher public Results preview reports an ebb-tide experiment in late November 2022 with both upstream/downstream ADVs, thrust load cells and blade-strain sensors operating and synchronized.",
+      "Publisher reports that the upstream ADCP suffered a leak and its data were unrecoverable for the described experiment."
     ],
     "limitations": [
       "Abstract and metadata reviewed, not original source records or the full experimental methods.",
-      "Different rotor, site, controller and meter boundaries from original RM2; no direct fatigue or lifetime energy effect transfer."
+      "Different rotor, site, controller and meter boundaries from original RM2; no direct fatigue or lifetime energy effect transfer.",
+      "Only the accessible publisher preview excerpt was inspected; exact sample dates and native QC/clocks are not available. Voltsys coincidence in that specific ebb analysis is not established."
     ],
     "access_status": "Official institutional abstract reviewed; raw samples not acquired."
   },
@@ -1143,5 +1147,27 @@
       "No underlying raw measurements or calibration and lifetime model independently checked."
     ],
     "access_status": "Institutional publication abstract and metadata only."
+  },
+  {
+    "id": "CLOCK-SKEW-BLADE-2021-009",
+    "title": "Strain gauge measurements on a full scale tidal turbine blade (2021) — clock skew and high-frequency signal limitations",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0960148121001506",
+    "publication_date": "2021-06 (Renewable Energy 170, 985–996)",
+    "access_date": "2026-10-23",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "landing_page_review",
+    "reviewed_sections": [
+      "Open-access publisher highlights and abstract only"
+    ],
+    "supported_claims": [
+      "Authors reported that clock skew between separate acquisition systems can produce inaccurate short-time comparisons and may require cross-correlation-based alignment after recording.",
+      "Their full-scale strain measurements correlated with torque/thrust over 2- and 10-minute averages while shorter-frequency strain features were not necessarily observable in corresponding thrust/torque measurements."
+    ],
+    "limitations": [
+      "Distinct 2017/18 floating-device study; any clock correction is evidence and method specific and does not validate source offsets for the 2022 UNH field dataset.",
+      "Only the publisher's public highlights and abstract were reviewed, not numerical instrument delays or original strain records.",
+      "Cross-correlation-aligned time series must not be silently treated as measured common-clock synchronization or an independent holdout."
+    ],
+    "access_status": "Publisher public abstract/highlights reviewed; no raw data or full methods assessed"
   }
 ]
