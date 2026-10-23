@@ -77,6 +77,8 @@ python scripts/check_force_campaign_report.py
 
 ## Prototype testing readiness — October 2026
 
+The [October 23 rotor-exposure bound](docs/ROTOR_EXPOSURE_BOUND_20261023.md) explains how little idealized towing time may be available, and how to calculate *hypothetical* rotor turns/blade passages from explicitly assumed dimensions. These are **not fatigue cycles, electrical measurements or a real rotor design**. Offline: `python scripts/screen_rotor_exposure.py --assumed-diameter-m 0.6 --assumed-blades 3` (0.6 m/three blades are examples only).
+
 The [offline October 23 lab venue and idealized tow-window study](docs/LAB_VENUE_SCREEN_20261023.md) verifies historic Aquatron research and Memorial towing-tank dimensions and published external list rates without authorizing contact. Its upper-bound steady-tow windows are assumptions, **not available test durations**; no instrumented prototype or confirmed facility exists. Run `python scripts/check_lab_venue_screen.py` for an offline blocked-source screen.
 
 The [October 23, 2026 lab pilot readiness package](docs/LAB_PILOT_READINESS_20261023.md) adds source-backed local/Canadian test-venue leads (including historic Dalhousie Aquatron turbine experiments), one **published CAD $5,000/day Marine Institute flume list rate** and a fail-closed 15-gate physical readiness register. That rate is **not a project estimate, quotation, booking or approval**, and the site-specific FORCE data remains unusable for engineering forecasts. Run `python scripts/check_lab_pilot_readiness.py` for the currently blocked status. The laboratory venue can be qualified independently of later field ADCP site QC; **no physical test is documented or authorized**.
