@@ -1,0 +1,32 @@
+
+/* Additional source-only 2023 published strain visual, scoped to Research. */
+.published-strain-lab{margin:18px 0;padding:24px;background:#102b3b;color:#e2f2f5;overflow-wrap:anywhere;min-width:0}
+.published-strain-lab h2{font-size:23px;margin:9px 0 10px;color:#f2fbfd;line-height:1.3}
+.published-strain-lab h3{font-size:16px;color:#f0fafb;margin:0 0 10px}
+.published-strain-lab p{font-size:13px;color:#d0e6ea;line-height:1.65}
+.published-strain-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.published-strain-head p{max-width:840px;margin:0 0 12px}
+.published-strain-body{display:grid;grid-template-columns:minmax(0,1.18fr) minmax(270px,.82fr);gap:20px;margin-top:14px}
+.published-strain-body>div{min-width:0}
+.published-strain-state{padding:10px 12px;border:1px solid #5b8190;color:#e7f6f8;border-radius:7px;background:#183c4c}
+.published-strain-controls{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0 17px}
+.published-strain-controls button{background:#194354;color:#eaf4f8;border:1px solid #51798c;border-radius:6px;padding:7px 10px;line-height:1.5;font-size:11px;font-weight:700;cursor:pointer}
+.published-strain-controls button[aria-pressed="true"]{background:#205a5c;border-color:#7be7da;color:white}
+.published-strain-controls button:focus-visible{outline:3px solid #bbffef;outline-offset:2px}
+.published-strain-bars{display:grid;gap:9px}
+.strain-gauge-row{display:grid;grid-template-columns:66px minmax(0,1fr) 50px;gap:10px;align-items:center}
+.strain-gauge-number{font-size:11px;color:#d3e7e9;font-weight:700;white-space:nowrap}
+.strain-bar-track{height:20px;border:1px solid #446b7b;background:#1b3d4b;border-radius:5px;overflow:hidden}
+.strain-bar-fill{height:100%;background:linear-gradient(90deg,#266e8b,#59cdd5);border-radius:4px;min-width:2px}
+.strain-strut-focus .strain-bar-fill{background:linear-gradient(90deg,#7d9655,#e5bd79)}
+.strain-strut-focus .strain-gauge-number{color:#ffe2a7}
+.strain-gauge-value{font-size:11px;color:#f4fbfb;font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
+.published-strain-caption{font-size:11px!important;color:#d5e9ee!important;line-height:1.7!important;margin:12px 0 0}
+.published-strain-facts{display:grid;grid-template-columns:1fr;gap:8px}
+.published-strain-facts>div{border:1px solid #476c7d;padding:10px 12px;border-radius:7px;background:#183c4b}
+.published-strain-facts strong{display:block;font-size:12px;color:#fcf7e9}
+.published-strain-facts small{display:block;color:#d2e6ea;font-size:11px;line-height:1.6;margin-top:4px}
+.published-strain-footer{font-size:12px!important;color:#d1e6eb!important;border-top:1px solid #476d7b;padding-top:15px;margin-top:17px}
+.published-strain-footer a{color:#aeedf2;text-decoration:underline;text-underline-offset:2px}
+@media(max-width:950px){.published-strain-body{grid-template-columns:1fr}.published-strain-lab{padding:20px}}
+@media(max-width:550px){.published-strain-lab{padding:14px 12px}.published-strain-lab h2{font-size:20px}.strain-gauge-row{grid-template-columns:62px minmax(0,1fr) 42px;gap:7px}}
