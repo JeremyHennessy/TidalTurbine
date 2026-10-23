@@ -60,6 +60,10 @@ python -m http.server 8000 --directory .                # open /site/
 
 The original 14-day synthetic SCREEN-001 power model, its report and its assumptions remain unchanged. Export curtailment never demonstrates less thrust, fatigue or repair cost.
 
+## 2022 UNH native sensor-clock eligibility — October 23, 2026
+
+The [original UNH 2022 source and synchronization audit](docs/UNH_2022_CLOCK_OVERLAP_GATE_20261023.md) recovered exact publisher source URLs/DOI/licence and documented **HTTP 429** for original STRAIN/THRUST/VOLTSYS/ADCP README access and the operational schedule. **Zero original archives, source-verified timestamps or qualified common intervals** were acquired. The new offline, bounded `python scripts/qualify_unh_2022_overlap.py` refuses to invent them and can later screen *locally supplied, SHA-pinned and source-QC documented* CSV timestamps for **provisional overlap candidates** only. No physical stress/fatigue/net electricity claim, outreach, source restriction bypass or UI redesign follows.
+
 ## Independent field strain and electrical measurement evidence (2026-10-23)
 
 The [TidalLab Research panel](https://jeremyhennessy.github.io/TidalTurbine/site/index.html#research) now groups **12 unqualified lab measurement channels** and three separately limited recent published studies. The [source review](docs/FIELD_STRAIN_COMPARISON_20261023.md) identifies DOE public metadata for 17 possible 2022 UNH field instrument resources (blade strain, ADCP/ADV, thrust, Voltsys, IMU), not original acquired samples. The field turbine differs from RM2 and no source-validated overlap, fatigue, net-electricity or local FORCE inflow is established. The panel is a strictly additive Research view; prior UI and scientific models are unchanged.

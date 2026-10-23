@@ -1,0 +1,158 @@
+{
+  "schema": "TT-UNH-2022-ACCESS-GATE-001",
+  "date": "2026-10-23",
+  "source_base_sha": "4be2adb3a1165c8e1d28ee5e3931a97cf868b1af",
+  "classification": "PUBLISHED_METADATA_AND_ACCESS_CHECK_NOT_ORIGINAL_SENSOR_DATA",
+  "dataset_id": "DOE-UNH-STRAIN-CATALOG-008",
+  "dataset_url": "https://catalog.data.gov/dataset/in-situ-blade-strain-measurements-of-a-crossflow-turbine-operating-in-a-tidal-flow",
+  "publisher_doi": "10.15473/2481243",
+  "publisher_submission": "https://mhkdr.openei.org/submissions/569",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "catalog_updated": "2025-01-01",
+  "catalog_resource_count": 17,
+  "campaign_start_date": "2022-10-25",
+  "campaign_end_date": "2022-12-12",
+  "campaign_window_is_instrument_overlap": false,
+  "instrument_operational_windows_acquired": false,
+  "source_differentiation": "UNH 2022 four-blade 3.2m field turbine, not 2021 MHKDR 394/492 and not earlier RM2 1:6 laboratory reference",
+  "streams": [
+    {
+      "id": "STRAIN",
+      "source_archive_url": "https://mhkdr.openei.org/files/569/Strain.zip",
+      "source_readme_url": "https://mhkdr.openei.org/files/569/STRAIN_READ_ME.txt",
+      "scope": "Blade strain: eight foil gauges along one blade",
+      "source_archive_sha256": null,
+      "source_readme_sha256": null,
+      "source_clock_epoch": null,
+      "source_calibration": null,
+      "source_native_qc": null,
+      "instrument_specific_operating_intervals": null,
+      "raw_samples_acquired": 0
+    },
+    {
+      "id": "FLOW_ADCP",
+      "source_archive_url": "https://mhkdr.openei.org/files/569/ADCPs.zip",
+      "source_readme_url": "https://mhkdr.openei.org/files/569/ADCP_READ_ME.txt",
+      "scope": "ADCP current/wake: upstream frame, cell geometry, source QC unknown",
+      "source_archive_sha256": null,
+      "source_readme_sha256": null,
+      "source_clock_epoch": null,
+      "source_calibration": null,
+      "source_native_qc": null,
+      "instrument_specific_operating_intervals": null,
+      "raw_samples_acquired": 0
+    },
+    {
+      "id": "FLOW_ADV",
+      "source_archive_url": "https://mhkdr.openei.org/files/569/ADVs.zip",
+      "source_readme_url": "https://mhkdr.openei.org/files/569/ADV_READ_ME.txt",
+      "scope": "ADV point currents: deployment position, turbulence and native QC unknown",
+      "source_archive_sha256": null,
+      "source_readme_sha256": null,
+      "source_clock_epoch": null,
+      "source_calibration": null,
+      "source_native_qc": null,
+      "instrument_specific_operating_intervals": null,
+      "raw_samples_acquired": 0
+    },
+    {
+      "id": "THRUST",
+      "source_archive_url": "https://mhkdr.openei.org/files/569/Thrust.zip",
+      "source_readme_url": "https://mhkdr.openei.org/files/569/THRUST_READ_ME.txt",
+      "scope": "Bi-directional reaction-arm load cell forces",
+      "source_archive_sha256": null,
+      "source_readme_sha256": null,
+      "source_clock_epoch": null,
+      "source_calibration": null,
+      "source_native_qc": null,
+      "instrument_specific_operating_intervals": null,
+      "raw_samples_acquired": 0
+    },
+    {
+      "id": "VOLTSYS",
+      "source_archive_url": "https://mhkdr.openei.org/files/569/Voltsys%20%281%29.zip",
+      "source_readme_url": "https://mhkdr.openei.org/files/569/VOLTSYS_READ_ME.txt",
+      "scope": "Rectifier electrical output and generator-frequency speed: net power boundary unknown",
+      "source_archive_sha256": null,
+      "source_readme_sha256": null,
+      "source_clock_epoch": null,
+      "source_calibration": null,
+      "source_native_qc": null,
+      "instrument_specific_operating_intervals": null,
+      "raw_samples_acquired": 0
+    },
+    {
+      "id": "IMU",
+      "source_archive_url": "https://mhkdr.openei.org/files/569/IMU.zip",
+      "source_readme_url": "https://mhkdr.openei.org/files/569/YOST_IMU_READ_ME.txt",
+      "scope": "Platform motion: physical frame and clock registration unknown",
+      "source_archive_sha256": null,
+      "source_readme_sha256": null,
+      "source_clock_epoch": null,
+      "source_calibration": null,
+      "source_native_qc": null,
+      "instrument_specific_operating_intervals": null,
+      "raw_samples_acquired": 0
+    }
+  ],
+  "source_schedule_url": "https://mhkdr.openei.org/files/569/Deployment_schedule.PNG",
+  "access_checks": [
+    {
+      "target": "STRAIN_README",
+      "date": "2026-10-23",
+      "method": "NORMAL_PUBLIC_WEB_READ",
+      "result": "HTTP_429",
+      "original_bytes_acquired": false
+    },
+    {
+      "target": "THRUST_README",
+      "date": "2026-10-23",
+      "method": "NORMAL_PUBLIC_WEB_READ",
+      "result": "HTTP_429",
+      "original_bytes_acquired": false
+    },
+    {
+      "target": "VOLTSYS_README",
+      "date": "2026-10-23",
+      "method": "NORMAL_PUBLIC_WEB_READ",
+      "result": "HTTP_429",
+      "original_bytes_acquired": false
+    },
+    {
+      "target": "DEPLOYMENT_SCHEDULE",
+      "date": "2026-10-23",
+      "method": "NORMAL_PUBLIC_WEB_READ",
+      "result": "HTTP_429",
+      "original_bytes_acquired": false
+    },
+    {
+      "target": "ADCP_README",
+      "date": "2026-10-23",
+      "method": "PREVIOUS_NORMAL_SOURCE_READ",
+      "result": "HTTP_429",
+      "original_bytes_acquired": false
+    }
+  ],
+  "verified_original_archives": 0,
+  "verified_original_readmes": 0,
+  "verified_utc_sensor_timestamps": 0,
+  "scientifically_qualified_common_windows": 0,
+  "qualified_blade_stress_runs": 0,
+  "qualified_net_electricity_runs": 0,
+  "current_status": "BLOCKED_ORIGINAL_SOURCE_HTTP_429",
+  "contact_authorized": false,
+  "source_bypass_authorized": false,
+  "automated_original_downloads": false,
+  "required_overlap_roles": [
+    "STRAIN",
+    "THRUST",
+    "VOLTSYS",
+    "FLOW_ADCP_OR_FLOW_ADV"
+  ],
+  "lab_field_status": "No approved FORCE depth-current data, lab prototype test, fatigue life, net exported electricity or marine deployment.",
+  "next_steps": [
+    "Do not retry or bypass rate-limited original endpoints in this run.",
+    "Use only lawfully acquired bounded local sensor records with native README/calibration/QC/clock evidence.",
+    "Compute timestamp-overlap candidates offline, then require independent source/physics/power-meter review before any scientific acceptance."
+  ]
+}
