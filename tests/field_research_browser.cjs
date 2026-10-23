@@ -48,7 +48,7 @@ const types={'.html':'text/html','.js':'text/javascript','.css':'text/css','.jso
    const box=await page.locator('#field-evidence-lab').boundingBox();
    assert.ok(box.x>=0&&box.x+box.width<=width+1,'evidence panel fits viewport');
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'no horizontal overflow');
-   const external=page.locator('#field-source-discovery a');
+   const external=page.locator('#field-source-discovery a').first();
    assert.match(await external.getAttribute('href'),/^https:\/\/catalog\.data\.gov\//);
    assert.equal(await external.getAttribute('rel'),'noopener noreferrer');
    await page.locator('#field-evidence-title').scrollIntoViewIfNeeded();
