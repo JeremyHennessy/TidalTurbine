@@ -77,6 +77,8 @@ python scripts/check_force_campaign_report.py
 
 ## Prototype testing readiness — October 2026
 
+The [October 23 measurement preregistration and metrology gate](docs/LAB_METROLOGY_PREREG_20261023.md) specifies all 12 synchronized source channels and 9 unresolved calibration/statistical/physical acceptance requirements, including unambiguous signed net-electricity metering. The **offline** `python scripts/check_metrology_protocol.py --toy` checks synthetic arithmetic and explicitly refuses physical validation. No instruments, thresholds, test frequency, sample count, contacts or purchases are selected.
+
 The [October 23 rotor-exposure bound](docs/ROTOR_EXPOSURE_BOUND_20261023.md) explains how little idealized towing time may be available, and how to calculate *hypothetical* rotor turns/blade passages from explicitly assumed dimensions. These are **not fatigue cycles, electrical measurements or a real rotor design**. Offline: `python scripts/screen_rotor_exposure.py --assumed-diameter-m 0.6 --assumed-blades 3` (0.6 m/three blades are examples only).
 
 The [offline October 23 lab venue and idealized tow-window study](docs/LAB_VENUE_SCREEN_20261023.md) verifies historic Aquatron research and Memorial towing-tank dimensions and published external list rates without authorizing contact. Its upper-bound steady-tow windows are assumptions, **not available test durations**; no instrumented prototype or confirmed facility exists. Run `python scripts/check_lab_venue_screen.py` for an offline blocked-source screen.

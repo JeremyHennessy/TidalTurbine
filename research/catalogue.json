@@ -953,5 +953,112 @@
     ],
     "access_status": "Official PDF downloaded; selected page visually inspected",
     "download_sha256": "fb187363e7909b42f448eee2f9e15881138d6ffd6176699ea315175b70101bcf"
+  },
+  {
+    "id": "NIST-METROLOGY-007",
+    "title": "NIST policy on metrological traceability",
+    "url": "https://www.nist.gov/metrology/metrological-traceability",
+    "publication_date": "NIST live policy/FAQ; consulted 2026-10-23",
+    "access_date": "2026-10-23",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "sections_reviewed",
+    "reviewed_sections": [
+      "Policy 3.2",
+      "FAQ 5.1.1 traceability",
+      "FAQ 5.1.4 fitness for purpose",
+      "FAQ 5.1.7 evidence chain"
+    ],
+    "supported_claims": [
+      "Metrological traceability belongs to a measurement result and requires an unbroken documented calibration chain with uncertainty contributions.",
+      "Traceability by itself does not establish a result is fit for the intended measurement decision."
+    ],
+    "limitations": [
+      "An official policy/FAQ cannot certify proposed tidal rig gauges, measurement capability, test results or uncertainty; no original calibration evidence exists for this project."
+    ],
+    "access_status": "Official NIST public HTML reviewed (specified sections)"
+  },
+  {
+    "id": "NIST-TN1297-007",
+    "title": "NIST TN 1297: Guidelines for Evaluating and Expressing the Uncertainty of NIST Measurement Results",
+    "url": "https://www.nist.gov/pml/nist-technical-note-1297",
+    "publication_date": "1994 edition; NIST web edition",
+    "access_date": "2026-10-23",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "sections_reviewed",
+    "reviewed_sections": [
+      "NIST online summary/contents",
+      "2 Classification of Components of Uncertainty",
+      "5 Combined Standard Uncertainty",
+      "6 Expanded Uncertainty"
+    ],
+    "supported_claims": [
+      "Distinguishes statistical Type A from other-information Type B uncertainty evaluation.",
+      "Combined uncertainty can require correlation terms; expanded uncertainty requires explicitly stated coverage factor."
+    ],
+    "limitations": [
+      "Reviewed official online excerpts, not a bespoke uncertainty computation; covariance, instrument uncertainty, confidence level and coverage remain unassigned in this project."
+    ],
+    "access_status": "Official NIST HTML excerpts reviewed, no reproduced protected text"
+  },
+  {
+    "id": "NI-STRAIN-007",
+    "title": "NI: Measuring strain with strain gages",
+    "url": "https://www.ni.com/en/shop/data-acquisition/sensor-fundamentals/measuring-strain-with-strain-gages.html",
+    "publication_date": "Official NI online guide; edition/date not established",
+    "access_date": "2026-10-23",
+    "evidence_class": "MANUFACTURER_OR_PROJECT_CLAIM",
+    "review_depth": "sections_reviewed",
+    "reviewed_sections": [
+      "Key Takeaways for Measuring Strain with Strain Gages",
+      "Signal Conditioning for Strain Gages"
+    ],
+    "supported_claims": [
+      "Small bridge-signal changes motivate documenting bridge type, excitation, remote sense, filtering, offset nulling and shunt calibration.",
+      "Temperature effects, wire resistance and gauge self-heating can matter for strain-gauge measurements."
+    ],
+    "limitations": [
+      "Manufacturer measurement guidance, not a chosen transducer, channel capacity, approved excitation, stress calibration, waterproof qualification or independent lab acceptance."
+    ],
+    "access_status": "Official manufacturer public HTML reviewed"
+  },
+  {
+    "id": "ASTM-E1049-007",
+    "title": "ASTM E1049-85(2023) Standard Practices for Cycle Counting in Fatigue Analysis",
+    "url": "https://store.astm.org/standards/e1049",
+    "publication_date": "2023-12-06 (last updated, active E1049-85(2023))",
+    "access_date": "2026-10-23",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "landing_page_review",
+    "reviewed_sections": [
+      "Official scope and significance overview; full paid standard not accessed"
+    ],
+    "supported_claims": [
+      "The public scope lists different cyclic-counting procedures including rainflow applied to force, stress, strain, torque and other time histories.",
+      "Cycle counts summarize time histories, and a cycle-count method does not itself guarantee material fatigue life."
+    ],
+    "limitations": [
+      "The full ten-page standard was not acquired; no validated rainflow implementation, fatigue-life law, blade-stress calibration or compliance claim is made."
+    ],
+    "access_status": "Official ASTM listing/public abstract only; full standard paywalled"
+  },
+  {
+    "id": "IEC-POWER-007",
+    "title": "IEC TS 62600-200:2013 tidal energy converter power performance assessment",
+    "url": "https://webstore.iec.ch/en/publication/7242",
+    "publication_date": "2013-05-07, edition 1.0",
+    "access_date": "2026-10-23",
+    "evidence_class": "PUBLISHED_EVIDENCE",
+    "review_depth": "landing_page_review",
+    "reviewed_sections": [
+      "Official IEC listing: purpose, utility/local-grid scope, power curves, reporting framework, edition/date"
+    ],
+    "supported_claims": [
+      "IEC listing describes a performance-assessment framework for electricity-producing tidal energy converters, defining rated power/water velocity and power curves."
+    ],
+    "limitations": [
+      "IEC scope page alone is not an assessment procedure and this research experiment is not an IEC-certified device.",
+      "No purchased/full IEC text or newer-edition review, testing evidence, site rating or compliance claim."
+    ],
+    "access_status": "Official IEC publication metadata/summary only, paid normative text not acquired"
   }
 ]

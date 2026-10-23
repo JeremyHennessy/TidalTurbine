@@ -57,6 +57,8 @@ jobs:
           node --test tests/test_clearance.cjs tests/test_clearance_ui.cjs tests/test_service_energy.cjs tests/test_service_energy_ui.cjs
       - name: Validate source-backed lab pilot blocked readiness and published list-rate math
         run: python scripts/check_lab_pilot_readiness.py
+      - name: Check unresolved metrology prerequisites and signed power boundary
+        run: python scripts/check_metrology_protocol.py --toy
       - name: Run unit tests
         run: python -m unittest discover -s tests -v
       - name: Re-run synthetic screening experiment
