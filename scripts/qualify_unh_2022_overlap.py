@@ -92,6 +92,33 @@ def source_registry(data=None):
                     and x.get("original_bytes_acquired") is False
                     for x in data["access_checks"]),
             "Blocked source access evidence must be preserved")
+    case = data.get("publisher_reported_case")
+    require(isinstance(case, dict)
+            and case.get("source_id") == "UNH-STRAIN-PAPER-2025-008"
+            and case.get("publisher_preview_url") ==
+                "https://www.sciencedirect.com/science/article/abs/pii/S0960148124020457"
+            and case.get("evidence_class") ==
+                "PUBLISHED_EVIDENCE_PREVIEW_EXCERPT_NOT_SOURCE_SENSOR_VALIDATION"
+            and case.get("reviewed_surface") ==
+                "PUBLISHER_PUBLIC_RESULTS_AND_DISCUSSION_PREVIEW"
+            and case.get("interval_description") ==
+                "LATE_NOVEMBER_2022_EBB_TIDE_UNDATED"
+            and case.get("reported_synchronized_families") ==
+                ["STRAIN", "THRUST", "ADV_UPSTREAM", "ADV_DOWNSTREAM"]
+            and case.get("reported_upstream_adcp") ==
+                "LEAK_DAMAGE_DATA_UNRECOVERABLE_IN_PAPER_ANALYZED_EVENT"
+            and case.get("electrical_power_same_analyzed_event") ==
+                "UNKNOWN_NOT_STATED_IN_RESULTS_EXCERPT"
+            and case.get("rectifier_power_boundary") ==
+                "UNVERIFIED_NOT_NET_DELIVERED"
+            and case.get("exact_interval_start_utc") is None
+            and case.get("exact_interval_end_utc") is None
+            and case.get("original_source_bytes_acquired") == 0
+            and case.get("original_overlap_utc_verified") is False
+            and case.get("results_excerpt_not_full_methods") is True
+            and case.get("qualification") ==
+                "AUTHOR_REPORTED_SOME_SYNCHRONIZATION_NOT_INDEPENDENTLY_REPRODUCED",
+            "Published partial-synchronization evidence must never promote exact clocks or simultaneous net electricity")
     return data
 
 
@@ -108,6 +135,14 @@ def blocked_status(data=None):
         "candidate_timestamp_windows": [],
         "instrument_specific_operating_windows_known": False,
         "source_native_calibration_qc_clocks_known": False,
+        "publication_reported_late_november_partial_sync": {
+            "sensor_families": source["publisher_reported_case"]["reported_synchronized_families"],
+            "reported_upstream_adcp": source["publisher_reported_case"]["reported_upstream_adcp"],
+            "voltsys_same_case": "UNKNOWN",
+            "exact_utc_window_verified": False,
+            "scientifically_qualified_windows": 0,
+            "source": source["publisher_reported_case"]["publisher_preview_url"],
+        },
         "contact_authorized": False,
         "physical_validation": False,
         "reason": "Publisher original READMEs/schedule returned HTTP429. "
