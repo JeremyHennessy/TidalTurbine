@@ -1,0 +1,20 @@
+# Field cross-flow blade loads and electricity — evidence-qualified research
+Date: 2026-10-23. Scope: published abstracts and DOE dataset *metadata* only, not a newly measured or validated rotor. Checked repository base 9fef6d6eb3a1a70877bbfdf278af9d649cb768d5; research is independent of and not an update to existing RM2 original laboratory raw observations.
+
+## New independent field-source path
+The official [DOE dataset catalogue](https://catalog.data.gov/dataset/in-situ-blade-strain-measurements-of-a-crossflow-turbine-operating-in-a-tidal-flow) lists 17 publication/instrument resources for a different UNH/AMEC four-blade cross-flow device observed from October 25 to December 12, 2022. The listed families include eight blade strain gauges on one blade; ADCP/ADV current/wake; thrust reaction-arm load cells; Voltsys rectifier power/generator-frequency derived rotation; and platform IMU. The separate [2025 publication abstract](https://research-hub.nlr.gov/en/publications/in-situ-blade-strain-measurements-and-fatigue-analysis-of-a-cross/) confirms time-synchronized blade strain, velocity, rotor speed, thrust and electrical output on the *different* 3.2m crossflow machine.
+
+**Critical boundary:** source metadata 17 records; source raw sensor archives acquired **0**; valid original common-clock overlap windows **0**. A bounded normal attempt at the original ADCP README gave HTTP429 and was not bypassed. No electrical auxiliary/meter boundary, native QC, material transfer or stress calibration has been qualified. These observations have not entered our simulator. Different rotor, site and experiment from the 2016 UNH RM2 1:6 tow tank; not Halifax/Fundy inflow.
+
+## Distinct, nontransferable fatigue findings
+- [Myers et al. (2025)](https://marineenergyjournal.org/imej/article/view/138) used a 1:20 instrumented tidal device in both flume and small tidal site. Their abstract reports approximately fivefold higher fatigue damage in a particular site case relative to their low-turbulence lab case. Cannot use as a universal turbulence-to-fatigue multiplier.
+- [Dillenburger-Keenan et al. (2026)](https://pure.qub.ac.uk/en/publications/damage-equivalent-strain-as-a-metric-for-tidal-turbine-blade-fati/) found revolution frequency dominated their damage-equivalent-strain scenario comparisons on a **different transverse-axis turbine**. It does not override turbulence effects in other designs, and assumed rotations do not establish independent measured strain cycles or material life.
+
+The two studies investigate different geometries, fatigue metrics, and inflow conditions; they are neither evidence of a universal conflict nor support for selecting a winning turbine. Our falsifiable next lab question still requires **simultaneous independently calibrated blade and strut strain, real inflow/turbulence, phase/torque, and signed net delivered electricity** under preregistered matched conditions.
+
+## Product and research status
+A separate source-linked Research & Gates panel should show the 12 original measurement channels (11 with missing numerical calibration records) and nine unresolved metrology gates, plus the three study summaries and an explicitly *catalogue-only* dataset. No simulation output should be invented, no 2022 raw files rendered as acquired measurements and no UI/approved drawings changed outside this additive Research panel.
+
+Source metadata bundle: [field_strain_evidence_20261023.json](../research/field_strain_evidence_20261023.json), original measurement protocol: [metrology_prereg_v1.json](../research/metrology_prereg_v1.json).
+
+Next three scientific actions: (1) qualify native source READMEs, calibration and actual joint clock windows lawfully if available, without circumventing the prior HTTP429; (2) preregister load-versus-net-electricity paired trials with true stress/energy/uncertainty boundaries; (3) keep native FORCE ADCP validity, environmental review, permits and safe retrieval as independent field gates. No outreach, purchase, field visit or physical test permitted.

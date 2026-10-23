@@ -1,0 +1,89 @@
+{
+  "schema": "TT-FIELD-STRAIN-EVIDENCE-001",
+  "date": "2026-10-23",
+  "source_main_sha": "9fef6d6eb3a1a70877bbfdf278af9d649cb768d5",
+  "classification": "PUBLISHED_SOURCE_DISCOVERY_NO_PROJECT_LOAD_OR_ELECTRICAL_VALIDATION",
+  "project_measurements": {
+    "physical_trials": 0,
+    "qualified_force_inflow_rows": 0,
+    "blade_stress_runs": 0,
+    "net_electric_runs": 0,
+    "independent_replicates": 0
+  },
+  "field_dataset": {
+    "id": "DOE-UNH-STRAIN-CATALOG-008",
+    "title": "UNH/AMEC cross-flow turbine field sensors · Oct–Dec 2022",
+    "url": "https://catalog.data.gov/dataset/in-situ-blade-strain-measurements-of-a-crossflow-turbine-operating-in-a-tidal-flow",
+    "resource_count": 17,
+    "original_archives_acquired": 0,
+    "qualified_joint_intervals": 0,
+    "status": "CATALOG_METADATA_ONLY",
+    "physical_scope": "A distinct 3.2 m diameter, four-blade field cross-flow turbine, NOT the UNH RM2 1:6 tow-tank rotor or a Nova Scotia location.",
+    "families": [
+      {
+        "key": "strain",
+        "title": "Blade strain",
+        "scope": "Eight foil sensors along one blade"
+      },
+      {
+        "key": "flow",
+        "title": "Flow",
+        "scope": "ADCP/ADV upstream and downstream velocities"
+      },
+      {
+        "key": "thrust",
+        "title": "Thrust",
+        "scope": "Reaction-arm bi-directional load cells"
+      },
+      {
+        "key": "electrical",
+        "title": "Electricity",
+        "scope": "Voltsys rectifier power and rotation inferred from generator frequency"
+      },
+      {
+        "key": "motion",
+        "title": "Platform movement",
+        "scope": "IMU instrumentation"
+      }
+    ],
+    "original_access": "Native source access not qualified. Normal original ADCP README request returned HTTP429; no bypass or bulk acquisition."
+  },
+  "studies": [
+    {
+      "id": "UNH-STRAIN-PAPER-2025-008",
+      "title": "Blade strain measured with electrical output",
+      "year": 2025,
+      "scope": "DIFFERENT FIELD CROSS-FLOW ROTOR",
+      "finding": "The study recorded synchronized blade strain, velocity, thrust, rotor speed and electrical output.",
+      "limitation": "Abstract-level review. We have not acquired or qualified their original sensor records.",
+      "url": "https://research-hub.nlr.gov/en/publications/in-situ-blade-strain-measurements-and-fatigue-analysis-of-a-cross/"
+    },
+    {
+      "id": "MYERS-FLUME-2025-008",
+      "title": "Turbulence can materially alter fatigue",
+      "year": 2025,
+      "scope": "1:20 FLUME AND TIDAL SITE",
+      "finding": "Authors report roughly 5× greater fatigue damage at their site versus a typical low-turbulence laboratory case.",
+      "limitation": "That is their study-specific effect, not a transferable fatigue multiplier.",
+      "url": "https://marineenergyjournal.org/imej/article/view/138"
+    },
+    {
+      "id": "DILLENBURGER-STRAIN-2026-008",
+      "title": "Revolution frequency dominates in another rotor",
+      "year": 2026,
+      "scope": "TRANSVERSE-AXIS CROSS-FLOW STRAIN STUDY",
+      "finding": "Their strain-based comparison found revolution frequency dominant over dynamic-flow effects for the studied geometry.",
+      "limitation": "This does not prove turbulence irrelevant for other devices or make theoretical turns into measured fatigue cycles.",
+      "url": "https://pure.qub.ac.uk/en/publications/damage-equivalent-strain-as-a-metric-for-tidal-turbine-blade-fati/"
+    }
+  ],
+  "scientific_interpretation": "Turbulence and revolution-frequency effects are design-dependent, not contradictory universal rules. Our separate measured inflow, phase, blade stress and metered electricity remain missing.",
+  "hard_gates": {
+    "calibration_channels_unverified": 11,
+    "measurement_gates_unresolved": 9,
+    "contact_authorized": false,
+    "physical_test_authorized": false,
+    "prototype_winner": null
+  },
+  "original_source_status": "ORIGINAL_SENSOR_FILES_NOT_ACQUIRED"
+}
