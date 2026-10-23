@@ -77,6 +77,8 @@ python scripts/check_force_campaign_report.py
 
 ## Prototype testing readiness — October 2026
 
+The [offline October 23 lab venue and idealized tow-window study](docs/LAB_VENUE_SCREEN_20261023.md) verifies historic Aquatron research and Memorial towing-tank dimensions and published external list rates without authorizing contact. Its upper-bound steady-tow windows are assumptions, **not available test durations**; no instrumented prototype or confirmed facility exists. Run `python scripts/check_lab_venue_screen.py` for an offline blocked-source screen.
+
 The [October 23, 2026 lab pilot readiness package](docs/LAB_PILOT_READINESS_20261023.md) adds source-backed local/Canadian test-venue leads (including historic Dalhousie Aquatron turbine experiments), one **published CAD $5,000/day Marine Institute flume list rate** and a fail-closed 15-gate physical readiness register. That rate is **not a project estimate, quotation, booking or approval**, and the site-specific FORCE data remains unusable for engineering forecasts. Run `python scripts/check_lab_pilot_readiness.py` for the currently blocked status. The laboratory venue can be qualified independently of later field ADCP site QC; **no physical test is documented or authorized**.
 
 **No in-water device has been built or validated.** The 2018 FORCE processed campaign contains 263,250 records but **zero** source-approved turbine-inflow records. CMAR DG013 provides 531 independent wave/sensor-speed readings with gross-range QA, not a qualified 3-D rotor-height inflow profile.

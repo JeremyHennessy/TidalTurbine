@@ -1,0 +1,165 @@
+{
+  "schema": "TT-LAB-VENUE-SCREEN-1",
+  "date": "2026-10-23",
+  "reviewed_main": "6b7da10462bc35f730f06ce81ee1a183ef4fdb92",
+  "classification": "SOURCE_REVIEW_PLUS_IDEALIZED_KINEMATICS_NO_NEW_MEASUREMENTS",
+  "scope": "Offline prospective small tidal-stream turbine laboratory test feasibility, not fabricated device or permission",
+  "user_hold": {
+    "external_contacts": "ON_HOLD_BY_USER",
+    "email_send_authorized": false,
+    "booking_authorized": false,
+    "purchase_authorized": false,
+    "physical_test_authorized": false
+  },
+  "experimental_claims": {
+    "new_physical_tests": 0,
+    "source_qualified_site_inflow_rows": 0,
+    "measured_net_electricity": false,
+    "calibrated_blade_stress": false,
+    "prototype_winner": null
+  },
+  "measurement_gate": [
+    "measured_inflow_vector_and_turbulence",
+    "synchronized_torque_speed_and_phase",
+    "calibrated_blade_root_and_support_loads",
+    "metered_delivered_electricity_and_auxiliaries",
+    "repeatability_and_uncertainty",
+    "safety_and_professional_review"
+  ],
+  "venues": [
+    {
+      "id": "DAL-AQUATRON",
+      "source_class": "PUBLISHED_HISTORICAL_LAB_EXPERIMENT",
+      "sources": [
+        {
+          "url": "https://tethys.pnnl.gov/sites/default/files/publications/MacNeill_et_al_2017.pdf",
+          "reviewed_pages_zero_based": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "evidence": "2017 EWTEC paper: documented turbine/pump test setup and processed mechanical inference"
+        }
+      ],
+      "historical_test_year": 2017,
+      "historical_tank_diameter_m": 15.24,
+      "historical_test_depth_m": 4,
+      "historical_turbine_diameter_m": 0.9,
+      "historical_pump_reported_speed_range_m_s": [
+        0.6,
+        2.4
+      ],
+      "historical_flow_conflict": "2017 paper abstract describes 2.0 m/s fish test but p3 states fixed 1.5 m/s for fish study; specific flow not reconciled",
+      "historical_turbine_power_boundary": "Inferred mechanical power via motor input and losses; neither signed load-side generated electricity nor blade-root stress independently documented",
+      "published_rate_amount": null,
+      "published_rate_currency": null,
+      "current_test_acceptance": "UNKNOWN",
+      "current_flow_envelope": "UNKNOWN",
+      "current_instrument_compatibility": "UNKNOWN",
+      "comparison_note": "Most directly relevant local historical moving-rotor demonstration; original pump adaptation and 2017 setup cannot be assumed available in 2026"
+    },
+    {
+      "id": "MUN-TOW",
+      "source_class": "OFFICIAL_UNIVERSITY_FACILITY_PAGE_AND_EXTERNAL_RATE_POLICY",
+      "sources": [
+        {
+          "url": "https://www.mun.ca/engineering/ona/research/research-facilities/towing-tank/",
+          "reviewed": "Facility specification and potential current/wave-energy applications"
+        },
+        {
+          "url": "https://www.mun.ca/engineering/research/centres-and-facilities/research-centres/oerc/user-policy/",
+          "reviewed": "Posted normal external-user towing tank rate and project-dependent quotations"
+        }
+      ],
+      "published_usable_length_m": 35,
+      "published_width_m": 4.5,
+      "published_max_depth_m": 3.04,
+      "published_max_carriage_speed_m_s": 5,
+      "published_max_carriage_acceleration_m_s2": 2,
+      "published_rate_amount": 1000,
+      "published_rate_currency": null,
+      "rate_currency_note": "Original published rate page states '$1,000/day' without explicitly spelling out currency; request written CAD confirmation before an actual cost comparison",
+      "rate_condition": "Typical external-user day rate; may vary with project complexity; final quotation required",
+      "current_test_acceptance": "UNKNOWN",
+      "current_instrument_compatibility": "UNKNOWN",
+      "controlled_tow_time_verified": false,
+      "comparison_note": "Only static published upper limits; no guaranteed steady flow duration, braking limit, track clearance, yaw/reversal support, instrumentation or test-slot suitability"
+    },
+    {
+      "id": "MI-CSAR",
+      "source_class": "OFFICIAL_FACILITY_LIST_RATE",
+      "sources": [
+        {
+          "url": "https://www.mi.mun.ca/departments/centreforsustainableaquaticresources/services/",
+          "reviewed": "Published flume service scope and listed rate effective 2026-04-01"
+        }
+      ],
+      "rate_effective_date": "2026-04-01",
+      "published_rate_amount": 5000,
+      "published_rate_currency": "CAD",
+      "rate_condition": "Published flume daily list rate; project-specific equipment, staff, current/turbulence and test permissions not confirmed",
+      "current_test_acceptance": "UNKNOWN",
+      "current_flow_envelope": "UNKNOWN",
+      "current_instrument_compatibility": "UNKNOWN",
+      "comparison_note": "Possible longer flow exposure without towing travel limit, but no validated steady-flow capability for this model"
+    },
+    {
+      "id": "COVE-STELLA",
+      "source_class": "OPERATOR_FACILITY_DESCRIPTION",
+      "sources": [
+        {
+          "url": "https://covesolutions.com/programs-services/stella-maris-testing-solution/",
+          "reviewed": "Dockside/subsea test and instrumentation capability advertised"
+        }
+      ],
+      "published_rate_amount": null,
+      "published_rate_currency": null,
+      "current_test_acceptance": "UNKNOWN",
+      "current_flow_envelope": "UNKNOWN",
+      "current_instrument_compatibility": "UNKNOWN",
+      "comparison_note": "Wet seals/DAQ/electronics integration option; not demonstrated calibrated moving-rotor current facility"
+    }
+  ],
+  "optimistic_tow_screen": {
+    "applies_only_to": "MUN-TOW",
+    "purpose": "Numerical idealized upper bound on constant-speed tow time under symmetric assumed maximum acceleration and deceleration; NOT a facility specification or achievable test duration",
+    "published_usable_length_m": 35,
+    "published_max_carriage_acceleration_m_s2": 2,
+    "published_max_carriage_speed_m_s": 5,
+    "assumed_initial_speed_m_s": 0,
+    "assumed_final_speed_m_s": 0,
+    "assumed_acceleration_m_s2": 2,
+    "assumed_braking_m_s2": 2,
+    "assumed_extra_safety_margin_m": 0,
+    "modeled_speed_setpoints_m_s": [
+      0.6,
+      1,
+      1.4
+    ],
+    "does_not_include": [
+      "carriage instrument clearance",
+      "wave/turbulence stabilization",
+      "stopping limits",
+      "structural safety margin",
+      "blockage effects",
+      "instrument spin-up",
+      "rotor spin-up",
+      "reverse-direction ability",
+      "facility availability"
+    ],
+    "usable_time_is_optimistic_bound": true,
+    "guaranteed_steady_speed_time_s": null
+  },
+  "blockers": [
+    "No 2026 lab acceptance, booking or quote",
+    "No confirmed test-specific CAD or dimensions",
+    "No calibrated full mechanical/electrical synchronous measurements",
+    "No selected safe rotor/material/support",
+    "No site-qualified FORCE inflow for field modeling",
+    "No physical approvals"
+  ],
+  "next_step": "Internal review of optimistic tow-time and source gaps only. Hold all email/contact, purchases, bookings, fabrication and physical operations until separately authorized."
+}
