@@ -15,9 +15,11 @@
   <script defer src="service_energy_model.js"></script>
   <script defer src="service_energy.js"></script>
   <script defer src="field_research.js"></script>
+  <script defer src="published_strain.js"></script>
   <link rel="stylesheet" href="clearance.css">
   <link rel="stylesheet" href="service_energy.css">
   <link rel="stylesheet" href="field_research.css">
+  <link rel="stylesheet" href="published_strain.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to workbench</a>
@@ -195,6 +197,21 @@
 <div id="field-evidence-papers"></div><div id="field-source-discovery" class="field-discovery"></div></div>
 </div>
 <p class="field-foot"><strong>Evidence boundary:</strong> Published paper abstracts and DOE catalogue metadata are not project measurements. No original strain/power files acquired, no qualified site inflow, fatigue life, electricity gain, turbine winner, or external contact. <a href="https://github.com/JeremyHennessy/TidalTurbine/blob/main/docs/FIELD_STRAIN_COMPARISON_20261023.md" target="_blank" rel="noopener noreferrer">Read the scientific limitations ↗</a></p>
+</section>
+<section class="panel published-strain-lab" id="published-strain-lab" aria-labelledby="published-strain-title" data-status="LOADING">
+<div class="published-strain-head"><div><div class="section-kicker">PUBLISHED FIELD STUDY · NOVEMBER 22, 2022</div><h2 id="published-strain-title">Where did blade strain vary most?</h2>
+<p>An independent UNH/NREL turbine experiment reported eight gauge-by-gauge strain differences during rotation. Compare the published statistics, not a predicted fatigue life or a new prototype measurement.</p></div><span class="tag tag-amber">PUBLICATION TABLE · UNITS UNVERIFIED</span></div>
+<p class="published-strain-state" id="published-strain-status" role="status" aria-live="polite">Loading original publication-table evidence; no result established.</p>
+<div class="published-strain-body"><div>
+<h3>Eight gauges, top to bottom</h3>
+<div class="published-strain-controls" id="published-strain-controls" role="group" aria-label="Choose published strain statistic"></div>
+<div class="published-strain-bars" id="published-strain-bars" role="group" aria-label="Strain gauge statistics, published values"></div>
+<p class="published-strain-caption" id="published-strain-caption">No table numbers available.</p>
+</div><div>
+<h3>Important measurement boundaries</h3>
+<div class="published-strain-facts" id="published-strain-facts"></div>
+</div></div>
+<p class="published-strain-footer"><strong>Evidence rule:</strong> This 2023 paper reports data from a separate four-bladed field turbine. Its Table 1 numerical units could not be confirmed from the available PDF extraction. Turbine-influenced ADVs and separately timestamped ADCP/CTD records need independent QC and geometry; power was routed to an off-grid resistor bank, not proven net grid export. The 22 November example is <em>not confirmed</em> to be the identical late-November case discussed in the 2025 paper. <a href="https://github.com/JeremyHennessy/TidalTurbine/blob/main/docs/UNH_2023_PUBLISHED_STRAIN_20261023.md" target="_blank" rel="noopener noreferrer">Read full research limitations ↗</a></p>
 </section><div class="research-grid"><div class="panel roadmap-panel"><div class="panel-head"><div><div class="section-kicker">SIX STAGES</div><h2>Path to credible design evidence</h2></div></div><div id="research-gates" class="research-gates"></div></div><div class="research-rail"><div class="panel scope-card"><div class="section-kicker">CURRENT CLAIM BOUNDARY</div><h2>What we know</h2><p>A unit-tested screening model estimates electrical export under synthetic currents. Original UNH RM2 records now provide rig torque and support-drag phase profiles, but not blade-root stress or net electricity. The acquired FORCE campaign has 97,911 exact-zero vectors among 263,250 processed observations; native beam QC and range mapping remain unresolved, and no FORCE observations enter energy modelling.</p><div class="fact-dots"><div><span class="green-circle"></span> Software checks completed</div><div><span class="amber-circle"></span> Full FORCE campaign acquired · native QC blocked</div><div><span class="grey-circle"></span> Rig torque/drag observed · blade loads unvalidated</div><div><span class="grey-circle"></span> Physical device untested</div></div></div><div class="panel next-card"><div class="section-kicker">NEXT ENGINEERING GATES</div><h2>Priorities</h2><ol><li><strong>Resolve FORCE ADCP quality.</strong><span>Resolve range-label mapping, source zero-mask meaning and beam QC before accepting representative current bins.</span></li><li><strong>Extend RM1 benchmark into load evidence.</strong><span>Published RM1 axial Cp table reproduced; Ct, time-resolved structural loads and predictive models remain unvalidated.</span></li><li><strong>Measure true cyclic stress and net electricity.</strong><span>Build on the recovered 2 kHz RM2 torque/support-force records; blade-root strain, PTO controls, recovery and maintenance still need physical evidence.</span></li></ol><a href="https://github.com/JeremyHennessy/TidalTurbine/blob/main/docs/CONTINUATION.md" target="_blank" rel="noopener noreferrer" class="plain-link">View full continuation ↗</a></div></div></div></section>
       </main>
     </div>

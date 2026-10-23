@@ -60,6 +60,10 @@ python -m http.server 8000 --directory .                # open /site/
 
 The original 14-day synthetic SCREEN-001 power model, its report and its assumptions remain unchanged. Export curtailment never demonstrates less thrust, fatigue or repair cost.
 
+## Independent Nov22 2022 field blade-strain table — updated 2026-10-23
+
+The [2023 NREL/UNH publication review](docs/UNH_2023_PUBLISHED_STRAIN_20261023.md) transcribes eight reported **22 November 2022** blade-gauge cycle-difference summaries, with the numerical table **units not independently verified**, and clearly marks **off-grid rectifier→resistor-bank output rather than net exported electricity**. The separate [Research & Gates chart](https://jeremyhennessy.github.io/TidalTurbine/site/index.html#research) plots those *published* values, switching mean/maximum/variability. Gauge 3 and 7 near struts show the highest mean differences, but no new original source sensor rows, fatigue lives, validated pressure/current or project measurements were acquired. The Nov22 example is **not proven the same interval** as the 2025 paper's late-November ebb analysis.
+
 ## 2025 paper's late-November 2022 sensor subset — bounded finding
 
 The [publisher-excerpt evidence review](docs/UNH_2022_LATE_NOV_ADV_SUBSET_20261023.md) now reports an **ebb tide in late November 2022** when the authors synchronized **both ADV flow sensors, blade strain and thrust**; the paper also reports its upstream ADCP data were lost following leak damage. The precise UTC interval and **simultaneous Voltsys electrical readings for that ebb case remain unknown**. This narrows future lawful source acquisition to a candidate ADV/strain/thrust study only; there are still zero acquired original measurements or qualified four-stream load-vs-net-power data. TidalLab's existing [Research & Gates panel](https://jeremyhennessy.github.io/TidalTurbine/site/index.html#research) displays this limited finding without changing approved layouts or promoting source quality.

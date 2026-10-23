@@ -1,0 +1,174 @@
+{
+  "schema": "TT-UNH-2023-PUBLISHED-STRAIN-V1",
+  "date": "2026-10-23",
+  "original_main_commit": "9cc8d4b098f3949ee25d0746f16403bb4aeb54b9",
+  "classification": "PUBLISHED_TABLE_TRANSCRIPTION_AND_BOUNDARY_REVIEW_NOT_ORIGINAL_SENSOR_DATA",
+  "source": {
+    "id": "UNH-2023-OMAE-BLADE-010",
+    "url": "https://tethys-engineering.pnnl.gov/sites/default/files/publications/Bharath_et_al_2023.pdf",
+    "title": "Bharath et al. 2023: Open Water Blade Strain Measurements on a Vertical-Axis Tidal Turbine",
+    "conference": "OMAE 2023",
+    "paper_number": "OMAE2023-101076",
+    "source_section": "Section 4.1 Table 1, document PDF page index 7, printed page 8",
+    "source_text_extracted": true,
+    "visual_pdf_screenshot_confirmed": false,
+    "original_sensor_archives_acquired": false,
+    "original_raw_strain_SI_units_confirmed": false
+  },
+  "turbine_distinction": "UNH NECI 3.2m diameter, four-blade 2022 field turbine, not RM2 1:6 tow-tank and not this project's hardware",
+  "table": {
+    "source_date": "2022-11-22",
+    "event_description": "TABLE_1_NOV22_PUBLISHED_PER_REV_PEAK_TO_TROUGH_STRAIN_DIFFERENCES",
+    "units": null,
+    "unit_status": "NOT_PRESENT_IN_EXTRACTED_TABLE_1_TEXT_DO_NOT_ASSIGN_MICROSTRAIN_OR_PASCAL",
+    "statistic_definition": "Distribution of peak-to-trough differences per sampled rotor revolution at one gauge; sample counts and independence not reported in extracted table",
+    "statistic_headers": [
+      "MEAN",
+      "MAX",
+      "MIN",
+      "STD"
+    ],
+    "values": [
+      {
+        "gauge": 1,
+        "position": "ABOVE_UPPER_STRUT",
+        "mean": 8.1,
+        "max": 12.1,
+        "min": 4.3,
+        "std": 1.1
+      },
+      {
+        "gauge": 2,
+        "position": "ABOVE_UPPER_STRUT",
+        "mean": 37.1,
+        "max": 118.3,
+        "min": 21.7,
+        "std": 5.7
+      },
+      {
+        "gauge": 3,
+        "position": "ABOVE_UPPER_STRUT_NEAREST",
+        "mean": 86.8,
+        "max": 120.8,
+        "min": 51,
+        "std": 11.4
+      },
+      {
+        "gauge": 4,
+        "position": "BETWEEN_STRUTS",
+        "mean": 55.6,
+        "max": 91.3,
+        "min": 24.2,
+        "std": 10.8
+      },
+      {
+        "gauge": 5,
+        "position": "BETWEEN_STRUTS",
+        "mean": 21.5,
+        "max": 37.3,
+        "min": 9.7,
+        "std": 4.5
+      },
+      {
+        "gauge": 6,
+        "position": "BETWEEN_STRUTS",
+        "mean": 35.7,
+        "max": 63.3,
+        "min": 17.8,
+        "std": 7
+      },
+      {
+        "gauge": 7,
+        "position": "BELOW_LOWER_STRUT_NEAREST",
+        "mean": 69.7,
+        "max": 100.1,
+        "min": 40.6,
+        "std": 8
+      },
+      {
+        "gauge": 8,
+        "position": "BELOW_LOWER_STRUT",
+        "mean": 6.3,
+        "max": 10.1,
+        "min": 4.1,
+        "std": 0.7
+      }
+    ],
+    "source_highest_mean_gauges": [
+      3,
+      7
+    ],
+    "raw_trace_available": false,
+    "stress_transfer_calibrated": false,
+    "observed_cycles_count": null,
+    "material_fatigue_curve": null
+  },
+  "published_device": {
+    "blade_count": 4,
+    "diameter_m": 3.2,
+    "height_m": 1.7,
+    "profile": "NACA 0021",
+    "blade_chord_m": 0.25,
+    "pitch_deg": 4,
+    "blades_with_strain_gauges": 1,
+    "gauges_on_blade": 8,
+    "rotor_fabrication_selected_for_our_project": false
+  },
+  "experiment_system": {
+    "timing_architecture": "NI_MODAQ_GPS_COMMON_CLOCK_DESCRIBED_WHILE_ADCP_AND_CTD_RUN_SEPARATELY_AFTER_NETWORK_FAILURE",
+    "ADCP_and_CTD_linked_to_main_DAQ_during_paper": "NO",
+    "ADCP_CTD_external_clock_pre_sync_and_drift_estimated": true,
+    "ADV_probes_near_rotor_induced_velocity": true,
+    "instrumented_blade_operation": "OFF_GRID_DUMP_LOAD",
+    "rectifier_to_dump_resistor_capacity_kW": 25,
+    "grid_energy_delivery_in_described_test": "NOT_A_NET_GRID_EXPORT_MEASUREMENT",
+    "auxiliary_energy_meter_boundary_verified": false,
+    "power_data_average_duration_seconds": 1,
+    "phase_resolved_electric_power_validated": false,
+    "time_resolved_power_and_strain_common_raw_interval_verified": false,
+    "wireless_strain_telemetry": "TWO_V_LINK_200_NODES_TO_WSDA_2000_GATEWAY_TO_C_RIO",
+    "strain_gauge_configuration": "EIGHT_FULL_BRIDGE_SENSORS_ONE_BLADE",
+    "sensor_retrofit_changes_geometry_and_drag": true
+  },
+  "published_campaign_context": {
+    "rpm_min": 18,
+    "rpm_max": 31,
+    "thrust_mean_kN": 6.4,
+    "thrust_peak_kN": 11.5,
+    "thrust_and_rpm_are_full_deployment_descriptions_not_paired_Table1_samples": true,
+    "late_november_2025_analysed_ebb_same_as_Nov22_not_proven": true,
+    "ADV_upstream_support_pipe_damaged_utc_date": "2022-11-27",
+    "upstream_ADV_removed_date": "2022-12-08",
+    "sample_specific_undisturbed_upstream_speed_qualified": false
+  },
+  "derivations": {
+    "title": "Four-blade passage frequency at published deployment RPM boundaries",
+    "evidence_class": "ENGINEERING_ASSUMPTION_DIMENSIONAL_IDENTITY_ONLY",
+    "formula": "blade_count * rpm / 60, Hz",
+    "valid_for": "Only a hypothetical four-blade rotor when reported speed holds, not verified source timeseries",
+    "inferred_measured_fatigue_cycles": null,
+    "dynamically_resolved_power_from_1_second_averages": false,
+    "frequency_unit": "Hz"
+  },
+  "project_scientific_boundary": {
+    "original_source_archives_acquired": 0,
+    "qualified_original_sensor_windows": 0,
+    "project_blade_stress_measurements": 0,
+    "project_net_electricity_measurements": 0,
+    "project_physical_trials": 0,
+    "source_specific_strain_fatigue_life_confirmed": false,
+    "cross_turbine_winner": null,
+    "external_contacts_authorized": false,
+    "field_authorization": false,
+    "source_access_bypass": false
+  },
+  "limitations": [
+    "This is a conference paper table reproduced from public PDF text, not original source sample time histories.",
+    "No numerical strain units are adopted from Table 1 until original PDF figure/table can be visually and instrumentally verified.",
+    "2022-11-22 example cannot be inferred to be the exact late-November analyzed ebb of the 2025 journal paper.",
+    "Reported 18–31rpm, 6.4/11.5kN and 1s electrical values describe wider study, not necessarily one synchronous November 22 time window.",
+    "1s averaged resistor-dump power cannot diagnose individual blade-pass events or prove net grid electricity.",
+    "Near-rotor ADV suffers turbine induction; ADCP/CTD network failure requires independent drift correction and input provenance.",
+    "No qualified FORCE 2018 site currents, authorized physical experiments, design component selection or environmental gate is affected."
+  ]
+}
