@@ -1,0 +1,335 @@
+{
+  "schema": "TT-METROLOGY-PREREG-V1",
+  "date": "2026-10-23",
+  "source_main_sha": "6031d2788c5293c9811ec2cb50a810867df340d6",
+  "evidence_class": "DESIGN_HYPOTHESIS_UNFROZEN_NOT_EXECUTED",
+  "status": "BLOCKED_REQUIRES_INDEPENDENT_METROLOGY_AND_STATISTICAL_REVIEW",
+  "question": "Under matched independently measured inflow on the same cross-flow rotor, does the lower-TSR regime reduce calibrated damaging cyclic blade/strut loads with an acceptable preregistered net-electrical-energy penalty?",
+  "comparator": {
+    "architecture": "CROSSFLOW-RM2-REFERENCE",
+    "baseline_historic_run": 12,
+    "candidate_historic_run": 10,
+    "baseline_nominal_tsr": 3.0993495,
+    "candidate_nominal_tsr": 2.8999618,
+    "source_means_are_historic_and_exposed": true,
+    "previous_raw_rig_force_is_not_blade_root_stress": true
+  },
+  "contact_and_physical_boundaries": {
+    "contact_anyone_authorized": false,
+    "email_send_authorized": false,
+    "draft_preparation_authorized": false,
+    "purchasing_authorized": false,
+    "laboratory_operation_authorized": false,
+    "field_operation_authorized": false
+  },
+  "measured_results": {
+    "project_physical_test_count": 0,
+    "qualified_force_site_inflow_rows": 0,
+    "physical_blade_stress_measured": false,
+    "project_net_electricity_measured": false,
+    "independent_replicated_trials_completed": 0,
+    "validated_fatigue_life_claim": false,
+    "prototype_winner": null
+  },
+  "channels": [
+    {
+      "id": "inflow_3d",
+      "units": "m/s",
+      "role": "LAB_UPSTREAM_FLOW_VECTOR_QC_AND_SHEAR",
+      "calibration_required": true,
+      "serial_number": null,
+      "calibration_record": null,
+      "calibration_uncertainty_statement": null,
+      "pre_test_zero_check": null,
+      "post_test_drift_check": null,
+      "signed_axis_and_wiring_mapping": null,
+      "common_clock_channel_latency_evidence": null,
+      "raw_signal_sha256": null,
+      "quality_mask_definition": null
+    },
+    {
+      "id": "fluid_state",
+      "units": "kg/m^3,degC,m",
+      "role": "DENSITY_TEMP_DEPTH_AND_BLOCKAGE_CONTEXT",
+      "calibration_required": true,
+      "serial_number": null,
+      "calibration_record": null,
+      "calibration_uncertainty_statement": null,
+      "pre_test_zero_check": null,
+      "post_test_drift_check": null,
+      "signed_axis_and_wiring_mapping": null,
+      "common_clock_channel_latency_evidence": null,
+      "raw_signal_sha256": null,
+      "quality_mask_definition": null
+    },
+    {
+      "id": "rotor_position",
+      "units": "rad",
+      "role": "DIRECTION_PHASE_ENCODER_AND_INDEX_ZERO",
+      "calibration_required": true,
+      "serial_number": null,
+      "calibration_record": null,
+      "calibration_uncertainty_statement": null,
+      "pre_test_zero_check": null,
+      "post_test_drift_check": null,
+      "signed_axis_and_wiring_mapping": null,
+      "common_clock_channel_latency_evidence": null,
+      "raw_signal_sha256": null,
+      "quality_mask_definition": null
+    },
+    {
+      "id": "rotor_speed",
+      "units": "rad/s",
+      "role": "INSTANTANEOUS_SIGNED_SHAFT_ANGULAR_SPEED",
+      "calibration_required": true,
+      "serial_number": null,
+      "calibration_record": null,
+      "calibration_uncertainty_statement": null,
+      "pre_test_zero_check": null,
+      "post_test_drift_check": null,
+      "signed_axis_and_wiring_mapping": null,
+      "common_clock_channel_latency_evidence": null,
+      "raw_signal_sha256": null,
+      "quality_mask_definition": null
+    },
+    {
+      "id": "shaft_torque",
+      "units": "N*m",
+      "role": "INDEPENDENT_SHAFT_TORQUE_AND_TARE",
+      "calibration_required": true,
+      "serial_number": null,
+      "calibration_record": null,
+      "calibration_uncertainty_statement": null,
+      "pre_test_zero_check": null,
+      "post_test_drift_check": null,
+      "signed_axis_and_wiring_mapping": null,
+      "common_clock_channel_latency_evidence": null,
+      "raw_signal_sha256": null,
+      "quality_mask_definition": null
+    },
+    {
+      "id": "blade_root_strain",
+      "units": "microstrain",
+      "role": "BLADE_ROOT_CRITICAL_BENDING_AXES_NOT_YET_STRESS",
+      "calibration_required": true,
+      "serial_number": null,
+      "calibration_record": null,
+      "calibration_uncertainty_statement": null,
+      "pre_test_zero_check": null,
+      "post_test_drift_check": null,
+      "signed_axis_and_wiring_mapping": null,
+      "common_clock_channel_latency_evidence": null,
+      "raw_signal_sha256": null,
+      "quality_mask_definition": null
+    },
+    {
+      "id": "strut_strain",
+      "units": "microstrain",
+      "role": "STRUT_OR_FRAME_SEPARATE_LOAD_PATH",
+      "calibration_required": true,
+      "serial_number": null,
+      "calibration_record": null,
+      "calibration_uncertainty_statement": null,
+      "pre_test_zero_check": null,
+      "post_test_drift_check": null,
+      "signed_axis_and_wiring_mapping": null,
+      "common_clock_channel_latency_evidence": null,
+      "raw_signal_sha256": null,
+      "quality_mask_definition": null
+    },
+    {
+      "id": "mean_streamwise_drag",
+      "units": "N",
+      "role": "ACTUAL_TIME_RESOLVED_STREAMWISE_SUPPORT_LOAD",
+      "calibration_required": true,
+      "serial_number": null,
+      "calibration_record": null,
+      "calibration_uncertainty_statement": null,
+      "pre_test_zero_check": null,
+      "post_test_drift_check": null,
+      "signed_axis_and_wiring_mapping": null,
+      "common_clock_channel_latency_evidence": null,
+      "raw_signal_sha256": null,
+      "quality_mask_definition": null
+    },
+    {
+      "id": "generator_power",
+      "units": "W",
+      "role": "GENERATOR_SIDE_SIGNED_ELECTRICAL_POWER",
+      "calibration_required": true,
+      "serial_number": null,
+      "calibration_record": null,
+      "calibration_uncertainty_statement": null,
+      "pre_test_zero_check": null,
+      "post_test_drift_check": null,
+      "signed_axis_and_wiring_mapping": null,
+      "common_clock_channel_latency_evidence": null,
+      "raw_signal_sha256": null,
+      "quality_mask_definition": null
+    },
+    {
+      "id": "delivered_electrical_power",
+      "units": "W",
+      "role": "LOAD_SIDE_SIGNED_ELECTRICITY_INCLUDING_IMPORTS",
+      "calibration_required": true,
+      "serial_number": null,
+      "calibration_record": null,
+      "calibration_uncertainty_statement": null,
+      "pre_test_zero_check": null,
+      "post_test_drift_check": null,
+      "signed_axis_and_wiring_mapping": null,
+      "common_clock_channel_latency_evidence": null,
+      "raw_signal_sha256": null,
+      "quality_mask_definition": null
+    },
+    {
+      "id": "control_and_actuator_power",
+      "units": "W",
+      "role": "SEPARATELY_METERED_SIGNED_CONTROL_AND_ACTUATOR_ENERGY",
+      "calibration_required": true,
+      "serial_number": null,
+      "calibration_record": null,
+      "calibration_uncertainty_statement": null,
+      "pre_test_zero_check": null,
+      "post_test_drift_check": null,
+      "signed_axis_and_wiring_mapping": null,
+      "common_clock_channel_latency_evidence": null,
+      "raw_signal_sha256": null,
+      "quality_mask_definition": null
+    },
+    {
+      "id": "rig_status",
+      "units": "enum",
+      "role": "TIMESTAMPED_FAULT_START_STOP_SATURATION_DROPOUT_AND_SAFETY_EVENTS",
+      "calibration_required": false,
+      "serial_number": null,
+      "calibration_record": null,
+      "calibration_uncertainty_statement": null,
+      "pre_test_zero_check": null,
+      "post_test_drift_check": null,
+      "signed_axis_and_wiring_mapping": null,
+      "common_clock_channel_latency_evidence": null,
+      "raw_signal_sha256": null,
+      "quality_mask_definition": null
+    }
+  ],
+  "clock_and_signal_design": {
+    "common_clock_source": null,
+    "utc_epoch_anchor_and_timezone": null,
+    "per_channel_latency_and_jitter_budget_s": null,
+    "measured_cross_channel_delay_s": null,
+    "highest_mechanically_relevant_frequency_hz": null,
+    "selected_sampling_rate_hz": null,
+    "anti_alias_filter_design_and_phase_response": null,
+    "encoder_zero_and_direction_validation": null,
+    "transient_bandwidth_and_overload_limits": null,
+    "planned_lab_flow_stabilization_window_s": null,
+    "selected_blade_strain_bridge_type": null,
+    "selected_bridge_excitation_v": null,
+    "selected_bridge_remote_sense_and_shunt_check": null,
+    "material_specific_microstrain_to_stress_transfer": null
+  },
+  "electrical_boundary": {
+    "delivered_meter_position": null,
+    "generator_meter_position": null,
+    "auxiliary_meter_inside_delivered_meter_boundary": null,
+    "meter_sign_convention_delivered": "POSITIVE_EXPORT_NEGATIVE_IMPORT",
+    "meter_sign_convention_auxiliary": "POSITIVE_CONSUMPTION_NEGATIVE_RECOVERY",
+    "separate_auxiliary_subtraction_rule": "SUBTRACT_ONLY_IF_OUTSIDE_DELIVERED_METER_BOUNDARY",
+    "signed_control_regeneration_handling": null,
+    "storage_state_matched_or_corrected": null,
+    "synchronized_meter_calibration_and_uncertainty": null
+  },
+  "paired_trial_design": {
+    "prospective_order": "RANDOMIZED_AB_BA",
+    "trial_unit": "SEPARATELY_PREPARED_EXPERIMENTAL_RUN_NOT_SAMPLES_OR_ROTOR_CYCLES",
+    "independent_group_definition": null,
+    "randomization_seed_and_frozen_allocation": null,
+    "matched_flow_and_turbulence_tolerances": null,
+    "primary_peak_or_cycle_stress_metric": null,
+    "phase_bin_definition": null,
+    "material_fatigue_law_and_validity_evidence": null,
+    "signed_net_energy_metric_and_test_period": null,
+    "acceptable_energy_penalty": null,
+    "minimum_relevant_stress_reduction": null,
+    "sample_size_and_power_justification": null,
+    "preregistered_uncertainty_and_autocorrelation_method": null,
+    "failure_exclusion_and_trip_policy": null,
+    "independently_reviewed_protocol_receipt": null,
+    "preregistration_timestamp_utc": null
+  },
+  "data_integrity": {
+    "immutable_raw_record_pointer": null,
+    "raw_source_sha256": null,
+    "logger_configuration_hash": null,
+    "sensor_calibration_chain_manifest": null,
+    "frozen_preprocessing_hash": null,
+    "sample_drop_and_saturation_flags": null,
+    "logged_fault_and_stop_events": null,
+    "physical_test_authority": null,
+    "venue_acceptance_record": null
+  },
+  "independent_acceptance_gates": [
+    {
+      "id": "SOURCE_INFLOW",
+      "state": "UNRESOLVED",
+      "required": "Actual upstream 3D flow/turbulence and lab calibration/QC; site FORCE remains separately excluded"
+    },
+    {
+      "id": "CALIBRATION_CHAIN",
+      "state": "UNRESOLVED",
+      "required": "Every load/strain/torque/power measurand with traceable calibration records and uncertainty; sensor certification alone insufficient"
+    },
+    {
+      "id": "MECHANICAL_PHASE",
+      "state": "UNRESOLVED",
+      "required": "Single or independently synchronized clock; encoder index/rotation/sign validation and worst-case delay error"
+    },
+    {
+      "id": "STRAIN_TRANSFER",
+      "state": "UNRESOLVED",
+      "required": "Bridge wiring/excitation/temperature/shunt, independent applied-load check, microstrain-to-stress transfer and material definition"
+    },
+    {
+      "id": "ANTI_ALIAS",
+      "state": "UNRESOLVED",
+      "required": "Measurable relevant frequency and harmonics, anti-alias transfer function and sample-rate justification, not inherited 2 kHz"
+    },
+    {
+      "id": "ELECTRIC_METER_BOUNDARY",
+      "state": "UNRESOLVED",
+      "required": "Generator and load-side meter placement, signed import/export, auxiliary meter inclusion, restart/storage state, no double count"
+    },
+    {
+      "id": "INDEPENDENT_REPLICATES",
+      "state": "UNRESOLVED",
+      "required": "Freeze AB/BA order before testing with independent preparations, event/trip inclusion, preregistered sample size and statistical uncertainty"
+    },
+    {
+      "id": "STRUCTURAL_DAMAGE",
+      "state": "UNRESOLVED",
+      "required": "Validated stress histories, selected cycle counting and material fatigue curve before any damage or reliability claim"
+    },
+    {
+      "id": "SAFETY_AND_AUTHORITIES",
+      "state": "UNRESOLVED",
+      "required": "Venue-specific reviewed apparatus, guards, accessible E-stop, calibration and test authority; maritime/ecological/rights separate for field"
+    }
+  ],
+  "referenced_sources": [
+    "NIST-METROLOGY-007",
+    "NIST-TN1297-007",
+    "NI-STRAIN-007",
+    "ASTM-E1049-007",
+    "IEC-POWER-007"
+  ],
+  "canonical_documents": [
+    "research/experiment_protocol_v1.json",
+    "research/lab_pilot_readiness_20261023.json",
+    "research/lab_venue_screen_20261023.json",
+    "research/shaft_support_006.json",
+    "docs/PROTOTYPE_TEST_RIG_ENGINEERING_20261020.md",
+    "docs/ROTOR_EXPOSURE_BOUND_20261023.md"
+  ],
+  "documentation_boundary": "All numerical source laboratory results remain historical, the following arithmetic fixture is synthetic and shall not be adopted as physical metrology or a sample-rate/acceptance threshold."
+}
