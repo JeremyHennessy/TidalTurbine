@@ -61,6 +61,8 @@ jobs:
         run: python scripts/check_metrology_protocol.py --toy
       - name: Audit independent field strain evidence and filters
         run: node tests/test_field_research.cjs
+      - name: Preserve blocked 2022 UNH original sensor source and UTC overlap gate
+        run: python scripts/qualify_unh_2022_overlap.py
       - name: Run unit tests
         run: python -m unittest discover -s tests -v
       - name: Re-run synthetic screening experiment
