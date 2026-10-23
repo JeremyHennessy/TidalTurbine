@@ -31,6 +31,22 @@ const types={'.html':'text/html','.js':'text/javascript','.css':'text/css','.jso
    await page.waitForFunction(()=>document.getElementById('field-evidence-lab')?.dataset.status==='BLOCKED',null,{timeout:20000});
    assert.equal(await page.locator('#field-channel-list .field-channel').count(),12);
    assert.equal(await page.locator('#field-evidence-papers .field-paper').count(),3);
+   await page.waitForFunction(()=>document.getElementById('published-strain-lab')?.dataset.status==='PUBLISHED_TABLE_ONLY',null,{timeout:20000});
+   assert.equal(await page.locator('#published-strain-bars .strain-gauge-row').count(),8);
+   assert.equal(await page.locator('#published-strain-bars [data-published-gauge="3"] .strain-gauge-value').innerText(),'86.8');
+   assert.equal(await page.locator('#published-strain-bars [data-published-gauge="7"] .strain-gauge-value').innerText(),'69.7');
+   assert.match(await page.locator('#published-strain-status').innerText(),/0 qualified project blade-stress\/net-electricity results/);
+   assert.match(await page.locator('#published-strain-facts').innerText(),/OFF GRID/);
+   await page.locator('[data-published-stat="max"]').click();
+   assert.equal(await page.locator('#published-strain-bars [data-published-gauge="3"] .strain-gauge-value').innerText(),'120.8');
+   await page.locator('[data-published-stat="std"]').click();
+   assert.equal(await page.locator('#published-strain-bars [data-published-gauge="3"] .strain-gauge-value').innerText(),'11.4');
+   await page.locator('[data-published-stat="mean"]').click();
+   const strainBox=await page.locator('#published-strain-lab').boundingBox();
+   assert.ok(strainBox.x>=0&&strainBox.x+strainBox.width<=width+1,'published evidence within viewport');
+   await page.locator('#published-strain-title').scrollIntoViewIfNeeded();
+   await page.locator('#published-strain-lab').screenshot({path:path.join(shots,'published-strain-'+label+'.png'),animations:'disabled'});
+
    assert.match(await page.locator('#field-evidence-counts').innerText(),/11 numeric channels without calibration records/);
    assert.match(await page.locator('#field-evidence-state').innerText(),/0 qualified original source intervals/);
    assert.match(await page.locator('#field-source-discovery').innerText(),/0 original instrument archives acquired/);
@@ -54,6 +70,12 @@ const types={'.html':'text/html','.js':'text/javascript','.css':'text/css','.jso
    await page.locator('#field-evidence-title').scrollIntoViewIfNeeded();
    await page.locator('#field-evidence-lab').screenshot({path:path.join(shots,'field-evidence-'+label+'.png'),animations:'disabled'});
   }
+  await page.route('**/research/UNH_2023_PUBLISHED_STRAIN_001.json',route=>route.abort());
+  await page.reload({waitUntil:'networkidle'});
+  await page.waitForFunction(()=>document.getElementById('published-strain-lab')?.dataset.status==='UNAVAILABLE');
+  assert.equal(await page.locator('#published-strain-bars .strain-gauge-row').count(),0);
+  assert.equal(await page.locator('#field-evidence-lab').getAttribute('data-status'),'BLOCKED');
+  await page.unroute('**/research/UNH_2023_PUBLISHED_STRAIN_001.json');
   await page.route('**/research/field_strain_evidence_20261023.json',route=>route.abort());
   await page.reload({waitUntil:'networkidle'});
   await page.waitForFunction(()=>document.getElementById('field-evidence-lab')?.dataset.status==='UNAVAILABLE');

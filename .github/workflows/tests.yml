@@ -63,6 +63,10 @@ jobs:
         run: node tests/test_field_research.cjs
       - name: Preserve blocked 2022 UNH original sensor source and UTC overlap gate
         run: python scripts/qualify_unh_2022_overlap.py
+      - name: Audit published Nov22 strain table and generator measurement limits
+        run: |
+          python scripts/check_unh_2023_strain.py
+          node tests/test_published_strain.cjs
       - name: Run unit tests
         run: python -m unittest discover -s tests -v
       - name: Re-run synthetic screening experiment
